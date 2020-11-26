@@ -1,17 +1,58 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Coding+Github双服务器托管Hexo | 何孙涛の博客</title><meta name="keywords" content="Hexo"><meta name="author" content="何孙涛"><meta name="copyright" content="何孙涛"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="&amp;emsp;&amp;emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！  1 写在前面其实之前是用的wordpress在阿里云上挂着。觉得Hexo好像更符合现在我的审美，so, do it! 所以我选择了Hexo 2 部署优化Hexo这一步我之前写过，在这里我就不详细赘述了啊  Hexo+NexT拥抱舒爽">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Coding+Github双服务器托管Hexo">
-<meta property="og:url" content="https://z555.top/post/641eb086.html">
-<meta property="og:site_name" content="何孙涛の博客">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！  1 写在前面其实之前是用的wordpress在阿里云上挂着。觉得Hexo好像更符合现在我的审美，so, do it! 所以我选择了Hexo 2 部署优化Hexo这一步我之前写过，在这里我就不详细赘述了啊  Hexo+NexT拥抱舒爽">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png">
-<meta property="article:published_time" content="2019-04-05T09:36:34.000Z">
-<meta property="article:modified_time" content="2019-04-05T09:36:34.000Z">
-<meta property="article:author" content="何孙涛">
-<meta property="article:tag" content="转载">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png"><link rel="shortcut icon" href="/res-256.github.io/img/favicon.png"><link rel="canonical" href="https://z555.top/post/641eb086"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta name="google-site-verification" content="content"/><meta name="msvalidate.01" content="content"/><meta name="baidu-site-verification" content="content"/><meta name="360-site-verification" content="content"/><link rel="stylesheet" href="/res-256.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>var _hmt = _hmt || [];
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Coding+Github双服务器托管Hexo | 何孙涛の博客</title><meta name="description" content="&amp;emsp;&amp;emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！  1 写在前面其实之前是用的wordpress在阿里云上挂着。觉得Hexo好像更符合现在我的审美，so, do it! 所以我选择了Hexo 2 部署优化Hexo这一步我之前写过，在这里我就不详细赘述了啊  Hexo+NexT拥抱舒爽"><meta name="keywords" content="Hexo"><meta name="author" content="何孙涛"><meta name="copyright" content="何孙涛"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/res-256.github.io/img/favicon.png"><link rel="canonical" href="https://z555.top/post/641eb086.html"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta name="google-site-verification" content="content"/><meta name="msvalidate.01" content="content"/><meta name="baidu-site-verification" content="content"/><meta name="360-site-verification" content="content"/><meta property="og:type" content="article"><meta property="og:title" content="Coding+Github双服务器托管Hexo"><meta property="og:url" content="https://z555.top/post/641eb086.html"><meta property="og:site_name" content="何孙涛の博客"><meta property="og:description" content="&amp;emsp;&amp;emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！  1 写在前面其实之前是用的wordpress在阿里云上挂着。觉得Hexo好像更符合现在我的审美，so, do it! 所以我选择了Hexo 2 部署优化Hexo这一步我之前写过，在这里我就不详细赘述了啊  Hexo+NexT拥抱舒爽"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png"><meta property="article:published_time" content="2019-04-05T09:36:34.000Z"><meta property="article:modified_time" content="2019-04-05T09:36:34.000Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/res-256.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="自动备份Hexo博客源文件" href="https://z555.top/post/c4d910e6.html"><link rel="next" title="PicGo + GitHub 图床，让 Markdown 飞起" href="https://z555.top/post/74409432.html"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?true";
@@ -21,164 +62,54 @@
 </script><script>var GLOBAL_CONFIG = { 
   root: '/res-256.github.io/',
   algolia: undefined,
-  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
   translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
   noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
   copy: {
     success: '复制成功',
     error: '复制错误',
     noSupport: '浏览器不支持'
   },
-  relativeDate: {
-    homepage: false,
-    post: false
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
   },
-  runtime: '天',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
+  runtime_unit: '天',
+  runtime: true,
   copyright: undefined,
   ClickShowText: undefined,
-  lightbox: 'fancybox',
+  medium_zoom: false,
+  fancybox: true,
   Snackbar: undefined,
-  source: {
-    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
-    },
-    fancybox: {
-      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
-    }
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
   },
+  baiduPush: true,
+  highlightCopy: true,
+  highlightLang: true,
   isPhotoFigcaption: false,
   islazyload: true,
-  isanchor: false
-};
-
-var saveToLocal = {
-  set: function setWithExpiry(key, value, ttl) {
-    const now = new Date()
-    const expiryDay = ttl * 86400000
-    const item = {
-      value: value,
-      expiry: now.getTime() + expiryDay,
-    }
-    localStorage.setItem(key, JSON.stringify(item))
-  },
-
-  get: function getWithExpiry(key) {
-    const itemStr = localStorage.getItem(key)
-
-    if (!itemStr) {
-      return undefined
-    }
-    const item = JSON.parse(itemStr)
-    const now = new Date()
-
-    if (now.getTime() > item.expiry) {
-      localStorage.removeItem(key)
-      return undefined
-    }
-    return item.value
-  }
-}
-
-// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
-const getScript = url => new Promise((resolve, reject) => {
-  const script = document.createElement('script')
-  script.src = url
-  script.async = true
-  script.onerror = reject
-  script.onload = script.onreadystatechange = function() {
-    const loadState = this.readyState
-    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-    script.onload = script.onreadystatechange = null
-    resolve()
-  }
-  document.head.appendChild(script)
-})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
   isPost: true,
   isHome: false,
   isHighlightShrink: false,
-  isToc: true,
+  isSidebar: true,
   postUpdate: '2019-04-05 09:36:34'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(function () {  window.activateDarkMode = function () {
-    document.documentElement.setAttribute('data-theme', 'dark')
-    if (document.querySelector('meta[name="theme-color"]') !== null) {
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-    }
-  }
-  window.activateLightMode = function () {
-    document.documentElement.setAttribute('data-theme', 'light')
-   if (document.querySelector('meta[name="theme-color"]') !== null) {
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-    }
-  }
-  const autoChangeMode = 'false'
-  const t = saveToLocal.get('theme')
-  if (autoChangeMode === '1') {
-    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
-    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
-    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
-    if (t === undefined) {
-      if (isLightMode) activateLightMode()
-      else if (isDarkMode) activateDarkMode()
-      else if (isNotSpecified || hasNoSupport) {
-        const now = new Date()
-        const hour = now.getHours()
-        const isNight = hour <= 6 || hour >= 18
-        isNight ? activateDarkMode() : activateLightMode()
-      }
-      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
-        if (saveToLocal.get('theme') === undefined) {
-          e.matches ? activateDarkMode() : activateLightMode()
-        }
-      })
-    } else if (t === 'light') activateLightMode()
-    else activateDarkMode()
-  } else if (autoChangeMode === '2') {
-    const now = new Date()
-    const hour = now.getHours()
-    const isNight = hour <= 6 || hour >= 18
-    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
-    else if (t === 'light') activateLightMode()
-    else activateDarkMode()
-  } else {
-    if (t === 'dark') activateDarkMode()
-    else if (t === 'light') activateLightMode()
-  }const asideStatus = saveToLocal.get('aside-status')
-if (asideStatus !== undefined) {
-   if (asideStatus === 'hide') {
-     document.documentElement.classList.add('hide-aside')
-   } else {
-     document.documentElement.classList.remove('hide-aside')
-   }
-}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tzki/tzki.github.io/css/pool.css"><script src="https://cdn.jsdelivr.net/gh/drew233/cdn/js/jquery-3.3.1.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/css/flink.min.css"><!-- hexo injector head_end start -->
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tzki/tzki.github.io/css/pool.css"><script src="https://cdn.jsdelivr.net/gh/drew233/cdn/js/jquery-3.3.1.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/css/flink.min.css"><div class="aplayer" data-id="5216429357" data-server="netease" data-type="playlist" data-fixed="true" data-listFolded="false" data-order="random" data-preload="none"></div><link rel="stylesheet" href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css"><script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script><!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/res-256.github.io/atom.xml" title="何孙涛の博客" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/res-256.github.io/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/res-256.github.io/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/res-256.github.io/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/res-256.github.io/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/res-256.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/res-256.github.io/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/res-256.github.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-inbox"></i><span> 站点</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/sitemap.xml"><i class="fa-fw fas fa-map-marked-alt"></i><span> 站点地图</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://img.plushine.cn/"><i class="fa-fw fas fa-bed"></i><span> 开源图床</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://console.leancloud.app/applist.html#/apps/"><i class="fa-fw fas fa-bed"></i><span> 后端管理</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-gavel"></i><span> 应用</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Butterfly/"><i class="fa-fw fas fa-bug"></i><span> 彩蝶飘飞</span></a></li><li><a class="site-page" href="/res-256.github.io/box/"><i class="fa-fw fas fa-democrat"></i><span> 网址导航</span></a></li><li><a class="site-page" href="/res-256.github.io/music/"><i class="fa-fw fas fa-music"></i><span> 音乐频道</span></a></li><li><a class="site-page" href="/res-256.github.io/bb/"><i class="fa-fw fas fa-book"></i><span> 微信哔哔</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-car"></i><span> 资料</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Gallery/"><i class="fa-fw fas fa-camera"></i><span> 壁纸美图</span></a></li><li><a class="site-page" href="/res-256.github.io/NetEase/"><i class="fa-fw fas fa-fire"></i><span> 网易热评</span></a></li><li><a class="site-page" href="/res-256.github.io/19CoV/"><i class="fa-fw fas fa-map-marker-alt"></i><span> 肺炎现状</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 游戏</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Piano/"><i class="fa-fw fas fa-fire"></i><span> 在线钢琴</span></a></li><li><a class="site-page" href="/res-256.github.io/Cat/"><i class="fa-fw fas fa-bullseye"></i><span> 圈住小猫</span></a></li><li><a class="site-page" href="/res-256.github.io/2048/"><i class="fa-fw fas fa-democrat"></i><span> 移动方块</span></a></li><li><a class="site-page" href="/res-256.github.io/Element/"><i class="fa-fw fas fa-democrat"></i><span> 元素周期</span></a></li><li><a class="site-page" href="/res-256.github.io/Chest/"><i class="fa-fw fas fa-democrat"></i><span> 五子小棋</span></a></li><li><a class="site-page" href="/res-256.github.io/PacMan/"><i class="fa-fw fas fa-democrat"></i><span> 吃豆小人</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/res-256.github.io/">何孙涛の博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/res-256.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/res-256.github.io/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/res-256.github.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-inbox"></i><span> 站点</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/sitemap.xml"><i class="fa-fw fas fa-map-marked-alt"></i><span> 站点地图</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://img.plushine.cn/"><i class="fa-fw fas fa-bed"></i><span> 开源图床</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://console.leancloud.app/applist.html#/apps/"><i class="fa-fw fas fa-bed"></i><span> 后端管理</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-gavel"></i><span> 应用</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Butterfly/"><i class="fa-fw fas fa-bug"></i><span> 彩蝶飘飞</span></a></li><li><a class="site-page" href="/res-256.github.io/box/"><i class="fa-fw fas fa-democrat"></i><span> 网址导航</span></a></li><li><a class="site-page" href="/res-256.github.io/music/"><i class="fa-fw fas fa-music"></i><span> 音乐频道</span></a></li><li><a class="site-page" href="/res-256.github.io/bb/"><i class="fa-fw fas fa-book"></i><span> 微信哔哔</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-car"></i><span> 资料</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Gallery/"><i class="fa-fw fas fa-camera"></i><span> 壁纸美图</span></a></li><li><a class="site-page" href="/res-256.github.io/NetEase/"><i class="fa-fw fas fa-fire"></i><span> 网易热评</span></a></li><li><a class="site-page" href="/res-256.github.io/19CoV/"><i class="fa-fw fas fa-map-marker-alt"></i><span> 肺炎现状</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 游戏</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Piano/"><i class="fa-fw fas fa-fire"></i><span> 在线钢琴</span></a></li><li><a class="site-page" href="/res-256.github.io/Cat/"><i class="fa-fw fas fa-bullseye"></i><span> 圈住小猫</span></a></li><li><a class="site-page" href="/res-256.github.io/2048/"><i class="fa-fw fas fa-democrat"></i><span> 移动方块</span></a></li><li><a class="site-page" href="/res-256.github.io/Element/"><i class="fa-fw fas fa-democrat"></i><span> 元素周期</span></a></li><li><a class="site-page" href="/res-256.github.io/Chest/"><i class="fa-fw fas fa-democrat"></i><span> 五子小棋</span></a></li><li><a class="site-page" href="/res-256.github.io/PacMan/"><i class="fa-fw fas fa-democrat"></i><span> 吃豆小人</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Coding+Github双服务器托管Hexo</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-04-05T09:36:34.000Z" title="发表于 2019-04-05 09:36:34">2019-04-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2019-04-05T09:36:34.000Z" title="更新于 2019-04-05 09:36:34">2019-04-05</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/res-256.github.io/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/res-256.github.io/archives/"><div class="headline">文章</div><div class="length_num">19</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/res-256.github.io/tags/"><div class="headline">标签</div><div class="length_num">22</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/res-256.github.io/categories/"><div class="headline">分类</div><div class="length_num">12</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/res-256.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/res-256.github.io/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/res-256.github.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-inbox"></i><span> 站点</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://ysnsn.herokuapp.com/"><i class="fa-fw fas fa-cloud-download-alt"></i><span> 网盘资料</span></a></li><li><a class="site-page" href="/res-256.github.io/sitemap.xml"><i class="fa-fw fas fa-map-marked-alt"></i><span> 站点地图</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://img.plushine.cn/"><i class="fa-fw fas fa-bed"></i><span> 开源图床</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://console.leancloud.app/applist.html#/apps/"><i class="fa-fw fas fa-bed"></i><span> 后端管理</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-gavel"></i><span> 应用</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Butterfly/"><i class="fa-fw fas fa-bug"></i><span> 彩蝶飘飞</span></a></li><li><a class="site-page" href="/res-256.github.io/Flud/"><i class="fa-fw fas fa-bullseye"></i><span> 液体流动</span></a></li><li><a class="site-page" href="/res-256.github.io/box/"><i class="fa-fw fas fa-democrat"></i><span> 网址导航</span></a></li><li><a class="site-page" href="/res-256.github.io/music/"><i class="fa-fw fas fa-music"></i><span> 音乐频道</span></a></li><li><a class="site-page" href="/res-256.github.io/artitalk/"><i class="fa-fw fas fa-diamond"></i><span> 谈词说字</span></a></li><li><a class="site-page" href="/res-256.github.io/bb/"><i class="fa-fw fas fa-basketball"></i><span> 微信哔哔</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-car"></i><span> 资料</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Gallery/"><i class="fa-fw fas fa-camera"></i><span> 壁纸美图</span></a></li><li><a class="site-page" href="/res-256.github.io/NetEase/"><i class="fa-fw fas fa-fire"></i><span> 网易热评</span></a></li><li><a class="site-page" href="/res-256.github.io/19CoV/"><i class="fa-fw fas fa-map-marker-alt"></i><span> 肺炎现状</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-book"></i><span> 游戏</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Piano/"><i class="fa-fw fas fa-fire"></i><span> 在线钢琴</span></a></li><li><a class="site-page" href="/res-256.github.io/Cat/"><i class="fa-fw fas fa-bullseye"></i><span> 圈住小猫</span></a></li><li><a class="site-page" href="/res-256.github.io/2048/"><i class="fa-fw fas fa-democrat"></i><span> 移动方块</span></a></li><li><a class="site-page" href="/res-256.github.io/Element/"><i class="fa-fw fas fa-democrat"></i><span> 元素周期</span></a></li><li><a class="site-page" href="/res-256.github.io/Chest/"><i class="fa-fw fas fa-democrat"></i><span> 五子小棋</span></a></li><li><a class="site-page" href="/res-256.github.io/PacMan/"><i class="fa-fw fas fa-democrat"></i><span> 吃豆小人</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><i class="fas fa-arrow-right" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-number">1.</span> <span class="toc-text">1 写在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E9%83%A8%E7%BD%B2%E4%BC%98%E5%8C%96Hexo"><span class="toc-number">2.</span> <span class="toc-text">2 部署优化Hexo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BAGithub%E5%85%AC%E5%BC%80%E5%BA%93"><span class="toc-number">3.</span> <span class="toc-text">3 创建Github公开库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%88%9B%E5%BB%BACoding%E5%85%AC%E5%BC%80%E5%BA%93"><span class="toc-number">4.</span> <span class="toc-text">4 创建Coding公开库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%BC%80%E5%90%AFpage%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 开启page服务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%B9%B6%E5%B0%86%E6%96%87%E4%BB%B6%E9%83%A8%E7%BD%B2%E5%88%B0Github"><span class="toc-number">5.</span> <span class="toc-text">5 配置服务并将文件部署到Github</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E4%BF%AE%E6%94%B9-config-yml"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 修改_config.yml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%8F%91%E5%B8%83"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 生成静态文件发布</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E9%A2%84%E8%A7%88%E5%9C%B0%E5%9D%80"><span class="toc-number">6.</span> <span class="toc-text">6 预览地址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="toc-number">7.</span> <span class="toc-text">7 设置自定义域名</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E5%8A%A0%E5%BF%AB%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6"><span class="toc-number">8.</span> <span class="toc-text">8 加快访问速度</span></a></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/res-256.github.io/">何孙涛の博客</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/res-256.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/res-256.github.io/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/res-256.github.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-inbox"></i><span> 站点</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://ysnsn.herokuapp.com/"><i class="fa-fw fas fa-cloud-download-alt"></i><span> 网盘资料</span></a></li><li><a class="site-page" href="/res-256.github.io/sitemap.xml"><i class="fa-fw fas fa-map-marked-alt"></i><span> 站点地图</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://img.plushine.cn/"><i class="fa-fw fas fa-bed"></i><span> 开源图床</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://console.leancloud.app/applist.html#/apps/"><i class="fa-fw fas fa-bed"></i><span> 后端管理</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-gavel"></i><span> 应用</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Butterfly/"><i class="fa-fw fas fa-bug"></i><span> 彩蝶飘飞</span></a></li><li><a class="site-page" href="/res-256.github.io/Flud/"><i class="fa-fw fas fa-bullseye"></i><span> 液体流动</span></a></li><li><a class="site-page" href="/res-256.github.io/box/"><i class="fa-fw fas fa-democrat"></i><span> 网址导航</span></a></li><li><a class="site-page" href="/res-256.github.io/music/"><i class="fa-fw fas fa-music"></i><span> 音乐频道</span></a></li><li><a class="site-page" href="/res-256.github.io/artitalk/"><i class="fa-fw fas fa-diamond"></i><span> 谈词说字</span></a></li><li><a class="site-page" href="/res-256.github.io/bb/"><i class="fa-fw fas fa-basketball"></i><span> 微信哔哔</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-car"></i><span> 资料</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Gallery/"><i class="fa-fw fas fa-camera"></i><span> 壁纸美图</span></a></li><li><a class="site-page" href="/res-256.github.io/NetEase/"><i class="fa-fw fas fa-fire"></i><span> 网易热评</span></a></li><li><a class="site-page" href="/res-256.github.io/19CoV/"><i class="fa-fw fas fa-map-marker-alt"></i><span> 肺炎现状</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-book"></i><span> 游戏</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Piano/"><i class="fa-fw fas fa-fire"></i><span> 在线钢琴</span></a></li><li><a class="site-page" href="/res-256.github.io/Cat/"><i class="fa-fw fas fa-bullseye"></i><span> 圈住小猫</span></a></li><li><a class="site-page" href="/res-256.github.io/2048/"><i class="fa-fw fas fa-democrat"></i><span> 移动方块</span></a></li><li><a class="site-page" href="/res-256.github.io/Element/"><i class="fa-fw fas fa-democrat"></i><span> 元素周期</span></a></li><li><a class="site-page" href="/res-256.github.io/Chest/"><i class="fa-fw fas fa-democrat"></i><span> 五子小棋</span></a></li><li><a class="site-page" href="/res-256.github.io/PacMan/"><i class="fa-fw fas fa-democrat"></i><span> 吃豆小人</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Coding+Github双服务器托管Hexo</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2019-04-05 09:36:34"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2019-04-05</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2019-04-05 09:36:34"><i class="fas fa-history fa-fw"></i> 更新于 2019-04-05</span></time></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">690</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><blockquote>
 <p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
 </blockquote>
 <h1 id="1-写在前面"><a href="#1-写在前面" class="headerlink" title="1 写在前面"></a>1 写在前面</h1><p>其实之前是用的wordpress在阿里云上挂着。<br>觉得Hexo好像更符合现在我的审美，so, do it! 所以我选择了Hexo</p>
@@ -190,14 +121,14 @@ if (asideStatus !== undefined) {
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/wugenqiang/article/details/88373385">Hexo博客上传至Github</a></li>
 </ul>
 <h1 id="4-创建Coding公开库"><a href="#4-创建Coding公开库" class="headerlink" title="4 创建Coding公开库"></a>4 创建Coding公开库</h1><p>创建腾讯云开发者平台（或Coding）公开库，因为目前两家公司战略合作，现在共用了。<br><a target="_blank" rel="noopener" href="https://dev.tencent.com/">https://dev.tencent.com/</a></p>
-<p><img src= "/res-256.github.io/img/loading.gif" data-lazy-src="https://wugenqiang.github.io/PictureBed/pictures/20190405095056.png"></p>
-<h2 id="4-1-创建项目"><a href="#4-1-创建项目" class="headerlink" title="4.1 创建项目"></a>4.1 创建项目</h2><p>项目地址格式是 username.coding.me，格式不对会404哦，项目名称随便，确定就ok<br>例如我的：<br><img src= "/res-256.github.io/img/loading.gif" data-lazy-src="https://wugenqiang.github.io/PictureBed/pictures/20190405095539.png"></p>
-<h2 id="4-2-开启page服务"><a href="#4-2-开启page服务" class="headerlink" title="4.2 开启page服务"></a>4.2 开启page服务</h2><p>创建完记得进入代码浏览，看看是否正确生成，然后进入page服务，然后开启<br><img src= "/res-256.github.io/img/loading.gif" data-lazy-src="https://wugenqiang.github.io/PictureBed/pictures/20190405095901.png"><br>开启成功效果图：<br><img src= "/res-256.github.io/img/loading.gif" data-lazy-src="https://wugenqiang.github.io/PictureBed/pictures/20190405100027.png"></p>
+<p><img src= "/res-256.github.io/img/loading.gif" data-src="https://wugenqiang.github.io/PictureBed/pictures/20190405095056.png"></p>
+<h2 id="4-1-创建项目"><a href="#4-1-创建项目" class="headerlink" title="4.1 创建项目"></a>4.1 创建项目</h2><p>项目地址格式是 username.coding.me，格式不对会404哦，项目名称随便，确定就ok<br>例如我的：<br><img src= "/res-256.github.io/img/loading.gif" data-src="https://wugenqiang.github.io/PictureBed/pictures/20190405095539.png"></p>
+<h2 id="4-2-开启page服务"><a href="#4-2-开启page服务" class="headerlink" title="4.2 开启page服务"></a>4.2 开启page服务</h2><p>创建完记得进入代码浏览，看看是否正确生成，然后进入page服务，然后开启<br><img src= "/res-256.github.io/img/loading.gif" data-src="https://wugenqiang.github.io/PictureBed/pictures/20190405095901.png"><br>开启成功效果图：<br><img src= "/res-256.github.io/img/loading.gif" data-src="https://wugenqiang.github.io/PictureBed/pictures/20190405100027.png"></p>
 <h1 id="5-配置服务并将文件部署到Github"><a href="#5-配置服务并将文件部署到Github" class="headerlink" title="5 配置服务并将文件部署到Github"></a>5 配置服务并将文件部署到Github</h1><h2 id="5-1-修改-config-yml"><a href="#5-1-修改-config-yml" class="headerlink" title="5.1 修改_config.yml"></a>5.1 修改_config.yml</h2><p>修改Hexo根目录下 _config.yml 文件，找到最下面的 deploy，格式类似我这样的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  #repository: https:&#x2F;&#x2F;github.com&#x2F;wugenqiang&#x2F;wugenqiang.github.io.git #复制过来</span><br><span class="line">  #branch: master</span><br><span class="line">  repo:</span><br><span class="line">    github: https:&#x2F;&#x2F;github.com&#x2F;wugenqiang&#x2F;wugenqiang.github.io.git,master</span><br><span class="line">    coding: https:&#x2F;&#x2F;dev.tencent.com&#x2F;u&#x2F;wugenqiang&#x2F;p&#x2F;wugenqiang.coding.me.git,master </span><br></pre></td></tr></table></figure>
 <h2 id="5-2-生成静态文件发布"><a href="#5-2-生成静态文件发布" class="headerlink" title="5.2 生成静态文件发布"></a>5.2 生成静态文件发布</h2><p>执行hexo clean &amp;&amp; hexo g &amp;&amp; hexo s 清除缓存，生成静态文件，本地发布<br>页面上没问题的话，就可以执行hexo d</p>
-<p>会弹出输入github账号密码，和腾讯开发者平台的账号密码。<br><img src= "/res-256.github.io/img/loading.gif" data-lazy-src="https://wugenqiang.github.io/PictureBed/pictures/20190405100903.png"><br>后面通过生成ssh私钥，公钥就不用频繁输入用户名密码</p>
-<p>部署成功，按照各自平台的pages服务提示的网址即可访问<br>在这里我就演示coding的吧，嘿嘿<br><img src= "/res-256.github.io/img/loading.gif" data-lazy-src="https://wugenqiang.github.io/PictureBed/pictures/20190405101028.png"></p>
+<p>会弹出输入github账号密码，和腾讯开发者平台的账号密码。<br><img src= "/res-256.github.io/img/loading.gif" data-src="https://wugenqiang.github.io/PictureBed/pictures/20190405100903.png"><br>后面通过生成ssh私钥，公钥就不用频繁输入用户名密码</p>
+<p>部署成功，按照各自平台的pages服务提示的网址即可访问<br>在这里我就演示coding的吧，嘿嘿<br><img src= "/res-256.github.io/img/loading.gif" data-src="https://wugenqiang.github.io/PictureBed/pictures/20190405101028.png"></p>
 <h1 id="6-预览地址"><a href="#6-预览地址" class="headerlink" title="6 预览地址"></a>6 预览地址</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://wugenqiang.coding.me/">https://wugenqiang.coding.me/</a></li>
 <li><a target="_blank" rel="noopener" href="https://wugenqiang.github.io/">https://wugenqiang.github.io/</a></li>
@@ -206,101 +137,17 @@ if (asideStatus !== undefined) {
 <ul>
 <li><a target="_blank" rel="noopener" href="https://wugenqiang.gitee.io/articles/hexo-do-domain.html">Hexo博客绑定个人域名</a></li>
 </ul>
-<p>对于Coding来说，来进行下面步骤：<br>1.进入项目，进入Page服务页<br><img src= "/res-256.github.io/img/loading.gif" data-lazy-src="https://wugenqiang.github.io/PictureBed/pictures/20190405103203.png"></p>
+<p>对于Coding来说，来进行下面步骤：<br>1.进入项目，进入Page服务页<br><img src= "/res-256.github.io/img/loading.gif" data-src="https://wugenqiang.github.io/PictureBed/pictures/20190405103203.png"></p>
 <p>点击设置进入</p>
-<p><img src= "/res-256.github.io/img/loading.gif" data-lazy-src="https://wugenqiang.github.io/PictureBed/pictures/20190405103257.png"></p>
+<p><img src= "/res-256.github.io/img/loading.gif" data-src="https://wugenqiang.github.io/PictureBed/pictures/20190405103257.png"></p>
 <p>2.设置域名指向<br>设置自定义域名指向wugenqiang.coding.me</p>
-<p><img src= "/res-256.github.io/img/loading.gif" data-lazy-src="https://wugenqiang.github.io/PictureBed/pictures/20190405103808.png"></p>
-<p>ok<br><img src= "/res-256.github.io/img/loading.gif" data-lazy-src="https://wugenqiang.github.io/PictureBed/pictures/20190405104001.png"></p>
+<p><img src= "/res-256.github.io/img/loading.gif" data-src="https://wugenqiang.github.io/PictureBed/pictures/20190405103808.png"></p>
+<p>ok<br><img src= "/res-256.github.io/img/loading.gif" data-src="https://wugenqiang.github.io/PictureBed/pictures/20190405104001.png"></p>
 <h1 id="8-加快访问速度"><a href="#8-加快访问速度" class="headerlink" title="8 加快访问速度"></a>8 加快访问速度</h1><p>修改解析记录，点击 修改，然后将github解析线路改成海外，然后保存，这样国外的用户访问你的博客的话会跳转到你的github的页面。国内默认coding.me，加快访问速度，欧耶</p>
-<p><img src= "/res-256.github.io/img/loading.gif" data-lazy-src="https://wugenqiang.github.io/PictureBed/pictures/20190405113112.png"></p>
+<p><img src= "/res-256.github.io/img/loading.gif" data-src="https://wugenqiang.github.io/PictureBed/pictures/20190405113112.png"></p>
 <p>来访问试试吧，嘿嘿嘿 <a target="_blank" rel="noopener" href="https://wugenqiang.gitee.io/">死命点我吧，亲</a></p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">何孙涛</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://z555.top/post/641eb086.html">https://z555.top/post/641eb086.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://z555.top" target="_blank">何孙涛の博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/res-256.github.io/tags/%E8%BD%AC%E8%BD%BD/">转载</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/res-256.github.io/post/c4d910e6.html"><img class="prev-cover" data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/aa2538f828432564c37f91a88a2b16f3.jpg" onerror="onerror=null;src='/res-256.github.io/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">自动备份Hexo博客源文件</div></div></a></div><div class="next-post pull-right"><a href="/res-256.github.io/post/74409432.html"><img class="next-cover" data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/e31d9122f3a8e021c8ea269aac18c12d.jpg" onerror="onerror=null;src='/res-256.github.io/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PicGo + GitHub 图床，让 Markdown 飞起</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/res-256.github.io/post/9f6e8943.html" title="Hexo+NexT修改友链样式"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/22/fe917a1afe4ae380e325b909ff3477d1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-14</div><div class="title">Hexo+NexT修改友链样式</div></div></a></div><div><a href="/res-256.github.io/post/f1a26c5e.html" title="Springboot实现小程序端发送邮箱验证码功能"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/22/fe917a1afe4ae380e325b909ff3477d1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-16</div><div class="title">Springboot实现小程序端发送邮箱验证码功能</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="/res-256.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/res-256.github.io/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">何孙涛</div><div class="author-info__description">人生即是旅程·我们都在路上</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/res-256.github.io/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/res-256.github.io/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div><div class="card-info-data-item is-center"><a href="/res-256.github.io/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/res-256"><i class="fab fa-github"></i><span>∷关注我叭∷</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/res-256" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:h1553270051@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1553270051" target="_blank" title="QQ"><i class="fa fa-fire"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">苟利国家生死以·岂因祸福避趋之</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-number">1.</span> <span class="toc-text">1 写在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E9%83%A8%E7%BD%B2%E4%BC%98%E5%8C%96Hexo"><span class="toc-number">2.</span> <span class="toc-text">2 部署优化Hexo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%88%9B%E5%BB%BAGithub%E5%85%AC%E5%BC%80%E5%BA%93"><span class="toc-number">3.</span> <span class="toc-text">3 创建Github公开库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%88%9B%E5%BB%BACoding%E5%85%AC%E5%BC%80%E5%BA%93"><span class="toc-number">4.</span> <span class="toc-text">4 创建Coding公开库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%BC%80%E5%90%AFpage%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 开启page服务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%B9%B6%E5%B0%86%E6%96%87%E4%BB%B6%E9%83%A8%E7%BD%B2%E5%88%B0Github"><span class="toc-number">5.</span> <span class="toc-text">5 配置服务并将文件部署到Github</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E4%BF%AE%E6%94%B9-config-yml"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 修改_config.yml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%8F%91%E5%B8%83"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 生成静态文件发布</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E9%A2%84%E8%A7%88%E5%9C%B0%E5%9D%80"><span class="toc-number">6.</span> <span class="toc-text">6 预览地址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="toc-number">7.</span> <span class="toc-text">7 设置自定义域名</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E5%8A%A0%E5%BF%AB%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6"><span class="toc-number">8.</span> <span class="toc-text">8 加快访问速度</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/16107.html" title="世界，你好"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/22/fe917a1afe4ae380e325b909ff3477d1.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="世界，你好"/></a><div class="content"><a class="title" href="/res-256.github.io/post/16107.html" title="世界，你好">世界，你好</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/0.html" title="无题"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/res-256.github.io/post/0.html" title="无题">无题</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/0.html" title="无题"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/e31d9122f3a8e021c8ea269aac18c12d.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/res-256.github.io/post/0.html" title="无题">无题</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/2faa635d.html" title="外挂标签测试"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/aa2538f828432564c37f91a88a2b16f3.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="外挂标签测试"/></a><div class="content"><a class="title" href="/res-256.github.io/post/2faa635d.html" title="外挂标签测试">外挂标签测试</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/43511.html" title="长医欢迎你哟😋"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/19/csyxy.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="长医欢迎你哟😋"/></a><div class="content"><a class="title" href="/res-256.github.io/post/43511.html" title="长医欢迎你哟😋">长医欢迎你哟😋</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By 何孙涛</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">·永远相信美好的事情即将发生·</div><div class="icp"><a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20209402"><img class="icp-icon" src="/res-256.github.io/img/icp.png" alt="ICP"/><span>萌ICP备20209402号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/res-256.github.io/js/utils.js"></script><script src="/res-256.github.io/js/main.js"></script><script src="/res-256.github.io/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/res-256.github.io/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/plugins.min.css"><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script src="/js/calendar.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.5.3/dist/av-min.js"></script><script src="/js/languages.js"></script><script src="/js/xkTool.js"></script><script src="/js/artitalk.js"></script><link rel="stylesheet" href="/css/artitalk.min.css"><script src="/js/chocolate.js"></script><script src="/js/baiduanalysis.js"></script><script src="/js/cdn_post.js"></script><script src="/js/diy.js"></script><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/hideMobileSidebar.js"></script><link rel="stylesheet" href="/js/foot.js"><link rel="stylesheet" href="/js/showdown.min.js"><link rel="stylesheet" href="/js/font.css"><link rel="stylesheet" href="/css/ysnsn.css"><link rel="stylesheet" href="/css/chocolate.css"><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/title.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/res-256/res-256.github.io/css/font.css"><script src="https://cdn.jsdelivr.net/gh/res-256/res-256.github.io/js/foot.js"></script><script src="https://unpkg.com/xiaokang-style/butterfly/css/tags.css"></script><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"></script><script src="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css"></script><script src="/res-256.github.io/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">何孙涛</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://z555.top/post/641eb086.html">https://z555.top/post/641eb086.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://z555.top" target="_blank">何孙涛の博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/res-256.github.io/tags/%E8%BD%AC%E8%BD%BD/">转载</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/res-256.github.io/post/c4d910e6.html"><img class="prev-cover" data-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png" onerror="onerror=null;src='/res-256.github.io/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">自动备份Hexo博客源文件</div></div></a></div><div class="next-post pull-right"><a href="/res-256.github.io/post/74409432.html"><img class="next-cover" data-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/e31d9122f3a8e021c8ea269aac18c12d.jpg" onerror="onerror=null;src='/res-256.github.io/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">PicGo + GitHub 图床，让 Markdown 飞起</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/res-256.github.io/post/9f6e8943.html" title="Hexo+NexT修改友链样式"><img class="relatedPosts_cover" data-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/e31d9122f3a8e021c8ea269aac18c12d.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-14</div><div class="relatedPosts_title">Hexo+NexT修改友链样式</div></div></a></div><div class="relatedPosts_item"><a href="/res-256.github.io/post/f1a26c5e.html" title="Springboot实现小程序端发送邮箱验证码功能"><img class="relatedPosts_cover" data-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-16</div><div class="relatedPosts_title">Springboot实现小程序端发送邮箱验证码功能</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-switch"><span class="first-comment">V</span><label><input id="switch-comments-btn" type="checkbox"><span class="slider"></span></label><span class="second-comment">a</span></div></div><div class="comment-wrap"><div class="comments-items-1" data-name="V"></div><div class="comments-items-2" data-name="a"></div><div class="comments-items-3" data-name="l"></div><div class="comments-items-4" data-name="i"></div><div class="comments-items-5" data-name="n"></div><div class="comments-items-6" data-name="e"></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 何孙涛</div><div class="framework-info"><span>驱动 </span><a target="_blank" rel="noopener" href="https://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div><div class="footer_custom_text">·永远相信美好的事情即将发生·</div><div class="icp"><a><img class="icp-icon" src="/res-256.github.io/img/icp.png"/><span>湘ICP备20201314号</span></a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/res-256.github.io/js/utils.js"></script><script src="/res-256.github.io/js/main.js"></script><script src="/res-256.github.io/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/res-256.github.io/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
 POWERMODE.shake = true;
-POWERMODE.mobile = true;
 document.body.addEventListener('input', POWERMODE);
-</script><script src="/res-256.github.io/"></script><script>let pjaxSelectors = [
-  'title',
-  '#config_change',
-  '#body-wrap',
-  '#rightside-config-hide',
-  '#rightside-config-show',
-  '.js-pjax'
-]
-
-if (false) {
-  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
-}
-
-var pjax = new Pjax({
-  elements: 'a:not([target="_blank"]):not([href="/artitalk/"]):not([href="/bb/"])',
-  selectors: pjaxSelectors,
-  cacheBust: false,
-  analytics: false,
-  scrollRestoration: false
-})
-
-document.addEventListener('pjax:complete', function () {
-  window.refreshFn()
-
-  document.querySelectorAll('script[data-pjax]').forEach(item => {
-    const newScript = document.createElement('script')
-    const content = item.text || item.textContent || item.innerHTML || ""
-    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
-    newScript.appendChild(document.createTextNode(content))
-    item.parentNode.replaceChild(newScript, item)
-  })
-
-  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
-
-  typeof chatBtnFn === 'function' && chatBtnFn()
-  typeof panguInit === 'function' && panguInit()
-
-  if (typeof gtag === 'function') {
-    gtag('config', '', {'page_path': window.location.pathname});
-  }
-
-  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
-
-  // Analytics
-  if (false) {
-    MtaH5.pgv()
-  }
-
-  // prismjs
-  typeof Prism === 'object' && Prism.highlightAll()
-
-  typeof preloader === 'object' && preloader.endLoading()
-})
-
-
-document.addEventListener('pjax:send', function () {
-  typeof preloader === 'object' && preloader.initLoading()
-  
-  if (window.aplayers) {
-    for (let i = 0; i < window.aplayers.length; i++) {
-      if (!window.aplayers[i].options.fixed) {
-        window.aplayers[i].destroy()
-      }
-    }
-  }
-
-  typeof typed === 'object' && typed.destroy()
-
-  //reset readmode
-  const $bodyClassList = document.body.classList
-  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
-
-})</script><script>(function(){
-  const bp = document.createElement('script');
-  const curProtocol = window.location.protocol.split(':')[0];
-  if (curProtocol === 'https') {
-    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-  }
-  else{
-    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-  }
-  bp.dataset.pjax = ''
-  const s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(bp, s);
-})()</script></div><script src="/res-256.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/res-256.github.io/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/res-256.github.io/js/third-party/click_heart.js"></script><script src="/res-256.github.io/js/search/local-search.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/plugins.min.css"><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script src="/js/calendar.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.5.3/dist/av-min.js"></script><script src="/js/languages.js"></script><script src="/js/xkTool.js"></script><script src="/js/artitalk.js"></script><link rel="stylesheet" href="/css/artitalk.min.css"><script src="/js/chocolate.js"></script><script src="/js/baiduanalysis.js"></script><script src="/js/cdn_post.js"></script><script src="/js/diy.js"></script><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/hideMobileSidebar.js"></script><link rel="stylesheet" href="/js/foot.js"><link rel="stylesheet" href="/js/showdown.min.js"><link rel="stylesheet" href="/js/font.css"><link rel="stylesheet" href="/css/ysnsn.css"><link rel="stylesheet" href="/css/chocolate.css"><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/title.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/res-256/res-256.github.io/css/font.css"><script src="https://cdn.jsdelivr.net/gh/res-256/res-256.github.io/js/foot.js"></script><script src="https://unpkg.com/xiaokang-style/butterfly/css/tags.css"></script><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"></script><script src="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css"></script><script src="/res-256.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/res-256.github.io/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

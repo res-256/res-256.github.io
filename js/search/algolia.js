@@ -1,9 +1,9 @@
-window.addEventListener('load', () => {
-  const openSearch = () => {
-    document.body.style.cssText = 'width: 100%;overflow: hidden'
-    document.querySelector('#algolia-search .search-dialog').style.display = 'block'
-    document.querySelector('#algolia-search .ais-search-box--input').focus()
-    btf.fadeIn(document.getElementById('search-mask'), 0.5)
+$(function () {
+  $('a.social-icon.search').on('click', function () {
+    $('body').css({ width: '100%', overflow: 'hidden' })
+    $('.search-dialog').css('display', 'block')
+    $('.ais-search-box--input').focus()
+    $('.search-mask').fadeIn()
     // shortcut: ESC
     document.addEventListener('keydown', function f (event) {
       if (event.code === 'Escape') {
@@ -11,28 +11,27 @@ window.addEventListener('load', () => {
         document.removeEventListener('keydown', f)
       }
     })
-  }
-
-  const closeSearch = () => {
-    document.body.style.cssText = "width: '';overflow: ''"
-    const $searchDialog = document.querySelector('#algolia-search .search-dialog')
-    $searchDialog.style.animation = 'search_close .5s'
-    setTimeout(() => { $searchDialog.style.cssText = "display: none; animation: ''" }, 500)
-    btf.fadeOut(document.getElementById('search-mask'), 0.5)
-  }
-
-  const searchClickFn = () => {
-    document.querySelector('#search-button > .search').addEventListener('click', openSearch)
-    document.getElementById('search-mask').addEventListener('click', closeSearch)
-    document.querySelector('#algolia-search .search-close-button').addEventListener('click', closeSearch)
-  }
-
-  searchClickFn()
-
-  window.addEventListener('pjax:complete', function () {
-    getComputedStyle(document.querySelector('#algolia-search .search-dialog')).display === 'block' && closeSearch()
-    searchClickFn()
   })
+
+  const closeSearch = function () {
+    $('body').css('width', '')
+    $('body').css('overflow', '')
+    $('.search-dialog').css({
+      animation: 'search_close .5s'
+    })
+
+    $('.search-dialog').animate({}, function () {
+      setTimeout(function () {
+        $('.search-dialog').css({
+          animation: '',
+          display: 'none'
+        })
+      }, 500)
+    })
+
+    $('.search-mask').fadeOut()
+  }
+  $('.search-mask, .search-close-button').on('click touchstart', closeSearch)
 
   const algolia = GLOBAL_CONFIG.algolia
   const isAlgoliaValid = algolia.appId && algolia.apiKey && algolia.indexName
@@ -48,9 +47,9 @@ window.addEventListener('load', () => {
       hitsPerPage: algolia.hits.per_page || 10
     },
     searchFunction: function (helper) {
-      const searchInput = document.querySelector('#algolia-search-input input')
+      const searchInput = $('#algolia-search-input').find('input')
 
-      if (searchInput.value) {
+      if (searchInput.val()) {
         helper.search()
       }
     }
@@ -131,8 +130,4 @@ window.addEventListener('load', () => {
     })
   )
   search.start()
-
-  window.pjax && search.on('render', () => {
-    window.pjax.refresh(document.getElementById('algolia-hits'))
-  })
 })
