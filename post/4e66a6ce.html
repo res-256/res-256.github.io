@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/root/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/root/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/root/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/root/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/root/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"z555.top","root":"/root/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！ Typora+PicGo+Gitee实现图片上传功能前言 使用举例：   好了，功能是不是很满意？节省了很多时间是不是，很 nice！下面来具体实现： 建立 Gitee 图床 注册 gitee 账号并创建一个仓库当图床  （1）注册或登陆 Gitee Gitee">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Typora+PicGo+Gitee实现图片上传功能">
+<meta property="og:url" content="https://z555.top/post/4e66a6ce.html">
+<meta property="og:site_name" content="何孙涛の博客">
+<meta property="og:description" content="本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！ Typora+PicGo+Gitee实现图片上传功能前言 使用举例：   好了，功能是不是很满意？节省了很多时间是不是，很 nice！下面来具体实现： 建立 Gitee 图床 注册 gitee 账号并创建一个仓库当图床  （1）注册或登陆 Gitee Gitee">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420192754.gif">
+<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420194750.png">
+<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420195038.png">
+<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420195310.png">
+<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420195400.png">
+<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420193738.png">
+<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420204737.png">
+<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420204910.png">
+<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420205322.png">
+<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420210515.png">
+<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420210650.png">
+<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420211122.png">
+<meta property="article:published_time" content="2020-04-20T21:21:24.000Z">
+<meta property="article:modified_time" content="2020-04-20T21:21:24.000Z">
+<meta property="article:author" content="何孙涛">
+<meta property="article:tag" content="ToolBox">
+<meta property="article:tag" content="PictureBed">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420192754.gif">
+
+
+<link rel="canonical" href="https://z555.top/post/4e66a6ce.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Typora+PicGo+Gitee实现图片上传功能 | 何孙涛の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/root/atom.xml" title="何孙涛の博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/root/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">何孙涛の博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">什么都无法阻挡我们前进的脚步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Typora-PicGo-Gitee%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">Typora+PicGo+Gitee实现图片上传功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B-Gitee-%E5%9B%BE%E5%BA%8A"><span class="nav-number">1.2.</span> <span class="nav-text">建立 Gitee 图床</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%A7%81%E4%BA%BA%E4%BB%A4%E7%89%8C"><span class="nav-number">1.3.</span> <span class="nav-text">生成私人令牌</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-PicGo"><span class="nav-number">1.4.</span> <span class="nav-text">安装 PicGo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PicGo-%E9%85%8D%E7%BD%AE-Gitee-%E5%9B%BE%E5%BA%8A"><span class="nav-number">1.5.</span> <span class="nav-text">PicGo 配置 Gitee 图床</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Typora-%E9%85%8D%E7%BD%AE-Gitee-%E5%9B%BE%E5%BA%8A"><span class="nav-number">1.6.</span> <span class="nav-text">Typora 配置 Gitee 图床</span></a></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">何孙涛</p>
+  <div class="site-description" itemprop="description">~一个有趣的个人博客~</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/root/archives">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/root/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/root/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://z555.top/post/4e66a6ce.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/root/images/avatar.gif">
+      <meta itemprop="name" content="何孙涛">
+      <meta itemprop="description" content="~一个有趣的个人博客~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何孙涛の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Typora+PicGo+Gitee实现图片上传功能
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-04-20 21:21:24" itemprop="dateCreated datePublished" datetime="2020-04-20T21:21:24Z">2020-04-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/root/categories/ToolBox/" itemprop="url" rel="index"><span itemprop="name">ToolBox</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/root/categories/ToolBox/PictureBed/" itemprop="url" rel="index"><span itemprop="name">PictureBed</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><font size="5" > <font color="red"><br>本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></font></p>
+<h1 id="Typora-PicGo-Gitee实现图片上传功能"><a href="#Typora-PicGo-Gitee实现图片上传功能" class="headerlink" title="Typora+PicGo+Gitee实现图片上传功能"></a>Typora+PicGo+Gitee实现图片上传功能</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>使用举例：</p>
+</blockquote>
+<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420192754.gif"></p>
+<p>好了，功能是不是很满意？节省了很多时间是不是，很 nice！下面来具体实现：</p>
+<h2 id="建立-Gitee-图床"><a href="#建立-Gitee-图床" class="headerlink" title="建立 Gitee 图床"></a>建立 Gitee 图床</h2><blockquote>
+<p>注册 gitee 账号并创建一个仓库当图床</p>
+</blockquote>
+<p>（1）注册或登陆 Gitee</p>
+<p>Gitee 官网网址：<a target="_blank" rel="noopener" href="https://gitee.com/">https://gitee.com/</a></p>
+<p>注册账号在这里就不说明了啊，注册好账号之后登陆 Gitee</p>
+<p>（2）新建仓库当图床</p>
+<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420194750.png" alt="image-20200420194749470"></p>
+<p>然后改图片中的三处：</p>
+<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420195038.png" alt="image-20200420195037189"></p>
+<p>因为我已经建立了 PictureBed 这个仓库，所以提示已经存在。</p>
+<h2 id="生成私人令牌"><a href="#生成私人令牌" class="headerlink" title="生成私人令牌"></a>生成私人令牌</h2><p>点击设置里的私人令牌，点击生成私人令牌</p>
+<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420195310.png" alt="image-20200420195308681"></p>
+<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420195400.png" alt="image-20200420195358945"></p>
+<p>提交即可，复制令牌，可以写在 text 文本中，稍后在 Gitee 图床配置中会用到！</p>
+<p>!&gt; 注：令牌只会显示一次，如果不复制的话，就只能重新修改令牌，步骤：修改 –&gt; 重新生成令牌</p>
+<h2 id="安装-PicGo"><a href="#安装-PicGo" class="headerlink" title="安装 PicGo"></a>安装 PicGo</h2><p>这是一款图片上传的工具，目前支持微博图床，七牛图床，腾讯云，又拍云，GitHub，Gitee等图床，在这里，我们使用 Gitee 作为图床。</p>
+<blockquote>
+<p>下载 PicGo</p>
+</blockquote>
+<p>下载链接：<a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/picgo/releases">https://github.com/Molunerfinn/picgo/releases</a></p>
+<p>选个自己喜欢的版本，点击进入，找到后缀 <code>.exe</code> 的，点击后自动下载。或者直接使用最新版。</p>
+<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420193738.png" alt="image-20200420193736920"></p>
+<h2 id="PicGo-配置-Gitee-图床"><a href="#PicGo-配置-Gitee-图床" class="headerlink" title="PicGo 配置 Gitee 图床"></a>PicGo 配置 Gitee 图床</h2><p>（1）下载 Gitee 插件</p>
+<p>注：若没有安装 node.js ，则会安装不了插件。因为插件下载需要使用到 node.js 的 npm！</p>
+<blockquote>
+<p>安装 node.js</p>
+</blockquote>
+<p>node.js 官网下载链接：<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a></p>
+<p>安装好之后，打开 PicGo 软件，点击插件设置，搜索 gitee，选择第一个即可，右边的插件也可以，配置过程也差不多</p>
+<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420204737.png" alt="image-20200420204736134"></p>
+<p>（2）配置 Gitee 图床</p>
+<p>首先在 PicGo 设置中选择 Gitee 图床</p>
+<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420204910.png" alt="image-20200420204908684"></p>
+<p>然后在图床设置中进行配置 Gitee 图床</p>
+<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420205322.png" alt="image-20200420205320933"></p>
+<p>点击确定，就可以使用了，如果只想上传图片，到这一步就可以了，不过我还是推荐你继续往下看，因为真的很提高开发效率！</p>
+<h2 id="Typora-配置-Gitee-图床"><a href="#Typora-配置-Gitee-图床" class="headerlink" title="Typora 配置 Gitee 图床"></a>Typora 配置 Gitee 图床</h2><p>使用这一步，首先要下载安装 Typora，官网地址：<a target="_blank" rel="noopener" href="https://www.typora.io/">https://www.typora.io/</a> 直接安装即可，操作简单。</p>
+<p>安装好 Typora 之后，打开进入 Typora，点击上方目录：文件 –&gt; 偏好设置  –&gt;  图像 –&gt; 配置图床</p>
+<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420210515.png" alt="image-20200420210514149"></p>
+<p>关键一步：</p>
+<p>当点击验证图片上传选项时，会提示你使用下面网址上传，记住它！比如我的是 <a target="_blank" rel="noopener" href="http://127.0.0.1:36677/upload%EF%BC%8C%E8%A6%81%E4%BF%9D%E8%AF%81%E8%BF%99%E9%87%8C%E7%9A%84%E5%9C%B0%E5%9D%80%E5%92%8C">http://127.0.0.1:36677/upload，要保证这里的地址和</a> PicGo 中的上传地址一致，所以要去 PicGo 中去验证，不一样就将 PicGo 中的地址改成这里的就可以了。</p>
+<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420210650.png" alt="image-20200420210648822"></p>
+<p>到 PicGo 中去验证：</p>
+<p>点击 PicGo 设置 –&gt; 设置 Sever，若和 Typora 中图片上传地址不一样，改成 Typora 中的监听端口即可，然后确认。</p>
+<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200420211122.png" alt="image-20200420211120698"></p>
+<blockquote>
+<p>测试使用</p>
+</blockquote>
+<p>去前言部分看效果，测试嘛，你试试就知道啦！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/root/tags/ToolBox/" rel="tag"># ToolBox</a>
+              <a href="/root/tags/PictureBed/" rel="tag"># PictureBed</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/root/post/6b8663d.html" rel="prev" title="【持续更新】IDEA 最新激活方法">
+                  <i class="fa fa-chevron-left"></i> 【持续更新】IDEA 最新激活方法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/root/post/82246bb3.html" rel="next" title="二叉树的基本操作（C 语言版）包含递归和非递归算法">
+                  二叉树的基本操作（C 语言版）包含递归和非递归算法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">何孙涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/root/js/utils.js"></script><script src="/root/js/motion.js"></script><script src="/root/js/schemes/muse.js"></script><script src="/root/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/root/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/root/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

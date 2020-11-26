@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/root/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/root/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/root/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/root/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/root/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"z555.top","root":"/root/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="&amp;emsp;&amp;emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！  1 写在前言友链的设置是参考大佬 三水非冰 的博客来完成的，在此表示感谢，样式效果如下：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo+NexT修改友链样式">
+<meta property="og:url" content="https://z555.top/post/9f6e8943.html">
+<meta property="og:site_name" content="何孙涛の博客">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！  1 写在前言友链的设置是参考大佬 三水非冰 的博客来完成的，在此表示感谢，样式效果如下：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190414131508.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190414133048.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190414135327.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190414135751.png">
+<meta property="article:published_time" content="2019-04-14T13:12:26.000Z">
+<meta property="article:modified_time" content="2019-04-14T13:12:26.000Z">
+<meta property="article:author" content="何孙涛">
+<meta property="article:tag" content="转载">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="NexT">
+<meta property="article:tag" content="Template">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190414131508.png">
+
+
+<link rel="canonical" href="https://z555.top/post/9f6e8943.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Hexo+NexT修改友链样式 | 何孙涛の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/root/atom.xml" title="何孙涛の博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/root/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">何孙涛の博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">什么都无法阻挡我们前进的脚步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%86%99%E5%9C%A8%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">1 写在前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">2 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E6%96%B0%E5%BB%BAlinks-swig%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 新建links.swig文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E4%BF%AE%E6%94%B9page-swig%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 修改page.swig文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E4%BF%AE%E6%94%B9-config-yml%E6%96%87%E4%BB%B6"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 修改_config.yml文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E5%88%9B%E5%BB%BAlinks%E9%A1%B5%E9%9D%A2"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 创建links页面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="nav-number">3.</span> <span class="nav-text">3 结束语</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">何孙涛</p>
+  <div class="site-description" itemprop="description">~一个有趣的个人博客~</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/root/archives">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/root/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/root/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://z555.top/post/9f6e8943.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/root/images/avatar.gif">
+      <meta itemprop="name" content="何孙涛">
+      <meta itemprop="description" content="~一个有趣的个人博客~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何孙涛の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo+NexT修改友链样式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-14 13:12:26" itemprop="dateCreated datePublished" datetime="2019-04-14T13:12:26Z">2019-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/root/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
+</blockquote>
+<h1 id="1-写在前言"><a href="#1-写在前言" class="headerlink" title="1 写在前言"></a>1 写在前言</h1><p>友链的设置是参考大佬 <a target="_blank" rel="noopener" href="https://www.sanshuifeibing.cn/">三水非冰</a> 的博客来完成的，在此表示感谢，样式效果如下：</p>
+<a id="more"></a>
+
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190414131508.png"></p>
+<h1 id="2-实现"><a href="#2-实现" class="headerlink" title="2 实现"></a>2 实现</h1><h2 id="2-1-新建links-swig文件"><a href="#2-1-新建links-swig文件" class="headerlink" title="2.1 新建links.swig文件"></a>2.1 新建<code>links.swig</code>文件</h2><p>在<code>/themes/next/layout/</code>路径下，新建一个文件<code>links.swig</code>，其内容为以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block content %&#125;</span><br><span class="line">  &#123;######################&#125;</span><br><span class="line">  &#123;### LINKS BLOCK ###&#125;</span><br><span class="line">  &#123;######################&#125;</span><br><span class="line">  </span><br><span class="line">    &lt;div id=<span class="string">&quot;links&quot;</span>&gt;</span><br><span class="line">        &lt;style&gt;</span><br><span class="line">            .links-content&#123;</span><br><span class="line">                margin-top:1rem;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            .link-navigation::after &#123;</span><br><span class="line">                content: <span class="string">&quot; &quot;</span>;</span><br><span class="line">                display: block;</span><br><span class="line">                clear: both;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            .card &#123;</span><br><span class="line">                width: 300px;</span><br><span class="line">                font-size: 1rem;</span><br><span class="line">                padding: 10px 20px;</span><br><span class="line">                border-radius: 4px;</span><br><span class="line">                transition-duration: <span class="number">0.</span>15s;</span><br><span class="line">                margin-bottom: 1rem;</span><br><span class="line">                display:flex;</span><br><span class="line">            &#125;</span><br><span class="line">            .card:nth-<span class="function"><span class="title">child</span>(<span class="params">odd</span>)</span> &#123;</span><br><span class="line">                float: left;</span><br><span class="line">            &#125;</span><br><span class="line">            .card:nth-<span class="function"><span class="title">child</span>(<span class="params">even</span>)</span> &#123;</span><br><span class="line">                float: right;</span><br><span class="line">            &#125;</span><br><span class="line">            .card:hover &#123;</span><br><span class="line">                transform: scale(<span class="number">1.1</span>);</span><br><span class="line">                box-shadow: <span class="number">0</span> 2px 6px <span class="number">0</span> rgba(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.12</span>), <span class="number">0</span> <span class="number">0</span> 6px <span class="number">0</span> rgba(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.04</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            .card a &#123;</span><br><span class="line">                border:none; </span><br><span class="line">            &#125;</span><br><span class="line">            .card .ava &#123;</span><br><span class="line">                width: 3rem!important;</span><br><span class="line">                height: 3rem!important;</span><br><span class="line">                margin:<span class="number">0</span>!important;</span><br><span class="line">                margin-right: 1em!important;</span><br><span class="line">                border-radius:4px;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            .card .card-header &#123;</span><br><span class="line">                font-style: italic;</span><br><span class="line">                overflow: hidden;</span><br><span class="line">                width: 236px;</span><br><span class="line">            &#125;</span><br><span class="line">            .card .card-header a &#123;</span><br><span class="line">                font-style: normal;</span><br><span class="line">                color: #2bbc8a;</span><br><span class="line">                font-weight: bold;</span><br><span class="line">                text-decoration: none;</span><br><span class="line">            &#125;</span><br><span class="line">            .card .card-header a:hover &#123;</span><br><span class="line">                color: #d480aa;</span><br><span class="line">                text-decoration: none;</span><br><span class="line">            &#125;</span><br><span class="line">            .card .card-header .info &#123;</span><br><span class="line">                font-style:normal;</span><br><span class="line">                color:#a3a3a3;</span><br><span class="line">                font-size:14px;</span><br><span class="line">                min-width: <span class="number">0</span>;</span><br><span class="line">                text-overflow: ellipsis;</span><br><span class="line">                overflow: hidden;</span><br><span class="line">                white-space: nowrap;</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;/style&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;links-content&quot;</span>&gt;</span><br><span class="line">            &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;link-navigation&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line">                &#123;% <span class="keyword">for</span> link <span class="keyword">in</span> theme.mylinks %&#125;</span><br><span class="line">                </span><br><span class="line">                    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;card&quot;</span>&gt;</span><br><span class="line">                        &lt;img <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;ava&quot;</span> src=<span class="string">&quot;&#123;&#123; link.avatar &#125;&#125;&quot;</span>/&gt;</span><br><span class="line">                        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;card-header&quot;</span>&gt;</span><br><span class="line">                        &lt;div&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;&#123; link.site &#125;&#125;&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>@ &#123;&#123; link.nickname &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>&lt;/div&gt;</span><br><span class="line">                        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;info&quot;</span>&gt;&#123;&#123; link.info &#125;&#125;&lt;/div&gt;</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                </span><br><span class="line">                &#123;% endfor %&#125;</span><br><span class="line"></span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &#123;&#123; page.content &#125;&#125;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">  </span><br><span class="line">  &#123;##########################&#125;</span><br><span class="line">  &#123;### END LINKS BLOCK ###&#125;</span><br><span class="line">  &#123;##########################&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-修改page-swig文件"><a href="#2-2-修改page-swig文件" class="headerlink" title="2.2 修改page.swig文件"></a>2.2 修改<code>page.swig</code>文件</h2><p>修改<code>/themes/next/layout/page.swig</code>:</p>
+<p>在</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#&#125;&#123;&#123; __(&#x27;title.schedule&#x27;) + page_title_suffix &#125;&#125;&#123;#</span><br></pre></td></tr></table></figure>
+<p>下方添加两行代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#&#125;&#123;% elif page.type === &#x27;links&#x27; and not page.title %&#125;&#123;#</span><br><span class="line">    #&#125;&#123;&#123; __(&#x27;title.links&#x27;) + page_title_suffix &#125;&#125;&#123;#</span><br></pre></td></tr></table></figure>
+<p>在</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% include <span class="string">&#x27;schedule.swig&#x27;</span> %&#125;</span><br></pre></td></tr></table></figure>
+<p>下方添加两行代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% elif page.type === <span class="string">&#x27;links&#x27;</span> %&#125;</span><br><span class="line">  &#123;% include <span class="string">&#x27;links.swig&#x27;</span> %&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-修改-config-yml文件"><a href="#2-3-修改-config-yml文件" class="headerlink" title="2.3 修改_config.yml文件"></a>2.3 修改<code>_config.yml</code>文件</h2><p>在主题配置文件<code>/themes/_config.yml</code>末尾处添加友链：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mylinks:</span><br><span class="line">  - nickname: 青果先生  #友链名称</span><br><span class="line">    avatar: https:<span class="comment">//raw.githubusercontent.com/wugenqiang/picGo/master/pictures/003.jpg  #友链头像</span></span><br><span class="line">    site: https:<span class="comment">//blog.enjoytoshare.club  #友链地址</span></span><br><span class="line">    info: Sometimes your whole life boils down to one insame move.  #友链说明</span><br></pre></td></tr></table></figure>
+<h2 id="2-4-创建links页面"><a href="#2-4-创建links页面" class="headerlink" title="2.4 创建links页面"></a>2.4 创建<code>links</code>页面</h2><p>创建一个<code>links</code>页面，页面将自动加载已添加的友链。<br>确保links页面index.md文件中有</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">title: 友链</span><br><span class="line">author: WuGenQiang</span><br><span class="line">type: links</span><br><span class="line">---</span><br><span class="line">此处放置你想写的东西，此处默认显示在链接下方</span><br><span class="line">比如放置申请友链的要求等等</span><br></pre></td></tr></table></figure>
+<p>原因：</p>
+<ul>
+<li>添加<code>title</code>，是为了标题中出现<code>title</code>，</li>
+<li>添加<code>type</code>，是为了显示友链的对象，不添加不显示</li>
+</ul>
+<h1 id="3-结束语"><a href="#3-结束语" class="headerlink" title="3 结束语"></a>3 结束语</h1><p>点击效果最终显示这样:</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190414133048.png"></p>
+<p>点击这里查看实际效果：<a target="_blank" rel="noopener" href="https://wugenqiang.gitee.io/links/">戳我戳我好疼啊</a></p>
+<p>肯定到这里有人会问了，这是链接一个人的效果，如果链接两个人以及以上呢？当然也有办法：<br>在2.3步骤中如图设置即可，需要链接几个人就添加几条记录：</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190414135327.png"></p>
+<p>效果显示：</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190414135751.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/root/tags/%E8%BD%AC%E8%BD%BD/" rel="tag"># 转载</a>
+              <a href="/root/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/root/tags/NexT/" rel="tag"># NexT</a>
+              <a href="/root/tags/Template/" rel="tag"># Template</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/root/post/f17fc012.html" rel="prev" title="Git命令手动备份Hexo博客源文件">
+                  <i class="fa fa-chevron-left"></i> Git命令手动备份Hexo博客源文件
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/root/post/e947bc6a.html" rel="next" title="记录"正则表达式"">
+                  记录"正则表达式" <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">何孙涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/root/js/utils.js"></script><script src="/root/js/motion.js"></script><script src="/root/js/schemes/muse.js"></script><script src="/root/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/root/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/root/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/root/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/root/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/root/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/root/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/root/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"z555.top","root":"/root/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！ PicGo + GitHub 图床，让 Markdown 飞起">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PicGo + GitHub 图床，让 Markdown 飞起">
+<meta property="og:url" content="https://z555.top/post/74409432.html">
+<meta property="og:site_name" content="何孙涛の博客">
+<meta property="og:description" content="本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！ PicGo + GitHub 图床，让 Markdown 飞起">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190331164455.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190331164603.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190331165930.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190331170203.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190331170410.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190331170716.png">
+<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200423125447.png">
+<meta property="article:published_time" content="2019-03-31T16:37:53.000Z">
+<meta property="article:modified_time" content="2019-03-31T16:37:53.000Z">
+<meta property="article:author" content="何孙涛">
+<meta property="article:tag" content="转载内容">
+<meta property="article:tag" content="Markdown">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190331164455.png">
+
+
+<link rel="canonical" href="https://z555.top/post/74409432.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>PicGo + GitHub 图床，让 Markdown 飞起 | 何孙涛の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/root/atom.xml" title="何孙涛の博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/root/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">何孙涛の博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">什么都无法阻挡我们前进的脚步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-PicGo-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">1 PicGo 介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E4%B8%8B%E8%BD%BD-PicGo"><span class="nav-number">2.</span> <span class="nav-text">2 下载 PicGo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E8%BF%9B%E5%85%A5%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 进入下载链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E9%80%89%E6%8B%A9%E5%AE%89%E8%A3%85%E5%8C%85%E4%B8%8B%E8%BD%BD"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 选择安装包下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 安装软件包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%88%9B%E5%BB%BA-GitHub-%E5%9B%BE%E5%BA%8A"><span class="nav-number">3.</span> <span class="nav-text">3 创建 GitHub 图床</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E9%9C%80%E8%A6%81%E6%B3%A8%E5%86%8C-%E7%99%BB%E9%99%86-GitHub-%E8%B4%A6%E5%8F%B7"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 需要注册&#x2F;登陆 GitHub 账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%88%9B%E5%BB%BA-Repository"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 创建 Repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E7%94%9F%E6%88%90-Token"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 生成 Token</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E9%85%8D%E7%BD%AE-PicGo-%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">4.</span> <span class="nav-text">4 配置 PicGo 客户端</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E5%B0%8F%E7%BB%93%E4%B8%80%E4%B8%8B"><span class="nav-number">5.</span> <span class="nav-text">5 小结一下</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">何孙涛</p>
+  <div class="site-description" itemprop="description">~一个有趣的个人博客~</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/root/archives">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/root/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/root/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://z555.top/post/74409432.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/root/images/avatar.gif">
+      <meta itemprop="name" content="何孙涛">
+      <meta itemprop="description" content="~一个有趣的个人博客~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何孙涛の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PicGo + GitHub 图床，让 Markdown 飞起
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-31 16:37:53" itemprop="dateCreated datePublished" datetime="2019-03-31T16:37:53Z">2019-03-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/root/categories/ToolBox/" itemprop="url" rel="index"><span itemprop="name">ToolBox</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><font size="5" > <font color="red"><br>本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></font></p>
+<center>PicGo + GitHub 图床，让 Markdown 飞起</center>
+
+<a id="more"></a>
+
+
+
+<p>注：这段话写于 2020 - 04 -23，这篇文章这种方式在之前还是很棒的，但是随着 PicGo 支持 Gitee 插件之后，更好的图床工具就出现了，所以建议你使用新方式：<a target="_blank" rel="noopener" href="https://wugenqiang.github.io/articles/Typora-PicGo-Gitee-PictureBed-Cool.html">Typora + PicGo + Gitee 实现图片上传功能</a>，当然还可以继续浏览本篇文章，这种方式依然能用！</p>
+<h1 id="1-PicGo-介绍"><a href="#1-PicGo-介绍" class="headerlink" title="1 PicGo 介绍"></a>1 PicGo 介绍</h1><p>这是一款图片上传的工具，目前支持微博图床，七牛图床，腾讯云，又拍云，GitHub 等图床，未来将支持更多图床。</p>
+<p>所以解决问题的思路就是，将本地的文件，或者剪切板上面的截图发送图床，然后生成在线图片的链接，这样就可以</p>
+<p>让Markdown 文档飞起来了，走到哪就可以用到哪~~</p>
+<p>在众多的图床中，我选择的 GitHub 图床，其它类型的图床如果你们有兴趣的话可以试一下，主要我对于 Github 有特殊的感</p>
+<p>情，很难割舍~~</p>
+<h1 id="2-下载-PicGo"><a href="#2-下载-PicGo" class="headerlink" title="2 下载 PicGo"></a>2 下载 PicGo</h1><h2 id="2-1-进入下载链接"><a href="#2-1-进入下载链接" class="headerlink" title="2.1 进入下载链接"></a>2.1 进入下载链接</h2><p>下载链接为：<a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo/releases/tag/v2.0.5">https://github.com/Molunerfinn/PicGo/releases/tag/v2.0.5</a></p>
+<h2 id="2-2-选择安装包下载"><a href="#2-2-选择安装包下载" class="headerlink" title="2.2 选择安装包下载"></a>2.2 选择安装包下载</h2><p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190331164455.png"></p>
+<h2 id="2-3-安装软件包"><a href="#2-3-安装软件包" class="headerlink" title="2.3 安装软件包"></a>2.3 安装软件包</h2><p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190331164603.png"></p>
+<h1 id="3-创建-GitHub-图床"><a href="#3-创建-GitHub-图床" class="headerlink" title="3 创建 GitHub 图床"></a>3 创建 GitHub 图床</h1><h2 id="3-1-需要注册-登陆-GitHub-账号"><a href="#3-1-需要注册-登陆-GitHub-账号" class="headerlink" title="3.1 需要注册/登陆 GitHub 账号"></a>3.1 需要注册/登陆 GitHub 账号</h2><blockquote>
+<p>已经有了自行跳过这一步</p>
+</blockquote>
+<blockquote>
+<p>申请 GitHub 账号很简单，我就不演示了</p>
+</blockquote>
+<h2 id="3-2-创建-Repository"><a href="#3-2-创建-Repository" class="headerlink" title="3.2 创建 Repository"></a>3.2 创建 Repository</h2><p>随便命名，我的比较简单，直接是 PicGo</p>
+<h2 id="3-3-生成-Token"><a href="#3-3-生成-Token" class="headerlink" title="3.3 生成 Token"></a>3.3 生成 Token</h2><p>生成一个 Token 用于操作 GitHub repository</p>
+<p>Settings -&gt; Developer settings -&gt; Personal access tokens </p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190331165930.png"></p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190331170203.png"></p>
+<p>然后确定提交，复制生成一串字符 token，这个 token 只出现一次，所以要保存一下。</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190331170410.png"></p>
+<h1 id="4-配置-PicGo-客户端"><a href="#4-配置-PicGo-客户端" class="headerlink" title="4 配置 PicGo 客户端"></a>4 配置 PicGo 客户端</h1><p>如下图配置：</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190331170716.png"></p>
+<p>说明：</p>
+<ul>
+<li>仓库名 即你的仓库名</li>
+<li>分支名 默认 master</li>
+<li>Token 就是刚刚复制的那一串字符</li>
+<li>存储路径 这个可以填也可以不填，填了的话图片就上传到这个文件夹</li>
+<li>域名 这个要改一下 格式： <del><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/[%E4%BB%93%E5%BA%93%E5%90%8D]/master">https://raw.githubusercontent.com/[仓库名]/master</a></del> <ul>
+<li>注明：修改日期 2020 - 04 -23</li>
+<li>自定义域名，改成：<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/[GitHub">https://cdn.jsdelivr.net/gh/[GitHub</a> 名]/[仓库名]@master  例如：<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/wugenqiang/PictureBed@master">https://cdn.jsdelivr.net/gh/wugenqiang/PictureBed@master</a> 这种方式不用开启 GitHub Pages</li>
+<li>或者域名改成 https://[GitHub 名].github.io 比如：<a target="_blank" rel="noopener" href="https://wugenqiang.github.io/">https://wugenqiang.github.io</a> 但是有一个前提，你要到相应的图床仓库里找到 setting，把 GitHub Pages 开启，像下图这样：</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200423125447.png" alt="image-20200423125444978"></p>
+<p>然后点确定就OK了，不妨试试。</p>
+<h1 id="5-小结一下"><a href="#5-小结一下" class="headerlink" title="5 小结一下"></a>5 小结一下</h1><p>PicGo 是一个不错的软件，真的很好使用，虽然我只用了两天，但是我爱不释手，我之前自己写过图床，但是需要有自己的</p>
+<p>云服务器才可访问，所以我自己上网查资料，找到了这个好用的图床工具。</p>
+<p>上面的步骤都设置好之后，就可以让自己的 Markdown 文档飞起来了，来试试吧~~</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/root/tags/%E8%BD%AC%E8%BD%BD%E5%86%85%E5%AE%B9/" rel="tag"># 转载内容</a>
+              <a href="/root/tags/Markdown/" rel="tag"># Markdown</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/root/post/f1a26c5e.html" rel="prev" title="Springboot实现小程序端发送邮箱验证码功能">
+                  <i class="fa fa-chevron-left"></i> Springboot实现小程序端发送邮箱验证码功能
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/root/post/641eb086.html" rel="next" title="Coding+Github双服务器托管Hexo">
+                  Coding+Github双服务器托管Hexo <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">何孙涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/root/js/utils.js"></script><script src="/root/js/motion.js"></script><script src="/root/js/schemes/muse.js"></script><script src="/root/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/root/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/root/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

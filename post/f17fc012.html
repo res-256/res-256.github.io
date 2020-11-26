@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/root/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/root/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/root/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/root/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/root/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"z555.top","root":"/root/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="&amp;emsp;&amp;emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！  一、前言自从接触了Hexo+NexT之后，发现离不开了，以后有能力的时候一定重新架构一下，使得更加个性化，最大程度的满足我们对于软件的需求，大家都知道，如果写东西在本地的话，最怕的应该就是更换电脑，还要重新搭建博客了，所以备份对于我们来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git命令手动备份Hexo博客源文件">
+<meta property="og:url" content="https://z555.top/post/f17fc012.html">
+<meta property="og:site_name" content="何孙涛の博客">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！  一、前言自从接触了Hexo+NexT之后，发现离不开了，以后有能力的时候一定重新架构一下，使得更加个性化，最大程度的满足我们对于软件的需求，大家都知道，如果写东西在本地的话，最怕的应该就是更换电脑，还要重新搭建博客了，所以备份对于我们来">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190409192241.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190409194211.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190409202006.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190409202215.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190409200850.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190409202447.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190409205709.png">
+<meta property="article:published_time" content="2019-04-09T19:04:19.000Z">
+<meta property="article:modified_time" content="2019-04-09T19:04:19.000Z">
+<meta property="article:author" content="何孙涛">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190409192241.png">
+
+
+<link rel="canonical" href="https://z555.top/post/f17fc012.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Git命令手动备份Hexo博客源文件 | 何孙涛の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/root/atom.xml" title="何孙涛の博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/root/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">何孙涛の博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">什么都无法阻挡我们前进的脚步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">二、方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">三、实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%96%B0%E5%BB%BArepository"><span class="nav-number">3.1.</span> <span class="nav-text">1.新建repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="nav-number">3.2.</span> <span class="nav-text">2.创建仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BF%AE%E6%94%B9-gitignore%E6%96%87%E4%BB%B6"><span class="nav-number">3.3.</span> <span class="nav-text">3.修改.gitignore文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%8F%90%E4%BA%A4Hexo%E6%BA%90%E7%A0%81"><span class="nav-number">3.4.</span> <span class="nav-text">4.提交Hexo源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%AE%BE%E7%BD%AE%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80"><span class="nav-number">3.5.</span> <span class="nav-text">5.设置远程仓库地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%90%88%E5%B9%B6%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="nav-number">3.6.</span> <span class="nav-text">6.远程仓库合并到本地</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%9B%B4%E6%96%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-number">3.7.</span> <span class="nav-text">7.更新远程仓库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%BB%93%E8%AF%AD"><span class="nav-number">4.</span> <span class="nav-text">四、结语</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">何孙涛</p>
+  <div class="site-description" itemprop="description">~一个有趣的个人博客~</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/root/archives">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/root/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/root/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://z555.top/post/f17fc012.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/root/images/avatar.gif">
+      <meta itemprop="name" content="何孙涛">
+      <meta itemprop="description" content="~一个有趣的个人博客~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何孙涛の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git命令手动备份Hexo博客源文件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-09 19:04:19" itemprop="dateCreated datePublished" datetime="2019-04-09T19:04:19Z">2019-04-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/root/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
+</blockquote>
+<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>自从接触了Hexo+NexT之后，发现离不开了，以后有能力的时候一定重新架构一下，使得更加个性化，最大程度的满足我们对于软件的需求，大家都知道，如果写东西在本地的话，最怕的应该就是更换电脑，还要重新搭建博客了，所以备份对于我们来说特别重要！备份博客就是本篇博客文章的主旨了，一定要攻下这座城堡。<br>我曾经看过Git备份Hexo博客源文件的方式，所以在这里记录一下……</p>
+<a id="more"></a>
+<h1 id="二、方案"><a href="#二、方案" class="headerlink" title="二、方案"></a>二、方案</h1><p>想到的解决办法无非是:</p>
+<ul>
+<li>直接U盘拷贝</li>
+<li>博客文件托管在Github或者Gitee上</li>
+</ul>
+<p>Git提交正确步骤：<br>（1）git init //初始化仓库<br>（2）git add .(文件name) //添加文件到本地仓库<br>（3）git commit -m “first commit” //添加文件描述信息<br>（4）git remote add origin + 远程仓库地址 //链接远程仓库，创建主分支<br>（5）git pull –rebase origin master // 把本地仓库的变化连接到远程仓库主分支<br>（6）git push -u origin master //把本地仓库的文件推送到远程仓库</p>
+<p>考虑了很多方面，觉得还是进行托管最符合我们的需求。</p>
+<h1 id="三、实现"><a href="#三、实现" class="headerlink" title="三、实现"></a>三、实现</h1><p>当然可以直接通过IDEA进行上传到Github或者Gitee上，为了熟悉一下git操作，在这里使用一下git基础命令来完成上传任务。</p>
+<h2 id="1-新建repository"><a href="#1-新建repository" class="headerlink" title="1.新建repository"></a>1.新建repository</h2><p>在Github下创建一个新的repository，取名为<code>myblog</code>。(与本地的Hexo源码文件夹同名即可)<br>创建的时候<code>最好为空</code>，最好<code>不要勾选创建README.md</code>,否则后面会有小问题，不过我会提供解决办法。</p>
+<h2 id="2-创建仓库"><a href="#2-创建仓库" class="headerlink" title="2.创建仓库"></a>2.创建仓库</h2><p>进入本地的Hexo文件夹(E:\work\myblog)，在这个地方使用<code>git Bash here</code>执行以下命令创建仓库:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190409192241.png"></p>
+<h2 id="3-修改-gitignore文件"><a href="#3-修改-gitignore文件" class="headerlink" title="3.修改.gitignore文件"></a>3.修改.gitignore文件</h2><p>如果没有请手动创建一个，在里面加入<code>*.log</code> 和 <code>public/</code> 以及<code>.deploy*/</code>。因为每次执行<code>hexo g</code>命令时，上述目录都会被重写更新。因此忽略这两个目录下的文件更新，加快push速度。<br>注：如果文件中有<code>*.log</code> 和 <code>public/</code> 以及<code>.deploy*/</code>这些的时候，直接进行下一步：</p>
+<h2 id="4-提交Hexo源码"><a href="#4-提交Hexo源码" class="headerlink" title="4.提交Hexo源码"></a>4.提交Hexo源码</h2><p>执行以下命令，完成Hexo源码在本地的提交：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;添加hexo源码文件作为备份&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-设置远程仓库地址"><a href="#5-设置远程仓库地址" class="headerlink" title="5.设置远程仓库地址"></a>5.设置远程仓库地址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https:&#x2F;&#x2F;github.com&#x2F;wugenqiang&#x2F;myblog.git</span><br></pre></td></tr></table></figure>
+<p>如果出现问题：fatal: remote origin already exists</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190409194211.png"></p>
+<p>解决办法如下：<br>（1）先删除远程 Git 仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
+<p>（2）再添加远程 Git 仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https:&#x2F;&#x2F;github.com&#x2F;wugenqiang&#x2F;myblog.git</span><br></pre></td></tr></table></figure>
+
+
+<p>发现问题成功解决。</p>
+<p>切记！！</p>
+<pre><code>如果在GitHub上创建远程仓库时，勾选了 Initialize this repository with a README这项，
+导致远程仓库不为空，为了不出现Bug，请先执行第6步，
+若远程仓库为空，则忽略第6步，直接进行第7步操作！</code></pre>
+<h2 id="6-远程仓库合并到本地"><a href="#6-远程仓库合并到本地" class="headerlink" title="6.远程仓库合并到本地"></a>6.远程仓库合并到本地</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase origin master</span><br></pre></td></tr></table></figure>
+<p>我就属于创建README.md的一群人，真的是习惯造成的，执行这一步效果如下：</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190409202006.png"></p>
+<h2 id="7-更新远程仓库"><a href="#7-更新远程仓库" class="headerlink" title="7.更新远程仓库"></a>7.更新远程仓库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190409202215.png"></p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190409200850.png"></p>
+<p>如果创建仓库不为空而且不执行第4步直接执行第5步则会出现：</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190409202447.png"></p>
+<h1 id="四、结语"><a href="#四、结语" class="headerlink" title="四、结语"></a>四、结语</h1><blockquote>
+<p>注明：写于 2020 - 04 - 23 目前源代码地址已经从 myblog 变成了 CS-BlogSource，如果是参考本文的话，源文件地址记得修改哈！再次强调一下，不然访问不了的。</p>
+</blockquote>
+<p>到现在为止，我们的任务已经完成了。现在可以做到的是，在任何一台电脑上，只需要<code>git clone https://github.com/wugenqiang/CS-BlogSource.git</code>,即可完成将Hexo源文件复制到本地。（请将后面的<code>https://github.com/wugenqiang/CS-BlogSource.git</code>替换为自己相应的仓库地址。否则，克隆的将是我的博客源码:)）<br>效果如下：</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190409205709.png"></p>
+<p>在本地编写完博客时，顺次执行实现三步骤中的4、6、7命令，即可完成Hexo博客源文件更新同步，保持Github上的Hexo源码为最新版本。ok，分享就到这里啦，如果觉得这样手动操作有点辛苦的话，可以参考我的另一篇博客：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://wugenqiang.gitee.io/articles/auto_backup_blog_source_files.html">自动备份Hexo博客源文件</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/root/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/root/tags/Git/" rel="tag"># Git</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/root/post/c4d910e6.html" rel="prev" title="自动备份Hexo博客源文件">
+                  <i class="fa fa-chevron-left"></i> 自动备份Hexo博客源文件
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/root/post/9f6e8943.html" rel="next" title="Hexo+NexT修改友链样式">
+                  Hexo+NexT修改友链样式 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">何孙涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/root/js/utils.js"></script><script src="/root/js/motion.js"></script><script src="/root/js/schemes/muse.js"></script><script src="/root/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/root/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/root/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

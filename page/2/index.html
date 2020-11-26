@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/root/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/root/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/root/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/root/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/root/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"z555.top","root":"/root/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="~一个有趣的个人博客~">
+<meta property="og:type" content="website">
+<meta property="og:title" content="何孙涛の博客">
+<meta property="og:url" content="https://z555.top/page/2/index.html">
+<meta property="og:site_name" content="何孙涛の博客">
+<meta property="og:description" content="~一个有趣的个人博客~">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="何孙涛">
+<meta property="article:tag" content="个人博客 记录生活 分享技术">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://z555.top/page/2/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>何孙涛の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/root/atom.xml" title="何孙涛の博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/root/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">何孙涛の博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">什么都无法阻挡我们前进的脚步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">何孙涛</p>
+  <div class="site-description" itemprop="description">~一个有趣的个人博客~</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/root/archives">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/root/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/root/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://z555.top/post/e947bc6a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/root/images/avatar.gif">
+      <meta itemprop="name" content="何孙涛">
+      <meta itemprop="description" content="~一个有趣的个人博客~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何孙涛の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/root/post/e947bc6a.html" class="post-title-link" itemprop="url">记录"正则表达式"</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-22 10:45:35" itemprop="dateCreated datePublished" datetime="2019-04-22T10:45:35Z">2019-04-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-22 09:28:02" itemprop="dateModified" datetime="2020-11-22T09:28:02Z">2020-11-22</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
+</blockquote>
+<h1 id="1-写在前面"><a href="#1-写在前面" class="headerlink" title="1 写在前面"></a>1 写在前面</h1><p>正则表达式（Regular Expression）在代码中常常简写为<code>regex</code>。正则表达式通常被用来检索、替换那些符合某个规则的文本，它是一种强大而灵活的文本处理工具。正则描述了一个规则，通过这个规则可以匹配一类字符串。</p>
+<p>学习正则表达式分为<code>二步走</code></p>
+<ul>
+<li>学习正则表达式的语法规则</li>
+<li>练习使用正则并能解决实际问题</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/root/post/e947bc6a.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://z555.top/post/9f6e8943.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/root/images/avatar.gif">
+      <meta itemprop="name" content="何孙涛">
+      <meta itemprop="description" content="~一个有趣的个人博客~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何孙涛の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/root/post/9f6e8943.html" class="post-title-link" itemprop="url">Hexo+NexT修改友链样式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-14 13:12:26" itemprop="dateCreated datePublished" datetime="2019-04-14T13:12:26Z">2019-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/root/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
+</blockquote>
+<h1 id="1-写在前言"><a href="#1-写在前言" class="headerlink" title="1 写在前言"></a>1 写在前言</h1><p>友链的设置是参考大佬 <a target="_blank" rel="noopener" href="https://www.sanshuifeibing.cn/">三水非冰</a> 的博客来完成的，在此表示感谢，样式效果如下：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/root/post/9f6e8943.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://z555.top/post/f17fc012.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/root/images/avatar.gif">
+      <meta itemprop="name" content="何孙涛">
+      <meta itemprop="description" content="~一个有趣的个人博客~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何孙涛の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/root/post/f17fc012.html" class="post-title-link" itemprop="url">Git命令手动备份Hexo博客源文件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-09 19:04:19" itemprop="dateCreated datePublished" datetime="2019-04-09T19:04:19Z">2019-04-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/root/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
+</blockquote>
+<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>自从接触了Hexo+NexT之后，发现离不开了，以后有能力的时候一定重新架构一下，使得更加个性化，最大程度的满足我们对于软件的需求，大家都知道，如果写东西在本地的话，最怕的应该就是更换电脑，还要重新搭建博客了，所以备份对于我们来说特别重要！备份博客就是本篇博客文章的主旨了，一定要攻下这座城堡。<br>我曾经看过Git备份Hexo博客源文件的方式，所以在这里记录一下……</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/root/post/f17fc012.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://z555.top/post/c4d910e6.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/root/images/avatar.gif">
+      <meta itemprop="name" content="何孙涛">
+      <meta itemprop="description" content="~一个有趣的个人博客~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何孙涛の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/root/post/c4d910e6.html" class="post-title-link" itemprop="url">自动备份Hexo博客源文件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-09 18:15:46" itemprop="dateCreated datePublished" datetime="2019-04-09T18:15:46Z">2019-04-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/root/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
+</blockquote>
+<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>自从接触了Hexo+NexT之后，发现离不开了，以后有能力的时候一定重新架构一下，使得更加个性化，最大程度的满足我们对于软件的需求，大家都知道，如果写东西在本地的话，最怕的应该就是更换电脑，还要重新搭建博客了，所以备份对于我们来说特别重要！备份博客就是本篇博客文章的主旨了，一定要攻下这座城堡。<br>我曾经看过Git备份Hexo博客源文件的方式，这种方式虽然能够备份Hexo博客的源文件，但是对于我这种懒人，每次更新博文都需要输入两三行重复的Git命令真是一件麻烦的事情。况且指不定哪天就搞忘push到github上了。你说是不是，所以这篇文章出现了……</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/root/post/c4d910e6.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://z555.top/post/641eb086.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/root/images/avatar.gif">
+      <meta itemprop="name" content="何孙涛">
+      <meta itemprop="description" content="~一个有趣的个人博客~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何孙涛の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/root/post/641eb086.html" class="post-title-link" itemprop="url">Coding+Github双服务器托管Hexo</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-05 09:36:34" itemprop="dateCreated datePublished" datetime="2019-04-05T09:36:34Z">2019-04-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
+</blockquote>
+<h1 id="1-写在前面"><a href="#1-写在前面" class="headerlink" title="1 写在前面"></a>1 写在前面</h1><p>其实之前是用的wordpress在阿里云上挂着。<br>觉得Hexo好像更符合现在我的审美，so, do it! 所以我选择了Hexo</p>
+<h1 id="2-部署优化Hexo"><a href="#2-部署优化Hexo" class="headerlink" title="2 部署优化Hexo"></a>2 部署优化Hexo</h1><p>这一步我之前写过，在这里我就不详细赘述了啊</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://wugenqiang.gitee.io/articles/hexo-do-optimization.html">Hexo+NexT拥抱舒爽</a></li>
+</ul>
+<h1 id="3-创建Github公开库"><a href="#3-创建Github公开库" class="headerlink" title="3 创建Github公开库"></a>3 创建Github公开库</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/wugenqiang/article/details/88373385">Hexo博客上传至Github</a></li>
+</ul>
+<h1 id="4-创建Coding公开库"><a href="#4-创建Coding公开库" class="headerlink" title="4 创建Coding公开库"></a>4 创建Coding公开库</h1><p>创建腾讯云开发者平台（或Coding）公开库，因为目前两家公司战略合作，现在共用了。<br><a target="_blank" rel="noopener" href="https://dev.tencent.com/">https://dev.tencent.com/</a></p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405095056.png"></p>
+<h2 id="4-1-创建项目"><a href="#4-1-创建项目" class="headerlink" title="4.1 创建项目"></a>4.1 创建项目</h2><p>项目地址格式是 username.coding.me，格式不对会404哦，项目名称随便，确定就ok<br>例如我的：<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405095539.png"></p>
+<h2 id="4-2-开启page服务"><a href="#4-2-开启page服务" class="headerlink" title="4.2 开启page服务"></a>4.2 开启page服务</h2><p>创建完记得进入代码浏览，看看是否正确生成，然后进入page服务，然后开启<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405095901.png"><br>开启成功效果图：<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405100027.png"></p>
+<h1 id="5-配置服务并将文件部署到Github"><a href="#5-配置服务并将文件部署到Github" class="headerlink" title="5 配置服务并将文件部署到Github"></a>5 配置服务并将文件部署到Github</h1><h2 id="5-1-修改-config-yml"><a href="#5-1-修改-config-yml" class="headerlink" title="5.1 修改_config.yml"></a>5.1 修改_config.yml</h2><p>修改Hexo根目录下 _config.yml 文件，找到最下面的 deploy，格式类似我这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  #repository: https:&#x2F;&#x2F;github.com&#x2F;wugenqiang&#x2F;wugenqiang.github.io.git #复制过来</span><br><span class="line">  #branch: master</span><br><span class="line">  repo:</span><br><span class="line">    github: https:&#x2F;&#x2F;github.com&#x2F;wugenqiang&#x2F;wugenqiang.github.io.git,master</span><br><span class="line">    coding: https:&#x2F;&#x2F;dev.tencent.com&#x2F;u&#x2F;wugenqiang&#x2F;p&#x2F;wugenqiang.coding.me.git,master </span><br></pre></td></tr></table></figure>
+<h2 id="5-2-生成静态文件发布"><a href="#5-2-生成静态文件发布" class="headerlink" title="5.2 生成静态文件发布"></a>5.2 生成静态文件发布</h2><p>执行hexo clean &amp;&amp; hexo g &amp;&amp; hexo s 清除缓存，生成静态文件，本地发布<br>页面上没问题的话，就可以执行hexo d</p>
+<p>会弹出输入github账号密码，和腾讯开发者平台的账号密码。<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405100903.png"><br>后面通过生成ssh私钥，公钥就不用频繁输入用户名密码</p>
+<p>部署成功，按照各自平台的pages服务提示的网址即可访问<br>在这里我就演示coding的吧，嘿嘿<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405101028.png"></p>
+<h1 id="6-预览地址"><a href="#6-预览地址" class="headerlink" title="6 预览地址"></a>6 预览地址</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://wugenqiang.coding.me/">https://wugenqiang.coding.me/</a></li>
+<li><a target="_blank" rel="noopener" href="https://wugenqiang.github.io/">https://wugenqiang.github.io/</a></li>
+</ul>
+<h1 id="7-设置自定义域名"><a href="#7-设置自定义域名" class="headerlink" title="7 设置自定义域名"></a>7 设置自定义域名</h1><p>对于Github来说，可参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://wugenqiang.gitee.io/articles/hexo-do-domain.html">Hexo博客绑定个人域名</a></li>
+</ul>
+<p>对于Coding来说，来进行下面步骤：<br>1.进入项目，进入Page服务页<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405103203.png"></p>
+<p>点击设置进入</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405103257.png"></p>
+<p>2.设置域名指向<br>设置自定义域名指向wugenqiang.coding.me</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405103808.png"></p>
+<p>ok<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405104001.png"></p>
+<h1 id="8-加快访问速度"><a href="#8-加快访问速度" class="headerlink" title="8 加快访问速度"></a>8 加快访问速度</h1><p>修改解析记录，点击 修改，然后将github解析线路改成海外，然后保存，这样国外的用户访问你的博客的话会跳转到你的github的页面。国内默认coding.me，加快访问速度，欧耶</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405113112.png"></p>
+<p>来访问试试吧，嘿嘿嘿 <a target="_blank" rel="noopener" href="https://wugenqiang.gitee.io/">死命点我吧，亲</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://z555.top/post/74409432.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/root/images/avatar.gif">
+      <meta itemprop="name" content="何孙涛">
+      <meta itemprop="description" content="~一个有趣的个人博客~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何孙涛の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/root/post/74409432.html" class="post-title-link" itemprop="url">PicGo + GitHub 图床，让 Markdown 飞起</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-31 16:37:53" itemprop="dateCreated datePublished" datetime="2019-03-31T16:37:53Z">2019-03-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/root/categories/ToolBox/" itemprop="url" rel="index"><span itemprop="name">ToolBox</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><font size="5" > <font color="red"><br>本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></font></p>
+<center>PicGo + GitHub 图床，让 Markdown 飞起</center>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/root/post/74409432.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://z555.top/post/f1a26c5e.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/root/images/avatar.gif">
+      <meta itemprop="name" content="何孙涛">
+      <meta itemprop="description" content="~一个有趣的个人博客~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何孙涛の博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/root/post/f1a26c5e.html" class="post-title-link" itemprop="url">Springboot实现小程序端发送邮箱验证码功能</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-03-16 11:38:24" itemprop="dateCreated datePublished" datetime="2019-03-16T11:38:24Z">2019-03-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/root/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
+</blockquote>
+<h1 id="Springboot实现小程序端的邮箱验证"><a href="#Springboot实现小程序端的邮箱验证" class="headerlink" title="Springboot实现小程序端的邮箱验证"></a>Springboot实现小程序端的邮箱验证</h1><h2 id="一、配置项"><a href="#一、配置项" class="headerlink" title="一、配置项"></a>一、配置项</h2><ol>
+<li>配置pom文件，引入发送邮件的依赖</li>
+</ol>
+<p>在pom文件中添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--邮件发送核心包--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-mail&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>修改配置文件application.yml，这里以QQ邮箱为例</li>
+</ol>
+<p>我这里使用的是yml方式，当然也可以采用properties方式来写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#邮件发送配置</span><br><span class="line">spring:</span><br><span class="line">  mail:</span><br><span class="line">    default-encoding: UTF-8</span><br><span class="line">    host: smtp.qq.com</span><br><span class="line">    username: 你的邮箱</span><br><span class="line">    password: 邮箱授权码</span><br><span class="line">    properties:</span><br><span class="line">      mail:</span><br><span class="line">        smtp:</span><br><span class="line">          auth: true</span><br><span class="line">          starttls:</span><br><span class="line">            enable: true</span><br><span class="line">            required: true</span><br></pre></td></tr></table></figure>
+
+<p><em>邮箱授权码可以按以下方法获取:</em></p>
+<p><em>打开QQ邮箱网页→设置→账户→POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务→开启POP3/SMTP服务，然后就能看到授权码了</em></p>
+<p><img src="https://i.loli.net/2019/03/16/5c8c8a7252fef.png" alt="邮箱验证01.png"></p>
+<h2 id="二、编写mailService和mailServiceImpl"><a href="#二、编写mailService和mailServiceImpl" class="headerlink" title="二、编写mailService和mailServiceImpl"></a>二、编写mailService和mailServiceImpl</h2><p>即邮件服务层和邮件服务接口实现层</p>
+<p>${spring.mail.username}是在yml中配置的属性，这里有一个方法，第一个是发送普通邮件，第二个是发送带有附件的邮件</p>
+<ol>
+<li>邮件服务层（IMailService）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface IMailService &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;发送普通邮件</span><br><span class="line">    void sendSimpleMail(String to,String title,String content);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;发送带有附件的邮件</span><br><span class="line">    void sendAttachmentsMail(String to, String title, String content, List&lt;File&gt; fileList);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>邮件服务接口实现层（MailServiceImpl）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class MailServiceImpl implements IMailService &#123;</span><br><span class="line"></span><br><span class="line">    @Value(&quot;$&#123;spring.mail.username&#125;&quot;)</span><br><span class="line">    private String from;</span><br><span class="line"></span><br><span class="line">    @Resource</span><br><span class="line">    private JavaMailSender mailSender;</span><br><span class="line"></span><br><span class="line">    Logger logger &#x3D; LoggerFactory.getLogger(this.getClass());</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;发送普通邮件</span><br><span class="line">    @Override</span><br><span class="line">    public void sendSimpleMail(String to, String title, String content) &#123;</span><br><span class="line"></span><br><span class="line">        SimpleMailMessage message &#x3D; new SimpleMailMessage();</span><br><span class="line">        message.setFrom(from);</span><br><span class="line">        message.setTo(to);</span><br><span class="line">        message.setSubject(title);</span><br><span class="line">        message.setText(content);</span><br><span class="line">        mailSender.send(message);</span><br><span class="line">        logger.info(&quot;邮件发送成功&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;发送带有附件的邮件</span><br><span class="line">    @Override</span><br><span class="line">    public void sendAttachmentsMail(String to, String title, String content, List&lt;File&gt; fileList) &#123;</span><br><span class="line"></span><br><span class="line">        MimeMessage message &#x3D; mailSender.createMimeMessage();</span><br><span class="line">        try &#123;</span><br><span class="line">            MimeMessageHelper helper &#x3D; new MimeMessageHelper(message,true);</span><br><span class="line">            helper.setFrom(from);</span><br><span class="line">            helper.setTo(to);</span><br><span class="line">            helper.setSubject(title);</span><br><span class="line">            helper.setText(content);</span><br><span class="line">            String fileName &#x3D; null;</span><br><span class="line">            for (File file:fileList) &#123;</span><br><span class="line">                fileName &#x3D; MimeUtility.encodeText(file.getName(), &quot;GB2312&quot;, &quot;B&quot;);</span><br><span class="line">                helper.addAttachment(fileName, file);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        mailSender.send(message);</span><br><span class="line">        logger.info(&quot;邮件发送成功&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、编写controller"><a href="#三、编写controller" class="headerlink" title="三、编写controller"></a>三、编写controller</h2><p>即邮件发送控制层</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;获取邮箱验证的验证码</span><br><span class="line">    @RequestMapping(&quot;&#x2F;getCheckCode&quot;)</span><br><span class="line">    public JsonResult getCheckCode(HttpServletRequest request) &#123;</span><br><span class="line">        &#x2F;&#x2F;获取微信小程序get的参数值并打印</span><br><span class="line">        String userEmail &#x3D; request.getParameter(&quot;userEmail&quot;);</span><br><span class="line">        user &#x3D; userService.queryUserByUserEmail(userEmail);</span><br><span class="line">        if (null &#x3D;&#x3D; user) &#123;</span><br><span class="line">            return new JsonResult(JsonResponseStatus.EMPTY.getCode(), JsonResponseStatus.EMPTY.getMsg());</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            String checkCode &#x3D; String.valueOf(new Random().nextInt(899999) + 100000);</span><br><span class="line">            String message &#x3D; &quot;您的注册验证码为：&quot;+checkCode;</span><br><span class="line">            try &#123;</span><br><span class="line">                mailService.sendSimpleMail(userEmail, &quot;注册验证码&quot;, message);</span><br><span class="line">            &#125;catch (Exception e)&#123;</span><br><span class="line">                return new JsonResult(JsonResponseStatus.EMPTY.getCode(), JsonResponseStatus.EMPTY.getMsg());</span><br><span class="line">            &#125;</span><br><span class="line">            return new JsonResult(JsonResponseStatus.SUCCESS.getCode(), JsonResponseStatus.SUCCESS.getMsg(),checkCode);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><em>附Web网页上可以用的控制层代码：</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class MailController &#123;</span><br><span class="line">    </span><br><span class="line">    @Resource</span><br><span class="line">    private IMailService mailService;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(&quot;getCheckCode&quot;)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public String getCheckCode(String email)&#123;</span><br><span class="line">        String checkCode &#x3D; String.valueOf(new Random().nextInt(899999) + 100000);</span><br><span class="line">        String message &#x3D; &quot;您的注册验证码为：&quot;+checkCode;</span><br><span class="line">        try &#123;</span><br><span class="line">            mailService.sendSimpleMail(email, &quot;注册验证码&quot;, message);</span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        return checkCode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="四、编写小程序邮箱验证页面"><a href="#四、编写小程序邮箱验证页面" class="headerlink" title="四、编写小程序邮箱验证页面"></a>四、编写小程序邮箱验证页面</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--pages&#x2F;getCheckCode&#x2F;getCheckCode.wxml--&gt;</span><br><span class="line">&lt;form bindsubmit&#x3D;&quot;getCheckCode&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;form-list&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;form-item&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;form-item-hd&quot;&gt;邮箱&lt;&#x2F;view&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;form-item-bd&quot;&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;email&quot; name&#x3D;&quot;userEmail&quot; value&#x3D;&quot;&#123;&#123;userEmail&#125;&#125;&quot; placeholder&#x3D;&quot;请输入邮箱&quot; maxlength&#x3D;&quot;25&quot; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;!--按钮--&gt;</span><br><span class="line">  &lt;button formType&#x3D;&quot;submit&quot; class&#x3D;&quot;edit-btn&quot;&gt;获取验证码&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line"></span><br><span class="line">&lt;form bindsubmit&#x3D;&quot;toPasswordReset&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;form-list&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;form-item&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;form-item-hd&quot;&gt;验证码&lt;&#x2F;view&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;form-item-bd&quot;&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;checkCode&quot; value&#x3D;&quot;&#123;&#123;checkCode&#125;&#125;&quot; placeholder&#x3D;&quot;请输入验证码&quot; maxlength&#x3D;&quot;20&quot; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;button formType&#x3D;&quot;submit&quot; class&#x3D;&quot;edit-btn&quot;&gt;进行验证&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、测试"><a href="#五、测试" class="headerlink" title="五、测试"></a>五、测试</h2><p><img src="https://i.loli.net/2019/03/16/5c8cc99015151.png" alt="邮箱验证03.png"></p>
+<p><img src="https://i.loli.net/2019/03/16/5c8cc9a7008c2.png" alt="邮箱验证04.png"></p>
+<p>好了，就分享到这边了啊，有问题可以在下面留言…</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/root/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/root/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">何孙涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/root/js/utils.js"></script><script src="/root/js/motion.js"></script><script src="/root/js/schemes/muse.js"></script><script src="/root/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/root/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/root/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

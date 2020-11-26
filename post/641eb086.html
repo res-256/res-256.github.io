@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/root/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/root/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/root/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/root/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/root/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"z555.top","root":"/root/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="&amp;emsp;&amp;emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！  1 写在前面其实之前是用的wordpress在阿里云上挂着。觉得Hexo好像更符合现在我的审美，so, do it! 所以我选择了Hexo 2 部署优化Hexo这一步我之前写过，在这里我就不详细赘述了啊  Hexo+NexT拥抱舒爽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Coding+Github双服务器托管Hexo">
+<meta property="og:url" content="https://z555.top/post/641eb086.html">
+<meta property="og:site_name" content="何孙涛の博客">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！  1 写在前面其实之前是用的wordpress在阿里云上挂着。觉得Hexo好像更符合现在我的审美，so, do it! 所以我选择了Hexo 2 部署优化Hexo这一步我之前写过，在这里我就不详细赘述了啊  Hexo+NexT拥抱舒爽">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190405095056.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190405095539.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190405095901.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190405100027.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190405100903.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190405101028.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190405103203.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190405103257.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190405103808.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190405104001.png">
+<meta property="og:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190405113112.png">
+<meta property="article:published_time" content="2019-04-05T09:36:34.000Z">
+<meta property="article:modified_time" content="2019-04-05T09:36:34.000Z">
+<meta property="article:author" content="何孙涛">
+<meta property="article:tag" content="转载">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wugenqiang.github.io/PictureBed/pictures/20190405095056.png">
+
+
+<link rel="canonical" href="https://z555.top/post/641eb086.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Coding+Github双服务器托管Hexo | 何孙涛の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/root/atom.xml" title="何孙涛の博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/root/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">何孙涛の博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">什么都无法阻挡我们前进的脚步</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">1 写在前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E9%83%A8%E7%BD%B2%E4%BC%98%E5%8C%96Hexo"><span class="nav-number">2.</span> <span class="nav-text">2 部署优化Hexo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%88%9B%E5%BB%BAGithub%E5%85%AC%E5%BC%80%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">3 创建Github公开库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E5%88%9B%E5%BB%BACoding%E5%85%AC%E5%BC%80%E5%BA%93"><span class="nav-number">4.</span> <span class="nav-text">4 创建Coding公开库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E5%BC%80%E5%90%AFpage%E6%9C%8D%E5%8A%A1"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 开启page服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%B9%B6%E5%B0%86%E6%96%87%E4%BB%B6%E9%83%A8%E7%BD%B2%E5%88%B0Github"><span class="nav-number">5.</span> <span class="nav-text">5 配置服务并将文件部署到Github</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E4%BF%AE%E6%94%B9-config-yml"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 修改_config.yml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%8F%91%E5%B8%83"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 生成静态文件发布</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E9%A2%84%E8%A7%88%E5%9C%B0%E5%9D%80"><span class="nav-number">6.</span> <span class="nav-text">6 预览地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="nav-number">7.</span> <span class="nav-text">7 设置自定义域名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E5%8A%A0%E5%BF%AB%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6"><span class="nav-number">8.</span> <span class="nav-text">8 加快访问速度</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">何孙涛</p>
+  <div class="site-description" itemprop="description">~一个有趣的个人博客~</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/root/archives">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/root/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/root/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://z555.top/post/641eb086.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/root/images/avatar.gif">
+      <meta itemprop="name" content="何孙涛">
+      <meta itemprop="description" content="~一个有趣的个人博客~">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="何孙涛の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Coding+Github双服务器托管Hexo
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-05 09:36:34" itemprop="dateCreated datePublished" datetime="2019-04-05T09:36:34Z">2019-04-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
+</blockquote>
+<h1 id="1-写在前面"><a href="#1-写在前面" class="headerlink" title="1 写在前面"></a>1 写在前面</h1><p>其实之前是用的wordpress在阿里云上挂着。<br>觉得Hexo好像更符合现在我的审美，so, do it! 所以我选择了Hexo</p>
+<h1 id="2-部署优化Hexo"><a href="#2-部署优化Hexo" class="headerlink" title="2 部署优化Hexo"></a>2 部署优化Hexo</h1><p>这一步我之前写过，在这里我就不详细赘述了啊</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://wugenqiang.gitee.io/articles/hexo-do-optimization.html">Hexo+NexT拥抱舒爽</a></li>
+</ul>
+<h1 id="3-创建Github公开库"><a href="#3-创建Github公开库" class="headerlink" title="3 创建Github公开库"></a>3 创建Github公开库</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/wugenqiang/article/details/88373385">Hexo博客上传至Github</a></li>
+</ul>
+<h1 id="4-创建Coding公开库"><a href="#4-创建Coding公开库" class="headerlink" title="4 创建Coding公开库"></a>4 创建Coding公开库</h1><p>创建腾讯云开发者平台（或Coding）公开库，因为目前两家公司战略合作，现在共用了。<br><a target="_blank" rel="noopener" href="https://dev.tencent.com/">https://dev.tencent.com/</a></p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405095056.png"></p>
+<h2 id="4-1-创建项目"><a href="#4-1-创建项目" class="headerlink" title="4.1 创建项目"></a>4.1 创建项目</h2><p>项目地址格式是 username.coding.me，格式不对会404哦，项目名称随便，确定就ok<br>例如我的：<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405095539.png"></p>
+<h2 id="4-2-开启page服务"><a href="#4-2-开启page服务" class="headerlink" title="4.2 开启page服务"></a>4.2 开启page服务</h2><p>创建完记得进入代码浏览，看看是否正确生成，然后进入page服务，然后开启<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405095901.png"><br>开启成功效果图：<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405100027.png"></p>
+<h1 id="5-配置服务并将文件部署到Github"><a href="#5-配置服务并将文件部署到Github" class="headerlink" title="5 配置服务并将文件部署到Github"></a>5 配置服务并将文件部署到Github</h1><h2 id="5-1-修改-config-yml"><a href="#5-1-修改-config-yml" class="headerlink" title="5.1 修改_config.yml"></a>5.1 修改_config.yml</h2><p>修改Hexo根目录下 _config.yml 文件，找到最下面的 deploy，格式类似我这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  #repository: https:&#x2F;&#x2F;github.com&#x2F;wugenqiang&#x2F;wugenqiang.github.io.git #复制过来</span><br><span class="line">  #branch: master</span><br><span class="line">  repo:</span><br><span class="line">    github: https:&#x2F;&#x2F;github.com&#x2F;wugenqiang&#x2F;wugenqiang.github.io.git,master</span><br><span class="line">    coding: https:&#x2F;&#x2F;dev.tencent.com&#x2F;u&#x2F;wugenqiang&#x2F;p&#x2F;wugenqiang.coding.me.git,master </span><br></pre></td></tr></table></figure>
+<h2 id="5-2-生成静态文件发布"><a href="#5-2-生成静态文件发布" class="headerlink" title="5.2 生成静态文件发布"></a>5.2 生成静态文件发布</h2><p>执行hexo clean &amp;&amp; hexo g &amp;&amp; hexo s 清除缓存，生成静态文件，本地发布<br>页面上没问题的话，就可以执行hexo d</p>
+<p>会弹出输入github账号密码，和腾讯开发者平台的账号密码。<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405100903.png"><br>后面通过生成ssh私钥，公钥就不用频繁输入用户名密码</p>
+<p>部署成功，按照各自平台的pages服务提示的网址即可访问<br>在这里我就演示coding的吧，嘿嘿<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405101028.png"></p>
+<h1 id="6-预览地址"><a href="#6-预览地址" class="headerlink" title="6 预览地址"></a>6 预览地址</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://wugenqiang.coding.me/">https://wugenqiang.coding.me/</a></li>
+<li><a target="_blank" rel="noopener" href="https://wugenqiang.github.io/">https://wugenqiang.github.io/</a></li>
+</ul>
+<h1 id="7-设置自定义域名"><a href="#7-设置自定义域名" class="headerlink" title="7 设置自定义域名"></a>7 设置自定义域名</h1><p>对于Github来说，可参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://wugenqiang.gitee.io/articles/hexo-do-domain.html">Hexo博客绑定个人域名</a></li>
+</ul>
+<p>对于Coding来说，来进行下面步骤：<br>1.进入项目，进入Page服务页<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405103203.png"></p>
+<p>点击设置进入</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405103257.png"></p>
+<p>2.设置域名指向<br>设置自定义域名指向wugenqiang.coding.me</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405103808.png"></p>
+<p>ok<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405104001.png"></p>
+<h1 id="8-加快访问速度"><a href="#8-加快访问速度" class="headerlink" title="8 加快访问速度"></a>8 加快访问速度</h1><p>修改解析记录，点击 修改，然后将github解析线路改成海外，然后保存，这样国外的用户访问你的博客的话会跳转到你的github的页面。国内默认coding.me，加快访问速度，欧耶</p>
+<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405113112.png"></p>
+<p>来访问试试吧，嘿嘿嘿 <a target="_blank" rel="noopener" href="https://wugenqiang.gitee.io/">死命点我吧，亲</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/root/tags/%E8%BD%AC%E8%BD%BD/" rel="tag"># 转载</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/root/post/74409432.html" rel="prev" title="PicGo + GitHub 图床，让 Markdown 飞起">
+                  <i class="fa fa-chevron-left"></i> PicGo + GitHub 图床，让 Markdown 飞起
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/root/post/c4d910e6.html" rel="next" title="自动备份Hexo博客源文件">
+                  自动备份Hexo博客源文件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">何孙涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/root/js/utils.js"></script><script src="/root/js/motion.js"></script><script src="/root/js/schemes/muse.js"></script><script src="/root/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/root/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/root/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
