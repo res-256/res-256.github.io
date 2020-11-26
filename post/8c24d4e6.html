@@ -1,282 +1,185 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/res-256.github.io/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/res-256.github.io/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/res-256.github.io/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/res-256.github.io/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/res-256.github.io/css/main.css">
-
-
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
-
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"z555.top","root":"/res-256.github.io/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
-  </script>
-
-  <meta name="description" content="12本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！  堆的基本操作（C 语言版） 复习堆的基本操作的C语言实现，以小顶堆为例。因为大顶堆和小顶堆实现的方式差不多，会小顶堆，大顶堆也就会了吧哈哈！  堆的介绍堆的定义 堆（Heap）就是用数组实现的二叉树，所以它没有使用父指针或者子指针。堆根据“堆属性”来排序">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>堆的基本操作（C 语言版） | 何孙涛の博客</title><meta name="keywords" content="数据结构与算法,堆"><meta name="author" content="何孙涛"><meta name="copyright" content="何孙涛"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="12本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！  堆的基本操作（C 语言版） 复习堆的基本操作的C语言实现，以小顶堆为例。因为大顶堆和小顶堆实现的方式差不多，会小顶堆，大顶堆也就会了吧哈哈！  堆的介绍堆的定义 堆（Heap）就是用数组实现的二叉树，所以它没有使用父指针或者子指针。堆根据“堆属性”来排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="堆的基本操作（C 语言版）">
 <meta property="og:url" content="https://z555.top/post/8c24d4e6.html">
 <meta property="og:site_name" content="何孙涛の博客">
 <meta property="og:description" content="12本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！  堆的基本操作（C 语言版） 复习堆的基本操作的C语言实现，以小顶堆为例。因为大顶堆和小顶堆实现的方式差不多，会小顶堆，大顶堆也就会了吧哈哈！  堆的介绍堆的定义 堆（Heap）就是用数组实现的二叉树，所以它没有使用父指针或者子指针。堆根据“堆属性”来排序">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200428183029.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/e31d9122f3a8e021c8ea269aac18c12d.jpg">
 <meta property="article:published_time" content="2020-04-28T16:21:24.000Z">
 <meta property="article:modified_time" content="2020-04-28T16:21:24.000Z">
 <meta property="article:author" content="何孙涛">
 <meta property="article:tag" content="数据结构与算法">
 <meta property="article:tag" content="堆">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200428183029.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/e31d9122f3a8e021c8ea269aac18c12d.jpg"><link rel="shortcut icon" href="/res-256.github.io/img/favicon.png"><link rel="canonical" href="https://z555.top/post/8c24d4e6"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta name="google-site-verification" content="content"/><meta name="msvalidate.01" content="content"/><meta name="baidu-site-verification" content="content"/><meta name="360-site-verification" content="content"/><link rel="stylesheet" href="/res-256.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?true";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/res-256.github.io/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
 
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
 
-<link rel="canonical" href="https://z555.top/post/8c24d4e6.html">
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
 
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
 
-<script class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
 
-  <title>堆的基本操作（C 语言版） | 何孙涛の博客</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-04-28 16:21:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
   }
 
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
   }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
   }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
-<!-- hexo injector head_end start -->
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tzki/tzki.github.io/css/pool.css"><script src="https://cdn.jsdelivr.net/gh/drew233/cdn/js/jquery-3.3.1.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/css/flink.min.css"><!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><link rel="alternate" href="/res-256.github.io/atom.xml" title="何孙涛の博客" type="application/atom+xml">
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/res-256.github.io/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">何孙涛の博客</h1>
-      <i class="logo-line"></i>
-    </a>
-      <p class="site-subtitle" itemprop="description">什么都无法阻挡我们前进的脚步</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-</div>
-        
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%EF%BC%88C-%E8%AF%AD%E8%A8%80%E7%89%88%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">堆的基本操作（C 语言版）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">堆的介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">堆的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">1.1.2.</span> <span class="nav-text">堆的属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E9%A1%B6%E5%A0%86%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E4%B8%80"><span class="nav-number">1.2.</span> <span class="nav-text">小顶堆的实现方式(一)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">1.2.1.</span> <span class="nav-text">堆的结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%A0%86"><span class="nav-number">1.2.2.</span> <span class="nav-text">初始化堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0"><span class="nav-number">1.2.3.</span> <span class="nav-text">插入元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%9C%80%E5%B0%8F%E5%85%83%E7%B4%A0"><span class="nav-number">1.2.4.</span> <span class="nav-text">删除最小元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="nav-number">1.2.5.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E5%8E%86%E8%BE%93%E5%87%BA%E6%95%B0%E7%BB%84"><span class="nav-number">1.2.6.</span> <span class="nav-text">遍历输出数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.7.</span> <span class="nav-text">完整代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E9%A1%B6%E5%A0%86%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E4%BA%8C"><span class="nav-number">1.3.</span> <span class="nav-text">小顶堆的实现方式(二)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">堆的结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%A0%86-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%A0%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">创建堆(初始化堆)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">插入元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="nav-number">1.3.4.</span> <span class="nav-text">删除元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F-1"><span class="nav-number">1.3.5.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E5%8E%86%E8%BE%93%E5%87%BA%E6%95%B0%E7%BB%84-1"><span class="nav-number">1.3.6.</span> <span class="nav-text">遍历输出数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81-1"><span class="nav-number">1.3.7.</span> <span class="nav-text">完整代码</span></a></li></ol></li></ol></li></ol></div>
-        </section>
-        <!--/noindex-->
-
-        <section class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">何孙涛</p>
-  <div class="site-description" itemprop="description">~一个有趣的个人博客~</div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/res-256.github.io/archives">
-          <span class="site-state-item-count">19</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/res-256.github.io/categories/">
-        <span class="site-state-item-count">12</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/res-256.github.io/tags/">
-        <span class="site-state-item-count">22</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-        </section>
-      </div>
-    </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner post posts-expand">
-      
-
-      
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://z555.top/post/8c24d4e6.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/res-256.github.io/images/avatar.gif">
-      <meta itemprop="name" content="何孙涛">
-      <meta itemprop="description" content="~一个有趣的个人博客~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="何孙涛の博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          堆的基本操作（C 语言版）
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-04-28 16:21:24" itemprop="dateCreated datePublished" datetime="2020-04-28T16:21:24Z">2020-04-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/res-256.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/res-256.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%A0%86/" itemprop="url" rel="index"><span itemprop="name">堆</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <p><font size="5" > <font color="red"></p>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/res-256.github.io/atom.xml" title="何孙涛の博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/res-256.github.io/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/res-256.github.io/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/res-256.github.io/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/res-256.github.io/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/res-256.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/res-256.github.io/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/res-256.github.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-inbox"></i><span> 站点</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/sitemap.xml"><i class="fa-fw fas fa-map-marked-alt"></i><span> 站点地图</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://img.plushine.cn/"><i class="fa-fw fas fa-bed"></i><span> 开源图床</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://console.leancloud.app/applist.html#/apps/"><i class="fa-fw fas fa-bed"></i><span> 后端管理</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-gavel"></i><span> 应用</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Butterfly/"><i class="fa-fw fas fa-bug"></i><span> 彩蝶飘飞</span></a></li><li><a class="site-page" href="/res-256.github.io/box/"><i class="fa-fw fas fa-democrat"></i><span> 网址导航</span></a></li><li><a class="site-page" href="/res-256.github.io/music/"><i class="fa-fw fas fa-music"></i><span> 音乐频道</span></a></li><li><a class="site-page" href="/res-256.github.io/bb/"><i class="fa-fw fas fa-book"></i><span> 微信哔哔</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-car"></i><span> 资料</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Gallery/"><i class="fa-fw fas fa-camera"></i><span> 壁纸美图</span></a></li><li><a class="site-page" href="/res-256.github.io/NetEase/"><i class="fa-fw fas fa-fire"></i><span> 网易热评</span></a></li><li><a class="site-page" href="/res-256.github.io/19CoV/"><i class="fa-fw fas fa-map-marker-alt"></i><span> 肺炎现状</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 游戏</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Piano/"><i class="fa-fw fas fa-fire"></i><span> 在线钢琴</span></a></li><li><a class="site-page" href="/res-256.github.io/Cat/"><i class="fa-fw fas fa-bullseye"></i><span> 圈住小猫</span></a></li><li><a class="site-page" href="/res-256.github.io/2048/"><i class="fa-fw fas fa-democrat"></i><span> 移动方块</span></a></li><li><a class="site-page" href="/res-256.github.io/Element/"><i class="fa-fw fas fa-democrat"></i><span> 元素周期</span></a></li><li><a class="site-page" href="/res-256.github.io/Chest/"><i class="fa-fw fas fa-democrat"></i><span> 五子小棋</span></a></li><li><a class="site-page" href="/res-256.github.io/PacMan/"><i class="fa-fw fas fa-democrat"></i><span> 吃豆小人</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/e31d9122f3a8e021c8ea269aac18c12d.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/res-256.github.io/">何孙涛の博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/res-256.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/res-256.github.io/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/res-256.github.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-inbox"></i><span> 站点</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/sitemap.xml"><i class="fa-fw fas fa-map-marked-alt"></i><span> 站点地图</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://img.plushine.cn/"><i class="fa-fw fas fa-bed"></i><span> 开源图床</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://console.leancloud.app/applist.html#/apps/"><i class="fa-fw fas fa-bed"></i><span> 后端管理</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-gavel"></i><span> 应用</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Butterfly/"><i class="fa-fw fas fa-bug"></i><span> 彩蝶飘飞</span></a></li><li><a class="site-page" href="/res-256.github.io/box/"><i class="fa-fw fas fa-democrat"></i><span> 网址导航</span></a></li><li><a class="site-page" href="/res-256.github.io/music/"><i class="fa-fw fas fa-music"></i><span> 音乐频道</span></a></li><li><a class="site-page" href="/res-256.github.io/bb/"><i class="fa-fw fas fa-book"></i><span> 微信哔哔</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-car"></i><span> 资料</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Gallery/"><i class="fa-fw fas fa-camera"></i><span> 壁纸美图</span></a></li><li><a class="site-page" href="/res-256.github.io/NetEase/"><i class="fa-fw fas fa-fire"></i><span> 网易热评</span></a></li><li><a class="site-page" href="/res-256.github.io/19CoV/"><i class="fa-fw fas fa-map-marker-alt"></i><span> 肺炎现状</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 游戏</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Piano/"><i class="fa-fw fas fa-fire"></i><span> 在线钢琴</span></a></li><li><a class="site-page" href="/res-256.github.io/Cat/"><i class="fa-fw fas fa-bullseye"></i><span> 圈住小猫</span></a></li><li><a class="site-page" href="/res-256.github.io/2048/"><i class="fa-fw fas fa-democrat"></i><span> 移动方块</span></a></li><li><a class="site-page" href="/res-256.github.io/Element/"><i class="fa-fw fas fa-democrat"></i><span> 元素周期</span></a></li><li><a class="site-page" href="/res-256.github.io/Chest/"><i class="fa-fw fas fa-democrat"></i><span> 五子小棋</span></a></li><li><a class="site-page" href="/res-256.github.io/PacMan/"><i class="fa-fw fas fa-democrat"></i><span> 吃豆小人</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">堆的基本操作（C 语言版）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-04-28T16:21:24.000Z" title="发表于 2020-04-28 16:21:24">2020-04-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-04-28T16:21:24.000Z" title="更新于 2020-04-28 16:21:24">2020-04-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/res-256.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/res-256.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%A0%86/">堆</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><font size="5" > <font color="red"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p></font></font></p>
 <h1 id="堆的基本操作（C-语言版）"><a href="#堆的基本操作（C-语言版）" class="headerlink" title="堆的基本操作（C 语言版）"></a>堆的基本操作（C 语言版）</h1><blockquote>
@@ -294,7 +197,7 @@
 <h3 id="堆的属性"><a href="#堆的属性" class="headerlink" title="堆的属性"></a>堆的属性</h3><p>堆分为两种：最大堆和最小堆，两者的差别在于节点的排序方式。</p>
 <p>最大堆（大顶堆）：① 根的值大于左右子树的值  ② 子树也是最大堆</p>
 <p>最小堆（小顶堆）：① 根的值小于左右子树的值  ② 子树也是最小堆</p>
-<p><img src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200428183029.png" alt="最大堆"></p>
+<p><img src= "/res-256.github.io/img/loading.gif" data-lazy-src="https://gitee.com/wugenqiang/PictureBed/raw/master/CS-Notes/20200428183029.png" alt="最大堆"></p>
 <p>这是一个最大堆，，因为每一个父节点的值都比其子节点要大。<code>10</code> 比 <code>7</code> 和 <code>2</code> 都大。<code>7</code> 比 <code>5</code> 和 <code>1</code>都大。</p>
 <blockquote>
 <p>堆属性非常的有用，因为堆常常被当做优先队列使用，因为可以快速的访问到“最重要”的元素。</p>
@@ -352,125 +255,92 @@
 
 <h3 id="遍历输出数组-1"><a href="#遍历输出数组-1" class="headerlink" title="遍历输出数组"></a>遍历输出数组</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse_array</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="完整代码-1"><a href="#完整代码-1" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MinData -1<span class="comment">//哨兵元素的值</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">MinHeap</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> *data;<span class="comment">//表示堆的数组 大小要在用户输入的元素个数上+1</span></span><br><span class="line">    <span class="keyword">int</span> Size;<span class="comment">//数组里已有的元素(不包含a[0]) </span></span><br><span class="line">    <span class="keyword">int</span> Capacity; <span class="comment">//数组的数量上限</span></span><br><span class="line">&#125;heap;<span class="comment">//定义顶堆</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建堆 </span></span><br><span class="line"><span class="function">heap* <span class="title">init</span><span class="params">(<span class="keyword">int</span> size)</span></span>&#123;</span><br><span class="line">    heap* h = (heap*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(heap));</span><br><span class="line">    h-&gt;data = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*(size+<span class="number">1</span>));<span class="comment">//从a[1]开始保存数 所以数组数量要+1</span></span><br><span class="line">    h-&gt;Size = <span class="number">0</span>;</span><br><span class="line">    h-&gt;Capacity = size;</span><br><span class="line">    h-&gt;data[<span class="number">0</span>] = MinData;<span class="comment">//岗哨</span></span><br><span class="line">    <span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//插入元素 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">insert</span><span class="params">(heap* h, <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="comment">//判断是否满了</span></span><br><span class="line">    <span class="keyword">if</span> (h-&gt;Size == h-&gt;Capacity) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> i = ++h-&gt;Size;</span><br><span class="line">    <span class="keyword">for</span> (; i &gt;= <span class="number">1</span>; i/=<span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (h-&gt;data[i/<span class="number">2</span>] &gt; x) &#123;</span><br><span class="line">			h-&gt;data[i] = h-&gt;data[i/<span class="number">2</span>];</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;  </span><br><span class="line">    &#125;</span><br><span class="line">    h-&gt;data[i] = x;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除最小元素 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">deleteMin</span><span class="params">(heap* h)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> top = h-&gt;data[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> last = h-&gt;data[h-&gt;Size];</span><br><span class="line">    h-&gt;Size--;</span><br><span class="line">    <span class="keyword">int</span> i,child;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i * <span class="number">2</span> &lt;= h-&gt;Size; i = child) &#123;</span><br><span class="line">        child = i*<span class="number">2</span>;</span><br><span class="line">            <span class="comment">//注意这里是存在右子节点 并且 右子节点比左子节点小    </span></span><br><span class="line">        <span class="keyword">if</span> (child!=h-&gt;Size &amp;&amp; h-&gt;data[child] &gt; h-&gt;data[child+<span class="number">1</span>]) &#123;</span><br><span class="line">            child++;</span><br><span class="line">    	&#125;</span><br><span class="line">		<span class="comment">//如果比右子节点还小</span></span><br><span class="line">        <span class="keyword">if</span> (h-&gt;data[child]&gt;last) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;<span class="comment">//下滤</span></span><br><span class="line">            h-&gt;data[i] = h-&gt;data[child];</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    h-&gt;data[i] = last;</span><br><span class="line">    <span class="keyword">return</span> top;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//堆排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">heap_sort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    heap* h = init(n);<span class="comment">//初始化堆</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++) &#123;<span class="comment">//将数组的元素依次插入堆</span></span><br><span class="line">        insert(h, a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        a[i] = deleteMin(h);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//遍历数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse_array</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//主函数测试 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[] = &#123;<span class="number">10</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">1</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(<span class="keyword">int</span>);</span><br><span class="line">    traverse_array(a, n);</span><br><span class="line">    heap_sort(a, n);</span><br><span class="line">    traverse_array(a, n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-    </div>
+<h3 id="完整代码-1"><a href="#完整代码-1" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MinData -1<span class="comment">//哨兵元素的值</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">MinHeap</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> *data;<span class="comment">//表示堆的数组 大小要在用户输入的元素个数上+1</span></span><br><span class="line">    <span class="keyword">int</span> Size;<span class="comment">//数组里已有的元素(不包含a[0]) </span></span><br><span class="line">    <span class="keyword">int</span> Capacity; <span class="comment">//数组的数量上限</span></span><br><span class="line">&#125;heap;<span class="comment">//定义顶堆</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建堆 </span></span><br><span class="line"><span class="function">heap* <span class="title">init</span><span class="params">(<span class="keyword">int</span> size)</span></span>&#123;</span><br><span class="line">    heap* h = (heap*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(heap));</span><br><span class="line">    h-&gt;data = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*(size+<span class="number">1</span>));<span class="comment">//从a[1]开始保存数 所以数组数量要+1</span></span><br><span class="line">    h-&gt;Size = <span class="number">0</span>;</span><br><span class="line">    h-&gt;Capacity = size;</span><br><span class="line">    h-&gt;data[<span class="number">0</span>] = MinData;<span class="comment">//岗哨</span></span><br><span class="line">    <span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//插入元素 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">insert</span><span class="params">(heap* h, <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="comment">//判断是否满了</span></span><br><span class="line">    <span class="keyword">if</span> (h-&gt;Size == h-&gt;Capacity) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> i = ++h-&gt;Size;</span><br><span class="line">    <span class="keyword">for</span> (; i &gt;= <span class="number">1</span>; i/=<span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (h-&gt;data[i/<span class="number">2</span>] &gt; x) &#123;</span><br><span class="line">			h-&gt;data[i] = h-&gt;data[i/<span class="number">2</span>];</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;  </span><br><span class="line">    &#125;</span><br><span class="line">    h-&gt;data[i] = x;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除最小元素 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">deleteMin</span><span class="params">(heap* h)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> top = h-&gt;data[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> last = h-&gt;data[h-&gt;Size];</span><br><span class="line">    h-&gt;Size--;</span><br><span class="line">    <span class="keyword">int</span> i,child;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i * <span class="number">2</span> &lt;= h-&gt;Size; i = child) &#123;</span><br><span class="line">        child = i*<span class="number">2</span>;</span><br><span class="line">            <span class="comment">//注意这里是存在右子节点 并且 右子节点比左子节点小    </span></span><br><span class="line">        <span class="keyword">if</span> (child!=h-&gt;Size &amp;&amp; h-&gt;data[child] &gt; h-&gt;data[child+<span class="number">1</span>]) &#123;</span><br><span class="line">            child++;</span><br><span class="line">    	&#125;</span><br><span class="line">		<span class="comment">//如果比右子节点还小</span></span><br><span class="line">        <span class="keyword">if</span> (h-&gt;data[child]&gt;last) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;<span class="comment">//下滤</span></span><br><span class="line">            h-&gt;data[i] = h-&gt;data[child];</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    h-&gt;data[i] = last;</span><br><span class="line">    <span class="keyword">return</span> top;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//堆排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">heap_sort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    heap* h = init(n);<span class="comment">//初始化堆</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++) &#123;<span class="comment">//将数组的元素依次插入堆</span></span><br><span class="line">        insert(h, a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        a[i] = deleteMin(h);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//遍历数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse_array</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//主函数测试 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[] = &#123;<span class="number">10</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">1</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="keyword">sizeof</span>(a) / <span class="keyword">sizeof</span>(<span class="keyword">int</span>);</span><br><span class="line">    traverse_array(a, n);</span><br><span class="line">    heap_sort(a, n);</span><br><span class="line">    traverse_array(a, n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">何孙涛</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://z555.top/post/8c24d4e6.html">https://z555.top/post/8c24d4e6.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://z555.top" target="_blank">何孙涛の博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/res-256.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a><a class="post-meta__tags" href="/res-256.github.io/tags/%E5%A0%86/">堆</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/e31d9122f3a8e021c8ea269aac18c12d.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/res-256.github.io/post/71c1c665.html"><img class="prev-cover" data-lazy-src="https://cdn.jsdelivr.net/gh/lete114/CDN/BoBoPic/05.jpg" onerror="onerror=null;src='/res-256.github.io/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">色块测试</div></div></a></div><div class="next-post pull-right"><a href="/res-256.github.io/post/26d47f8f.html"><img class="next-cover" data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/e31d9122f3a8e021c8ea269aac18c12d.jpg" onerror="onerror=null;src='/res-256.github.io/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hexo NexT 评论系统 Valine 的使用</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/res-256.github.io/post/82246bb3.html" title="二叉树的基本操作（C 语言版）包含递归和非递归算法"><img class="cover" data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-22</div><div class="title">二叉树的基本操作（C 语言版）包含递归和非递归算法</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="/res-256.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/res-256.github.io/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">何孙涛</div><div class="author-info__description">人生即是旅程·我们都在路上</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/res-256.github.io/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/res-256.github.io/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div><div class="card-info-data-item is-center"><a href="/res-256.github.io/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/res-256"><i class="fab fa-github"></i><span>∷关注我叭∷</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/res-256" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:h1553270051@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1553270051" target="_blank" title="QQ"><i class="fa fa-fire"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">苟利国家生死以·岂因祸福避趋之</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A0%86%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%EF%BC%88C-%E8%AF%AD%E8%A8%80%E7%89%88%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">堆的基本操作（C 语言版）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">堆的介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">堆的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.2.</span> <span class="toc-text">堆的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E9%A1%B6%E5%A0%86%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E4%B8%80"><span class="toc-number">1.2.</span> <span class="toc-text">小顶堆的实现方式(一)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">1.2.1.</span> <span class="toc-text">堆的结构体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%A0%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">初始化堆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0"><span class="toc-number">1.2.3.</span> <span class="toc-text">插入元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%9C%80%E5%B0%8F%E5%85%83%E7%B4%A0"><span class="toc-number">1.2.4.</span> <span class="toc-text">删除最小元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="toc-number">1.2.5.</span> <span class="toc-text">堆排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E8%BE%93%E5%87%BA%E6%95%B0%E7%BB%84"><span class="toc-number">1.2.6.</span> <span class="toc-text">遍历输出数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.7.</span> <span class="toc-text">完整代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E9%A1%B6%E5%A0%86%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-%E4%BA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">小顶堆的实现方式(二)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">堆的结构体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%A0%86-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%A0%86"><span class="toc-number">1.3.2.</span> <span class="toc-text">创建堆(初始化堆)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0-1"><span class="toc-number">1.3.3.</span> <span class="toc-text">插入元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-number">1.3.4.</span> <span class="toc-text">删除元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F-1"><span class="toc-number">1.3.5.</span> <span class="toc-text">堆排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E8%BE%93%E5%87%BA%E6%95%B0%E7%BB%84-1"><span class="toc-number">1.3.6.</span> <span class="toc-text">遍历输出数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81-1"><span class="toc-number">1.3.7.</span> <span class="toc-text">完整代码</span></a></li></ol></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/16107.html" title="世界，你好"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/22/fe917a1afe4ae380e325b909ff3477d1.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="世界，你好"/></a><div class="content"><a class="title" href="/res-256.github.io/post/16107.html" title="世界，你好">世界，你好</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/0.html" title="无题"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/res-256.github.io/post/0.html" title="无题">无题</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/0.html" title="无题"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/e31d9122f3a8e021c8ea269aac18c12d.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/res-256.github.io/post/0.html" title="无题">无题</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/2faa635d.html" title="外挂标签测试"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/aa2538f828432564c37f91a88a2b16f3.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="外挂标签测试"/></a><div class="content"><a class="title" href="/res-256.github.io/post/2faa635d.html" title="外挂标签测试">外挂标签测试</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/43511.html" title="长医欢迎你哟😋"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/19/csyxy.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="长医欢迎你哟😋"/></a><div class="content"><a class="title" href="/res-256.github.io/post/43511.html" title="长医欢迎你哟😋">长医欢迎你哟😋</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By 何孙涛</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">·永远相信美好的事情即将发生·</div><div class="icp"><a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20209402"><img class="icp-icon" src="/res-256.github.io/img/icp.png" alt="ICP"/><span>萌ICP备20209402号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/res-256.github.io/js/utils.js"></script><script src="/res-256.github.io/js/main.js"></script><script src="/res-256.github.io/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/res-256.github.io/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/plugins.min.css"><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script src="/js/calendar.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.5.3/dist/av-min.js"></script><script src="/js/languages.js"></script><script src="/js/xkTool.js"></script><script src="/js/artitalk.js"></script><link rel="stylesheet" href="/css/artitalk.min.css"><script src="/js/chocolate.js"></script><script src="/js/baiduanalysis.js"></script><script src="/js/cdn_post.js"></script><script src="/js/diy.js"></script><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/hideMobileSidebar.js"></script><link rel="stylesheet" href="/js/foot.js"><link rel="stylesheet" href="/js/showdown.min.js"><link rel="stylesheet" href="/js/font.css"><link rel="stylesheet" href="/css/ysnsn.css"><link rel="stylesheet" href="/css/chocolate.css"><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/title.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/res-256/res-256.github.io/css/font.css"><script src="https://cdn.jsdelivr.net/gh/res-256/res-256.github.io/js/foot.js"></script><script src="https://unpkg.com/xiaokang-style/butterfly/css/tags.css"></script><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"></script><script src="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css"></script><script src="/res-256.github.io/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="/res-256.github.io/"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
 
-    
-    
-    
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
 
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/res-256.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
-              <a href="/res-256.github.io/tags/%E5%A0%86/" rel="tag"># 堆</a>
-          </div>
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/artitalk/"]):not([href="/bb/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
 
-        
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/res-256.github.io/post/26d47f8f.html" rel="prev" title="Hexo NexT 评论系统 Valine 的使用">
-                  <i class="fa fa-chevron-left"></i> Hexo NexT 评论系统 Valine 的使用
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/res-256.github.io/post/71c1c665.html" rel="next" title="色块测试">
-                  色块测试 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
 
 
-
-
-
-
-      
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
       }
     }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
   }
-</script>
 
-    </div>
-  </main>
+  typeof typed === 'object' && typed.destroy()
 
-  <footer class="footer">
-    <div class="footer-inner">
-      
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
 
-      
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">何孙涛</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
-
-    </div>
-  </footer>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/res-256.github.io/js/utils.js"></script><script src="/res-256.github.io/js/motion.js"></script><script src="/res-256.github.io/js/schemes/muse.js"></script><script src="/res-256.github.io/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script src="/res-256.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/res-256.github.io/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
-</html>
+})</script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div><script src="/res-256.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/res-256.github.io/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

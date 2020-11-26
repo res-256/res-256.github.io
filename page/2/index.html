@@ -1,942 +1,399 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/res-256.github.io/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/res-256.github.io/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/res-256.github.io/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/res-256.github.io/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/res-256.github.io/css/main.css">
-
-
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
-
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"z555.top","root":"/res-256.github.io/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
-  </script>
-
-  <meta name="description" content="~一个有趣的个人博客~">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>何孙涛の博客 - 什么都无法阻挡我们前进的脚步</title><meta name="keywords" content="个人博客 记录生活 分享技术"><meta name="author" content="何孙涛"><meta name="copyright" content="何孙涛"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="~一个有趣的个人博客~">
 <meta property="og:type" content="website">
 <meta property="og:title" content="何孙涛の博客">
 <meta property="og:url" content="https://z555.top/page/2/index.html">
 <meta property="og:site_name" content="何孙涛の博客">
 <meta property="og:description" content="~一个有趣的个人博客~">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z555.top/img/avatar.png">
 <meta property="article:author" content="何孙涛">
 <meta property="article:tag" content="个人博客 记录生活 分享技术">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z555.top/img/avatar.png"><link rel="shortcut icon" href="/res-256.github.io/img/favicon.png"><link rel="canonical" href="https://z555.top/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta name="google-site-verification" content="content"/><meta name="msvalidate.01" content="content"/><meta name="baidu-site-verification" content="content"/><meta name="360-site-verification" content="content"/><link rel="stylesheet" href="/res-256.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?true";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/res-256.github.io/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
 
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
 
-<link rel="canonical" href="https://z555.top/page/2/">
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
 
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
 
-<script class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
 
-  <title>何孙涛の博客</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2020-11-26 15:07:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
   }
 
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
   }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
   }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
-<!-- hexo injector head_end start -->
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tzki/tzki.github.io/css/pool.css"><script src="https://cdn.jsdelivr.net/gh/drew233/cdn/js/jquery-3.3.1.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/css/flink.min.css"><!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><link rel="alternate" href="/res-256.github.io/atom.xml" title="何孙涛の博客" type="application/atom+xml">
-</head>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/res-256.github.io/atom.xml" title="何孙涛の博客" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/res-256.github.io/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/res-256.github.io/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/res-256.github.io/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/res-256.github.io/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/res-256.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/res-256.github.io/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/res-256.github.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-inbox"></i><span> 站点</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/sitemap.xml"><i class="fa-fw fas fa-map-marked-alt"></i><span> 站点地图</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://img.plushine.cn/"><i class="fa-fw fas fa-bed"></i><span> 开源图床</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://console.leancloud.app/applist.html#/apps/"><i class="fa-fw fas fa-bed"></i><span> 后端管理</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-gavel"></i><span> 应用</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Butterfly/"><i class="fa-fw fas fa-bug"></i><span> 彩蝶飘飞</span></a></li><li><a class="site-page" href="/res-256.github.io/box/"><i class="fa-fw fas fa-democrat"></i><span> 网址导航</span></a></li><li><a class="site-page" href="/res-256.github.io/music/"><i class="fa-fw fas fa-music"></i><span> 音乐频道</span></a></li><li><a class="site-page" href="/res-256.github.io/bb/"><i class="fa-fw fas fa-book"></i><span> 微信哔哔</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-car"></i><span> 资料</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Gallery/"><i class="fa-fw fas fa-camera"></i><span> 壁纸美图</span></a></li><li><a class="site-page" href="/res-256.github.io/NetEase/"><i class="fa-fw fas fa-fire"></i><span> 网易热评</span></a></li><li><a class="site-page" href="/res-256.github.io/19CoV/"><i class="fa-fw fas fa-map-marker-alt"></i><span> 肺炎现状</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 游戏</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Piano/"><i class="fa-fw fas fa-fire"></i><span> 在线钢琴</span></a></li><li><a class="site-page" href="/res-256.github.io/Cat/"><i class="fa-fw fas fa-bullseye"></i><span> 圈住小猫</span></a></li><li><a class="site-page" href="/res-256.github.io/2048/"><i class="fa-fw fas fa-democrat"></i><span> 移动方块</span></a></li><li><a class="site-page" href="/res-256.github.io/Element/"><i class="fa-fw fas fa-democrat"></i><span> 元素周期</span></a></li><li><a class="site-page" href="/res-256.github.io/Chest/"><i class="fa-fw fas fa-democrat"></i><span> 五子小棋</span></a></li><li><a class="site-page" href="/res-256.github.io/PacMan/"><i class="fa-fw fas fa-democrat"></i><span> 吃豆小人</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://p.ananas.chaoxing.com/star3/origin/93ec24af5b3542b1a8a819fed2dbce5b.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/res-256.github.io/">何孙涛の博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/res-256.github.io/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/res-256.github.io/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/res-256.github.io/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-inbox"></i><span> 站点</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/sitemap.xml"><i class="fa-fw fas fa-map-marked-alt"></i><span> 站点地图</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://img.plushine.cn/"><i class="fa-fw fas fa-bed"></i><span> 开源图床</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://console.leancloud.app/applist.html#/apps/"><i class="fa-fw fas fa-bed"></i><span> 后端管理</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-gavel"></i><span> 应用</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Butterfly/"><i class="fa-fw fas fa-bug"></i><span> 彩蝶飘飞</span></a></li><li><a class="site-page" href="/res-256.github.io/box/"><i class="fa-fw fas fa-democrat"></i><span> 网址导航</span></a></li><li><a class="site-page" href="/res-256.github.io/music/"><i class="fa-fw fas fa-music"></i><span> 音乐频道</span></a></li><li><a class="site-page" href="/res-256.github.io/bb/"><i class="fa-fw fas fa-book"></i><span> 微信哔哔</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-car"></i><span> 资料</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Gallery/"><i class="fa-fw fas fa-camera"></i><span> 壁纸美图</span></a></li><li><a class="site-page" href="/res-256.github.io/NetEase/"><i class="fa-fw fas fa-fire"></i><span> 网易热评</span></a></li><li><a class="site-page" href="/res-256.github.io/19CoV/"><i class="fa-fw fas fa-map-marker-alt"></i><span> 肺炎现状</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 游戏</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/res-256.github.io/Piano/"><i class="fa-fw fas fa-fire"></i><span> 在线钢琴</span></a></li><li><a class="site-page" href="/res-256.github.io/Cat/"><i class="fa-fw fas fa-bullseye"></i><span> 圈住小猫</span></a></li><li><a class="site-page" href="/res-256.github.io/2048/"><i class="fa-fw fas fa-democrat"></i><span> 移动方块</span></a></li><li><a class="site-page" href="/res-256.github.io/Element/"><i class="fa-fw fas fa-democrat"></i><span> 元素周期</span></a></li><li><a class="site-page" href="/res-256.github.io/Chest/"><i class="fa-fw fas fa-democrat"></i><span> 五子小棋</span></a></li><li><a class="site-page" href="/res-256.github.io/PacMan/"><i class="fa-fw fas fa-democrat"></i><span> 吃豆小人</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/res-256.github.io/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">何孙涛の博客</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/res-256" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:h1553270051@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1553270051" target="_blank" title="QQ"><i class="fa fa-fire"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/res-256.github.io/post/e947bc6a.html" title="记录&quot;正则表达式&quot;">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/aa2538f828432564c37f91a88a2b16f3.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="记录&quot;正则表达式&quot;"></a></div><div class="recent-post-info"><a class="article-title" href="/res-256.github.io/post/e947bc6a.html" title="记录&quot;正则表达式&quot;">记录&quot;正则表达式&quot;</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-04-22T10:45:35.000Z" title="发表于 2019-04-22 10:45:35">2019-04-22</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/res-256.github.io/tags/%E8%BD%AC%E8%BD%BD%E5%86%85%E5%AE%B9/">转载内容</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/res-256.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a></span></div><div class="content">
+&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
+1 写在前面正则表达式（Regular Expression）在代码中常常简写为regex。正则表达式通常被用来检索、替换那些符合某个规则的文本，它是一种强大而灵活的文本处理工具。正则描述了一个规则，通过这个规则可以匹配一类字符串。
+学习正则表达式分为二步走
 
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-    </div>
-  </div>
+学习正则表达式的语法规则
+练习使用正则并能解决实际问题
 
-  <div class="site-meta">
 
-    <a href="/res-256.github.io/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">何孙涛の博客</h1>
-      <i class="logo-line"></i>
-    </a>
-      <p class="site-subtitle" itemprop="description">什么都无法阻挡我们前进的脚步</p>
-  </div>
+通过使用正则表达式，可以：
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
+测试字符串内的模式(数据验证)例如，可以测试输入字符串，以查看字符串内是否出现电话号码模式或信用卡号码模式，这称为数据验证。
+替换文本可以使用正则表达式来识别文档中的特定文本，完全删除该文本或者用其他文本替换它。
+基于模式匹配从字符串中提取子字符串可以查找文档内或输入域内特定的文本。
+
+如果你不觉得正则表达式很难读写的话，要么你是一个天才，要么，你不是地球人。正则表达式的语法很令人头疼，即使对经常使用它的人来说也是如此。由于难于读写，容易出错，所以找一种工具对正则表达式进行测试是 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/res-256.github.io/post/9f6e8943.html" title="Hexo+NexT修改友链样式">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/22/fe917a1afe4ae380e325b909ff3477d1.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="Hexo+NexT修改友链样式"></a></div><div class="recent-post-info"><a class="article-title" href="/res-256.github.io/post/9f6e8943.html" title="Hexo+NexT修改友链样式">Hexo+NexT修改友链样式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-04-14T13:12:26.000Z" title="发表于 2019-04-14 13:12:26">2019-04-14</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/res-256.github.io/categories/Hexo/">Hexo</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/res-256.github.io/tags/%E8%BD%AC%E8%BD%BD/">转载</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/res-256.github.io/tags/Hexo/">Hexo</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/res-256.github.io/tags/NexT/">NexT</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/res-256.github.io/tags/Template/">Template</a></span></div><div class="content">
+&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！
+
+1 写在前言友链的设置是参考大佬 三水非冰 的博客来完成的，在此表示感谢，样式效果如下：
 
 
 
+2 实现2.1 新建links.swig文件在/themes/next/layout/路径下，新建一个文件links.swig，其内容为以下代码：
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596&#123;% block content %&#125;  &#123;######################&#125;  &#123;### LINKS BLOCK ###&#125;  &#123;####### ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/res-256.github.io/post/f17fc012.html" title="Git命令手动备份Hexo博客源文件">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/e31d9122f3a8e021c8ea269aac18c12d.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="Git命令手动备份Hexo博客源文件"></a></div><div class="recent-post-info"><a class="article-title" href="/res-256.github.io/post/f17fc012.html" title="Git命令手动备份Hexo博客源文件">Git命令手动备份Hexo博客源文件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-04-09T19:04:19.000Z" title="发表于 2019-04-09 19:04:19">2019-04-09</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/res-256.github.io/categories/Hexo/">Hexo</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/res-256.github.io/tags/Hexo/">Hexo</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/res-256.github.io/tags/Git/">Git</a></span></div><div class="content">
+&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！
+
+一、前言自从接触了Hexo+NexT之后，发现离不开了，以后有能力的时候一定重新架构一下，使得更加个性化，最大程度的满足我们对于软件的需求，大家都知道，如果写东西在本地的话，最怕的应该就是更换电脑，还要重新搭建博客了，所以备份对于我们来说特别重要！备份博客就是本篇博客文章的主旨了，一定要攻下这座城堡。我曾经看过Git备份Hexo博客源文件的方式，所以在这里记录一下……
+
+二、方案想到的解决办法无非是:
+
+直接U盘拷贝
+博客文件托管在Github或者Gitee上
+
+Git提交正确步骤：（1）git init //初始化仓库（2）git add .(文件name) //添加文件到本地仓库（3）git commit -m “first commit” //添加文件描述信息（4）git remote add origin + 远程仓库地址 //链接远程仓库，创建主分支（5）git pull –rebase origin master ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/res-256.github.io/post/c4d910e6.html" title="自动备份Hexo博客源文件">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/aa2538f828432564c37f91a88a2b16f3.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="自动备份Hexo博客源文件"></a></div><div class="recent-post-info"><a class="article-title" href="/res-256.github.io/post/c4d910e6.html" title="自动备份Hexo博客源文件">自动备份Hexo博客源文件</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack article-meta__icon sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-04-09T18:15:46.000Z" title="发表于 2019-04-09 18:15:46">2019-04-09</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/res-256.github.io/categories/Hexo/">Hexo</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/res-256.github.io/tags/Hexo/">Hexo</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/res-256.github.io/tags/%E8%BD%AC%E8%BD%BD%E5%86%85%E5%AE%B9/">转载内容</a></span></div><div class="content">
+&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！
+
+一、前言自从接触了Hexo+NexT之后，发现离不开了，以后有能力的时候一定重新架构一下，使得更加个性化，最大程度的满足我们对于软件的需求，大家都知道，如果写东西在本地的话，最怕的应该就是更换电脑，还要重新搭建博客了，所以备份对于我们来说特别重要！备份博客就是本篇博客文章的主旨了，一定要攻下这座城堡。我曾经看过Git备份Hexo博客源文件的方式，这种方式虽然能够备份Hexo博客的源文件，但是对于我这种懒人，每次更新博文都需要输入两三行重复的Git命令真是一件麻烦的事情。况且指不定哪天就搞忘push到github上了。你说是不是，所以这篇文章出现了……
+
+二、原理通过监听Hexo的事件来完成自动执行Git命令进行自动备份，查阅Hexo文档，找到了Hexo的主要事件，见下表：
+
+
+
+事件名
+事件发生时间
+
+
+
+deployBefore
+在部署完成前发布
+
+
+deployAfter
+在部署成功后发布
+
+
+exit
+在 Hexo 结 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/res-256.github.io/post/641eb086.html" title="Coding+Github双服务器托管Hexo">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="Coding+Github双服务器托管Hexo"></a></div><div class="recent-post-info"><a class="article-title" href="/res-256.github.io/post/641eb086.html" title="Coding+Github双服务器托管Hexo">Coding+Github双服务器托管Hexo</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack article-meta__icon sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-04-05T09:36:34.000Z" title="发表于 2019-04-05 09:36:34">2019-04-05</time></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/res-256.github.io/tags/%E8%BD%AC%E8%BD%BD/">转载</a></span></div><div class="content">
+&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！
+
+1 写在前面其实之前是用的wordpress在阿里云上挂着。觉得Hexo好像更符合现在我的审美，so, do it! 所以我选择了Hexo
+2 部署优化Hexo这一步我之前写过，在这里我就不详细赘述了啊
+
+Hexo+NexT拥抱舒爽
+
+3 创建Github公开库
+Hexo博客上传至Github
+
+4 创建Coding公开库创建腾讯云开发者平台（或Coding）公开库，因为目前两家公司战略合作，现在共用了。https://dev.tencent.com/
+
+4.1 创建项目项目地址格式是 username.coding.me，格式不对会404哦，项目名称随便，确定就ok例如我的：
+4.2 开启page服务创建完记得进入代码浏览，看看是否正确生成，然后进入page服务，然后开启开启成功效果图：
+5 配置服务并将文件部署到Github5.1 修改_config.yml修改Hexo根目录下 _config.yml 文件，找到最下面的 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/res-256.github.io/post/74409432.html" title="PicGo + GitHub 图床，让 Markdown 飞起">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/e31d9122f3a8e021c8ea269aac18c12d.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="PicGo + GitHub 图床，让 Markdown 飞起"></a></div><div class="recent-post-info"><a class="article-title" href="/res-256.github.io/post/74409432.html" title="PicGo + GitHub 图床，让 Markdown 飞起">PicGo + GitHub 图床，让 Markdown 飞起</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-03-31T16:37:53.000Z" title="发表于 2019-03-31 16:37:53">2019-03-31</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/res-256.github.io/categories/ToolBox/">ToolBox</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/res-256.github.io/tags/%E8%BD%AC%E8%BD%BD%E5%86%85%E5%AE%B9/">转载内容</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/res-256.github.io/tags/Markdown/">Markdown</a></span></div><div class="content"> 本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！
+PicGo + GitHub 图床，让 Markdown 飞起
 
 
 
 
-</div>
-        
+
+注：这段话写于 2020 - 04 -23，这篇文章这种方式在之前还是很棒的，但是随着 PicGo 支持 Gitee 插件之后，更好的图床工具就出现了，所以建议你使用新方式：Typora + PicGo + Gitee 实现图片上传功能，当然还可以继续浏览本篇文章，这种方式依然能用！
+1 PicGo 介绍这是一款图片上传的工具，目前支持微博图床，七牛图床，腾讯云，又拍云，GitHub 等图床，未来将支持更多图床。
+所以解决问题的思路就是，将本地的文件，或者剪切板上面的截图发送图床，然后生成在线图片的链接，这样就可以
+让Markdown 文档飞起来了，走到哪就可以用到哪~~
+在众多的图床中，我选择的 GitHub 图床，其它类型的图床如果你们有兴趣的话可以试一下，主要我对于 Github 有特殊的感
+情，很难割舍~~
+2 下载 PicGo2.1 进入下载链接下载链接为：https ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/res-256.github.io/post/f1a26c5e.html" title="Springboot实现小程序端发送邮箱验证码功能">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/22/fe917a1afe4ae380e325b909ff3477d1.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="Springboot实现小程序端发送邮箱验证码功能"></a></div><div class="recent-post-info"><a class="article-title" href="/res-256.github.io/post/f1a26c5e.html" title="Springboot实现小程序端发送邮箱验证码功能">Springboot实现小程序端发送邮箱验证码功能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-03-16T11:38:24.000Z" title="发表于 2019-03-16 11:38:24">2019-03-16</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/res-256.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/res-256.github.io/tags/%E8%BD%AC%E8%BD%BD/">转载</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/res-256.github.io/tags/%E9%82%AE%E7%AE%B1%E9%AA%8C%E8%AF%81/">邮箱验证</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/res-256.github.io/tags/Springboot/">Springboot</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/res-256.github.io/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a></span></div><div class="content">
+&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！
+
+Springboot实现小程序端的邮箱验证一、配置项
+配置pom文件，引入发送邮件的依赖
+
+在pom文件中添加：
+123456&lt;!--邮件发送核心包--&gt;&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;spring-boot-starter-mail&lt;&#x2F;artifactId&gt;&lt;&#x2F;dependency&gt;
+
+
+修改配置文件application.yml，这里以QQ邮箱为例
+
+我这里使用的是yml方式，当然也可以采用properties方式来写
+1234567891011121314#邮件发送配置spring:  mail:    default-encoding: UTF-8    host: smtp.qq.com ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/res-256.github.io/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/res-256.github.io/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="/res-256.github.io/img/avatar.png" onerror="this.onerror=null;this.src='/res-256.github.io/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">何孙涛</div><div class="author-info__description">人生即是旅程·我们都在路上</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/res-256.github.io/archives/"><div class="headline">文章</div><div class="length-num">19</div></a></div><div class="card-info-data-item is-center"><a href="/res-256.github.io/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div><div class="card-info-data-item is-center"><a href="/res-256.github.io/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/res-256"><i class="fab fa-github"></i><span>∷关注我叭∷</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/res-256" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:h1553270051@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=1553270051" target="_blank" title="QQ"><i class="fa fa-fire"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">苟利国家生死以·岂因祸福避趋之</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/16107.html" title="世界，你好"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/22/fe917a1afe4ae380e325b909ff3477d1.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="世界，你好"/></a><div class="content"><a class="title" href="/res-256.github.io/post/16107.html" title="世界，你好">世界，你好</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/0.html" title="无题"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/33a979cc9d04f9055783a8cc23aebf00.png" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/res-256.github.io/post/0.html" title="无题">无题</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/0.html" title="无题"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/e31d9122f3a8e021c8ea269aac18c12d.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/res-256.github.io/post/0.html" title="无题">无题</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/2faa635d.html" title="外挂标签测试"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/23/aa2538f828432564c37f91a88a2b16f3.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="外挂标签测试"/></a><div class="content"><a class="title" href="/res-256.github.io/post/2faa635d.html" title="外挂标签测试">外挂标签测试</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/res-256.github.io/post/43511.html" title="长医欢迎你哟😋"><img data-lazy-src="https://cdn.jsdelivr.net/gh/res-256/pic@main/2020/11/19/csyxy.jpg" onerror="this.onerror=null;this.src='/res-256.github.io/img/404.jpg'" alt="长医欢迎你哟😋"/></a><div class="content"><a class="title" href="/res-256.github.io/post/43511.html" title="长医欢迎你哟😋">长医欢迎你哟😋</a><time datetime="2020-11-26T14:58:31.152Z" title="发表于 2020-11-26 14:58:31">2020-11-26</time></div></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/res-256.github.io/categories/Hexo/"><span class="card-category-list-name">Hexo</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/res-256.github.io/categories/ToolBox/"><span class="card-category-list-name">ToolBox</span><span class="card-category-list-count">3</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/res-256.github.io/categories/ToolBox/IDEA/"><span class="card-category-list-name">IDEA</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/res-256.github.io/categories/ToolBox/PictureBed/"><span class="card-category-list-name">PictureBed</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/res-256.github.io/categories/%E4%B8%8B%E8%BD%BD/"><span class="card-category-list-name">下载</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/res-256.github.io/categories/%E4%B8%8B%E8%BD%BD/%E8%BD%AC%E8%BD%BD%E5%86%85%E5%AE%B9/"><span class="card-category-list-name">转载内容</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/res-256.github.io/categories/%E5%A4%96%E6%8C%82%E6%A0%87%E7%AD%BE/"><span class="card-category-list-name">外挂标签</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/res-256.github.io/categories/%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">技术</span><span class="card-category-list-count">1</span></a></li>
+            <li class="card-category-list-item more is-center"><a class="card-category-list-link-more" href="/res-256.github.io/categories/">
+                <span>查看更多</span><i class="fas fa-angle-right"></i></a></li>
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/res-256.github.io/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/res-256.github.io/tags/HEXO/" style="font-size: 1.23em; color: #999ea6">HEXO</a> <a href="/res-256.github.io/tags/Hexo/" style="font-size: 1.37em; color: #99a4b2">Hexo</a> <a href="/res-256.github.io/tags/IDEA/" style="font-size: 1.1em; color: #999">IDEA</a> <a href="/res-256.github.io/tags/Markdown/" style="font-size: 1.1em; color: #999">Markdown</a> <a href="/res-256.github.io/tags/NexT/" style="font-size: 1.1em; color: #999">NexT</a> <a href="/res-256.github.io/tags/PictureBed/" style="font-size: 1.1em; color: #999">PictureBed</a> <a href="/res-256.github.io/tags/Springboot/" style="font-size: 1.1em; color: #999">Springboot</a> <a href="/res-256.github.io/tags/Template/" style="font-size: 1.1em; color: #999">Template</a> <a href="/res-256.github.io/tags/ToolBox/" style="font-size: 1.23em; color: #999ea6">ToolBox</a> <a href="/res-256.github.io/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" style="font-size: 1.1em; color: #999">二叉树</a> <a href="/res-256.github.io/tags/%E5%A0%86/" style="font-size: 1.1em; color: #999">堆</a> <a href="/res-256.github.io/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 1.1em; color: #999">小程序</a> <a href="/res-256.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 1.23em; color: #999ea6">数据结构与算法</a> <a href="/res-256.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 1.1em; color: #999">正则表达式</a> <a href="/res-256.github.io/tags/%E6%AD%A3%E6%96%87/" style="font-size: 1.1em; color: #999">正文</a> <a href="/res-256.github.io/tags/%E7%BD%91%E7%AB%99/" style="font-size: 1.1em; color: #999">网站</a> <a href="/res-256.github.io/tags/%E8%89%B2%E5%9D%97/" style="font-size: 1.1em; color: #999">色块</a> <a href="/res-256.github.io/tags/%E8%AE%BA%E6%96%87/" style="font-size: 1.1em; color: #999">论文</a> <a href="/res-256.github.io/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 1.37em; color: #99a4b2">转载</a> <a href="/res-256.github.io/tags/%E8%BD%AC%E8%BD%BD%E5%86%85%E5%AE%B9/" style="font-size: 1.5em; color: #99a9bf">转载内容</a> <a href="/res-256.github.io/tags/%E9%82%AE%E7%AE%B1%E9%AA%8C%E8%AF%81/" style="font-size: 1.1em; color: #999">邮箱验证</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/res-256.github.io/archives/2020/11/"><span class="card-archive-list-date">十一月 2020</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/res-256.github.io/archives/2020/04/"><span class="card-archive-list-date">四月 2020</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/res-256.github.io/archives/2019/05/"><span class="card-archive-list-date">五月 2019</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/res-256.github.io/archives/2019/04/"><span class="card-archive-list-date">四月 2019</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/res-256.github.io/archives/2019/03/"><span class="card-archive-list-date">三月 2019</span><span class="card-archive-list-count">2</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2019-11-15T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By 何孙涛</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">·永远相信美好的事情即将发生·</div><div class="icp"><a target="_blank" rel="noopener" href="https://icp.gov.moe/?keyword=20209402"><img class="icp-icon" src="/res-256.github.io/img/icp.png" alt="ICP"/><span>萌ICP备20209402号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/res-256.github.io/js/utils.js"></script><script src="/res-256.github.io/js/main.js"></script><script src="/res-256.github.io/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/res-256.github.io/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      if (true) {
+        var from = '出自 ' + data.from
+        var sub = "她教我收余恨，免娇嗔，且自新，改性情。休恋逝水，苦海回身，早悟兰因。".length == 0 ? new Array() : "她教我收余恨，免娇嗔，且自新，改性情。休恋逝水，苦海回身，早悟兰因。".split(',')
+        var both = sub.unshift(data.hitokoto, from)
+        var typed = new Typed('#subtitle', {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: true,
+          backSpeed: 50,
+        })
+      } else {
+        document.getElementById('subtitle').innerHTML = data.hitokoto
+      }
+    })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/plugins.min.css"><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script src="/js/calendar.js"></script><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.5.3/dist/av-min.js"></script><script src="/js/languages.js"></script><script src="/js/xkTool.js"></script><script src="/js/artitalk.js"></script><link rel="stylesheet" href="/css/artitalk.min.css"><script src="/js/chocolate.js"></script><script src="/js/baiduanalysis.js"></script><script src="/js/cdn_post.js"></script><script src="/js/diy.js"></script><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/hideMobileSidebar.js"></script><link rel="stylesheet" href="/js/foot.js"><link rel="stylesheet" href="/js/showdown.min.js"><link rel="stylesheet" href="/js/font.css"><link rel="stylesheet" href="/css/ysnsn.css"><link rel="stylesheet" href="/css/chocolate.css"><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/title.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/res-256/res-256.github.io/css/font.css"><script src="https://cdn.jsdelivr.net/gh/res-256/res-256.github.io/js/foot.js"></script><script src="https://unpkg.com/xiaokang-style/butterfly/css/tags.css"></script><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"></script><script src="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/font-awesome-animation.min.css"></script><script src="/res-256.github.io/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="/res-256.github.io/"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/artitalk/"]):not([href="/bb/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
   
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
-        </section>
-        <!--/noindex-->
-
-        <section class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">何孙涛</p>
-  <div class="site-description" itemprop="description">~一个有趣的个人博客~</div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/res-256.github.io/archives">
-          <span class="site-state-item-count">19</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/res-256.github.io/categories/">
-        <span class="site-state-item-count">12</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/res-256.github.io/tags/">
-        <span class="site-state-item-count">22</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-        </section>
-      </div>
-    </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-    <div class="main-inner index posts-expand">
-      
-
-      
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://z555.top/post/e947bc6a.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/res-256.github.io/images/avatar.gif">
-      <meta itemprop="name" content="何孙涛">
-      <meta itemprop="description" content="~一个有趣的个人博客~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="何孙涛の博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/res-256.github.io/post/e947bc6a.html" class="post-title-link" itemprop="url">记录"正则表达式"</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-04-22 10:45:35" itemprop="dateCreated datePublished" datetime="2019-04-22T10:45:35Z">2019-04-22</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-22 09:28:02" itemprop="dateModified" datetime="2020-11-22T09:28:02Z">2020-11-22</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
-</blockquote>
-<h1 id="1-写在前面"><a href="#1-写在前面" class="headerlink" title="1 写在前面"></a>1 写在前面</h1><p>正则表达式（Regular Expression）在代码中常常简写为<code>regex</code>。正则表达式通常被用来检索、替换那些符合某个规则的文本，它是一种强大而灵活的文本处理工具。正则描述了一个规则，通过这个规则可以匹配一类字符串。</p>
-<p>学习正则表达式分为<code>二步走</code></p>
-<ul>
-<li>学习正则表达式的语法规则</li>
-<li>练习使用正则并能解决实际问题</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/res-256.github.io/post/e947bc6a.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://z555.top/post/9f6e8943.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/res-256.github.io/images/avatar.gif">
-      <meta itemprop="name" content="何孙涛">
-      <meta itemprop="description" content="~一个有趣的个人博客~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="何孙涛の博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/res-256.github.io/post/9f6e8943.html" class="post-title-link" itemprop="url">Hexo+NexT修改友链样式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-04-14 13:12:26" itemprop="dateCreated datePublished" datetime="2019-04-14T13:12:26Z">2019-04-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/res-256.github.io/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
-</blockquote>
-<h1 id="1-写在前言"><a href="#1-写在前言" class="headerlink" title="1 写在前言"></a>1 写在前言</h1><p>友链的设置是参考大佬 <a target="_blank" rel="noopener" href="https://www.sanshuifeibing.cn/">三水非冰</a> 的博客来完成的，在此表示感谢，样式效果如下：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/res-256.github.io/post/9f6e8943.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://z555.top/post/f17fc012.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/res-256.github.io/images/avatar.gif">
-      <meta itemprop="name" content="何孙涛">
-      <meta itemprop="description" content="~一个有趣的个人博客~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="何孙涛の博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/res-256.github.io/post/f17fc012.html" class="post-title-link" itemprop="url">Git命令手动备份Hexo博客源文件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-04-09 19:04:19" itemprop="dateCreated datePublished" datetime="2019-04-09T19:04:19Z">2019-04-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/res-256.github.io/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
-</blockquote>
-<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>自从接触了Hexo+NexT之后，发现离不开了，以后有能力的时候一定重新架构一下，使得更加个性化，最大程度的满足我们对于软件的需求，大家都知道，如果写东西在本地的话，最怕的应该就是更换电脑，还要重新搭建博客了，所以备份对于我们来说特别重要！备份博客就是本篇博客文章的主旨了，一定要攻下这座城堡。<br>我曾经看过Git备份Hexo博客源文件的方式，所以在这里记录一下……</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/res-256.github.io/post/f17fc012.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://z555.top/post/c4d910e6.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/res-256.github.io/images/avatar.gif">
-      <meta itemprop="name" content="何孙涛">
-      <meta itemprop="description" content="~一个有趣的个人博客~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="何孙涛の博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/res-256.github.io/post/c4d910e6.html" class="post-title-link" itemprop="url">自动备份Hexo博客源文件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-04-09 18:15:46" itemprop="dateCreated datePublished" datetime="2019-04-09T18:15:46Z">2019-04-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/res-256.github.io/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
-</blockquote>
-<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>自从接触了Hexo+NexT之后，发现离不开了，以后有能力的时候一定重新架构一下，使得更加个性化，最大程度的满足我们对于软件的需求，大家都知道，如果写东西在本地的话，最怕的应该就是更换电脑，还要重新搭建博客了，所以备份对于我们来说特别重要！备份博客就是本篇博客文章的主旨了，一定要攻下这座城堡。<br>我曾经看过Git备份Hexo博客源文件的方式，这种方式虽然能够备份Hexo博客的源文件，但是对于我这种懒人，每次更新博文都需要输入两三行重复的Git命令真是一件麻烦的事情。况且指不定哪天就搞忘push到github上了。你说是不是，所以这篇文章出现了……</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/res-256.github.io/post/c4d910e6.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://z555.top/post/641eb086.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/res-256.github.io/images/avatar.gif">
-      <meta itemprop="name" content="何孙涛">
-      <meta itemprop="description" content="~一个有趣的个人博客~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="何孙涛の博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/res-256.github.io/post/641eb086.html" class="post-title-link" itemprop="url">Coding+Github双服务器托管Hexo</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-04-05 09:36:34" itemprop="dateCreated datePublished" datetime="2019-04-05T09:36:34Z">2019-04-05</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
-</blockquote>
-<h1 id="1-写在前面"><a href="#1-写在前面" class="headerlink" title="1 写在前面"></a>1 写在前面</h1><p>其实之前是用的wordpress在阿里云上挂着。<br>觉得Hexo好像更符合现在我的审美，so, do it! 所以我选择了Hexo</p>
-<h1 id="2-部署优化Hexo"><a href="#2-部署优化Hexo" class="headerlink" title="2 部署优化Hexo"></a>2 部署优化Hexo</h1><p>这一步我之前写过，在这里我就不详细赘述了啊</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://wugenqiang.gitee.io/articles/hexo-do-optimization.html">Hexo+NexT拥抱舒爽</a></li>
-</ul>
-<h1 id="3-创建Github公开库"><a href="#3-创建Github公开库" class="headerlink" title="3 创建Github公开库"></a>3 创建Github公开库</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/wugenqiang/article/details/88373385">Hexo博客上传至Github</a></li>
-</ul>
-<h1 id="4-创建Coding公开库"><a href="#4-创建Coding公开库" class="headerlink" title="4 创建Coding公开库"></a>4 创建Coding公开库</h1><p>创建腾讯云开发者平台（或Coding）公开库，因为目前两家公司战略合作，现在共用了。<br><a target="_blank" rel="noopener" href="https://dev.tencent.com/">https://dev.tencent.com/</a></p>
-<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405095056.png"></p>
-<h2 id="4-1-创建项目"><a href="#4-1-创建项目" class="headerlink" title="4.1 创建项目"></a>4.1 创建项目</h2><p>项目地址格式是 username.coding.me，格式不对会404哦，项目名称随便，确定就ok<br>例如我的：<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405095539.png"></p>
-<h2 id="4-2-开启page服务"><a href="#4-2-开启page服务" class="headerlink" title="4.2 开启page服务"></a>4.2 开启page服务</h2><p>创建完记得进入代码浏览，看看是否正确生成，然后进入page服务，然后开启<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405095901.png"><br>开启成功效果图：<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405100027.png"></p>
-<h1 id="5-配置服务并将文件部署到Github"><a href="#5-配置服务并将文件部署到Github" class="headerlink" title="5 配置服务并将文件部署到Github"></a>5 配置服务并将文件部署到Github</h1><h2 id="5-1-修改-config-yml"><a href="#5-1-修改-config-yml" class="headerlink" title="5.1 修改_config.yml"></a>5.1 修改_config.yml</h2><p>修改Hexo根目录下 _config.yml 文件，找到最下面的 deploy，格式类似我这样的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  #repository: https:&#x2F;&#x2F;github.com&#x2F;wugenqiang&#x2F;wugenqiang.github.io.git #复制过来</span><br><span class="line">  #branch: master</span><br><span class="line">  repo:</span><br><span class="line">    github: https:&#x2F;&#x2F;github.com&#x2F;wugenqiang&#x2F;wugenqiang.github.io.git,master</span><br><span class="line">    coding: https:&#x2F;&#x2F;dev.tencent.com&#x2F;u&#x2F;wugenqiang&#x2F;p&#x2F;wugenqiang.coding.me.git,master </span><br></pre></td></tr></table></figure>
-<h2 id="5-2-生成静态文件发布"><a href="#5-2-生成静态文件发布" class="headerlink" title="5.2 生成静态文件发布"></a>5.2 生成静态文件发布</h2><p>执行hexo clean &amp;&amp; hexo g &amp;&amp; hexo s 清除缓存，生成静态文件，本地发布<br>页面上没问题的话，就可以执行hexo d</p>
-<p>会弹出输入github账号密码，和腾讯开发者平台的账号密码。<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405100903.png"><br>后面通过生成ssh私钥，公钥就不用频繁输入用户名密码</p>
-<p>部署成功，按照各自平台的pages服务提示的网址即可访问<br>在这里我就演示coding的吧，嘿嘿<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405101028.png"></p>
-<h1 id="6-预览地址"><a href="#6-预览地址" class="headerlink" title="6 预览地址"></a>6 预览地址</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://wugenqiang.coding.me/">https://wugenqiang.coding.me/</a></li>
-<li><a target="_blank" rel="noopener" href="https://wugenqiang.github.io/">https://wugenqiang.github.io/</a></li>
-</ul>
-<h1 id="7-设置自定义域名"><a href="#7-设置自定义域名" class="headerlink" title="7 设置自定义域名"></a>7 设置自定义域名</h1><p>对于Github来说，可参考：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://wugenqiang.gitee.io/articles/hexo-do-domain.html">Hexo博客绑定个人域名</a></li>
-</ul>
-<p>对于Coding来说，来进行下面步骤：<br>1.进入项目，进入Page服务页<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405103203.png"></p>
-<p>点击设置进入</p>
-<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405103257.png"></p>
-<p>2.设置域名指向<br>设置自定义域名指向wugenqiang.coding.me</p>
-<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405103808.png"></p>
-<p>ok<br><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405104001.png"></p>
-<h1 id="8-加快访问速度"><a href="#8-加快访问速度" class="headerlink" title="8 加快访问速度"></a>8 加快访问速度</h1><p>修改解析记录，点击 修改，然后将github解析线路改成海外，然后保存，这样国外的用户访问你的博客的话会跳转到你的github的页面。国内默认coding.me，加快访问速度，欧耶</p>
-<p><img src="https://wugenqiang.github.io/PictureBed/pictures/20190405113112.png"></p>
-<p>来访问试试吧，嘿嘿嘿 <a target="_blank" rel="noopener" href="https://wugenqiang.gitee.io/">死命点我吧，亲</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://z555.top/post/74409432.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/res-256.github.io/images/avatar.gif">
-      <meta itemprop="name" content="何孙涛">
-      <meta itemprop="description" content="~一个有趣的个人博客~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="何孙涛の博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/res-256.github.io/post/74409432.html" class="post-title-link" itemprop="url">PicGo + GitHub 图床，让 Markdown 飞起</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-03-31 16:37:53" itemprop="dateCreated datePublished" datetime="2019-03-31T16:37:53Z">2019-03-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/res-256.github.io/categories/ToolBox/" itemprop="url" rel="index"><span itemprop="name">ToolBox</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><font size="5" > <font color="red"><br>本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></font></p>
-<center>PicGo + GitHub 图床，让 Markdown 飞起</center>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/res-256.github.io/post/74409432.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://z555.top/post/f1a26c5e.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/res-256.github.io/images/avatar.gif">
-      <meta itemprop="name" content="何孙涛">
-      <meta itemprop="description" content="~一个有趣的个人博客~">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="何孙涛の博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/res-256.github.io/post/f1a26c5e.html" class="post-title-link" itemprop="url">Springboot实现小程序端发送邮箱验证码功能</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-03-16 11:38:24" itemprop="dateCreated datePublished" datetime="2019-03-16T11:38:24Z">2019-03-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/res-256.github.io/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p><font color="ff0000">&emsp;&emsp;本人正在学习hexo相关知识，标签了转载内容的都是从各位大神的博客上面复制过来的，本人保证不做商业用途，建站完成之后将予以删除，谢谢！<br></font></p>
-</blockquote>
-<h1 id="Springboot实现小程序端的邮箱验证"><a href="#Springboot实现小程序端的邮箱验证" class="headerlink" title="Springboot实现小程序端的邮箱验证"></a>Springboot实现小程序端的邮箱验证</h1><h2 id="一、配置项"><a href="#一、配置项" class="headerlink" title="一、配置项"></a>一、配置项</h2><ol>
-<li>配置pom文件，引入发送邮件的依赖</li>
-</ol>
-<p>在pom文件中添加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--邮件发送核心包--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-mail&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>修改配置文件application.yml，这里以QQ邮箱为例</li>
-</ol>
-<p>我这里使用的是yml方式，当然也可以采用properties方式来写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#邮件发送配置</span><br><span class="line">spring:</span><br><span class="line">  mail:</span><br><span class="line">    default-encoding: UTF-8</span><br><span class="line">    host: smtp.qq.com</span><br><span class="line">    username: 你的邮箱</span><br><span class="line">    password: 邮箱授权码</span><br><span class="line">    properties:</span><br><span class="line">      mail:</span><br><span class="line">        smtp:</span><br><span class="line">          auth: true</span><br><span class="line">          starttls:</span><br><span class="line">            enable: true</span><br><span class="line">            required: true</span><br></pre></td></tr></table></figure>
-
-<p><em>邮箱授权码可以按以下方法获取:</em></p>
-<p><em>打开QQ邮箱网页→设置→账户→POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务→开启POP3/SMTP服务，然后就能看到授权码了</em></p>
-<p><img src="https://i.loli.net/2019/03/16/5c8c8a7252fef.png" alt="邮箱验证01.png"></p>
-<h2 id="二、编写mailService和mailServiceImpl"><a href="#二、编写mailService和mailServiceImpl" class="headerlink" title="二、编写mailService和mailServiceImpl"></a>二、编写mailService和mailServiceImpl</h2><p>即邮件服务层和邮件服务接口实现层</p>
-<p>${spring.mail.username}是在yml中配置的属性，这里有一个方法，第一个是发送普通邮件，第二个是发送带有附件的邮件</p>
-<ol>
-<li>邮件服务层（IMailService）</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface IMailService &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;发送普通邮件</span><br><span class="line">    void sendSimpleMail(String to,String title,String content);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;发送带有附件的邮件</span><br><span class="line">    void sendAttachmentsMail(String to, String title, String content, List&lt;File&gt; fileList);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>邮件服务接口实现层（MailServiceImpl）</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class MailServiceImpl implements IMailService &#123;</span><br><span class="line"></span><br><span class="line">    @Value(&quot;$&#123;spring.mail.username&#125;&quot;)</span><br><span class="line">    private String from;</span><br><span class="line"></span><br><span class="line">    @Resource</span><br><span class="line">    private JavaMailSender mailSender;</span><br><span class="line"></span><br><span class="line">    Logger logger &#x3D; LoggerFactory.getLogger(this.getClass());</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;发送普通邮件</span><br><span class="line">    @Override</span><br><span class="line">    public void sendSimpleMail(String to, String title, String content) &#123;</span><br><span class="line"></span><br><span class="line">        SimpleMailMessage message &#x3D; new SimpleMailMessage();</span><br><span class="line">        message.setFrom(from);</span><br><span class="line">        message.setTo(to);</span><br><span class="line">        message.setSubject(title);</span><br><span class="line">        message.setText(content);</span><br><span class="line">        mailSender.send(message);</span><br><span class="line">        logger.info(&quot;邮件发送成功&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;发送带有附件的邮件</span><br><span class="line">    @Override</span><br><span class="line">    public void sendAttachmentsMail(String to, String title, String content, List&lt;File&gt; fileList) &#123;</span><br><span class="line"></span><br><span class="line">        MimeMessage message &#x3D; mailSender.createMimeMessage();</span><br><span class="line">        try &#123;</span><br><span class="line">            MimeMessageHelper helper &#x3D; new MimeMessageHelper(message,true);</span><br><span class="line">            helper.setFrom(from);</span><br><span class="line">            helper.setTo(to);</span><br><span class="line">            helper.setSubject(title);</span><br><span class="line">            helper.setText(content);</span><br><span class="line">            String fileName &#x3D; null;</span><br><span class="line">            for (File file:fileList) &#123;</span><br><span class="line">                fileName &#x3D; MimeUtility.encodeText(file.getName(), &quot;GB2312&quot;, &quot;B&quot;);</span><br><span class="line">                helper.addAttachment(fileName, file);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        mailSender.send(message);</span><br><span class="line">        logger.info(&quot;邮件发送成功&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="三、编写controller"><a href="#三、编写controller" class="headerlink" title="三、编写controller"></a>三、编写controller</h2><p>即邮件发送控制层</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;获取邮箱验证的验证码</span><br><span class="line">    @RequestMapping(&quot;&#x2F;getCheckCode&quot;)</span><br><span class="line">    public JsonResult getCheckCode(HttpServletRequest request) &#123;</span><br><span class="line">        &#x2F;&#x2F;获取微信小程序get的参数值并打印</span><br><span class="line">        String userEmail &#x3D; request.getParameter(&quot;userEmail&quot;);</span><br><span class="line">        user &#x3D; userService.queryUserByUserEmail(userEmail);</span><br><span class="line">        if (null &#x3D;&#x3D; user) &#123;</span><br><span class="line">            return new JsonResult(JsonResponseStatus.EMPTY.getCode(), JsonResponseStatus.EMPTY.getMsg());</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            String checkCode &#x3D; String.valueOf(new Random().nextInt(899999) + 100000);</span><br><span class="line">            String message &#x3D; &quot;您的注册验证码为：&quot;+checkCode;</span><br><span class="line">            try &#123;</span><br><span class="line">                mailService.sendSimpleMail(userEmail, &quot;注册验证码&quot;, message);</span><br><span class="line">            &#125;catch (Exception e)&#123;</span><br><span class="line">                return new JsonResult(JsonResponseStatus.EMPTY.getCode(), JsonResponseStatus.EMPTY.getMsg());</span><br><span class="line">            &#125;</span><br><span class="line">            return new JsonResult(JsonResponseStatus.SUCCESS.getCode(), JsonResponseStatus.SUCCESS.getMsg(),checkCode);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-<p><em>附Web网页上可以用的控制层代码：</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class MailController &#123;</span><br><span class="line">    </span><br><span class="line">    @Resource</span><br><span class="line">    private IMailService mailService;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(&quot;getCheckCode&quot;)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public String getCheckCode(String email)&#123;</span><br><span class="line">        String checkCode &#x3D; String.valueOf(new Random().nextInt(899999) + 100000);</span><br><span class="line">        String message &#x3D; &quot;您的注册验证码为：&quot;+checkCode;</span><br><span class="line">        try &#123;</span><br><span class="line">            mailService.sendSimpleMail(email, &quot;注册验证码&quot;, message);</span><br><span class="line">        &#125;catch (Exception e)&#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        return checkCode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="四、编写小程序邮箱验证页面"><a href="#四、编写小程序邮箱验证页面" class="headerlink" title="四、编写小程序邮箱验证页面"></a>四、编写小程序邮箱验证页面</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--pages&#x2F;getCheckCode&#x2F;getCheckCode.wxml--&gt;</span><br><span class="line">&lt;form bindsubmit&#x3D;&quot;getCheckCode&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;form-list&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;form-item&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;form-item-hd&quot;&gt;邮箱&lt;&#x2F;view&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;form-item-bd&quot;&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;email&quot; name&#x3D;&quot;userEmail&quot; value&#x3D;&quot;&#123;&#123;userEmail&#125;&#125;&quot; placeholder&#x3D;&quot;请输入邮箱&quot; maxlength&#x3D;&quot;25&quot; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;!--按钮--&gt;</span><br><span class="line">  &lt;button formType&#x3D;&quot;submit&quot; class&#x3D;&quot;edit-btn&quot;&gt;获取验证码&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line"></span><br><span class="line">&lt;form bindsubmit&#x3D;&quot;toPasswordReset&quot;&gt;</span><br><span class="line">  &lt;view class&#x3D;&quot;form-list&quot;&gt;</span><br><span class="line">    &lt;view class&#x3D;&quot;form-item&quot;&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;form-item-hd&quot;&gt;验证码&lt;&#x2F;view&gt;</span><br><span class="line">      &lt;view class&#x3D;&quot;form-item-bd&quot;&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;checkCode&quot; value&#x3D;&quot;&#123;&#123;checkCode&#125;&#125;&quot; placeholder&#x3D;&quot;请输入验证码&quot; maxlength&#x3D;&quot;20&quot; &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;&#x2F;view&gt;</span><br><span class="line">  &lt;button formType&#x3D;&quot;submit&quot; class&#x3D;&quot;edit-btn&quot;&gt;进行验证&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="五、测试"><a href="#五、测试" class="headerlink" title="五、测试"></a>五、测试</h2><p><img src="https://i.loli.net/2019/03/16/5c8cc99015151.png" alt="邮箱验证03.png"></p>
-<p><img src="https://i.loli.net/2019/03/16/5c8cc9a7008c2.png" alt="邮箱验证04.png"></p>
-<p>好了，就分享到这边了啊，有问题可以在下面留言…</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/res-256.github.io/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/res-256.github.io/">1</a><span class="page-number current">2</span>
-  </nav>
-
-
-
-      
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
       }
     }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
   }
-</script>
 
-    </div>
-  </main>
+  typeof typed === 'object' && typed.destroy()
 
-  <footer class="footer">
-    <div class="footer-inner">
-      
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
 
-      
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">何孙涛</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
-  </div>
-
-    </div>
-  </footer>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/res-256.github.io/js/utils.js"></script><script src="/res-256.github.io/js/motion.js"></script><script src="/res-256.github.io/js/schemes/muse.js"></script><script src="/res-256.github.io/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script src="/res-256.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/res-256.github.io/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
-</html>
+})</script><script>(function(){
+  const bp = document.createElement('script');
+  const curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  bp.dataset.pjax = ''
+  const s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})()</script></div><script src="/res-256.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/res-256.github.io/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
