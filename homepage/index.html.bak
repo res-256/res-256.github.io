@@ -1,0 +1,264 @@
+---
+layout: false
+comments: false
+---
+{% raw %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--标签名字-->
+    <title>会飞的小弋</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=2"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="theme-color" content="#222325" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#222325" />
+    <meta name="msapplication-navbutton-color" content="#222325" />
+    <!--css资源载入-->
+    <link
+      rel="stylesheet" href="./assets/css/font.min.css"
+    />
+    <link
+      rel="stylesheet" href="./assets/css/style.css"
+    />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="prefetch" href="https://cdn.jsdelivr.net/" />
+    <!--个人信息-->
+    <meta
+      name="description"
+      content="Author:Freedom Yi,Category:Personal Blog"
+    />
+    <!--页面图标-->
+    <link
+      rel="icon"
+      href="./assets/img/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="shortcut icon"
+      href="./assets/img/favicon.ico"
+      type="image/x-icon"
+    />
+<!-- 百度统计
+    <script>
+      var _hmt = _hmt || [];
+      (function () {
+        var e = document.createElement("script");
+        e.src = "https://hm.baidu.com/hm.js?8ef3a0cac7934c5b11499f14d343794e";
+        var t = document.getElementsByTagName("script")[0];
+        t.parentNode.insertBefore(e, t);
+      })();
+    </script>
+  -->
+    <!--[if lt IE 9
+      ]><style>
+        .alert {
+          padding: 15px;
+          margin-bottom: 20px;
+          border: 1px solid transparent;
+          border-radius: 4px;
+        }
+        .alert-danger {
+          background-color: #f2dede;
+          border-color: #ebccd1;
+          color: #a94442;
+          border-bottom: 1px solid #ebccd1;
+        }
+        .alert-link {
+          color: #843534;
+          font-weight: bold;
+        }
+        .topframe {
+          margin: 0;
+          padding-left: 15px;
+          padding-right: 15px;
+          text-align: center;
+          border-radius: 0;
+          position: fixed;
+          left: 0;
+          right: 0;
+          top: 0;
+          z-index: 1000;
+        }
+      </style>
+      <div class="alert alert-danger topframe">
+        你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说<a
+          class="alert-link"
+          target="_blank"
+          href="http://browsehappy.com"
+          >立即升级</a
+        >
+      </div>
+      <script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script
+    ><![endif]-->
+  </head>
+</html>
+<body>
+  <main>
+    <div class="content content-intro">
+      <div class="content-inner">
+        <canvas id="background"></canvas>
+        <div class="wrap fade">
+          <!--主页标题-->
+          <h2 class="content-title">会飞的小弋</h2>
+          <h3
+            class="content-subtitle"
+            original-content="Front back left right end engineer"
+          >
+            &nbsp;
+          </h3>
+          <a class="enter">enter</a>
+          <div class="arrow arrow-1"></div>
+          <div class="arrow arrow-2"></div>
+        </div>
+      </div>
+      <div class="shape-wrap">
+        <svg
+          class="shape"
+          width="100%"
+          height="100vh"
+          preserveAspectRatio="none"
+          viewBox="0 0 1440 800"
+          xmlns:pathdata="http://www.codrops.com/"
+        >
+          <path
+            d="M-44-50C-52.71 28.52 15.86 8.186 184 14.69 383.3 22.39 462.5 12.58 638 14 835.5 15.6 987 6.4 1194 13.86 1661 30.68 1652-36.74 1582-140.1 1512-243.5 15.88-589.5-44-50Z"
+            pathdata:id="M -44,-50 C -137.1,117.4 67.86,445.5 236,452 435.3,459.7 500.5,242.6 676,244 873.5,245.6 957,522.4 1154,594 1593,753.7 1793,226.3 1582,-126 1371,-478.3 219.8,-524.2 -44,-50 Z"
+          ></path>
+        </svg>
+      </div>
+    </div>
+    <div class="content content-main">
+      <div id="page">
+        <div id="card">
+          <!--个人信息卡-->
+          <div class="card-inner fade">
+            <header>
+              <!--个人信息卡 头像-->
+              <img
+                src="./assets/img/favicon.png"
+                width="80"
+                height="80"
+                alt="avatar"
+              />
+              <!--个人信息卡 名字-->
+              <h1 data-translate="name">会飞的小弋</h1>
+              <h2
+                id="signature"
+                data-translate="signature"
+                original-content="Code &amp; Input &amp; Output"
+              ></h2>
+            </header>
+            <ul>
+              <li id="whole-first">
+                <!--个人信息卡 主页-->
+                <a href="https://lovelijunyi.gitee.io/" aria-label="Blog"
+                  ><i class="icon icon-bokeyuan"></i
+                  ><span data-translate="Blog">Blog</span></a
+                >
+              </li>
+              <!--个人信息卡 关于-->
+              <li id="whole-second">
+                <a href="https://lovelijunyi.gitee.io/about/" aria-label="About"
+                  ><i class="icon icon-xiaolian"></i
+                  ><span data-translate="About">About</span></a
+                >
+              </li>
+              <li id="half-first">
+                <!--个人信息卡 邮箱-->
+                <a
+                  href="mailto:lijunyi088@163.com"
+                  aria-label="Contact me"
+                  target="_blank"
+                  ><i class="icon icon-youjian"></i
+                  ><span data-translate="Contact me">Contact me</span></a
+                >
+              </li>
+              <li class="quarter" id="quarter-first">
+                <!--个人信息卡 微信-->
+                <a aria-label="Wechat"
+                  ><i class="icon icon-weixin"></i
+                  ><img
+                    src="https://gitee.com/lovelijunyi/images/raw/master/20200525181612.jpg"
+                    height="95"
+                    width="95"
+                    alt="Wechat"
+                /></a>
+              </li>
+              <!--个人信息卡 友链-->
+              <li class="quarter" id="quarter-second">
+                <a
+                  href="https://lovelijunyi.gitee.io/link/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="friend"
+                  ><i class="icon icon-youqinglianjie"></i
+                  ><span data-translate="friend">friend</span></a
+                >
+              </li>
+              <li class="quarter" id="quarter-third">
+                <!--个人信息卡 留言-->
+                <a
+                  href="https://lovelijunyi.gitee.io/contact/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Comments"
+                  ><i class="icon icon-liuyan"></i
+                  ><span data-translate="Comments">Comments</span></a
+                >
+              </li>
+              <li class="quarter" id="quarter-fourth">
+                <a href="javascript:;" aria-label="other"
+                  ><i class="icon icon-other"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+    <script>
+      window.$ = (selector) => document.querySelector(selector);
+      const getOriginalContent = (selector) =>
+        $(selector).getAttribute("original-content");
+      window.subtitle = getOriginalContent(".content-subtitle");
+      window.signature = getOriginalContent("#signature");
+      window.config = {
+        SIM_RESOLUTION: 128,
+        DYE_RESOLUTION: 1024,
+        CAPTURE_RESOLUTION: 512,
+        DENSITY_DISSIPATION: 1,
+        VELOCITY_DISSIPATION: 0.2,
+        PRESSURE: 0.8,
+        PRESSURE_ITERATIONS: 20,
+        CURL: 30,
+        SPLAT_RADIUS: 0.25,
+        SPLAT_FORCE: 6000,
+        SHADING: true,
+        COLORFUL: true,
+        COLOR_UPDATE_SPEED: 10,
+        PAUSED: false,
+        BACK_COLOR: { r: 30, g: 31, b: 33 },
+        TRANSPARENT: false,
+        BLOOM: true,
+        BLOOM_ITERATIONS: 8,
+        BLOOM_RESOLUTION: 256,
+        BLOOM_INTENSITY: 0.4,
+        BLOOM_THRESHOLD: 0.8,
+        BLOOM_SOFT_KNEE: 0.7,
+        SUNRAYS: true,
+        SUNRAYS_RESOLUTION: 196,
+        SUNRAYS_WEIGHT: 1.0,
+      };
+    </script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/background.js"></script>
+  </main>
+</body>
