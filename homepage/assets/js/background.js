@@ -1,4 +1,4 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/res-256.github.io/assets/css/APlayer.min.css"><script src="/res-256.github.io/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>"use strict";
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>"use strict";
 function _classCallCheck(e, r) {
   if (!(e instanceof r))
     throw new TypeError("Cannot call a class as a function");

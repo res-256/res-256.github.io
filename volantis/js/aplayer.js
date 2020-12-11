@@ -1,4 +1,4 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/res-256.github.io/assets/css/APlayer.min.css"><script src="/res-256.github.io/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>// 检查 Aplayer 对象状态
+// 检查 Aplayer 对象状态
 function checkAPlayer() {
 	if (APlayerController.player == undefined) {
 		setAPlayerObject();

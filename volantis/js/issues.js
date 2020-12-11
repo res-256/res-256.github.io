@@ -1,4 +1,4 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/res-256.github.io/assets/css/APlayer.min.css"><script src="/res-256.github.io/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>const IssuesAPI = {
+const IssuesAPI = {
   requestIssuesAPI(url, callback, timeout) {
     let retryTimes = 10;
     function request() {
@@ -123,13 +123,13 @@
             let issue = issues[j];
             let imgTag = '';
             if (issue.screenshot && issue.screenshot.length > 0) {
-              imgTag = '<div class="img"><img src= "/res-256.github.io/img/loading.gif" data-src="' + issue.screenshot + '" onerror="javascript:this.src=\'https://7.dusays.com/2020/09/13/7af712a493ed7.png\';"/></div>';
+              imgTag = '<div class="img"><img src="' + issue.screenshot + '" onerror="javascript:this.src=\'https://7.dusays.com/2020/09/13/7af712a493ed7.png\';"/></div>';
             } else {
               imgTag = '<div class="img"></div>';
             }
             let infoTag = '<div class="info">';
             if (issue.avatar && issue.avatar.length > 0) {
-              infoTag += '<img src= "/res-256.github.io/img/loading.gif" data-src="' + issue.avatar + '" onerror="javascript:this.src=\'https://7.dusays.com/2020/09/13/7af712a493ed7.png\';"/>';
+              infoTag += '<img src="' + issue.avatar + '" onerror="javascript:this.src=\'https://7.dusays.com/2020/09/13/7af712a493ed7.png\';"/>';
             }
             infoTag += '<span class="title">' + issue.title + '</span><span class="desc">' + issue.description + '</span></div>';
             let cardTag = "<a class='site-card' target='_blank' href='" + issue.url + "'>" + imgTag + infoTag + "</a>";

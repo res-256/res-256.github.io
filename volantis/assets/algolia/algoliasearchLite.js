@@ -1,4 +1,4 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/res-256.github.io/assets/css/APlayer.min.css"><script src="/res-256.github.io/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>/*! algoliasearch 3.35.1 | © 2014, 2015 Algolia SAS | github.com/algolia/algoliasearch-client-js */
+/*! algoliasearch 3.35.1 | © 2014, 2015 Algolia SAS | github.com/algolia/algoliasearch-client-js */
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.algoliasearch = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (process){
 /**
@@ -584,11 +584,25 @@ function then(onFulfillment, onRejection) {
   `Promise.resolve` returns a promise that will become resolved with the
   passed `value`. It is shorthand for the following:
 
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">  resolve(<span class="number">1</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// value === 1</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  ```javascript
+  let promise = new Promise(function(resolve, reject){
+    resolve(1);
+  });
+
+  promise.then(function(value){
+    // value === 1
+  });
+  ```
 
   Instead of writing the above, your code now simply becomes the following:
 
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="built_in">Promise</span>.resolve(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// value === 1</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  ```javascript
+  let promise = Promise.resolve(1);
+
+  promise.then(function(value){
+    // value === 1
+  });
+  ```
 
   @method resolve
   @static
@@ -966,7 +980,16 @@ Enumerator$1.prototype._willSettleAt = function (promise, i) {
 
   Example:
 
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise1 = resolve(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">let</span> promise2 = resolve(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">let</span> promise3 = resolve(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">let</span> promises = [ promise1, promise2, promise3 ];</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all(promises).then(<span class="function"><span class="keyword">function</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// The array here would be [ 1, 2, 3 ];</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  ```javascript
+  let promise1 = resolve(1);
+  let promise2 = resolve(2);
+  let promise3 = resolve(3);
+  let promises = [ promise1, promise2, promise3 ];
+
+  Promise.all(promises).then(function(array){
+    // The array here would be [ 1, 2, 3 ];
+  });
+  ```
 
   If any of the `promises` given to `all` are rejected, the first promise
   that is rejected will be given as an argument to the returned promises's
@@ -974,7 +997,18 @@ Enumerator$1.prototype._willSettleAt = function (promise, i) {
 
   Example:
 
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise1 = resolve(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">let</span> promise2 = reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;2&quot;</span>));</span><br><span class="line"><span class="keyword">let</span> promise3 = reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;3&quot;</span>));</span><br><span class="line"><span class="keyword">let</span> promises = [ promise1, promise2, promise3 ];</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all(promises).then(<span class="function"><span class="keyword">function</span>(<span class="params">array</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// Code here never runs because there are rejected promises!</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// error.message === &quot;2&quot;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  ```javascript
+  let promise1 = resolve(1);
+  let promise2 = reject(new Error("2"));
+  let promise3 = reject(new Error("3"));
+  let promises = [ promise1, promise2, promise3 ];
+
+  Promise.all(promises).then(function(array){
+    // Code here never runs because there are rejected promises!
+  }, function(error) {
+    // error.message === "2"
+  });
+  ```
 
   @method all
   @static
@@ -995,7 +1029,24 @@ function all$1(entries) {
 
   Example:
 
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    resolve(<span class="string">&#x27;promise 1&#x27;</span>);</span><br><span class="line">  &#125;, <span class="number">200</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> promise2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    resolve(<span class="string">&#x27;promise 2&#x27;</span>);</span><br><span class="line">  &#125;, <span class="number">100</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.race([promise1, promise2]).then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// result === &#x27;promise 2&#x27; because it was resolved before promise1</span></span><br><span class="line">  <span class="comment">// was resolved.</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  ```javascript
+  let promise1 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+      resolve('promise 1');
+    }, 200);
+  });
+
+  let promise2 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+      resolve('promise 2');
+    }, 100);
+  });
+
+  Promise.race([promise1, promise2]).then(function(result){
+    // result === 'promise 2' because it was resolved before promise1
+    // was resolved.
+  });
+  ```
 
   `Promise.race` is deterministic in that only the state of the first
   settled promise matters. For example, even if other promises given to the
@@ -1003,11 +1054,32 @@ function all$1(entries) {
   become rejected before the other promises became fulfilled, the returned
   promise will become rejected:
 
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    resolve(<span class="string">&#x27;promise 1&#x27;</span>);</span><br><span class="line">  &#125;, <span class="number">200</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> promise2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;promise 2&#x27;</span>));</span><br><span class="line">  &#125;, <span class="number">100</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.race([promise1, promise2]).then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// Code here never runs</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// reason.message === &#x27;promise 2&#x27; because promise 2 became rejected before</span></span><br><span class="line">  <span class="comment">// promise 1 became fulfilled</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  ```javascript
+  let promise1 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+      resolve('promise 1');
+    }, 200);
+  });
+
+  let promise2 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+      reject(new Error('promise 2'));
+    }, 100);
+  });
+
+  Promise.race([promise1, promise2]).then(function(result){
+    // Code here never runs
+  }, function(reason){
+    // reason.message === 'promise 2' because promise 2 became rejected before
+    // promise 1 became fulfilled
+  });
+  ```
 
   An example real-world use case is implementing timeouts:
 
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.race([ajax(<span class="string">&#x27;foo.json&#x27;</span>), timeout(<span class="number">5000</span>)])</span><br></pre></td></tr></table></figure>
+  ```javascript
+  Promise.race([ajax('foo.json'), timeout(5000)])
+  ```
 
   @method race
   @static
@@ -1038,11 +1110,29 @@ function race$1(entries) {
   `Promise.reject` returns a promise rejected with the passed `reason`.
   It is shorthand for the following:
 
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">  reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;WHOOPS&#x27;</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// Code here doesn&#x27;t run because the promise is rejected!</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// reason.message === &#x27;WHOOPS&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  ```javascript
+  let promise = new Promise(function(resolve, reject){
+    reject(new Error('WHOOPS'));
+  });
+
+  promise.then(function(value){
+    // Code here doesn't run because the promise is rejected!
+  }, function(reason){
+    // reason.message === 'WHOOPS'
+  });
+  ```
 
   Instead of writing the above, your code now simply becomes the following:
 
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="built_in">Promise</span>.reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;WHOOPS&#x27;</span>));</span><br><span class="line"></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// Code here doesn&#x27;t run because the promise is rejected!</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// reason.message === &#x27;WHOOPS&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  ```javascript
+  let promise = Promise.reject(new Error('WHOOPS'));
+
+  promise.then(function(value){
+    // Code here doesn't run because the promise is rejected!
+  }, function(reason){
+    // reason.message === 'WHOOPS'
+  });
+  ```
 
   @method reject
   @static
@@ -1098,7 +1188,21 @@ function needsNew() {
   Basic Usage:
   ------------
 
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// on success</span></span><br><span class="line">  resolve(value);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// on failure</span></span><br><span class="line">  reject(reason);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// on fulfillment</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// on rejection</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  ```js
+  let promise = new Promise(function(resolve, reject) {
+    // on success
+    resolve(value);
+
+    // on failure
+    reject(reason);
+  });
+
+  promise.then(function(value) {
+    // on fulfillment
+  }, function(reason) {
+    // on rejection
+  });
+  ```
 
   Advanced Usage:
   ---------------
@@ -1106,11 +1210,49 @@ function needsNew() {
   Promises shine when abstracting away asynchronous interactions such as
   `XMLHttpRequest`s.
 
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getJSON</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">    xhr.open(<span class="string">&#x27;GET&#x27;</span>, url);</span><br><span class="line">    xhr.onreadystatechange = handler;</span><br><span class="line">    xhr.responseType = <span class="string">&#x27;json&#x27;</span>;</span><br><span class="line">    xhr.setRequestHeader(<span class="string">&#x27;Accept&#x27;</span>, <span class="string">&#x27;application/json&#x27;</span>);</span><br><span class="line">    xhr.send();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">handler</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">this</span>.readyState === <span class="built_in">this</span>.DONE) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.status === <span class="number">200</span>) &#123;</span><br><span class="line">          resolve(<span class="built_in">this</span>.response);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;getJSON: `&#x27;</span> + url + <span class="string">&#x27;` failed with status: [&#x27;</span> + <span class="built_in">this</span>.status + <span class="string">&#x27;]&#x27;</span>));</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getJSON(<span class="string">&#x27;/posts.json&#x27;</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">json</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// on fulfillment</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// on rejection</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  ```js
+  function getJSON(url) {
+    return new Promise(function(resolve, reject){
+      let xhr = new XMLHttpRequest();
+
+      xhr.open('GET', url);
+      xhr.onreadystatechange = handler;
+      xhr.responseType = 'json';
+      xhr.setRequestHeader('Accept', 'application/json');
+      xhr.send();
+
+      function handler() {
+        if (this.readyState === this.DONE) {
+          if (this.status === 200) {
+            resolve(this.response);
+          } else {
+            reject(new Error('getJSON: `' + url + '` failed with status: [' + this.status + ']'));
+          }
+        }
+      };
+    });
+  }
+
+  getJSON('/posts.json').then(function(json) {
+    // on fulfillment
+  }, function(reason) {
+    // on rejection
+  });
+  ```
 
   Unlike callbacks, promises are great composable primitives.
 
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.all([</span><br><span class="line">  getJSON(<span class="string">&#x27;/posts&#x27;</span>),</span><br><span class="line">  getJSON(<span class="string">&#x27;/comments&#x27;</span>)</span><br><span class="line">]).then(<span class="function"><span class="keyword">function</span>(<span class="params">values</span>)</span>&#123;</span><br><span class="line">  values[<span class="number">0</span>] <span class="comment">// =&gt; postsJSON</span></span><br><span class="line">  values[<span class="number">1</span>] <span class="comment">// =&gt; commentsJSON</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> values;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+  ```js
+  Promise.all([
+    getJSON('/posts'),
+    getJSON('/comments')
+  ]).then(function(values){
+    values[0] // => postsJSON
+    values[1] // => commentsJSON
+
+    return values;
+  });
+  ```
 
   @class Promise
   @param {function} resolver
@@ -1144,7 +1286,13 @@ Promise$2.prototype = {
     which registers callbacks to receive either a promise's eventual value or the
     reason why the promise cannot be fulfilled.
   
-    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">findUser().then(<span class="function"><span class="keyword">function</span>(<span class="params">user</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// user is available</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// user is unavailable, and you are given the reason why</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+    ```js
+    findUser().then(function(user){
+      // user is available
+    }, function(reason){
+      // user is unavailable, and you are given the reason why
+    });
+    ```
   
     Chaining
     --------
@@ -1153,10 +1301,40 @@ Promise$2.prototype = {
     promise is resolved with the return value of the first promise's fulfillment
     or rejection handler, or rejected if the handler throws an exception.
   
-    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">findUser().then(<span class="function"><span class="keyword">function</span> (<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> user.name;</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">reason</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;default name&#x27;</span>;</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">userName</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// If `findUser` fulfilled, `userName` will be the user&#x27;s name, otherwise it</span></span><br><span class="line">  <span class="comment">// will be `&#x27;default name&#x27;`</span></span><br><span class="line">&#125;);</span><br><span class="line">  </span><br><span class="line">findUser().then(<span class="function"><span class="keyword">function</span> (<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;Found user, but still unhappy&#x27;</span>);</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">reason</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;`findUser` rejected and we&#x27;</span>re unhappy<span class="string">&#x27;);</span></span><br><span class="line"><span class="string">&#125;).then(function (value) &#123;</span></span><br><span class="line"><span class="string">  // never reached</span></span><br><span class="line"><span class="string">&#125;, function (reason) &#123;</span></span><br><span class="line"><span class="string">  // if `findUser` fulfilled, `reason` will be &#x27;</span>Found user, but still unhappy<span class="string">&#x27;.</span></span><br><span class="line"><span class="string">  // If `findUser` rejected, `reason` will be &#x27;</span><span class="string">`findUser`</span> rejected and we<span class="string">&#x27;re unhappy&#x27;</span>.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+    ```js
+    findUser().then(function (user) {
+      return user.name;
+    }, function (reason) {
+      return 'default name';
+    }).then(function (userName) {
+      // If `findUser` fulfilled, `userName` will be the user's name, otherwise it
+      // will be `'default name'`
+    });
+  
+    findUser().then(function (user) {
+      throw new Error('Found user, but still unhappy');
+    }, function (reason) {
+      throw new Error('`findUser` rejected and we're unhappy');
+    }).then(function (value) {
+      // never reached
+    }, function (reason) {
+      // if `findUser` fulfilled, `reason` will be 'Found user, but still unhappy'.
+      // If `findUser` rejected, `reason` will be '`findUser` rejected and we're unhappy'.
+    });
+    ```
     If the downstream promise does not specify a rejection handler, rejection reasons will be propagated further downstream.
   
-    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">findUser().then(<span class="function"><span class="keyword">function</span> (<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> PedagogicalException(<span class="string">&#x27;Upstream error&#x27;</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// never reached</span></span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// never reached</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">reason</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// The `PedgagocialException` is propagated all the way down to here</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+    ```js
+    findUser().then(function (user) {
+      throw new PedagogicalException('Upstream error');
+    }).then(function (value) {
+      // never reached
+    }).then(function (value) {
+      // never reached
+    }, function (reason) {
+      // The `PedgagocialException` is propagated all the way down to here
+    });
+    ```
   
     Assimilation
     ------------
@@ -1166,41 +1344,129 @@ Promise$2.prototype = {
     fulfillment or rejection handler. The downstream promise will then be pending
     until the returned promise is settled. This is called *assimilation*.
   
-    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">findUser().then(<span class="function"><span class="keyword">function</span> (<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> findCommentsByAuthor(user);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">comments</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// The user&#x27;s comments are now available</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+    ```js
+    findUser().then(function (user) {
+      return findCommentsByAuthor(user);
+    }).then(function (comments) {
+      // The user's comments are now available
+    });
+    ```
   
     If the assimliated promise rejects, then the downstream promise will also reject.
   
-    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">findUser().then(<span class="function"><span class="keyword">function</span> (<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> findCommentsByAuthor(user);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">comments</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// If `findCommentsByAuthor` fulfills, we&#x27;ll have the value here</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">reason</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// If `findCommentsByAuthor` rejects, we&#x27;ll have the reason here</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+    ```js
+    findUser().then(function (user) {
+      return findCommentsByAuthor(user);
+    }).then(function (comments) {
+      // If `findCommentsByAuthor` fulfills, we'll have the value here
+    }, function (reason) {
+      // If `findCommentsByAuthor` rejects, we'll have the reason here
+    });
+    ```
   
     Simple Example
     --------------
   
     Synchronous Example
   
-    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  result = findResult();</span><br><span class="line">  <span class="comment">// success</span></span><br><span class="line">&#125; <span class="keyword">catch</span>(reason) &#123;</span><br><span class="line">  <span class="comment">// failure</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    ```javascript
+    let result;
+  
+    try {
+      result = findResult();
+      // success
+    } catch(reason) {
+      // failure
+    }
+    ```
   
     Errback Example
   
-    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">findResult(<span class="function"><span class="keyword">function</span>(<span class="params">result, err</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="comment">// failure</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// success</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+    ```js
+    findResult(function(result, err){
+      if (err) {
+        // failure
+      } else {
+        // success
+      }
+    });
+    ```
   
     Promise Example;
   
-    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">findResult().then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// success</span></span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// failure</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+    ```javascript
+    findResult().then(function(result){
+      // success
+    }, function(reason){
+      // failure
+    });
+    ```
   
     Advanced Example
     --------------
   
     Synchronous Example
   
-    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> author, books;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  author = findAuthor();</span><br><span class="line">  books  = findBooksByAuthor(author);</span><br><span class="line">  <span class="comment">// success</span></span><br><span class="line">&#125; <span class="keyword">catch</span>(reason) &#123;</span><br><span class="line">  <span class="comment">// failure</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    ```javascript
+    let author, books;
+  
+    try {
+      author = findAuthor();
+      books  = findBooksByAuthor(author);
+      // success
+    } catch(reason) {
+      // failure
+    }
+    ```
   
     Errback Example
   
-    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foundBooks</span>(<span class="params">books</span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">failure</span>(<span class="params">reason</span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">findAuthor(<span class="function"><span class="keyword">function</span>(<span class="params">author, err</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    failure(err);</span><br><span class="line">    <span class="comment">// failure</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      findBoooksByAuthor(author, <span class="function"><span class="keyword">function</span>(<span class="params">books, err</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">          failure(err);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">            foundBooks(books);</span><br><span class="line">          &#125; <span class="keyword">catch</span>(reason) &#123;</span><br><span class="line">            failure(reason);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">      failure(err);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// success</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+    ```js
+  
+    function foundBooks(books) {
+  
+    }
+  
+    function failure(reason) {
+  
+    }
+  
+    findAuthor(function(author, err){
+      if (err) {
+        failure(err);
+        // failure
+      } else {
+        try {
+          findBoooksByAuthor(author, function(books, err) {
+            if (err) {
+              failure(err);
+            } else {
+              try {
+                foundBooks(books);
+              } catch(reason) {
+                failure(reason);
+              }
+            }
+          });
+        } catch(error) {
+          failure(err);
+        }
+        // success
+      }
+    });
+    ```
   
     Promise Example;
   
-    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">findAuthor().</span><br><span class="line">  then(findBooksByAuthor).</span><br><span class="line">  then(<span class="function"><span class="keyword">function</span>(<span class="params">books</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// found books</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">reason</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// something went wrong</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+    ```javascript
+    findAuthor().
+      then(findBooksByAuthor).
+      then(function(books){
+        // found books
+    }).catch(function(reason){
+      // something went wrong
+    });
+    ```
   
     @method then
     @param {Function} onFulfilled
@@ -1214,7 +1480,23 @@ Promise$2.prototype = {
     `catch` is simply sugar for `then(undefined, onRejection)` which makes it the same
     as the catch block of a try/catch statement.
   
-    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findAuthor</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;couldn&#x27;</span>t find that author<span class="string">&#x27;);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">// synchronous</span></span><br><span class="line"><span class="string">try &#123;</span></span><br><span class="line"><span class="string">  findAuthor();</span></span><br><span class="line"><span class="string">&#125; catch(reason) &#123;</span></span><br><span class="line"><span class="string">  // something went wrong</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">// async with promises</span></span><br><span class="line"><span class="string">findAuthor().catch(function(reason)&#123;</span></span><br><span class="line"><span class="string">  // something went wrong</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
+    ```js
+    function findAuthor(){
+      throw new Error('couldn't find that author');
+    }
+  
+    // synchronous
+    try {
+      findAuthor();
+    } catch(reason) {
+      // something went wrong
+    }
+  
+    // async with promises
+    findAuthor().catch(function(reason){
+      // something went wrong
+    });
+    ```
   
     @method catch
     @param {Function} onRejection

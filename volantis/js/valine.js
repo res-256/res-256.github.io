@@ -1,4 +1,4 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/res-256.github.io/assets/css/APlayer.min.css"><script src="/res-256.github.io/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>/*!
+/*!
  * Valine v1.4.14
  * (c) 2017-2020 xCss
  * Released under the GPL-2.0 License.
@@ -601,7 +601,7 @@
                 var t = /^(https?:)?\/\//i
                   , n = o.maps[e]
                   , r = t.test(n) ? n : o.cdn + n;
-                return t.test(r) ? '<img alt="' + e + '" referrerPolicy="no-referrer" class="vemoji" src= "/res-256.github.io/img/loading.gif" data-src="' + r + '" />' : ""
+                return t.test(r) ? '<img alt="' + e + '" referrerPolicy="no-referrer" class="vemoji" src="' + r + '" />' : ""
             }
         };
         t.default = o
@@ -2084,7 +2084,7 @@
                 "*" === e.config.path && (a = '<a href="' + t.get("url") + '" class="vsys">' + t.get("url") + "</a>");
                 var l = t.get("link") ? /^https?\:\/\//.test(t.get("link")) ? t.get("link") : "http://" + t.get("link") : ""
                   , c = l ? '<a class="vnick" rel="nofollow" href="' + l + '" target="_blank" >' + t.get("nick") + "</a>" : '<span class="vnick">' + t.get("nick") + "</span>"
-                  , u = T.hide ? "" : e.config.enableQQ && t.get("QQAvatar") ? '<img class="vimg" src= "/res-256.github.io/img/loading.gif" data-src="' + t.get("QQAvatar") + '" referrerPolicy="no-referrer"/>' : '<img class="vimg" src= "/res-256.github.io/img/loading.gif" data-src="' + (T.cdn + (0,
+                  , u = T.hide ? "" : e.config.enableQQ && t.get("QQAvatar") ? '<img class="vimg" src="' + t.get("QQAvatar") + '" referrerPolicy="no-referrer"/>' : '<img class="vimg" src="' + (T.cdn + (0,
                 s.default)(t.get("mail")) + T.params) + '">'
                   , d = u + '<div class="vh"><div class="vhead">' + c + " " + a + '</div><div class="vmeta"><span class="vtime" >' + (0,
                 g.default)(t.get("insertedAt"), e.i18n) + '</span><span class="vat" data-vm-id="' + (t.get("rid") || t.id) + '" data-self-id="' + t.id + '">' + e.i18n.t("reply") + '</span></div><div class="vcontent" data-expand="' + e.i18n.t("expand") + '">' + (0,
@@ -3697,7 +3697,7 @@
                 ,
                 o.prototype.image = function(e, t, n) {
                     this.options.baseUrl && !y.test(e) && (e = u(this.options.baseUrl, e));
-                    var r = '<img src= "/res-256.github.io/img/loading.gif" data-src="' + e + '" alt="' + n + '"';
+                    var r = '<img src="' + e + '" alt="' + n + '"';
                     return t && (r += ' title="' + t + '"'),
                     r += this.options.xhtml ? "/>" : ">"
                 }

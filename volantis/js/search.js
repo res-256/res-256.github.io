@@ -1,4 +1,4 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/res-256.github.io/assets/css/APlayer.min.css"><script src="/res-256.github.io/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>/* eslint-disable */
+/* eslint-disable */
 var SearchService = "";
 
 (function($) {
@@ -207,7 +207,7 @@ var SearchService = "";
       var html = "";
       if (self.config.brands[service] && self.config.brands[service].logo) {
         html += "<a href='" +self.config.brands[service].url+ "' class='" +service+ "'>";
-        html +=    '<img src= "/res-256.github.io/img/loading.gif" data-src="' +self.config.imagePath+self.config.brands[service].logo+ '" />';
+        html +=    '<img src="' +self.config.imagePath+self.config.brands[service].logo+ '" />';
         html += "</a>";
         self.dom.modal_logo.html(html);
       }
