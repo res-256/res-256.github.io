@@ -1,4 +1,4 @@
-/**
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/res-256.github.io/assets/css/APlayer.min.css"><script src="/res-256.github.io/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>/**
  * Copyright (C) 2010-2015 Graham Breach
  *
  * This program is free software: you can redistribute it and/or modify

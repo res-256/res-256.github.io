@@ -1,4 +1,4 @@
-/**
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/res-256.github.io/assets/css/APlayer.min.css"><script src="/res-256.github.io/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>/**
  * 自动引入模板，在原有 sw-precache 插件默认模板基础上做的二次开发
  *
  * 因为是自定导入的模板，项目一旦生成，不支持随 sw-precache 的版本自动升级。
