@@ -1,0 +1,84 @@
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>网易云热评墙</title>
+		<link rel="icon" type="image/png" href="icon.png"/>
+		<link rel="apple-touch-icon" href="icon.png">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<style>
+            .jumbotron{
+				color: white;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+			.text-p{
+				font-size: 13px;
+			}
+			footer{
+				color: #fff;
+			}
+			a{
+				color: #fff;
+			}
+			li{
+				list-style: none;
+				float: left;
+				margin-right: 5px;
+			}
+			*{margin: 0;
+             padding: 0;
+            }
+            .bg{
+            	background-image: linear-gradient( 135deg, #72EDF2, #5151E5,#00EAFF);/* -45deg是渐变的角度,后面是渐变渐变颜色根据需要可自行调整 */
+ 	            background-size: 400% 400%;
+	            animation: gradientBG 5s ease infinite;这/* 里的10s是动画时间,根据需要可自行调整 */
+            }
+            @keyframes gradientBG{
+          	    0%{
+		            background-position: 0% 50%;
+          	    }
+	            50%{
+		            background-position: 100% 50%;
+		        }
+	            100%{
+		            background-position: 0% 50%;
+		        }
+	         }
+		</style>
+	</head>
+	<body onload='loadXMLDoc()'>
+		<div class="jumbotron text-center bg">
+		  <h1>网易云热评墙</h1>
+		  <div class="text-p">网易云热评墙专注于搜集平台热门评论与故事，致力用文字温暖更多的人。在翻阅评论的路上，你我同行！</div>
+		</div>
+		<div class="container">
+			 <div class="panel panel-default one">
+			  <div class="panel-body text-center">
+               <div id="text"></div>
+			  </div>
+			</div>
+			<div class="text-center">
+			    <button type="button" onclick="loadXMLDoc()" class="btn btn-default">下一个</button>
+			</div>
+		</div>
+        <script type="text/javascript">
+              function loadXMLDoc(){
+                  var xmlhttp;
+                  if (window.XMLHttpRequest){
+                        xmlhttp=new XMLHttpRequest();
+                  }else{
+                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+                  xmlhttp.onreadystatechange=function(){
+                      if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                          document.getElementById("text").innerHTML=xmlhttp.responseText;
+                      }
+                  }
+                  xmlhttp.open("GET","https://api.uomg.com/api/comments.163?format=text",true);
+                  xmlhttp.send();
+               }
+        </script>
+	<script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
