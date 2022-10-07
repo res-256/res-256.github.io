@@ -91,15 +91,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://z555.icu/Cov19/index.html</loc>
-    
-    <lastmod>2020-12-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>https://z555.icu/</loc>
