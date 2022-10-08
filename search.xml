@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>自动打开编辑器</title>
+      <link href="/posts/5342/"/>
+      <url>/posts/5342/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p> 用hexo写博客，每次写文章都是件麻烦事：对我来说，要先用Code打开Hexo工作区，然后Ctrl+` 打开终端先pull一下，再开始hexo new post something，接下来去目录找到_posts，点进去打开刚创建的md，然后，才开始写文章。</p></blockquote><p>这篇post就是解决众多繁杂步骤中的一环：</p><p>找md文件然后打开的过程。</p><p>很简单，要做的就是写个脚本让NodeJS知道我什么时候新建了post，然后脚本帮我打开刚新建好的post.md，最主要的是，可以用自己喜爱的编辑器，比如说我用的是Typora。</p><p>在你的hexo目录下新建一个文件夹名叫scripts（你的hexo目录就是你执行hexo命令的目录）</p><p><code>mkdir scripts</code><br><code>cd scripts</code></p><p>在scripts文件夹里新建一个脚本文件叫做AutoOpenEditor.js（也可以是其他名字），内容如下：</p><p><code>let spawn = require(&#39;hexo-util/lib/spawn&#39;);</code></p><p><code>hexo.on(&#39;new&#39;, (data) =&gt; &#123;</code><br>  <code>spawn(&#39;C:/\Program Files/\Typora/\Typora.exe&#39;, [data.path]);</code><br><code>&#125;);</code></p><p>这几句话的大概意思就是，在检测到执行hexo new命令后，触发这个脚本，然后脚本执行C:\Program Files\Typora\Typora.exe [文件路径]这个命令，spawn()里就是要执行的命令和参数，<strong>有斜杠的话需要用转义符</strong>。<br>这里我用的是Typora编辑器，你也可以让它用VScode来打开：</p><p><code>let spawn = require(&#39;hexo-util/lib/spawn&#39;);</code></p><p><code>hexo.on(&#39;new&#39;, (data) =&gt; &#123;</code><br>  <code>spawn(&#39;code&#39;,&#39;-r&#39;,[data.path]);</code><br><code>&#125;);</code></p><p>这是针对在VScode里已经打开hexo目录工作区的情况，-r让code不打开新窗口，而是作为标签页打开。</p><p>这样就可以了，以后每次hexo new post，都会在新建后帮你打开编辑器，虽然只是少了一小环，但是让你写博客更有动力了不是。</p><blockquote><p>该文章引用自 <a href="https://xiaoxx.cc/open-your-farvorite-editor-after-new-hexo-post/">hexo new后自动打开你喜爱的编辑器 | XiaoXX的博客</a>转载请说明出处！</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 其他 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 摘录 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>句选</title>
+      <link href="/posts/2d0c/"/>
+      <url>/posts/2d0c/</url>
+      
+        <content type="html"><![CDATA[<ol><li>世间治愈的是愿意自渡的人</li><li>深海不会因为一杯沸水而加温</li><li>请成为永远疯狂永远浪漫永远清澈的存在</li><li>林语堂先生说过：明智的放弃胜过盲目的执着</li><li>如果天空是黑暗的,那就摸黑生存</li></ol><p>如果发出声音是危险的,那就保持沉默;</p><p>如果自觉无力发光的,那就蜷伏于墙角。</p><p>但不要习惯了黑暗就为黑暗辩护;</p><p>不要为自己的苟且而得意;</p><p>不要嘲讽那些比自己更勇敢热情的人们。</p><p>我们可以卑微如尘土,不可扭曲如蛆虫。</p><p>要常怀敬畏之心,不要被生活的繁琐消磨热情。</p><p>因为生活本就是平庸无度。</p><p>年轻时,用力去生活。</p><p>年老时,想象自己年轻时的模样,永远朝气蓬勃。</p><p>最后祝你们,一生平安,前程万锦。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 人文 </category>
+          
+          <category> 文学 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 摘录 </tag>
+            
+            <tag> 文学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>长沙医学院简介</title>
       <link href="/posts/a9f7/"/>
       <url>/posts/a9f7/</url>
@@ -11,10 +65,16 @@
         <content type="html"><![CDATA[<h1 id="长沙医学院简介"><a href="#长沙医学院简介" class="headerlink" title="长沙医学院简介"></a>长沙医学院简介</h1><p>长沙医学院是经国家教育部批准的民办全日制普通高等学校。</p><p>长沙医学院前身是何彬生教授于1989年创办的湘南中等卫生职业技术学校，1996年更名为湘南卫生中等专业学校，1999年升格为湘南医学高等专科学校，2001年校本部迁至长沙市，2005年经教育部批准升格为长沙医学院。2006年获得湖南省十佳民办学校称号，2011年通过国家教育部本科教学工作合格评估，2015年通过国家教育部临床医学专业认证，2017年列入湖南省硕士学位授予单位建设点。</p><p>截至2019年10月，学校占地面积141.50万平方米，建筑面积62.11万平方米；馆藏纸质图书243.93万册；设有16个二级学院，28个本科专业；有全日制在校生23646人，其中本科生19487人，外国留学生332人；有专任教师1758人。</p><h2 id="长沙医学院历史沿革"><a href="#长沙医学院历史沿革" class="headerlink" title="长沙医学院历史沿革"></a>长沙医学院历史沿革</h2><h3 id="湘南医学高等专科学校"><a href="#湘南医学高等专科学校" class="headerlink" title="湘南医学高等专科学校"></a>湘南医学高等专科学校</h3><p>1989年，何彬生教授创办湘南中等卫生职业技术学校。</p><p>1996年，学校更名为湘南卫生中等专业学校。</p><p>1999年，学校升格为湘南医学高等专科学校。</p><p>2001年，学校本部由衡阳市迁至长沙市。</p><p>2003年，学校通过湖南省专科学校教学工作合格评估。</p><h3 id="长沙医学院"><a href="#长沙医学院" class="headerlink" title="长沙医学院"></a>长沙医学院</h3><p>2005年，学校经国家教育部批准升格为长沙医学院。</p><p>2006年，长沙医学院获得湖南省十佳民办学校称号。</p><p>2007年，长沙医学院获得全国学校规范化管理示范单位称号。</p><p>2009年，长沙医学院获得2009年度中国民办高校毕业生竞争力十佳样本院校称号。</p><p>2010年，长沙医学院获得全国创建和谐校园先进单位称号。</p><p>2011年，长沙医学院通过国家教育部本科教学工作合格评估。</p><p>2015年，长沙医学院接受教育部临床专业认证评估合格。</p><p>2017年，湖南省教育厅公布长沙医学院入围拟新增硕士学位授权点。</p>]]></content>
       
       
+      <categories>
+          
+          <category> 其他 </category>
+          
+      </categories>
+      
       
         <tags>
             
-            <tag> 人文 </tag>
+            <tag> 摘录 </tag>
             
         </tags>
       
@@ -29,6 +89,14 @@
       
         <content type="html"><![CDATA[<p> <strong>海子诗歌的起点是生命元素，他的诗歌从生命的实体出发，海子说：“诗人的任务仅仅是用自己的敏感力和生命之光将黑乎乎的实体照亮”，它给我们展现了一个宏大的前景，让我们从当下的现实抬起头来，眺望远方。</strong></p><blockquote><p>从明天起，做一个幸福的人</p><p>喂马、劈柴，周游世界</p><p>从明天起，关心粮食和蔬菜</p><p>我有一所房子，面朝大海，春暖花开</p><p>从明天起，和每一个亲人通信</p><p>告诉他们我的幸福</p><p>那幸福的闪电告诉我的</p><p>我将告诉每一个人</p><p>给每一条河每一座山取一个温暖的名字</p><p>陌生人，我也为你祝福</p><p>愿你有一个灿烂的前程</p><p>愿你有情人终成眷属</p><p>愿你在尘世获得幸福</p><p>我只愿面朝大海，春暖花开</p></blockquote>]]></content>
       
+      
+      <categories>
+          
+          <category> 人文 </category>
+          
+          <category> 文学 </category>
+          
+      </categories>
       
       
         <tags>
@@ -49,8 +117,18 @@
         <content type="html"><![CDATA[<h1 id="星星之火，可以燎原"><a href="#星星之火，可以燎原" class="headerlink" title="星星之火，可以燎原"></a><strong>星星之火，可以燎原</strong></h1><p>​                                                              <strong>（一九三〇年一月五日）</strong><br>​      在对于时局的估量和伴随而来的我们的行动问题上，我们党内有一部分同志还缺少正确的认识。他们虽然相信革命高潮不可避免地要到来，却不相信革命高潮有迅速到来的可能。因此他们不赞成争取江西的计划，而只赞成在福建、广东、江西之间的三个边界区域的流动游击，同时也没有在游击区域建立红色政权的深刻的观念，因此也就没有用这种红色政权的巩固和扩大去促进全国革命高潮的深刻的观念。他们似乎认为在距离革命高潮尚远的时期做这种建立政权的艰苦工作为徒劳，而希望用比较轻便的流动游击方式去扩大政治影响，等到全国各地争取群众的工作做好了，或做到某个地步了，然后再来一个全国武装起义，那时把红军的力量加上去，就成为全国范围的大革命。他们这种全国范围的、包括一切地方的、先争取群众后建立政权的理论，是于中国革命的实情不适合的。他们的这种理论的来源，主要是没有把中国是一个许多帝国主义国家互相争夺的半殖民地这件事认清楚。如果认清了中国是一个许多帝国主义国家互相争夺的半殖民地，则一，就会明白全世界何以只有中国有这种统治阶级内部互相长期混战的怪事，而且何以混战一天激烈一天，一天扩大一天，何以始终不能有一个统一的政权。二，就会明白农民问题的严重性，因之，也就会明白农村起义何以有现在这样的全国规模的发展。三，就会明白工农民主政权这个口号的正确。四，就会明白相应于全世界只有中国有统治阶级内部期混战的一件怪事而产生出来的另一件怪事，即红军和游击队的存在和发展，以及伴随着红军和游击队而来的，成长于四围白色政权中的小块红色区域的存在和发展（中国以外无此怪事）。五，也就会明白红军、游击队和红色区域的建立和发展，是半殖民地中国在无产阶级领导之下的农民斗争的最高形式，和半殖民地农民斗争发展的必然结果；并且无疑义地是促进全国革命高潮的最重要因素。六，也就会明白单纯的流动游击政策，不能完成促进全国革命高潮的任务，而朱德毛泽东式、方志敏⑴式之有根据地的，有计划地建设政权的，深入土地革命的，扩大人民武装的路线是经由乡赤卫队、区赤卫大队、县赤卫总队、地方红军直至正规红军这样一套办法的，政权发展是波浪式地向前扩大的，等等的政策，无疑义地是正确的。必须这样，才能树立全国革命群众的信仰，如苏联之于全世界然。必须这样，才能给反动统治阶级以甚大的困难，动摇其基础而促进其内部的分解。也必须这样，才能真正地创造红军，成为将来大革命的主要工具。总而言之，必须这样，才能促进革命的高潮。</p>]]></content>
       
       
+      <categories>
+          
+          <category> 人文 </category>
+          
+          <category> 文学 </category>
+          
+      </categories>
+      
       
         <tags>
+            
+            <tag> 摘录 </tag>
             
             <tag> 文学 </tag>
             
@@ -68,6 +146,22 @@
         <content type="html"><![CDATA[<p>我不去想是否能够成功</p><p>既然选择了远方</p><p>便只顾风雨兼程</p><p>我不去想能否赢得爱情</p><p>既然钟情于玫瑰</p><p>就勇敢地吐露真诚</p><p>我不去想身后会不会袭来寒风冷雨</p><p>既然目标是地平线</p><p>留给世界的只能是背影</p><p>我不去想未来是平坦还是泥泞</p><p>只要热爱生命</p><p>一切，都在意料之中</p>]]></content>
       
       
+      <categories>
+          
+          <category> 人文 </category>
+          
+          <category> 文学 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 摘录 </tag>
+            
+            <tag> 文学 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -81,6 +175,12 @@
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> 摘录 </tag>
+            
+        </tags>
       
     </entry>
     
