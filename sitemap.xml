@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://z555.icu/link/index.html</loc>
+    <loc>https://z555.icu/links/index.html</loc>
     
     <lastmod>2022-10-08</lastmod>
     
@@ -119,14 +119,14 @@
 
   
   <url>
-    <loc>https://z555.icu/tags/%E6%91%98%E5%BD%95/</loc>
+    <loc>https://z555.icu/tags/%E6%96%87%E5%AD%A6/</loc>
     <lastmod>2022-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://z555.icu/tags/%E6%96%87%E5%AD%A6/</loc>
+    <loc>https://z555.icu/tags/%E6%91%98%E5%BD%95/</loc>
     <lastmod>2022-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
