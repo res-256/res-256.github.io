@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://z555.icu/posts/3316/</loc>
+    
+    <lastmod>2022-10-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://z555.icu/posts/8b2f/</loc>
+    
+    <lastmod>2022-10-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://z555.icu/posts/98ec/</loc>
     
     <lastmod>2022-10-10</lastmod>
@@ -47,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://z555.icu/links/index.html</loc>
+    <loc>https://z555.icu/link/index.html</loc>
     
     <lastmod>2022-10-08</lastmod>
     
@@ -162,6 +180,20 @@
   </url>
   
   <url>
+    <loc>https://z555.icu/tags/VMware/</loc>
+    <lastmod>2022-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://z555.icu/tags/CentOS/</loc>
+    <lastmod>2022-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://z555.icu/tags/%E6%96%87%E5%AD%A6/</loc>
     <lastmod>2022-10-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -183,6 +215,27 @@
   </url>
   
   <url>
+    <loc>https://z555.icu/tags/Github/</loc>
+    <lastmod>2022-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://z555.icu/tags/Hexo/</loc>
+    <lastmod>2022-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://z555.icu/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2022-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://z555.icu/tags/%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2022-10-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -192,6 +245,13 @@
 
   
   <url>
+    <loc>https://z555.icu/categories/Linux/</loc>
+    <lastmod>2022-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://z555.icu/categories/%E4%BA%BA%E6%96%87/</loc>
     <lastmod>2022-10-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -199,7 +259,7 @@
   </url>
   
   <url>
-    <loc>https://z555.icu/categories/%E8%AE%B0%E5%BD%95/</loc>
+    <loc>https://z555.icu/categories/Blog/</loc>
     <lastmod>2022-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -213,7 +273,7 @@
   </url>
   
   <url>
-    <loc>https://z555.icu/categories/%E4%BA%BA%E6%96%87/%E5%8C%BB%E5%AD%A6/</loc>
+    <loc>https://z555.icu/categories/%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2022-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -221,6 +281,13 @@
   
   <url>
     <loc>https://z555.icu/categories/%E5%85%B6%E4%BB%96/</loc>
+    <lastmod>2022-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://z555.icu/categories/%E4%BA%BA%E6%96%87/%E5%8C%BB%E5%AD%A6/</loc>
     <lastmod>2022-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
