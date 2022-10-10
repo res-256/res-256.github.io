@@ -1,0 +1,95 @@
+#nav .menus_items .menus_item .menus_item_child li {
+    display: inline-block;
+  }
+  
+  ul.menus_item_child {
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
+#nav .menus_items .menus_item .menus_item_child {
+    margin-top: 0px !important;
+  }
+  
+  @font-face {
+    font-family:'arzhu';
+    src:url('https://jsd.cdn.zzko.cn/gh/res-256/pic@main/202210110047152.ttf'); 
+    font-display:swap
+}
+h1#site-title {
+    font-family:arzhu!important
+}
+span#subtitle {
+    font-family:arzhu!important
+}
+a#site-name {
+    font-family:arzhu!important
+}
+
+#recent-posts>.recent-post-item,.layout_page>div:first-child:not(.recent-posts),.layout_post>#page,.layout_post>#post,.read-mode .layout_post>#post {
+    background: var(--light_bg_color)
+}
+
+#aside-content .card-widget {
+    background: var(--light_bg_color)
+}
+
+#web_bg {
+    background: linear-gradient(90deg,rgba(247,149,51,.1),rgba(243,112,85,.1) 15%,rgba(239,78,123,.1) 30%,rgba(161,102,171,.1) 44%,rgba(80,115,184,.1) 58%,rgba(16,152,173,.1) 72%,rgba(7,179,155,.1) 86%,rgba(109,186,130,.1))
+}
+
+.notice-logo {
+  line-height: 22px;
+  margin-right: 8px;
+  transition: 0.3s;
+}
+#notice {
+  height: 47px;
+  background-color: white;
+  color: var(--font-color);
+  margin-top: 20px;
+  padding: 12px 20px 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  overflow: hidden;
+}
+[data-theme="dark"] #notice {
+  background: black !important;
+}
+#notice span {
+  white-space: nowrap;
+}
+.swiper-wrapper {
+  width: 100%;
+  height: 25px;
+  line-height: 25px;
+}
+.swiper-wrapper .swiper-slide {
+  width: 100%;
+  text-align: center;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: 0.3s;
+  font-weight: bold;
+}
+.swiper-slide:hover {
+  color: #1fc7b6;
+}
+#noticeList {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
+}
+.notice-enter {
+  line-height: 25px;
+  margin-left: 8px;
+  transition: 0.3s;
+}
+
