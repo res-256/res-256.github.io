@@ -92,3 +92,75 @@ a#site-name {
   margin-left: 8px;
   transition: 0.3s;
 }
+
+@font-face {
+font-family: 'iconfont';
+url('/fonts/iconfont.woff2') format('woff2')，
+url('/fonts/iconfont.woff') format('woff'),
+url('/fonts/iconfont.ttf') format('truetype')；
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shengriliwu:before {
+  content: "\e600";
+}
+
+.icon-airplay:before {
+  content: "\e668";
+}
+
+.icon-attentionfilled:before {
+  content: "\e604";
+}
+
+.icon-circularprint:before {
+  content: "\e685";
+}
+
+.icon-24:before {
+  content: "\e64e";
+}
+
+.icon-icon-test:before {
+  content: "\e6b3";
+}
+
+.icon-chongwu:before {
+  content: "\ec57";
+}
+
+.icon-dengziA:before {
+  content: "\ec8e";
+}
+
+.icon-xinjianwenjianjia:before {
+  content: "\e60e";
+}
+
+.icon-haze-2-line:before {
+  content: "\e601";
+}
+
+#cheesy_pick-up_lines-container li {
+  list-style-type: none;
+  position: relative;
+  padding-left: 26px;
+}
+#cheesy_pick-up_lines-container li:before {
+  top: 8px;
+  left: 2px;
+  padding: 5px;
+  border: 3px solid pink;
+  border-radius: 10px;
+  content: "";
+  position: absolute;
+}
+
+
