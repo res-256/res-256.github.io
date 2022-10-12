@@ -1,0 +1,2269 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络学习笔记-应用层 | 花猪のBlog</title><meta name="keywords" content="计算机网络"><meta name="author" content="花猪,2296412185@qq.com"><meta name="copyright" content="花猪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录计算机网络学习历程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络学习笔记-应用层">
+<meta property="og:url" content="https://cnhuazhu.github.io/2021/04/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%BA%94%E7%94%A8%E5%B1%82/index.html">
+<meta property="og:site_name" content="花猪のBlog">
+<meta property="og:description" content="记录计算机网络学习历程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg">
+<meta property="article:published_time" content="2021-04-05T09:08:29.000Z">
+<meta property="article:modified_time" content="2021-06-28T14:16:03.902Z">
+<meta property="article:author" content="花猪">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/avatar.jpg"><link rel="canonical" href="https://cnhuazhu.github.io/2021/04/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%BA%94%E7%94%A8%E5%B1%82/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":60,"languages":{"author":"作者: 花猪","link":"链接: ","source":"来源: 花猪のBlog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#ABADAC","bgDark":"#121212","position":"bottom-right"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机网络学习笔记-应用层',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-28 22:16:03'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/pagelucency.css"><style>#article-container.post-content h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { -webkit-animation: avatar_turn_around 1s linear infinite; -moz-animation: avatar_turn_around 1s linear infinite; -o-animation: avatar_turn_around 1s linear infinite; -ms-animation: avatar_turn_around 1s linear infinite; animation: avatar_turn_around 1s linear infinite; }</style><link rel="stylesheet" href="/css/avatarbg.css"><link rel="stylesheet" href="/css/footerlucency.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/macblack.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiperstyle.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="花猪のBlog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">86</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/"><i class="fa-fw fas fa-gift"></i><span> 引导</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-sitemap"></i><span> 分站</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/next"><i class="fa-fw fas fa-chevron-right"></i><span> Next</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 阅读</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/video/"><i class="fa-fw fa fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-quote-left"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/website/"><i class="fa-fw fas fa-globe"></i><span> 网站</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/Message/"><i class="fa-fw fas fa-comment"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background: transparent"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">花猪のBlog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/"><i class="fa-fw fas fa-gift"></i><span> 引导</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-sitemap"></i><span> 分站</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/next"><i class="fa-fw fas fa-chevron-right"></i><span> Next</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 阅读</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/video/"><i class="fa-fw fa fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-quote-left"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/website/"><i class="fa-fw fas fa-globe"></i><span> 网站</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/Message/"><i class="fa-fw fas fa-comment"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机网络学习笔记-应用层</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-05T09:08:29.000Z" title="发表于 2021-04-05 17:08:29">2021-04-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-28T14:16:03.902Z" title="更新于 2021-06-28 22:16:03">2021-06-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">13.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>43分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机网络学习笔记-应用层"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>前言</h1>
+<p><em>正在学习计算机网络这门课程，顺便做个笔记，记录一下知识点。</em></p>
+<blockquote>
+<p>参考资料：</p>
+<p>中科大郑烇老师全套《计算机网络（自顶向下方法 第7版，James F.Kurose，Keith W.Ross）》课程：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.bilibili.com/video/BV1JV411t7ow?p=1">https://www.bilibili.com/video/BV1JV411t7ow?p=1</a></p>
+<p>《计算机网络（自顶向下方法 第7版，James F.Kurose，Keith W.Ross）》</p>
+</blockquote>
+<hr>
+<h1>第二章：应用层</h1>
+<blockquote>
+<p>互联网层次中，应用层的协议是最多的。</p>
+</blockquote>
+<p>网络应用的原理：网络应用协议的概念和实现方面</p>
+<ul>
+<li>运输层的服务模型（transport-layer service models）</li>
+<li>客户/服务器模式（client-server paradigm）</li>
+<li>P2P模式（peer-to-peer paradigm）</li>
+</ul>
+<p>网络应用的实例：互联网流行的应用层协议</p>
+<ul>
+<li>HTTP</li>
+<li>FTP</li>
+<li>SMTP / POP3 / IMAP</li>
+<li>DNS</li>
+</ul>
+<p>编程：网络应用程序创建</p>
+<ul>
+<li>socket API  / E-mail / web / instant messaging: (QQ), Wechat (即时消息) / remote login (远程登录) /  P2P file sharing (文件共享) / multi-user network games (多用户网络游戏) / streaming stored video clips (流式存储视频) / Social networks (社交网络) / voice over IP (IP电话) / real-time video conferencing (实时视频会议) / grid computing/Cloud computing (网格计算/云计算)</li>
+</ul>
+<p>创建一个新的网络应用：</p>
+<ul>
+<li>编程：
+<ul>
+<li>在不同的端系统上运行（run on different end systems）</li>
+<li>通过网络基础设施提供的服务，应用进程彼此通信（communicate over network）</li>
+<li>例如：Web服务器软件与浏览器软件通信（web server software communicates with browser software）</li>
+</ul>
+</li>
+<li>无需为网络核心设备编写程序（no need to write software for networkcore devices）：
+<ul>
+<li>网络核心不会运行用户应用（network core devices do not run user applications）</li>
+<li>网络应用只在端系统上存在 ，快速网络应用开发和部署（applications on end systems allows for rapid app development, propagation）</li>
+</ul>
+</li>
+</ul>
+<h2 id="应用层协议原理（Principles-of-network-applications）">应用层协议原理（Principles of network applications）</h2>
+<p>可能的应用架构：</p>
+<ul>
+<li>
+<p>客户-服务器模式（C/S:client/server）</p>
+</li>
+<li>
+<p>对等模式（P2P:Peer To Peer）</p>
+</li>
+<li>
+<p>混合体：客户-服务器和对等体系结构</p>
+<blockquote>
+<p>浏览器/服务器模式（B/S：Brower/Server）是C/S架构的一种特例</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="客户-服务器（C-S）体系结构">客户-服务器（C/S）体系结构</h3>
+<p>服务器：</p>
+<ul>
+<li>一直在运行</li>
+<li>固定的IP地址和周知的端口号（约定）</li>
+<li>服务器是数据中心（包括软件资源，硬件资源，数据资源）</li>
+<li>扩展性差（性能在访问数量达到一定程度时会出现断崖式下跌）</li>
+</ul>
+<p>客户端：</p>
+<ul>
+<li>主动与服务器连接（服务器先运行，客户端后访问）</li>
+<li>与互联网有间歇性的连接</li>
+<li>可能是动态IP地址</li>
+<li>不直接与其他客户端通信</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNCS%E6%9E%B6%E6%9E%84.png" alt=""></p>
+<h3 id="对等体（P2P）体系结构">对等体（P2P）体系结构</h3>
+<ul>
+<li>
+<p>（几乎）没有一直运行的服务器</p>
+</li>
+<li>
+<p>任意端系统之间可以进行通信</p>
+</li>
+<li>
+<p>每一个节点既是客户端又是服务器</p>
+<p>自扩展性：新peer节点带来新的服务能力，当然也带来新的服务请求</p>
+</li>
+<li>
+<p>参与的主机间歇性连接且可以改变IP地址</p>
+<p>带来的问题就是：难以管理</p>
+</li>
+<li>
+<p>实例：迅雷</p>
+</li>
+</ul>
+<h3 id="C-S和P2P体系结构的混合体">C/S和P2P体系结构的混合体</h3>
+<p>Skype：</p>
+<ul>
+<li>
+<p>文件（目录）查询：集中式</p>
+<p>存在一个中心服务器</p>
+</li>
+<li>
+<p>文件分发（传输）：P2P</p>
+<p>客户端连接可以不通过服务器直接连接</p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNP2P%E6%9E%B6%E6%9E%84.png" alt=""></p>
+<p>即时通讯（以QQ为例）：</p>
+<ul>
+<li>两个用户之间的聊天是P2P方式</li>
+<li>当用户上线时，向中心服务器注册其IP地址</li>
+<li>用户通过中心服务器找到好友IP地址</li>
+</ul>
+<h3 id="进程通信（Processes-communicating）">进程通信（Processes communicating）</h3>
+<p>进程：在主机上运行的应用程序</p>
+<p>进程间的通信：</p>
+<ul>
+<li>
+<p>在同一个主机内：使用进程间通信机制通信（ 操作系统定义），无需协议。</p>
+</li>
+<li>
+<p>在不同主机内：通过交换报文（Message）来通信。</p>
+<ul>
+<li>使用OS提供的通信服务</li>
+<li>借助传输层提供的服务，按照应用协议交换报文</li>
+</ul>
+<blockquote>
+<p>客户端进程：发起通信的进程</p>
+<p>服务器进程：等待连接的进程</p>
+<p>注意：P2P架构的应用也有客户端进程和服务器进程之分</p>
+</blockquote>
+</li>
+</ul>
+<p>分布式进程通信需要解决的问题：</p>
+<ul>
+<li>问题1：进程标识（自身）和寻址（让对方找得到自己）问题。</li>
+<li>问题2：传输层-应用层是如何提供通信服务。
+<ul>
+<li>位置：层间界面的SAP（TCP/IP ：socket）</li>
+<li>形式：应用程序接口API（TCP/IP ：socket API）</li>
+</ul>
+</li>
+<li>问题3：：如何使用传输层提供的服务，实现应用进程间的报文交换，实现应用。
+<ul>
+<li>定义应用层协议：报文格式，解释，时序等</li>
+<li>编制程序，使用OS提供的API ，调用网络基础设施提供通信服务传报文，实现应用时序等；</li>
+</ul>
+</li>
+</ul>
+<p>问题1：对进程进行编址：</p>
+<ul>
+<li>
+<p>进程为了接收报文，必须有一个标识，即：SAP（当然发送也需要标识）</p>
+<ul>
+<li>
+<p>主机IP：唯一的32位IP地址（仅仅有IP地址不能够唯一标示一个进程；在一台端系统上有很 多应用进程在运行）</p>
+</li>
+<li>
+<p>所采用的传输层协议：TCP or UDP</p>
+</li>
+<li>
+<p>端口号（Port Numbers）</p>
+<p>一些知名端口号的例子：HTTP: TCP 80 Mail: TCP 25</p>
+<p>TCP和UDP的端口号是不同的</p>
+</li>
+</ul>
+</li>
+<li>
+<p>一个进程用IP地址和端口号（port）标识。</p>
+</li>
+<li>
+<p>本质上，两个主机进程之间的通信是由2个端节点（end point）构成</p>
+</li>
+</ul>
+<p>问题2：传输层-应用层提供的服务：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E4%BC%A0%E8%BE%93%E5%B1%82%E5%BA%94%E7%94%A8%E5%B1%82.png" alt=""></p>
+<ul>
+<li>层间接口必须要携带的信息（3类）
+<ul>
+<li>要传输的报文（对于本层来说就是SDU）</li>
+<li>谁传递的信息：本方应用进程的标识，即本方IP+TCP(UDP) 端口</li>
+<li>信息要传递给谁：对方应用进程的标识，即对方IP+TCP(UDP) 端口</li>
+</ul>
+</li>
+<li>传输层实体（tcp或者udp实体）根据这些信息进行TCP报文段（UDP报文段）的封装
+<ul>
+<li>源端口号，目标端口号，数据等</li>
+<li>将IP地址往下交IP实体，用于封装IP数据报：源IP,目标IP</li>
+</ul>
+</li>
+</ul>
+<h3 id="Socket（套接字）">Socket（套接字）</h3>
+<p>进程通过套接字发送或接受报文。</p>
+<p>可以把套接字比作一道门。发送进程将报文推出门户，发送进程依赖于传输层设施在另外一侧的门将报文交付给接收进程，同样的，接收进程从另外一端的门户收到报文（依赖于传输层设施）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E5%A5%97%E6%8E%A5%E5%AD%97.png" alt=""></p>
+<blockquote>
+<p>传输层提供的服务-层间信息的代表：</p>
+<p>层间建立连接后需要传输大量的信息，如果Socket API 每次传输报文，都携带如此多 的信息，太繁琐易错，不便于管理。为了解决这个问题，出现了Socket（套接字，实际上就是用一个整数表示两个应用实体之间的通信关系 ，是一个本地标识）。</p>
+</blockquote>
+<blockquote>
+<p>TCP之上的套接字：</p>
+<p>对于使用面向连接服务（TCP）的应用而言，套接字是4元组的一个具有本地意义的标识。</p>
+<ul>
+<li>4元组：源IP，源port，目标IP，目标port</li>
+<li>唯一的指定了一个会话（2个进程之间的会话关系）</li>
+<li>应用使用这个标示，与远程的应用进程通信</li>
+<li>不必在每一个报文的发送都要指定这4元组</li>
+<li>简单，便于管理</li>
+</ul>
+<p>UDP之上的套接字：</p>
+<p>（由于UDP服务下的进程通信前不需要连接，前后报文都是独立传输的，且可能传输给不同的分布式进程。所以只能用一个整数表示本应用实体的标识。）</p>
+<p>对于使用无连接服务（UDP）的应用而言，套 接字是2元组的一个具有本地意义的标识。</p>
+<ul>
+<li>2元组：源IP，源port</li>
+<li>UDP套接字指定了应用所在的一个端节点（end point）</li>
+<li>在发送数据报时，采用创建好的本地套接字（标识 ID），就不必在发送每个报文中指明自己所采用的 ip和port</li>
+<li>但是在发送报文时，必须要指定对方的ip和udp port(另外一个端节点)</li>
+</ul>
+</blockquote>
+<p>问题3：如何使用传输层提供的服务实现应用</p>
+<ul>
+<li>定义应用层协议：报文格式，解释，时序等</li>
+<li>编制程序，通过API调用网络基础设施提供通信 服务传报文，解析报文，实现应用时序等</li>
+</ul>
+<p>应用层协议：</p>
+<p>该协议定义了：运行在不同端系统上的应用进程如何相互交换报文。（仅仅规范了两个进程在通信中需要遵守的规则）</p>
+<ul>
+<li>
+<p>交换的报文类型：请求和应答报文</p>
+</li>
+<li>
+<p>各种报文类型的语法：报文中的各个字段及其描述</p>
+</li>
+<li>
+<p>字段的语义：即字段取值的含义</p>
+</li>
+<li>
+<p>进程何时、如何发送报文及对报文进行响应的规则</p>
+<blockquote>
+<p>应用协议仅仅是应用的一个组成部分。一个应用还包括用户界面，本地I/O操作，业务逻辑等</p>
+</blockquote>
+</li>
+<li>
+<p>公开协议：</p>
+<ul>
+<li>
+<p>由RFC文档定义</p>
+</li>
+<li>
+<p>允许互操作</p>
+</li>
+<li>
+<p>举例：HTTP、SMTP</p>
+</li>
+</ul>
+</li>
+<li>
+<p>私有协议（不公开）：例如：SKype、QQ、wechat</p>
+</li>
+</ul>
+<p>应用需要传输层提供的服务：</p>
+<ul>
+<li>
+<p>数据丢失率（Data loss）：</p>
+<p>有些应用则要求100%的可靠数据传输（如文件），有些应用（如音频）能容忍 一定比例以下的数据丢失</p>
+<blockquote>
+<p>实际上在看视频时是会有丢帧的情况，我们无法察觉的原因是因为采用了一些掩盖技术：</p>
+<p>比如第二帧的画面丢失，可以选择重放第一帧或第三帧，也可以计算并播放第一、三帧求和后取均值。</p>
+</blockquote>
+</li>
+<li>
+<p>延迟（Timing）：</p>
+<p>一些应用出于有效性考虑，对数据传输有严格的时间限制（如：Internet 电话、交互式游戏）</p>
+</li>
+<li>
+<p>吞吐（Throughput）</p>
+<p>一些应用（如多媒体应用）必须需要最小限度的吞吐，从而使得应用能够有效运转。一些应用能充分利用可供使用的吞吐(“弹性应用”)</p>
+</li>
+<li>
+<p>安全性（Security）</p>
+<p>机密性、数据完整性、可认证性（鉴别）…</p>
+</li>
+</ul>
+<p>下表是一些常见应用对传输服务的要求：</p>
+<table>
+<thead>
+<tr>
+<th>应用</th>
+<th>数据丢失率</th>
+<th>吞吐</th>
+<th>时间敏感性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文件传输</td>
+<td>不能丢失</td>
+<td>弹性</td>
+<td>不</td>
+</tr>
+<tr>
+<td>E-mail</td>
+<td>不能丢失</td>
+<td>弹性</td>
+<td>不</td>
+</tr>
+<tr>
+<td>Web 文档</td>
+<td>不能丢失</td>
+<td>弹性</td>
+<td>不</td>
+</tr>
+<tr>
+<td>实时音视频</td>
+<td>容忍丢失</td>
+<td>音频： 5kbps-1Mbps 视频：10kbps-5Mbps</td>
+<td>是，100ms</td>
+</tr>
+<tr>
+<td>存储音视频</td>
+<td>容忍丢失</td>
+<td>音频： 5kbps-1Mbps 视频：10kbps-5Mbps</td>
+<td>是，几秒</td>
+</tr>
+<tr>
+<td>交互式游戏</td>
+<td>容忍丢失</td>
+<td>几kbps ~10kbps</td>
+<td>是，100ms</td>
+</tr>
+<tr>
+<td>即时讯息</td>
+<td>不能丢失</td>
+<td>弹性</td>
+<td>是和不是</td>
+</tr>
+</tbody>
+</table>
+<p>Internet传输层提供的服务：</p>
+<ul>
+<li>
+<p>TCP服务：</p>
+<ul>
+<li>可靠的传输服务（不出错、不丢失、不乱序）</li>
+<li>流量控制：发送方不会淹没接受方</li>
+<li>拥塞控制：当网络出现拥塞时，能抑制发送方</li>
+<li>不能提供的服务：延时保证、最小吞吐（带宽）保证和安全性</li>
+<li>面向连接：要求在客户端进程和服务器进程之间建立连接</li>
+</ul>
+</li>
+<li>
+<p>UDP服务：</p>
+<ul>
+<li>
+<p>不可靠数据传输</p>
+</li>
+<li>
+<p>不提供的服务：可靠， 流量控制、拥塞控制、 延时、带宽保证、不建立连接</p>
+<blockquote>
+<p>UDP存在的必要性：</p>
+<ul>
+<li>能够区分不同的进程，而IP服务不能。（在IP提供的主机到主机/端到端功能的基础上，区分了主机的 应用进程）</li>
+<li>无需建立连接：省去了建立连接时间，适合事务性的应用</li>
+<li>不做可靠性的工作：例如检错重发，适合那些对实时性要求比较高而对正确性要求不高的应用。（实现可靠性是必须要付出时间代价的）</li>
+<li>没有拥塞控制和流量控制：应用能够按照设定的速度发送数据。（在TCP上面的应用，应用发送数据的速度和主机向网络发送的实际速度是不一致的，因为有流量控制和拥塞控制）</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>下表展示了Internet应用及其应用层协议和传输协议</p>
+<table>
+<thead>
+<tr>
+<th>应用</th>
+<th>应用层协议</th>
+<th>下层的传输协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E-mail</td>
+<td>SMTP [RFC 2821]</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>远程终端访问</td>
+<td>Telnet [RFC 854]</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>Web</td>
+<td>HTTP [RFC 2616]</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>文件传输</td>
+<td>FTP [RFC 959]</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>流媒体</td>
+<td>专用协议 (如RealNetworks)</td>
+<td>TCP 或 UDP</td>
+</tr>
+<tr>
+<td>Internet电话</td>
+<td>专用协议 (如Net2Phone)</td>
+<td>TCP 或 UDP</td>
+</tr>
+</tbody>
+</table>
+<p>安全TCP</p>
+<ul>
+<li>
+<p>TCP&amp;UDP</p>
+<ul>
+<li>都没有加密</li>
+<li>明文通过互联网传输 ，甚至密码</li>
+</ul>
+</li>
+<li>
+<p>SSL</p>
+<ul>
+<li>在TCP上面实现，提供加密的TCP连接（https://）</li>
+<li>私密性</li>
+<li>数据完整性</li>
+<li>端到端的鉴别/认证</li>
+</ul>
+</li>
+<li>
+<p>SSL在应用层</p>
+<ul>
+<li>应用采用SSL库，SSL库使用TCP通信</li>
+</ul>
+</li>
+<li>
+<p>SSL socket API</p>
+<p>应用通过API将明文交给socket，SSL将其加密在互联网上传输</p>
+</li>
+</ul>
+<h2 id="Web-and-HTTP">Web and HTTP</h2>
+<p>一些术语：</p>
+<ul>
+<li>
+<p>Web页：由一些对象组成。（对象可以是HTML文件、JPEG图像、Java小程序、声 音剪辑文件等）</p>
+</li>
+<li>
+<p>Web页含有一个基本的HTML文件，该基本HTML文件又包含若干对象的引用（链接）</p>
+</li>
+<li>
+<p>通过URL对每个对象进行引用</p>
+<p>包含访问协议，用户名，口令字，端口等；（如下图）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNURL.png" alt=""></p>
+</li>
+</ul>
+<blockquote>
+<p>一个网页通常是一个baseHTML文件，这个文件是HTML的形式，浏览器可以解析。其中包含各种对象，但是并不包括对象本身，而是这个对象的引用链接。（浏览器需要判断这个链接，并且去再次访问这个对象链接，从而将对象本身访问到并展示在baseHTML页面上）</p>
+</blockquote>
+<h3 id="HTTP（hypertext-transfer-protocol）：超文本传输协议">HTTP（hypertext transfer protocol）：超文本传输协议</h3>
+<ul>
+<li>
+<p>Web的应用层协议</p>
+</li>
+<li>
+<p>客户/服务器模式（C/S）</p>
+<p>客户: 请求、接收和显示 Web对象的浏览器。</p>
+<p>服务器: 对请求进行响应， 发送对象的Web服务器。</p>
+<blockquote>
+<ul>
+<li>HTTP/1.0 : RFC 1945（1996年）</li>
+<li>HTTP/1.1 : RFC 2616（1999年）</li>
+<li>HTTP/2 : RFC 7540（2015年）、RFC 8740（2020年）</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>使用TCP：</p>
+<ul>
+<li>
+<p>客户发起一个与服务器的TCP连接 (建立套接字) ，端口号为80。</p>
+<blockquote>
+<p>服务器在最初建立之时会有一个socket（waiting socket）守候在80端口。如果一个浏览器（客户端）向服务器建立连接，此时又会有一个socket（connection socket）产生（代表该服务器与客户端的会话关系）。</p>
+<p>waiting socket比较特殊，作用就是等待其他浏览器（客户端）并发访问该服务器，而connection socket则表示会话关系，可以有多个。</p>
+</blockquote>
+</li>
+<li>
+<p>服务器接受客户的TCP连接</p>
+</li>
+<li>
+<p>在浏览器(HTTP客户端)与 Web服务器(HTTP服务器server)交换HTTP报文(应用层协议报文)</p>
+</li>
+<li>
+<p>TCP连接关闭</p>
+</li>
+</ul>
+</li>
+<li>
+<p>HTTP是无状态的：服务器并不维护关于客户的任何信息（无状态的好处就是简单，不需要维护一些内容）</p>
+<blockquote>
+<p>无状态：客户端向服务器发送请求，服务器接收请求，并返回响应报文，断开连接，结束。（不知道该客户端之前有没有访问过，未来还会不会接着访问）</p>
+</blockquote>
+</li>
+<li>
+<p>非持久HTTP（Nonpersistent HTTP）连接</p>
+<ul>
+<li>
+<p>最多只有一个对象在TCP连接上发送</p>
+</li>
+<li>
+<p>下载多个对象需要多个TCP连接</p>
+</li>
+<li>
+<p>HTTP/1.0使用非持久连接</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E9%9D%9E%E6%8C%81%E4%B9%85HTTP.png" alt=""></p>
+<blockquote>
+<p>下图为非持久HTTP连接请求index.html以及10个jpeg图片对象的过程</p>
+<p>（注：以下关于RTT的数量计算均基于此例）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E9%9D%9E%E6%8C%81%E4%B9%85HTTP%E8%BF%9E%E6%8E%A5.png" alt=""></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>持久HTTP（Persistent HTTP）连接</p>
+<ul>
+<li>
+<p>多个对象可以在一个（在客户端和服务器之间的）TCP连接上传输</p>
+</li>
+<li>
+<p>HTTP/1.1 默认使用持久连接</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%8C%81%E4%B9%85HTTP.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="响应时间模型：">响应时间模型：</h3>
+<ul>
+<li>
+<p><strong>RTT（往返时间，round-trip time）</strong>：一个小的分组从客户端到服务器，再回到客户端的时间（传输时间忽略）</p>
+</li>
+<li>
+<p>响应时间：</p>
+<ul>
+<li>一个RTT用来发起TCP连接</li>
+<li>一个 RTT用来HTTP请求并等待HTTP响应</li>
+<li>文件传输时间</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4%E6%A8%A1%E5%9E%8B.png" alt=""></p>
+<blockquote>
+<p>在非持久HTTP连接下请求一个文件（对象）的时间 = 2RTT + 传输时间</p>
+</blockquote>
+</li>
+</ul>
+<p>非持久HTTP的缺点：</p>
+<ul>
+<li>
+<p>请求每个对象需要2个 RTT</p>
+</li>
+<li>
+<p>操作系统必须为每个TCP连接分配资源</p>
+</li>
+<li>
+<p>浏览器通常打开并行TCP连接 ，以获取引用对象</p>
+<blockquote>
+<p>并行连接，即同时开启多个连接请求不同对象。</p>
+<p>1index.html + 10jpeg = 2RTT（建立连接） + 2RTT（并行请求对象） = 4RTT</p>
+</blockquote>
+</li>
+</ul>
+<p>持久HTTP（Persistent HTTP）连接：</p>
+<ul>
+<li>
+<p>服务器在发送响应后，仍保持TCP连接</p>
+</li>
+<li>
+<p>在相同客户端和服务器之间的后续请求和响应报文通过相同的连接进行传送</p>
+</li>
+<li>
+<p>客户端在遇到一个引用对象的时候，就可以尽快发送该对象的请求</p>
+</li>
+<li>
+<p>非流水方式的持久HTTP（Persistent without pipelining）：</p>
+<ul>
+<li>
+<p>客户端只能在收到前一个响应后才能发出新的请求</p>
+</li>
+<li>
+<p>每个引用对象需要一个RTT</p>
+<blockquote>
+<p>1index.html + 10jpeg = 2RTT（建立连接） + 10×1RTT（10jpeg） = 12RTT</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>流水方式的持久HTTP（Persistent with pipelining）：</p>
+<ul>
+<li>
+<p>HTTP/1.1的默认模式</p>
+</li>
+<li>
+<p>客户端遇到一个引用对象就立即产生一个请求</p>
+</li>
+<li>
+<p>所有引用（小）对象基本上只用一个RTT时间就能满足</p>
+<blockquote>
+<p>1index.html + 10jpeg = 2RTT（建立连接） + 1RTT（10jpeg） = 3RTT</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP报文">HTTP报文</h3>
+<p>有两种类型的HTTP报文：request（请求报文）、response（响应报文）。</p>
+<ul>
+<li>
+<p>HTTP请求报文：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNHTTP%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87.png" alt=""></p>
+<p>请求报文的通用格式如下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNHTTP%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E9%80%9A%E7%94%A8%E6%A0%BC%E5%BC%8F.png" alt=""></p>
+<blockquote>
+<p>提交表单有两种方式：</p>
+<ul>
+<li>Post方式：
+<ul>
+<li>网页通常包括表单输入</li>
+<li>输入的数据放在实体(entity body )部分上传到服务器</li>
+</ul>
+</li>
+<li>URL方式：
+<ul>
+<li>方法：GET方法</li>
+<li>输入的数据放在URL中上传</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>方法类型：</p>
+<ul>
+<li>HTTP/1.0
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>HEAD（要求服务器在响应报文中不包含请求对象→维护或者建立索引时引用）</li>
+</ul>
+</li>
+<li>HTTP/1.1
+<ul>
+<li>GET, POST, HEAD</li>
+<li>PUT（将实体中的文件上载到URL字段规定的路径→通常做网页内容的维护）</li>
+<li>DELETE（删除URL字段规定的文件）</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>HTTP响应报文：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNHTTP%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87.png" alt=""></p>
+<blockquote>
+<p>HTTP响应状态码：</p>
+<ul>
+<li>200 OK：请求成功，请求对象包含在响应报文的后续部分。</li>
+<li>301 Moved Permanently：请求的对象已经被永久转移了；新的URL在响应报文的Location: 首部行中指定。客户端软件自动用新的URL去获取对象。</li>
+<li>400 Bad Request：一个通用的差错代码，表示该请求不能被服务器解读。</li>
+<li>404 Not Found：请求的文档在该服务上没有找到。</li>
+<li>505 HTTP Version Not Supported</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="用户-服务器状态：cookies">用户-服务器状态：cookies</h3>
+<blockquote>
+<p>大多数主要的门户网站使用 cookies</p>
+</blockquote>
+<p>cookies有4个组成部分：</p>
+<ul>
+<li>
+<p>在HTTP响应报文中有一个cookie的首部行</p>
+</li>
+<li>
+<p>在HTTP请求报文含有一个cookie的首部行</p>
+</li>
+<li>
+<p>在用户端系统中保留有一个cookie文件，由用户的浏览器管理</p>
+</li>
+<li>
+<p>在Web站点有一个后端数据库</p>
+<blockquote>
+<p>客户端（浏览器）在第一次向服务器发送请求时不携带cookie，服务器也会判断，这是第一次访问，并会在响应报文中设置一个cookie，客户端收到响应报文后会将服务器发送来的cookie存到本地，下一次再访问该服务器时就会携带上该cookie值，此时服务器就可以凭借cookie值去判断、分析客户端的状态。</p>
+<p>通过cookie，可以将HTTP从一个无状态的协议转换为一个有状态的协议。</p>
+</blockquote>
+</li>
+</ul>
+<p>cookies可以带来以下内容：</p>
+<ul>
+<li>authorization 授权（用户验证）</li>
+<li>shopping carts 购物车</li>
+<li>recommendations 推荐</li>
+<li>user session state (Web e-mail) 用户会话状态</li>
+</ul>
+<blockquote>
+<p>如何维护状态：</p>
+<ul>
+<li>协议端节点：在多个事务上 ，发送端和接收端维持状态（不会保留在中间节点中）</li>
+<li>http报文携带状态信息</li>
+</ul>
+</blockquote>
+<p>cookies的副作用：</p>
+<ul>
+<li>Cookies允许站点知道许多关于用户的信息（隐私）</li>
+<li>网站记录用户信息并分析用户行为（可能将它知道的东西卖给第三方）</li>
+<li>使用重定向和cookie的搜索引擎还能知道用户更多的信息（姓名、电话、邮箱等）</li>
+</ul>
+<h3 id="Web-caches（proxy-server）缓存（代理服务器）">Web caches（proxy server）缓存（代理服务器）</h3>
+<p>目标：不访问原始服务器，就可以满足客户的请求。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8.png" alt=""></p>
+<p>缓存既是客户端又是服务器。</p>
+<p>通常缓存是由ISP安装 (大学、公司、居民区ISP)</p>
+<blockquote>
+<p>浏览器将所有的HTTP请求发给缓存（代理服务器）</p>
+<ul>
+<li>在缓存中的对象：缓存直接返回对象</li>
+<li>如对象不在缓存，缓存请求原始服务器，然后再将对象返回给客户端</li>
+</ul>
+<p>优势：</p>
+<ul>
+<li>降低客户端的请求响应时间</li>
+<li>可以大大减少一个机构内部网络与Internent接入链路上的流量</li>
+<li>互联网大量采用了缓存： 可以使较弱的ICP也能够有效提供内容（快速分发内容）</li>
+</ul>
+</blockquote>
+<p>条件GET方法</p>
+<blockquote>
+<p>使用缓存有一个风险：客户端访问到的缓存中的数据，在原始服务器中已修改，结果就是拿到旧数据。</p>
+<p>为此HTTP协议做了一个升级：Conditional GET（条件GET）</p>
+</blockquote>
+<p>目标：如果缓存器中的对象拷贝是最新的，就不要发送对象</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%9D%A1%E4%BB%B6GET.png" alt=""></p>
+<blockquote>
+<ul>
+<li>
+<p>缓存器: 在HTTP请求中指定缓存拷贝的日期</p>
+<p>If-modified-since:&lt;date’&gt;</p>
+</li>
+<li>
+<p>服务器:</p>
+<ul>
+<li>如果缓存拷贝没有改变，则响应报文不包含对象: HTTP/1.0 304 Not Modified</li>
+<li>如果缓存拷贝改变，则返回数据：HTTP/1.0 200 OK &lt;data’&gt;</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="Short-URL">Short URL</h3>
+<p>把普通网址，转换成比较短的网址。（比如：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://t.cn/RlB2PdD%EF%BC%89">http://t.cn/RlB2PdD）</a></p>
+<ul>
+<li>微博；这些限制字数的应用里都用到这种技术。</li>
+<li>百度短网址：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://dwz.cn/">http://dwz.cn/</a></li>
+<li>google短网址： <a target="_blank" rel="noopener external nofollow noreferrer" href="https://goo.gl/">https://goo.gl/</a></li>
+</ul>
+<p>当我们在浏览器里输入 <code>http://t.cn/RlB2PdD</code> 时会经历以下步骤：</p>
+<ul>
+<li>
+<p>浏览器解析DNS，获取域名对应的IP；</p>
+</li>
+<li>
+<p>当获取到IP时，会往这个IP地址发送http的get请求以获取到RlB2PdD对应的长链接地址；</p>
+</li>
+<li>
+<p>HTTP通过301转到对应的长链接URL；</p>
+<blockquote>
+<p>注意：这里为什么使用301？</p>
+<p>301是永久性转移（重定向）。也就是说，这个短地址 一经生成就不会发生变化了。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="FTP（文件传输协议）">FTP（文件传输协议）</h2>
+<ul>
+<li>
+<p>向远程主机上传输文件或从远程主机接收文件</p>
+</li>
+<li>
+<p>建立在TCP基础之上</p>
+</li>
+<li>
+<p>客户/服务器模式：</p>
+<ul>
+<li>客户端：发起传输的一方</li>
+<li>服务器：远程主机</li>
+</ul>
+</li>
+<li>
+<p>ftp: RFC 959</p>
+</li>
+<li>
+<p>ftp服务器：端口号为21</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNFTP.png" alt=""></p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p>FTP客户端与FTP服务器通过<code>端口21</code>联系，并使用<code>TCP</code>为传输协议</p>
+</li>
+<li>
+<p>客户端通过控制连接获得身份确认（通过TCP）（用户名和口令，全部都为明文）</p>
+</li>
+<li>
+<p>客户端通过控制连接发送命令浏览远程目录（可以上传、下载）</p>
+</li>
+<li>
+<p>收到一个文件传输命令时，服务器打开一个到客户端的TCP数据传输连接（客户端的20号端口，由服务器主动建立），控制信息/指令和数据传输的连接是不一样的。</p>
+</li>
+<li>
+<p>一个文件传输完成后，服务器关闭连接</p>
+</li>
+<li>
+<p>服务器打开第二个TCP数据连接用来传输另一个文件</p>
+</li>
+<li>
+<p>控制连接： 带外（ “out of band” ）传送（只能建立一个）</p>
+</li>
+<li>
+<p>数据连接：带内传送（可以建立多个）</p>
+</li>
+<li>
+<p>FTP服务器维护用户的状态信息： 当前路径、用户帐户与控制连接对应（FTP是一个有状态的协议）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNFTP%E8%BF%9E%E6%8E%A5.png" alt=""></p>
+</li>
+</ul>
+</blockquote>
+<p>FTP在控制连接上以ASCII文本方式传送：</p>
+<blockquote>
+<p>命令样例：</p>
+<ul>
+<li>USER username</li>
+<li>PASS password</li>
+<li>LIST：请服务器返回远程主机当前目录的文件列表</li>
+<li>RETR filename（重复性下载文件）：从远程主机的当前目录检索文件 (gets)</li>
+<li>STOR filename（上载文件）：向远程主机的当前目录存放文件 (puts)</li>
+</ul>
+<p>返回码样例：（状态码和状态信息 (同HTTP)）</p>
+<ul>
+<li>331 Username OK, password required</li>
+<li>125 data connection already open; transfer starting</li>
+<li>425 Can’t open data connection</li>
+<li>452 Error writing file</li>
+</ul>
+</blockquote>
+<h2 id="Electronic-mail（Email）">Electronic mail（Email）</h2>
+<h3 id="电子邮件（Email）的三个主要组成部分">电子邮件（Email）的三个主要组成部分</h3>
+<ul>
+<li>
+<p>user agents （用户代理）</p>
+<blockquote>
+<ul>
+<li>又名 “邮件阅读器”</li>
+<li>撰写、编辑和阅读邮件</li>
+<li>如Outlook、Foxmail</li>
+<li>输出和输入邮件保存在服务器上</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>mail servers（邮件服务器）</p>
+<blockquote>
+<ul>
+<li>邮箱中管理和维护发送给用户的邮件</li>
+<li>输出报文队列保持待发送邮件报文</li>
+<li>邮件服务器之间的SMTP协议：发送email报文
+<ul>
+<li>客户：发送方邮件服务器</li>
+<li>服务器：接收端邮件服务器</li>
+</ul>
+</li>
+</ul>
+<p>两个作用：</p>
+<ol>
+<li>
+<p>用户代理配置好邮件服务器的IP地址、端口号，然后用户代理把邮件发送给邮件服务器的队列当中。邮件服务器会把队列中的邮件依次发送到目标邮件服务器中。</p>
+<p><strong>（用户代理发邮件到邮件服务器用的是SMTP协议）</strong></p>
+</li>
+<li>
+<p>然后目标邮件服务器接收到邮件后会把邮件放到相应用户的目录（邮箱）当中。收件人运行客户代理，从邮件服务器中相应的自己的邮箱中把信件拉回到本地。</p>
+<p><strong>（邮件服务器发给目标邮件服务器使用的是SMTP协议）</strong></p>
+<p><strong>（“拉”邮件的协议有三种：POP3、IMAP、HTTP）</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E9%82%AE%E4%BB%B6%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B.png" alt=""></p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p>simple mail transfer protocol: SMTP（简单邮件传输协议）</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p>使用TCP在客户端和服务器之间传送报文，端口号为25</p>
+</li>
+<li>
+<p>直接传输：从发送方服务器到接收方服务器</p>
+</li>
+<li>
+<p>传输的3个阶段：</p>
+<ul>
+<li>握手</li>
+<li>传输报文</li>
+<li>关闭</li>
+</ul>
+</li>
+<li>
+<p>命令/响应交互：</p>
+<ul>
+<li>命令：ASCII文本</li>
+<li>响应：状态码和状态信息</li>
+</ul>
+</li>
+<li>
+<p>报文必须为7位ASCII码（邮件的内容必须是7位ASCII码的范围，超过是不允许传输的）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNSMTP.png" alt=""></p>
+</li>
+</ul>
+</blockquote>
+<p>邮件发送举例如下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E9%82%AE%E4%BB%B6%E5%8F%91%E9%80%81%E4%B8%BE%E4%BE%8B.png" alt=""></p>
+<p>说明：</p>
+<ol>
+<li>
+<p>Alice使用用户代理撰写邮件并发送给bob@someschool.edu</p>
+</li>
+<li>
+<p>Alice的用户代理将邮件发送到她的邮件服务器；邮件放在报文队列中（SMTP）</p>
+</li>
+<li>
+<p>SMTP的客户端打开到Bob邮件服务器的TCP连接</p>
+</li>
+<li>
+<p>SMTP客户端通过TCP连接发送Alice的邮件（SMTP）</p>
+</li>
+<li>
+<p>Bob的邮件服务器将邮件放到Bob的邮箱</p>
+</li>
+<li>
+<p>Bob调用他的用户代理阅读邮件（POP3、IMAP、HTTP）</p>
+</li>
+</ol>
+<blockquote>
+<ul>
+<li>邮件服务器会周期性扫描队列，隔一段时间将收集的邮件全部发出。（如果每时每刻都处于“待命”状态是很耗能的）</li>
+<li>可能导致邮件发送失败的原因：
+<ul>
+<li>网络连接有问题</li>
+<li>接收方的邮件服务器地址填写错误</li>
+<li>垃圾邮件过滤</li>
+</ul>
+</li>
+<li>如果邮件发送失败，会将该邮件发送给另外一个失败的队列中，隔一段时间后重新发送，若仍失败，则退回该邮件。</li>
+</ul>
+</blockquote>
+<p>简单的SMTP交互案例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNSMTP%E4%BA%A4%E4%BA%92.png" alt=""></p>
+<p>SMTP vs HTTP</p>
+<blockquote>
+<p>SMTP</p>
+<ul>
+<li>SMTP：推（push）</li>
+<li>SMTP使用持久连接</li>
+<li>SMTP要求报文（首部和主体）为7位ASCII编码</li>
+<li>SMTP服务器使用 CRLF.CRLF决定报文的尾部</li>
+<li>SMTP：多个对象包含在一个报文中</li>
+</ul>
+<p>HTTP</p>
+<ul>
+<li>HTTP：拉（pull）</li>
+<li>二者都是ASCII形式的命令/响应交互、状态码</li>
+<li>HTTP：每个对象封装在各自的响应报文中</li>
+</ul>
+</blockquote>
+<h3 id="邮件报文格式">邮件报文格式</h3>
+<ul>
+<li>
+<p>SMTP：交换email报文的协议</p>
+</li>
+<li>
+<p>RFC 822: 文本报文的标准：</p>
+<ul>
+<li>首部行：如
+<ul>
+<li>To:</li>
+<li>From:</li>
+<li>Subject:</li>
+<li>与SMTP命令不同 ！</li>
+</ul>
+</li>
+<li>主体：
+<ul>
+<li>报文，只能是ASCII码字符</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>问题：如果传输的内容包含中文字符，都不在ASCII范围之内。就要对其进行编码（扩展）：</p>
+<ul>
+<li>
+<p>MIME：多媒体邮件扩展（multimedia mail extension）,RFC 2045, 2056</p>
+</li>
+<li>
+<p>在报文首部用额外的行申明MIME内容类型</p>
+</li>
+<li>
+<p>内部的编码采用base64编码格式</p>
+<blockquote>
+<p>使用bsae64，将不在ASCII范围之内的内容进行长扩展，使得其在ASCII范围之内。（大小写英文字母，加号，等号）</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNMIME.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="邮件访问协议">邮件访问协议</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E9%82%AE%E4%BB%B6%E8%AE%BF%E9%97%AE%E5%8D%8F%E8%AE%AE.png" alt=""></p>
+<ul>
+<li>SMTP: 传送到接收方的邮件服务器</li>
+<li>邮件访问协议：从服务器访问邮件（“拉”）
+<ul>
+<li>POP：邮局访问协议（Post Office Protocol）[RFC 1939]
+<ul>
+<li>用户身份确认 (代理&lt;–&gt;服务器) 并下载</li>
+</ul>
+</li>
+<li>IMAP：Internet邮件访问协议（Internet Mail Access Protocol）[RFC 1730]
+<ul>
+<li>相比POP3更多特性 (更复杂，如：远程目录维护；仅仅只下载邮件正文，附件可选择下载，对手机端友好)</li>
+<li>直接在邮件服务器上处理存储的报文</li>
+</ul>
+</li>
+<li>HTTP：Hotmail , Yahoo! Mail等
+<ul>
+<li>方便</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>POP3协议</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNPOP3%E5%8D%8F%E8%AE%AE.png" alt=""></p>
+<blockquote>
+<ul>
+<li>有邮件“download and delete”（下载并删除）模式</li>
+<li>有邮件“Download-and-keep”（下载并保留）模式（不同的客户机都可以拷贝邮件）</li>
+<li>POP3在会话中是无状态的（不支持远程目录维护）</li>
+</ul>
+</blockquote>
+<p>IMAP协议</p>
+<ul>
+<li>IMAP服务器将每个报文与一个文件夹联系起来</li>
+<li>允许用户用目录来组织报文</li>
+<li>允许用户读取报文组件</li>
+<li>IMAP在会话过程中保留用户状态：目录名、报文ID与目录名之间映射</li>
+</ul>
+<h2 id="DNS-Domain-Name-System">DNS(Domain Name System)</h2>
+<p>域名解析系统是一个给其他“应用”应用的应用。（提供域名到IP地址的转换）</p>
+<p>DNS的必要性：</p>
+<p>先明白IP地址的作用：一个是标识，一个是寻址。网络设备都是按照IP地址来工作的，但是这有一个问题，IP地址都是数字（IPv4：4Byte，32bit；IPv6：16Byte，128bit），人很难记忆。人类还是更倾向于使用有意义的字符串来标识Internet上的设备。所以域名解析系统就应运而生：它提供域名到IP地址的转换。</p>
+<p>接下来我们要考虑的是DNS如何实现这一功能，即我们需要考虑以下问题：</p>
+<ul>
+<li>
+<p>问题一：如何命名设备？</p>
+<blockquote>
+<ul>
+<li>用有意义的字符串：好记，便于人类用使用</li>
+<li>解决一个平面命名的重名问题：层次化命名</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>问题二：如何完成名字到IP地址的转换？</p>
+<blockquote>
+<p>分布式的数据库维护和响应名字查询（仅由单一设备去维护上亿数量的用户设备的域名解析是不可能的）</p>
+</blockquote>
+</li>
+<li>
+<p>问题三：如何维护：增加或者删除一个域，需要在域名系统中做哪些工作？</p>
+</li>
+</ul>
+<blockquote>
+<p>历史：</p>
+<ul>
+<li>ARPANET的名字解析解决方案
+<ul>
+<li>主机名：没有层次的一个字符串（一个平面）</li>
+<li>存在着一个（集中）维护站：维护着一张主机名-IP地址的映射文件：<code>Hosts.txt</code></li>
+<li>每台主机定时从维护站取文件</li>
+</ul>
+</li>
+<li>ARPANET解决方案的问题，当网络中主机数量很大时
+<ul>
+<li>没有层次的主机名称很难分配</li>
+<li>文件的管理、发布、查找都很麻烦</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>DNS总体思路和目标</p>
+<ul>
+<li>
+<p>主要思路：</p>
+<ul>
+<li><strong>分层</strong>的、基于域的命名机制</li>
+<li>若干<strong>分布式的数据库</strong>完成名字到IP地址的转换</li>
+<li>运行在UDP之上端口号为53的应用服务</li>
+<li>核心的Internet功能，但在端系统（边缘）中的应用层实现</li>
+</ul>
+</li>
+<li>
+<p>主要目标：</p>
+<ul>
+<li>
+<p>实现主机名-IP地址的转换(name/IP translate)</p>
+</li>
+<li>
+<p>其他目的：</p>
+<ul>
+<li>
+<p>主机别名-规范名字的转换：Host aliasing</p>
+<blockquote>
+<p>规范名字便于管理，主机别名便于访问</p>
+</blockquote>
+</li>
+<li>
+<p>邮件服务器别名-邮件服务器的正规名字的转换：Mail server aliasing</p>
+</li>
+<li>
+<p>负载均衡：Load Distribution</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="DNS名字空间">DNS名字空间</h3>
+<p>DNS域名结构</p>
+<p>一个层面命名设备会有很多重名，因而DNS采用层次树状结构的命名方法：</p>
+<ul>
+<li>
+<p>Internet根被划为几百个顶级域(top lever domains，TLD)</p>
+<ul>
+<li>
+<p>通用的(generic)：</p>
+<p><code>.com</code>; <code>.edu</code> ; <code>.gov</code> ; <code>.int</code> ; <code>.mil</code> ; <code>.net</code> ; <code>.org</code>; <code>.firm</code> ; <code>.hsop</code> ; <code>.web</code> ; <code>.arts</code> ; <code>.rec</code> ;</p>
+</li>
+<li>
+<p>国家的(countries)：</p>
+<p><code>.cn</code> ; <code>.us</code> ; <code>.nl</code> ; <code>.jp</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>每个(子)域下面可划分为若干子域(subdomains)</p>
+</li>
+<li>
+<p>树叶是主机</p>
+</li>
+</ul>
+<p>如下图，一共有13个根域名服务器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%A0%B9%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8.png" alt=""></p>
+<p>域名（Domain Name）</p>
+<ul>
+<li>从本域往上，直到树根（根域名）。中间使用“.”间隔不同的级别
+<ul>
+<li>域的域名：可以用于表示一个域</li>
+<li>主机的域名：一个域上的一个主机</li>
+</ul>
+</li>
+</ul>
+<p>域名的管理</p>
+<ul>
+<li>一个域管理其下的子域（例如：.cn 被划分为 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://edu.cn">edu.cn</a> ；<a target="_blank" rel="noopener external nofollow noreferrer" href="http://com.cn">com.cn</a> ）</li>
+<li>创建一个新的域，必须征得它所属域的同意</li>
+</ul>
+<p>域与物理网络无关</p>
+<ul>
+<li>
+<p>域遵从组织界限，而不是物理网络</p>
+<ul>
+<li>
+<p>一个域的主机可以不在一个网络</p>
+</li>
+<li>
+<p>一个网络的主机不一定在一个域</p>
+<blockquote>
+<p>例如：我在中国的某间教室运行一台主机，而这台主机域名由欧洲的某个服务器维护。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>域的划分是逻辑的，而不是物理的</p>
+</li>
+</ul>
+<h3 id="域名-IP地址的转换">域名-IP地址的转换</h3>
+<blockquote>
+<p>前面提到单一域名服务器存在的问题：</p>
+<ul>
+<li>可靠性问题：单点故障</li>
+<li>扩展性问题：通信容量</li>
+<li>维护问题：远距离的集中式数据库</li>
+</ul>
+</blockquote>
+<p>区域(zone)：</p>
+<ul>
+<li>
+<p>区域的划分有区域管理者自己决定</p>
+</li>
+<li>
+<p>将DNS名字空间划分为互不相交的区域，每个区域都是树的一部分</p>
+</li>
+<li>
+<p>名字服务器：</p>
+<ul>
+<li>每个区域都有一个权威名字服务器：维护着它所管辖区域的权威信息 (authoritative record)</li>
+<li>名字服务器允许被放置在区域之外，以保障可靠性</li>
+</ul>
+<p>区域的划分如下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86.png" alt=""></p>
+</li>
+</ul>
+<p>TLD服务器（顶级域服务器）</p>
+<p>负责顶级域名（如com, org, net, edu和gov）和所有国家级的顶级域名（如cn, uk, fr, ca, jp）</p>
+<ul>
+<li>Network solutions 公司维护com TLD服务器</li>
+<li>Educause公司维护edu TLD服务器</li>
+</ul>
+<p>区域名字服务器维护资源记录</p>
+<ul>
+<li>
+<p>资源记录(resource records)</p>
+<ul>
+<li>作用：维护域名-IP地址(其它)的映射关系</li>
+<li>位置：Name Server的分布式数据库中</li>
+</ul>
+</li>
+<li>
+<p>RR格式: (domain_name, ttl, type,class,Value)</p>
+<ul>
+<li>
+<p>Domain_name: 域名</p>
+</li>
+<li>
+<p>TTL: time to live : 生存时间(权威，缓冲记录)</p>
+<blockquote>
+<p>决定了资源记录应当从缓存中删除的时间</p>
+</blockquote>
+</li>
+<li>
+<p>Class 类别 ：对于Internet，值为IN</p>
+</li>
+<li>
+<p>Value 值：可以是数字，域名或ASCII串</p>
+</li>
+<li>
+<p>Type 类别：资源记录的类型</p>
+<ul>
+<li>Type=A：
+<ul>
+<li>Name为主机</li>
+<li>Value为IP地址</li>
+</ul>
+</li>
+<li>Type=CNAME：
+<ul>
+<li>Name为规范名字的别名（如：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.ibm.com">www.ibm.com</a> <a target="_blank" rel="noopener external nofollow noreferrer" href="http://xn--servereast-xx2p927cdlw040g9fvbnuw.backup2.ibm.com">的规范名字为servereast.backup2.ibm.com</a>）</li>
+<li>value 为规范名字</li>
+</ul>
+</li>
+<li>Type=NS：
+<ul>
+<li>Name域名(<a target="_blank" rel="noopener external nofollow noreferrer" href="http://xn--foo-eo8e.com">如foo.com</a>)</li>
+<li>Value为该域名的权威服务器的域名</li>
+</ul>
+</li>
+<li>Type=MX：
+<ul>
+<li>Value为name对应的邮件服务器的名字</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="DNS工作过程">DNS工作过程</h3>
+<ul>
+<li>
+<p>应用调用解析器(resolver)</p>
+</li>
+<li>
+<p>解析器作为客户向Local Name Server发出查询报文（封装在UDP段中）</p>
+<blockquote>
+<p>解析器如何知道Local Name Server的IP地址：这是提前配置好的</p>
+<p>一台设备上网，必须要具备四个信息：</p>
+<ul>
+<li>主机的IP地址</li>
+<li>所在的子网的子网掩码</li>
+<li>Local Name Server</li>
+<li>Default Gateway（默认网关）：从当前子网将数据传出其他子网</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>Name Server返回响应报文(name/ip)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNDNS%E5%A4%A7%E8%87%B4%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B.png" alt=""></p>
+</li>
+</ul>
+<p>本地名字服务器（Local Name Server）</p>
+<ul>
+<li>
+<p>并不严格属于层次结构</p>
+</li>
+<li>
+<p>每个ISP (居民区的ISP、公司、大学）都有一 个本地DNS服务器（也称为“默认名字服务器”）</p>
+</li>
+<li>
+<p>当一个主机发起一个DNS查询时，查询被送到其本地DNS服务器</p>
+<blockquote>
+<p>起着代理的作用，将查询转发到层次结构中</p>
+</blockquote>
+</li>
+</ul>
+<p>名字解析过程</p>
+<ul>
+<li>目标名字在Local Name Server中
+<ul>
+<li>情况1：查询的名字在该区域内部</li>
+<li>情况2：缓存(cashing)</li>
+</ul>
+</li>
+</ul>
+<p>如果Local Name Server的缓存没有信息</p>
+<ul>
+<li>
+<p>递归查询</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2.png" alt=""></p>
+<p>问题：名字解析负担都放在当前联络的名字服务器上，根服务器的负担太重</p>
+<p>为此出现了迭代查询</p>
+</li>
+<li>
+<p>迭代查询</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E8%BF%AD%E4%BB%A3%E6%9F%A5%E8%AF%A2.png" alt=""></p>
+<blockquote>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://xn--cis-g88dt65i.poly.edu">主机cis.poly.edu</a> 想知道 主机 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://gaia.cs.umass.edu">gaia.cs.umass.edu</a> 的IP地址</p>
+<ul>
+<li>根（及各级域名）服务器返回的不是查询结果，而是下一个NS的地址</li>
+<li>最后由权威名字服务器给出解析结果</li>
+<li>当前联络的服务器给出可以联系的服务器的名字</li>
+<li>“我不知道这个名字，但可以向这个服务器请求”</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="DNS协议、报文">DNS协议、报文</h3>
+<p>如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNDNS%E5%8D%8F%E8%AE%AE%E6%8A%A5%E6%96%87%E4%B8%80.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNDNS%E5%8D%8F%E8%AE%AE%E6%8A%A5%E6%96%87%E4%BA%8C.png" alt=""></p>
+<p>提高性能：缓存</p>
+<ul>
+<li>
+<p>一旦名字服务器学到了一个映射，就将该映射缓存起来</p>
+</li>
+<li>
+<p>根服务器通常都在本地服务器中缓存着（使得根服务器不用经常被访问）</p>
+</li>
+<li>
+<p>目的：提高效率</p>
+</li>
+<li>
+<p>可能存在的问题：如果情况变化，缓存结果和权威资源记录不一致</p>
+<blockquote>
+<p>解决方案：TTL（默认2天）</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="新增域">新增域</h3>
+<ul>
+<li>
+<p>在上级域的名字服务器中增加两条记录，指向这个新增的子域的<strong>域名</strong>和<strong>域名服务器</strong>的地址</p>
+</li>
+<li>
+<p>在新增子域的名字服务器上运行名字服务器，负责本域的名字解析： 名字→IP地址</p>
+<blockquote>
+<p>如：在com域中建立一个“Network Utopia”</p>
+</blockquote>
+</li>
+<li>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://xn--networkutopia-he1va63x07l7qs6z2ekhb685dda4847c0m2g.com">到注册登记机构注册域名networkutopia.com</a></p>
+<ul>
+<li>
+<p>需要向该机构提供权威DNS服务器（基本的、和辅助的）的名字和IP地址</p>
+</li>
+<li>
+<p>登记机构在com TLD服务器中插入两条RR记录:</p>
+<blockquote>
+<p>(<a target="_blank" rel="noopener external nofollow noreferrer" href="http://networkutopia.com">networkutopia.com</a>, <a target="_blank" rel="noopener external nofollow noreferrer" href="http://dns1.networkutopia.com">dns1.networkutopia.com</a>, NS)</p>
+<p>(<a target="_blank" rel="noopener external nofollow noreferrer" href="http://dns1.networkutopia.com">dns1.networkutopia.com</a>, 212.212.212.1, A)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>在networkutopia.com的权威服务器中确保有：</p>
+<ul>
+<li>用于Web服务器的www.networkuptopia.com的类型为A的记录</li>
+<li>用于邮件服务器mail.networkutopia.com的类型为MX的记录</li>
+</ul>
+</li>
+</ul>
+<h3 id="攻击DNS">攻击DNS</h3>
+<p>DDoS 攻击</p>
+<ul>
+<li>对根服务器进行流量轰炸攻击：发送大量ping
+<ul>
+<li>没有成功
+<ul>
+<li>原因１：根目录服务器配置了流量过滤器，防火墙</li>
+<li>原因２：Local DNS 服务器缓存了TLD服务器的IP地址, 因此无需查询根服务器</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>向TLD服务器流量轰炸攻击 ：发送大量查询
+<ul>
+<li>可能更危险</li>
+<li>效果一般，大部分DNS缓存了TLD</li>
+</ul>
+</li>
+</ul>
+<p>重定向攻击</p>
+<ul>
+<li>中间人攻击
+<ul>
+<li>截获查询，伪造回答，从而攻击某个（DNS回答指定的IP）站点</li>
+</ul>
+</li>
+<li>DNS中毒
+<ul>
+<li>发送伪造的应答给DNS服务器，希望它能够缓存这个虚假的结果</li>
+</ul>
+</li>
+<li>技术上较困难：分布式截获和伪造利用DNS基础设施进行DDoS</li>
+<li>伪造某个IP进行查询，攻击这个目标IP</li>
+<li>查询放大，响应报文比查询报文大</li>
+<li>效果有限</li>
+</ul>
+<blockquote>
+<p>总体来讲：DNS是比较健壮的。</p>
+</blockquote>
+<h2 id="P2P应用">P2P应用</h2>
+<p>前面介绍过，任何节点即是服务器，又是客户端。</p>
+<ul>
+<li>没有（或极少）一直运行的服务器</li>
+<li>任意端系统都可以直接通信</li>
+<li>利用peer的服务能力</li>
+<li>Peer节点间歇上网，每次IP地址都有可能变化</li>
+<li>例子：
+<ul>
+<li>文件分发 (BitTorrent)</li>
+<li>流媒体(KanKan)</li>
+<li>VoIP (Skype)</li>
+</ul>
+</li>
+</ul>
+<h3 id="P2P文件传输">P2P文件传输</h3>
+<p>这一部分我们将C/S模式和P2P模式的文件分发对比来看：</p>
+<ul>
+<li>
+<p>文件分发时间：C/S模式</p>
+<ul>
+<li>服务器传输： 都是由服务器发送给peer，服务器必须顺序传输（上载）N个文件拷贝:
+<ul>
+<li>发送一个copy: F/u<sub>s</sub></li>
+<li>发送N个copy： NF/u<sub>s</sub></li>
+</ul>
+</li>
+<li>客户端: 每个客户端必须下载一个文件拷贝
+<ul>
+<li>d<sub>min</sub> = 客户端最小的下载速率</li>
+<li>下载带宽最小的客户端下载的时间：F/d<sub>min</sub></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>采用C/S方法将一个F大小的文件分发给N个客户端耗时：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>D</mi><mrow><mi>C</mi><mi mathvariant="normal">/</mi><mi>S</mi></mrow></msub><mo>≥</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>N</mi><mi>F</mi><mi mathvariant="normal">/</mi><msub><mi>u</mi><mi>s</mi></msub><mo separator="true">,</mo><mi>F</mi><mi mathvariant="normal">/</mi><msub><mi>d</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D_{C/S} \ge \max(NF/u_s,F/d_{min})
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.03853em;vertical-align:-0.3551999999999999em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="mord mtight">/</span><span class="mord mathnormal mtight" style="margin-right:0.05764em;">S</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">NF</span><span class="mord">/</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord">/</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">min</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<ul>
+<li>当客户端数量很少时，影响传输时间的瓶颈是客户端的下载速率；</li>
+<li>当客户端数量很多时，影响传输时间的瓶颈是服务器端的上载速率。</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>文件分发时间：P2P模式</p>
+<ul>
+<li>
+<p>服务器传输：最少需要上载一份拷贝</p>
+<ul>
+<li>发送一个拷贝的时间：F/u<sub>s</sub></li>
+</ul>
+</li>
+<li>
+<p>客户端: 每个客户端必须下载一个拷贝</p>
+<ul>
+<li>最小下载带宽客户单耗时：: F/d<sub>min</sub></li>
+</ul>
+</li>
+<li>
+<p>客户端: 所有客户端总体下载量NF</p>
+<ul>
+<li>
+<p>最大上载带宽是：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>u</mi><mi>s</mi></msub><mo>+</mo><munder><mo>∑</mo><mrow></mrow></munder><msub><mi>u</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">u_s + \sum_{} u_i
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.3000100000000003em;vertical-align:-1.250005em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8999949999999999em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"></span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.250005em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+</li>
+<li>
+<p>除了服务器可以上载，其他所有的peer节点都可以上载</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>采用P2P方法 将一个F大小的文件分发给N个客户端耗时:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>D</mi><mrow><mi>P</mi><mn>2</mn><mi>P</mi></mrow></msub><mo>≥</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>F</mi><mi mathvariant="normal">/</mi><msub><mi>u</mi><mi>s</mi></msub><mo separator="true">,</mo><mi>F</mi><mi mathvariant="normal">/</mi><msub><mi>d</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub><mo separator="true">,</mo><mi>N</mi><mi>F</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><msub><mi>u</mi><mi>s</mi></msub><mo>+</mo><mo>∑</mo><mrow></mrow><msub><mi>u</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">D_{P2P} \ge \max(F/u_s, F/d_{min}, NF/(u_s + \sum{}u_i))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="mord mtight">2</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord">/</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord">/</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">min</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">NF</span><span class="mord">/</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.6000100000000002em;vertical-align:-0.55001em;"></span><span class="mop op-symbol large-op" style="position:relative;top:-0.000004999999999977245em;">∑</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">))</span></span></span></span></span></p>
+<p>随着客户端的数量增多，P2P模式的优势就体现出来了：客户端数量越多，较C/S模式节约的时间就越多。</p>
+</blockquote>
+</li>
+</ul>
+<p>下图比较直观的给出二者的对比：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%96%87%E4%BB%B6%E5%88%86%E5%8F%91%E4%B8%8B%E8%BD%BD%E5%AF%B9%E6%AF%94.png" alt=""></p>
+<blockquote>
+<p>P2P文件共享的例子：</p>
+<ul>
+<li>Alice在其笔记本电脑上运行P2P客户端程序</li>
+<li>间歇性地连接到Internet，每次从其ISP得到新的IP地址</li>
+<li>请求“双截棍.MP3”</li>
+<li>应用程序显示其他有“ 双截棍.MP3” 拷贝的对等方</li>
+<li>Alice选择其中一个对等方， 如Bob.</li>
+<li>文件从Bob’s PC传送到Alice的笔记本上：HTTP</li>
+<li>当Alice下载时，其他用户也可以从Alice处下载</li>
+<li>Alice的对等方既是一个Web客户端，也是一个瞬时Web服务器</li>
+</ul>
+</blockquote>
+<p>从以上例子我们会思考，P2P文件共享需要解决以下问题：</p>
+<ul>
+<li>
+<p>如何定位所需资源</p>
+</li>
+<li>
+<p>如何处理对等方的加入与离开</p>
+<blockquote>
+<p>可能的方案：</p>
+<ul>
+<li>集中式目录</li>
+<li>完全分布式</li>
+<li>混合体</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="P2P：集中式目录">P2P：集中式目录</h3>
+<p>最初的“Napster”设计：</p>
+<ul>
+<li>
+<p>当对等方连接时，它告知中心服务器：</p>
+<ul>
+<li>IP地址</li>
+<li>内容</li>
+</ul>
+</li>
+<li>
+<p>Alice查询 “双截棍 .MP3”</p>
+</li>
+<li>
+<p>Alice从Bob处请求文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E9%9B%86%E4%B8%AD%E5%BC%8F%E7%9B%AE%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8.png" alt=""></p>
+<blockquote>
+<p>集中式目录存在的问题：</p>
+<ul>
+<li>单点故障</li>
+<li>性能瓶颈</li>
+<li>侵犯版权</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="P2P：查询洪泛（Gnutella）">P2P：查询洪泛（Gnutella）</h3>
+<ul>
+<li>全分布式（没有中心服务器）</li>
+<li>开放文件共享协议</li>
+<li>许多Gnutella客户端实现了Gnutella协议（类似HTTP有许多的浏览器）</li>
+<li>覆盖网络：图
+<ul>
+<li>如果X和Y之间有一个TCP连接，则二者之间存在一条边</li>
+<li>所有活动的对等方和边就是覆盖网络</li>
+<li>边并不是物理链路</li>
+<li>给定一个对等方，通常所连接的节点少于10个</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Gnutella：协议</p>
+<ul>
+<li>
+<p>在已有的TCP连接上发送查询报文</p>
+</li>
+<li>
+<p>对等方转发查询报文</p>
+</li>
+<li>
+<p>以反方向返回查询命中报文</p>
+</li>
+<li>
+<p>“泛洪”：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%B3%9B%E6%B4%AA.png" alt=""></p>
+</li>
+</ul>
+<p>Gnutella：对等方加入</p>
+<ol>
+<li>对等方X必须首先发现某些已经在覆盖网络中的其他对等方：使用可用对等方列表
+<ul>
+<li>自己维持一张对等方列表（经常开机的对等方的IP）</li>
+<li>联系维持列表的Gnutella站点</li>
+</ul>
+</li>
+<li>X接着试图与该列表上的对等方建立TCP连接，直到与某个对等方Y建立连接</li>
+<li>X向Y发送一个Ping报文，Y转发该Ping报文</li>
+<li>所有收到Ping报文的对等方以Pong报文响应
+<ul>
+<li>IP地址、共享文件的数量及总字节数</li>
+</ul>
+</li>
+<li>X收到许多Pong报文，然后它能建立其他TCP连接</li>
+</ol>
+<p>当节点离开时，会向“邻居”发送消息：“我走啦”，于是其他的节点会再次以以上的方式添加一个新的节点，维持连接强度。</p>
+<p>但是Gnutella实际效果并不好。</p>
+</blockquote>
+<h3 id="P2P：利用不匀称性（KaZaA）">P2P：利用不匀称性（KaZaA）</h3>
+<ul>
+<li>
+<p>每个对等方要么是一个 组长，要么隶属于一个组长</p>
+<ul>
+<li>对等方与其组长之间有TCP连接</li>
+<li>组长对之间有TCP连接</li>
+</ul>
+</li>
+<li>
+<p>组长跟踪其所有的孩子的内容</p>
+</li>
+<li>
+<p>组长与其他组长联系：</p>
+<ul>
+<li>转发查询到其他组长</li>
+<li>获得其他组长的数据拷贝</li>
+</ul>
+<blockquote>
+<p>组的成员向组长发出一个查询，如果组内有，组长会告知该节点：“咱们组里有，你去向XXX请求吧。”；如果组内没有，那么该组长会向其他组长发出查询。</p>
+<ul>
+<li>在组内的层面是集中式的</li>
+<li>在组长的层面是分布式的</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>KaZaA：查询</p>
+<ul>
+<li>每个文件有一个散列标识码和一个描述符</li>
+<li>客户端向其组长发送关键字查询</li>
+<li>组长用匹配进行响应：
+<ul>
+<li>对每个匹配：元数据、散列标识码和IP地址</li>
+</ul>
+</li>
+<li>如果组长将查询转发给其他组长，其他组长也以匹配进行响应</li>
+<li>客户端选择要下载的文件
+<ul>
+<li>向拥有文件的对等方发送一个带散列标识码的HTTP请求</li>
+</ul>
+</li>
+</ul>
+<p>KaZaA小技巧</p>
+<ul>
+<li>请求排队
+<ul>
+<li>限制并行上载的数量</li>
+<li>确保每个被传输的文件从上载节点接收一定量的带宽</li>
+</ul>
+</li>
+<li>激励优先权
+<ul>
+<li>鼓励用户上载文件</li>
+<li>加强系统的扩展性</li>
+</ul>
+</li>
+<li>并行下载
+<ul>
+<li>HTTP的字节范围首部</li>
+<li>更快地检索一个文件</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="比特洪流（BitTorrent）">比特洪流（BitTorrent）</h3>
+<blockquote>
+<p>Peer如果想参与到文件传输需要加入到“洪流”（指一些Peer节点的列表和它们之间服务与被服务的关系）当中。</p>
+<p>以学习小组为例会比较形象的描述文件传输的过程：假设一门课程的内容被分为很多小的知识点，这些知识点被分发在学习小组当中，那么节点与节点之间可以相互通信，共享这些知识点，从而使每个节点都学习到所有的知识点，掌握整门课程内容。</p>
+<p>课程内容就是一个大型文件，知识点就是被划分为的一个个块（256KB）。</p>
+<p>那么我们开始思考，各个节点如何知晓其他节点需要哪些块呢？</p>
+<p>这里就会提出一个概念：bit map。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNbitmap.png" alt=""></p>
+<p>我们可以用很小的位去标识整个文件中所有块的有无情况：1表示有；0表示无。这样构成一个一一映射的关系。</p>
+<p>洪流中的节点会定期互相交换自己的bit map，从而就知晓了其他节点拥有块的情况。</p>
+<p>一开始新加入的节点没有任何块，它会随机的访问其他节点获取块，当获取到四个块之后，就会改变获取策略：优先请求稀缺的块。</p>
+<p>简单分析一下这种思想：节点优先获取稀缺的块，从而其他节点就会不断访问该节点，该节点从其他节点不断地获取更好的服务，同时也可以向其他节点提供更好的服务。</p>
+</blockquote>
+<ul>
+<li>
+<p>文件被分为一个个块256KB</p>
+</li>
+<li>
+<p>网络中的这些peers发送接收文件块，相互服务</p>
+</li>
+<li>
+<p><strong>tracker</strong>:跟踪torrent中参与节点</p>
+</li>
+<li>
+<p>Torrent（洪流）: 节点的组，之间交换文件块</p>
+<blockquote>
+<p>例：Alice加入到网络中，首先需要从从跟踪服务器处获得peer节点列表， 然后开始和torrent中的peer节点交换块。</p>
+<blockquote>
+<p>Peer如何加入torrent：</p>
+<ul>
+<li>一开始没有块，但是将会通过其他节点处累积文件块</li>
+<li>向跟踪服务器注册，获得peer节点列表，和部分peer节点构成邻居关系 (“连接 ”)</li>
+</ul>
+</blockquote>
+<ul>
+<li>当peer下载时，该peer可以同时向其他节点提供上载服务</li>
+<li>Peer可能会变换用于交换块的peer节点</li>
+<li>扰动churn: peer节点可能会上线或者下线</li>
+<li>一旦一个peer拥有整个文件，它会（自私的）离开或者保 留（利他主义）在torrent中</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>请求块</p>
+<ul>
+<li>在任何给定时间，不同peer节点拥有一个文件块的子集</li>
+<li>周期性的，Alice节点向邻居询问他们拥有哪些块的信息</li>
+<li>Alice向peer节点请求它希望的块，稀缺的块</li>
+</ul>
+<p>发送块（一报还一报 tit-for-tat）</p>
+<p>Alice向4个peer发送块，这些块向它自己提供最大带宽的服务</p>
+<ul>
+<li>其他peer被Alice阻塞 (将不会从Alice处获得服务)</li>
+<li>每10秒重新评估一次：前4位</li>
+</ul>
+<p>每个30秒：随机选择其他peer节点，向这个节点发送块</p>
+<ul>
+<li>“优化疏通” 这个节点</li>
+<li>新选择的节点可以加入这个top 4</li>
+</ul>
+<h2 id="CDN（Content-Distribution-Networks）">CDN（Content Distribution Networks）</h2>
+<p>视频业务属于互联网“杀手级”应用（占用流量多，而且吸引用户）的一种。据统计，目前视频流量占据着互联网大部分的带宽（七、八成甚至更多）。如何向成千上万的用户提供并行的视频服务是一个比较大的挑战。</p>
+<p>我们可以将视频认为是固定速度显示的图像序列。（例：24 images/sec）</p>
+<p>网络视频特点：</p>
+<ul>
+<li>高码率：&gt;10x于音频,高的网络带宽需求</li>
+<li>可以被压缩</li>
+<li>90%以上的网络流量是视频</li>
+</ul>
+<p>数字化图像：像素的阵列</p>
+<ul>
+<li>每个像素被若干bits表示</li>
+</ul>
+<p>编码：使用图像内和图像间的冗余来降低编码的比特数</p>
+<ul>
+<li>
+<p>空间冗余（图像内）</p>
+</li>
+<li>
+<p>时间冗余（相邻的图像间）</p>
+<blockquote>
+<p>实际上在传输的时候只需要把画面动起来的部分传输就好。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>CBR: (constant bit rate): 以固定速率编码</li>
+<li>VBR: (variable bit rate): 视频编码速率随时间的变化而变化</li>
+</ul>
+</blockquote>
+<h3 id="存储视频的流化服务：">存储视频的流化服务：</h3>
+<p>视频服务可以通过像文件下载一样的方式将所有数据下载到本地，再进行观看，但这样时间成本太大。流化服务指的是，会有一个缓冲区，可以实现一边下载一边播放的效果。可以极大地减少用户的等待时间。</p>
+<p>多媒体流化服务：DASH</p>
+<p>DASH: Dynamic Adaptive Streaming over HTTP（动态自适应流化）</p>
+<blockquote>
+<p>自适应：一个完整的视频被切分成一块一块的小部分（可维持几秒钟的播放），每个部分会处理成不同的解析度（处理成不同的编码标准）。所以在流媒体服务器中会包含一个视频的很多版本。</p>
+</blockquote>
+<ul>
+<li>服务器：
+<ul>
+<li>将视频文件分割成多个块</li>
+<li>每个块独立存储，编码于不同码率（8-10种）</li>
+<li>告示文件（manifest file）: 提供不同块的URL</li>
+</ul>
+</li>
+<li>客户端：
+<ul>
+<li>先获取告示文件</li>
+<li>周期性地测量服务器到客户端的带宽</li>
+<li>查询告示文件,在一个时刻请求一个块，HTTP头部指定字节范围
+<ul>
+<li>如果带宽足够，选择最大码率的视频块</li>
+<li>会话中的不同时刻，可以切换请求不同的编码块 (取决于当时的可用带宽)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>“智能”客户端: 客户端自适应决定
+<ul>
+<li>什么时候去请求块 ：不至于缓存挨饿，或者溢出</li>
+<li>请求什么编码速率的视频块 ：当带宽够用时，请求高质量的视频块)</li>
+<li>哪里去请求块 ：可以向离自己近的服务器发送URL，或者向高可用带宽的服务器请求)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>服务器如何通过网络向上百万用户同时流化视频内容 (上百万视频内容)?</p>
+<ul>
+<li>选择一：单个的、大的超级服务中心“megaserver”
+<ul>
+<li>服务器到客户端路径上跳数较多，瓶颈链路的带宽小导致停顿</li>
+<li>“二八规律”决定了网络同时充斥着同一个视频的多个拷贝，效率低（付费高、带宽浪费、效果差）</li>
+<li>单点故障点，性能瓶颈</li>
+<li>周边网络的拥塞</li>
+<li>评价：相当简单，但是这个方法不可扩展</li>
+</ul>
+</li>
+<li>选择二：通过CDN，全网部署缓存节点，存储服务内容，就近为用户提供服务，提高用户体验
+<ul>
+<li>enter deep: 将CDN服务器深入到许多接入网
+<ul>
+<li>更接近用户，数量多，离用户近，管理困难</li>
+<li>Akamai, 1700个位置</li>
+</ul>
+</li>
+<li>bring home: 部署在少数(10个左右)关键位置，如将服务器簇安装于POP附近（离若干1stISP POP较近）
+<ul>
+<li>采用租用线路将服务器簇连接起来</li>
+<li>Limelight</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>CDN：在CDN节点中存储内容的多个拷贝</p>
+<blockquote>
+<p>工作原理：向提供流媒体服务的运营商提供CDN服务，CDN在全球的网络中部署了很多的缓存节点，把一些内容预先的部署在缓存节点中。用户访问时通过域名解析的重定向，定向到离他最近，提供服务质量最好的缓存节点，由这些缓存节点向他提供服务。</p>
+</blockquote>
+<p>用户从CDN中请求内容：</p>
+<ul>
+<li>重定向到最近的拷贝，请求内容</li>
+<li>如果网络路径拥塞，可能选择不同的拷贝</li>
+</ul>
+<p>下面看一个具体图例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNCDN%E5%9B%BE%E4%BE%8B.png" alt=""></p>
+<h2 id="TCP套接字编程">TCP套接字编程</h2>
+<h3 id="Socket编程">Socket编程</h3>
+<p>Socket: 分布式应用进程之间的门，传输层协议提供的端到端服务接口。</p>
+<blockquote>
+<p>套接字：应用进程与端到端传输协议（TCP或UDP）之间的门户。</p>
+</blockquote>
+<p>应用进程使用传输层提供的服务才能够交换报文，实现应用协议，实现应用。</p>
+<p>TCP/IP：应用进程使用Socket API访问传输服务</p>
+<ul>
+<li>地点：界面上的SAP(Socket）</li>
+<li>方式：Socket API</li>
+</ul>
+<p>2种传输层服务的socket类型：</p>
+<ul>
+<li>TCP: 可靠的、字节流的服务</li>
+<li>UDP: 不可靠（数据UDP数据报）服务</li>
+</ul>
+<h3 id="TCP套接字编程-2">TCP套接字编程</h3>
+<p>服务器首先运行，等待连接建立：</p>
+<ul>
+<li>服务器进程必须先处于运行状态
+<ul>
+<li>创建欢迎socket</li>
+<li>和本地端口捆绑</li>
+<li>在欢迎socket上阻塞式等待接收用户的连接</li>
+</ul>
+</li>
+<li>服务器接受来自用户端的请求，解除阻塞式等待，返回一个新的socket（与欢迎socket不一样），与客户端通信
+<ul>
+<li>允许服务器与多个客户端通信</li>
+<li>使用源IP和源端口来区分不同的客户端</li>
+</ul>
+</li>
+</ul>
+<p>客户端主动和服务器建立连接：</p>
+<ul>
+<li>创建客户端本地套接字（隐式捆绑到本地port）
+<ul>
+<li>指定服务器进程的IP地址和端口号，与服务器进程连接</li>
+</ul>
+</li>
+<li>连接API调用有效时，客户端P与服务器建立了TCP连接</li>
+</ul>
+<blockquote>
+<p>从应用程序的角度：</p>
+<p>TCP在客户端和服务器进程之间提供了可靠的、字节流（管道）服务</p>
+</blockquote>
+<blockquote>
+<p>C/S模式的应用样例:</p>
+<ol>
+<li>
+<p>客户端从标准输入装置读取一行字符，发送给服务器</p>
+</li>
+<li>
+<p>服务器从socket读取字符</p>
+</li>
+<li>
+<p>服务器将字符转换成大写，然后返回给客户端</p>
+</li>
+<li>
+<p>客户端从socket中读取一行字符，然后打印出来</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B.png" alt=""></p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>这里我们补充两个结构体：</p>
+<ul>
+<li>
+<p>数据结构 sockaddr_in</p>
+<p>IP地址和port捆绑关系的数据结构（标示进程的端节点）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">short</span> sin_familt;    <span class="comment">//地址簇</span></span><br><span class="line">    u_shout sin_port;    <span class="comment">//port端口</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">sin_addr</span>;</span>    <span class="comment">//IP地址</span></span><br><span class="line">    <span class="keyword">char</span> sin_zero[<span class="number">8</span>];    <span class="comment">//对齐</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>数据结构 hostent</p>
+<p>域名和IP地址的数据结构</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">hostent</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> *h_name;    <span class="comment">//主机域名</span></span><br><span class="line">    <span class="keyword">char</span> **h_aliases;    <span class="comment">//域名的别名</span></span><br><span class="line">    <span class="keyword">int</span> h_length;    <span class="comment">//地址长度</span></span><br><span class="line">    <span class="keyword">char</span> **h_addr_list;    <span class="comment">//IP地址列表</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> h_addr h_addr_list[0];</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>作为调用域名解析函数时的参数</p>
+<p>返回后，将IP地址拷贝到 sockaddr_in的IP地址部分</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<h2 id="UDP套接字编程">UDP套接字编程</h2>
+<p>UDP: 在客户端和服务器之间没有连接。</p>
+<ul>
+<li>没有握手</li>
+<li>发送端在每一个报文中明确地指定目标的IP地址和端口号</li>
+<li>服务器必须从收到的分组中提取出发送端的IP地址和端口号</li>
+</ul>
+<p>UDP: 传送的数据可能乱序，也可能丢失。</p>
+<blockquote>
+<p>进程视角看UDP服务：</p>
+<p>UDP 为客户端和服务器提供不可靠的字节组的传送服务。</p>
+</blockquote>
+<h3 id="UDP套接字编程-2">UDP套接字编程</h3>
+<blockquote>
+<p>C/S模式的应用样例:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNUDP%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B.png" alt=""></p>
+</blockquote>
+<hr>
+<h1>后记</h1>
+<p>本篇已完结</p>
+<p>（如有补充或错误，欢迎评论区留言）</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/wechat.png" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/alipay.jpg" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/07/15/计算机网络/计算机网络学习笔记-链路层/" title="计算机网络学习笔记-链路层"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-15</div><div class="title">计算机网络学习笔记-链路层</div></div></a></div><div><a href="/2021/03/28/计算机网络/计算机网络学习笔记/" title="计算机网络学习笔记"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-28</div><div class="title">计算机网络学习笔记</div></div></a></div><div><a href="/2021/05/10/计算机网络/计算机网络学习笔记-传输层/" title="计算机网络学习笔记-传输层"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-10</div><div class="title">计算机网络学习笔记-传输层</div></div></a></div><div><a href="/2021/03/09/计算机网络/计算机网络学习笔记-计算机网络概述/" title="计算机网络学习笔记--计算机网络概述"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-09</div><div class="title">计算机网络学习笔记--计算机网络概述</div></div></a></div><div><a href="/2021/06/08/计算机网络/计算机网络学习笔记-网络层/" title="计算机网络学习笔记-网络层"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-08</div><div class="title">计算机网络学习笔记-网络层</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Twikoo</span><span class="switch-btn"></span><span class="second-comment">Valine</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">花猪</div><div class="author-info__description">此站点就暂时停留在秋天了吧</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">86</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/CNhuazhu"><i class="fab fa-github"></i><span>我的github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/CNhuazhu" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">花猪在此欢迎您光临小破站 (՞•Ꙫ•՞) <br><b>此站点已暂停更新！！！！</b><br><br>  <b><i>本站已部署至云服务器👇</i></b>：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top">http://cnhuazhu.top</a> <br><br>  <b><i>github地址（暂停更新）</i></b>：<a href="https://cnhuazhu.github.io/">https://cnhuazhu.github.io/</a> <br> <b><i>码云地址（暂停更新）</i></b>：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://cnhuazhu.gitee.io">https://cnhuazhu.gitee.io</a> <br><br>  本站主题：Butterfly 3.7.8 <br> <img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/pig.gif"></div><timing></timing></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">第二章：应用层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86%EF%BC%88Principles-of-network-applications%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">应用层协议原理（Principles of network applications）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7-%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88C-S%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.1.</span> <span class="toc-text">客户-服务器（C&#x2F;S）体系结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E7%AD%89%E4%BD%93%EF%BC%88P2P%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.2.</span> <span class="toc-text">对等体（P2P）体系结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-S%E5%92%8CP2P%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E7%9A%84%E6%B7%B7%E5%90%88%E4%BD%93"><span class="toc-number">2.1.3.</span> <span class="toc-text">C&#x2F;S和P2P体系结构的混合体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1%EF%BC%88Processes-communicating%EF%BC%89"><span class="toc-number">2.1.4.</span> <span class="toc-text">进程通信（Processes communicating）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket%EF%BC%88%E5%A5%97%E6%8E%A5%E5%AD%97%EF%BC%89"><span class="toc-number">2.1.5.</span> <span class="toc-text">Socket（套接字）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-and-HTTP"><span class="toc-number">2.2.</span> <span class="toc-text">Web and HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%EF%BC%88hypertext-transfer-protocol%EF%BC%89%EF%BC%9A%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.2.1.</span> <span class="toc-text">HTTP（hypertext transfer protocol）：超文本传输协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="toc-number">2.2.2.</span> <span class="toc-text">响应时间模型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E6%8A%A5%E6%96%87"><span class="toc-number">2.2.3.</span> <span class="toc-text">HTTP报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8A%B6%E6%80%81%EF%BC%9Acookies"><span class="toc-number">2.2.4.</span> <span class="toc-text">用户-服务器状态：cookies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-caches%EF%BC%88proxy-server%EF%BC%89%E7%BC%93%E5%AD%98%EF%BC%88%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%89"><span class="toc-number">2.2.5.</span> <span class="toc-text">Web caches（proxy server）缓存（代理服务器）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Short-URL"><span class="toc-number">2.2.6.</span> <span class="toc-text">Short URL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FTP%EF%BC%88%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">FTP（文件传输协议）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Electronic-mail%EF%BC%88Email%EF%BC%89"><span class="toc-number">2.4.</span> <span class="toc-text">Electronic mail（Email）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%EF%BC%88Email%EF%BC%89%E7%9A%84%E4%B8%89%E4%B8%AA%E4%B8%BB%E8%A6%81%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-number">2.4.1.</span> <span class="toc-text">电子邮件（Email）的三个主要组成部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%AE%E4%BB%B6%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.4.2.</span> <span class="toc-text">邮件报文格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%AE%E4%BB%B6%E8%AE%BF%E9%97%AE%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.4.3.</span> <span class="toc-text">邮件访问协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS-Domain-Name-System"><span class="toc-number">2.5.</span> <span class="toc-text">DNS(Domain Name System)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS%E5%90%8D%E5%AD%97%E7%A9%BA%E9%97%B4"><span class="toc-number">2.5.1.</span> <span class="toc-text">DNS名字空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D-IP%E5%9C%B0%E5%9D%80%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.5.2.</span> <span class="toc-text">域名-IP地址的转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-number">2.5.3.</span> <span class="toc-text">DNS工作过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS%E5%8D%8F%E8%AE%AE%E3%80%81%E6%8A%A5%E6%96%87"><span class="toc-number">2.5.4.</span> <span class="toc-text">DNS协议、报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%A2%9E%E5%9F%9F"><span class="toc-number">2.5.5.</span> <span class="toc-text">新增域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BBDNS"><span class="toc-number">2.5.6.</span> <span class="toc-text">攻击DNS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#P2P%E5%BA%94%E7%94%A8"><span class="toc-number">2.6.</span> <span class="toc-text">P2P应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#P2P%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93"><span class="toc-number">2.6.1.</span> <span class="toc-text">P2P文件传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2P%EF%BC%9A%E9%9B%86%E4%B8%AD%E5%BC%8F%E7%9B%AE%E5%BD%95"><span class="toc-number">2.6.2.</span> <span class="toc-text">P2P：集中式目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2P%EF%BC%9A%E6%9F%A5%E8%AF%A2%E6%B4%AA%E6%B3%9B%EF%BC%88Gnutella%EF%BC%89"><span class="toc-number">2.6.3.</span> <span class="toc-text">P2P：查询洪泛（Gnutella）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2P%EF%BC%9A%E5%88%A9%E7%94%A8%E4%B8%8D%E5%8C%80%E7%A7%B0%E6%80%A7%EF%BC%88KaZaA%EF%BC%89"><span class="toc-number">2.6.4.</span> <span class="toc-text">P2P：利用不匀称性（KaZaA）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E7%89%B9%E6%B4%AA%E6%B5%81%EF%BC%88BitTorrent%EF%BC%89"><span class="toc-number">2.6.5.</span> <span class="toc-text">比特洪流（BitTorrent）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CDN%EF%BC%88Content-Distribution-Networks%EF%BC%89"><span class="toc-number">2.7.</span> <span class="toc-text">CDN（Content Distribution Networks）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E8%A7%86%E9%A2%91%E7%9A%84%E6%B5%81%E5%8C%96%E6%9C%8D%E5%8A%A1%EF%BC%9A"><span class="toc-number">2.7.1.</span> <span class="toc-text">存储视频的流化服务：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B"><span class="toc-number">2.8.</span> <span class="toc-text">TCP套接字编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket%E7%BC%96%E7%A8%8B"><span class="toc-number">2.8.1.</span> <span class="toc-text">Socket编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B-2"><span class="toc-number">2.8.2.</span> <span class="toc-text">TCP套接字编程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B"><span class="toc-number">2.9.</span> <span class="toc-text">UDP套接字编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B-2"><span class="toc-number">2.9.1.</span> <span class="toc-text">UDP套接字编程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">后记</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/02/NodeJS/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAexpress%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="快速搭建一个express服务器"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Node_Express_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="快速搭建一个express服务器"/></a><div class="content"><a class="title" href="/2021/11/02/NodeJS/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAexpress%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="快速搭建一个express服务器">快速搭建一个express服务器</a><time datetime="2021-11-02T00:39:53.000Z" title="发表于 2021-11-02 08:39:53">2021-11-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/28/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Nginx-uWSGI-Flask%E9%83%A8%E7%BD%B2%E8%87%B3Ubuntu/" title="Nginx+uWSGI+Flask部署至Ubuntu"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Ubuntu_Server_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx+uWSGI+Flask部署至Ubuntu"/></a><div class="content"><a class="title" href="/2021/10/28/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Nginx-uWSGI-Flask%E9%83%A8%E7%BD%B2%E8%87%B3Ubuntu/" title="Nginx+uWSGI+Flask部署至Ubuntu">Nginx+uWSGI+Flask部署至Ubuntu</a><time datetime="2021-10-28T03:01:09.000Z" title="发表于 2021-10-28 11:01:09">2021-10-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/18/Xftp%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="Xftp传输文件失败解决方案"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Xftp_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Xftp传输文件失败解决方案"/></a><div class="content"><a class="title" href="/2021/10/18/Xftp%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="Xftp传输文件失败解决方案">Xftp传输文件失败解决方案</a><time datetime="2021-10-18T09:50:16.000Z" title="发表于 2021-10-18 17:50:16">2021-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E7%BB%AD%EF%BC%89%E2%80%94%E2%80%94%E5%BB%BA%E7%AB%8B%E5%BC%95%E5%AF%BC%E9%A1%B5%E5%8F%8A%E5%88%86%E7%AB%99/" title="Hexo部署至服务器（续）——建立引导页及分站"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Ubuntu_Server_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo部署至服务器（续）——建立引导页及分站"/></a><div class="content"><a class="title" href="/2021/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E7%BB%AD%EF%BC%89%E2%80%94%E2%80%94%E5%BB%BA%E7%AB%8B%E5%BC%95%E5%AF%BC%E9%A1%B5%E5%8F%8A%E5%88%86%E7%AB%99/" title="Hexo部署至服务器（续）——建立引导页及分站">Hexo部署至服务器（续）——建立引导页及分站</a><time datetime="2021-10-13T13:49:12.000Z" title="发表于 2021-10-13 21:49:12">2021-10-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/12/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu-20-04%EF%BC%89/" title="Hexo部署至服务器（Ubuntu 20.04）"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Ubuntu_Server_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo部署至服务器（Ubuntu 20.04）"/></a><div class="content"><a class="title" href="/2021/10/12/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu-20-04%EF%BC%89/" title="Hexo部署至服务器（Ubuntu 20.04）">Hexo部署至服务器（Ubuntu 20.04）</a><time datetime="2021-10-12T07:13:40.000Z" title="发表于 2021-10-12 15:13:40">2021-10-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 By 花猪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://beian.miit.gov.cn/">蜀ICP备2021026748号</a><br>感谢光临<a target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/" style="text-decoration:underline">小破站</a>,欢迎您提出宝贵的意见！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})
+setTimeout(function(){preloader.endLoading();}, 3000);</script></div><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'hexo-1g41404w9f800e94',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'hexo-1g41404w9f800e94',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'VHoX95KsBQSMyzEc3TdpmBkF-MdYXbMMI',
+      appKey: 'qnwObDMbgMEKnu1Gp8tk7PYJ',
+      placeholder: '欢迎留下你的评论（昵称和邮箱为必填项）',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Twikoo' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script src="/js/ip_content.js"></script><script src="/js/timing.js"></script><script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js"></script><script src="/js/footer.js"></script><script src="/js/ginkgo-leaf.js"></script><script id="canvas_nest" defer="defer" color="0,0,0" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="pjax-reload"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInLeft');
+    arr[i].setAttribute('data-wow-duration', '600ms');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '100');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInRightBig');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer="defer" src="https://cdn.jsdelivr.net/gh/graingert/wow@1.3.0/dist/wow.min.js"></script><script defer="defer" src="/js/wow_init.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+                        function butterfly_swiper_injector_config(){
+                          var parent_div_git = document.getElementById('recent-posts');
+                          var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/Hexo魔改/Hexo魔改记录/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage4.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/Hexo魔改/Hexo魔改记录/" alt="">Hexo魔改记录</a><div class="blog-slider__text">Hexo魔改记录</div><a class="blog-slider__button" href="2021/03/28/Hexo魔改/Hexo魔改记录/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/08/02/Vue/Vue学习笔记/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage5.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-08-02</span><a class="blog-slider__title" href="2021/08/02/Vue/Vue学习笔记/" alt="">Vue学习笔记</a><div class="blog-slider__text">本文将介绍Vue的基础语法</div><a class="blog-slider__button" href="2021/08/02/Vue/Vue学习笔记/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/Java/Java学习记录/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage8.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/Java/Java学习记录/" alt="">Java学习记录</a><div class="blog-slider__text">Java学习记录</div><a class="blog-slider__button" href="2021/03/28/Java/Java学习记录/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/操作系统/操作系统学习笔记/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage7.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/操作系统/操作系统学习笔记/" alt="">操作系统学习笔记</a><div class="blog-slider__text">记录操作系统学习历程</div><a class="blog-slider__button" href="2021/03/28/操作系统/操作系统学习笔记/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/计算机网络/计算机网络学习笔记/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage3.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/计算机网络/计算机网络学习笔记/" alt="">计算机网络学习笔记</a><div class="blog-slider__text">记录计算机网络学习历程</div><a class="blog-slider__button" href="2021/03/28/计算机网络/计算机网络学习笔记/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+                          console.log('已挂载butterfly_swiper')
+                          // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                          parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+                          }
+                        if( document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+                        butterfly_swiper_injector_config()
+                        }
+                      </script><script defer src="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/tororo.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":0,"vOffset":-105},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body></html>

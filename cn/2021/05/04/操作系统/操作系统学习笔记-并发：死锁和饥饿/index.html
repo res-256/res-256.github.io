@@ -1,0 +1,700 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>操作系统学习笔记-并发：死锁和饥饿 | 花猪のBlog</title><meta name="keywords" content="操作系统"><meta name="author" content="花猪,2296412185@qq.com"><meta name="copyright" content="花猪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录操作系统学习历程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统学习笔记-并发：死锁和饥饿">
+<meta property="og:url" content="https://cnhuazhu.github.io/2021/05/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91%EF%BC%9A%E6%AD%BB%E9%94%81%E5%92%8C%E9%A5%A5%E9%A5%BF/index.html">
+<meta property="og:site_name" content="花猪のBlog">
+<meta property="og:description" content="记录操作系统学习历程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OperatingSystemscover1.png">
+<meta property="article:published_time" content="2021-05-04T03:59:42.000Z">
+<meta property="article:modified_time" content="2021-06-30T15:31:33.849Z">
+<meta property="article:author" content="花猪">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OperatingSystemscover1.png"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/avatar.jpg"><link rel="canonical" href="https://cnhuazhu.github.io/2021/05/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B9%B6%E5%8F%91%EF%BC%9A%E6%AD%BB%E9%94%81%E5%92%8C%E9%A5%A5%E9%A5%BF/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":60,"languages":{"author":"作者: 花猪","link":"链接: ","source":"来源: 花猪のBlog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#ABADAC","bgDark":"#121212","position":"bottom-right"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '操作系统学习笔记-并发：死锁和饥饿',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-30 23:31:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/pagelucency.css"><style>#article-container.post-content h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { -webkit-animation: avatar_turn_around 1s linear infinite; -moz-animation: avatar_turn_around 1s linear infinite; -o-animation: avatar_turn_around 1s linear infinite; -ms-animation: avatar_turn_around 1s linear infinite; animation: avatar_turn_around 1s linear infinite; }</style><link rel="stylesheet" href="/css/avatarbg.css"><link rel="stylesheet" href="/css/footerlucency.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/macblack.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiperstyle.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="花猪のBlog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">86</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/"><i class="fa-fw fas fa-gift"></i><span> 引导</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-sitemap"></i><span> 分站</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/next"><i class="fa-fw fas fa-chevron-right"></i><span> Next</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 阅读</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/video/"><i class="fa-fw fa fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-quote-left"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/website/"><i class="fa-fw fas fa-globe"></i><span> 网站</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/Message/"><i class="fa-fw fas fa-comment"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background: transparent"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">花猪のBlog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/"><i class="fa-fw fas fa-gift"></i><span> 引导</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-sitemap"></i><span> 分站</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/next"><i class="fa-fw fas fa-chevron-right"></i><span> Next</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 阅读</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/video/"><i class="fa-fw fa fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-quote-left"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/website/"><i class="fa-fw fas fa-globe"></i><span> 网站</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/Message/"><i class="fa-fw fas fa-comment"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">操作系统学习笔记-并发：死锁和饥饿</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-04T03:59:42.000Z" title="发表于 2021-05-04 11:59:42">2021-05-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-30T15:31:33.849Z" title="更新于 2021-06-30 23:31:33">2021-06-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="操作系统学习笔记-并发：死锁和饥饿"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>前言</h1>
+<p><em>正在学习操作系统，记录笔记。</em></p>
+<blockquote>
+<p>参考资料：</p>
+<p>《操作系统（精髓与设计原理 第6版） 》</p>
+</blockquote>
+<hr>
+<h1>第六章：并发：死锁和饥饿</h1>
+<p>本文的标题为“死锁和饥饿”，但是在接下来的内容中讲述的基本上都是死锁的问题。在这里说明一下原因：</p>
+<p>先给结论（当然这个说法并不准确，但可以如此理解）：总体来说，从概念上看死锁可以看作是饥饿的<strong>子集</strong>。</p>
+<p>为什么这么讲，那我们就来分析一下二者的区别：</p>
+<p><strong>饥饿</strong>：一个以上的进程（具备运行条件），遇到某种情况导致一直无法运行。</p>
+<p><strong>死锁</strong>：可以定义为一组（两个及以上）相互竞争系统资源或进行通信的进程间的“永久”阻塞。如果没有操作系统的干预，死锁无法自己解决问题。</p>
+<blockquote>
+<p>二者的共同点：</p>
+<ul>
+<li>得不到需要的资源，无法运行。</li>
+</ul>
+<p>二者的差异：</p>
+<ul>
+<li>死锁只是因为双方（或多方）相互干预而无法运行，而导致饥饿无法运行的还有其他原因。</li>
+<li>如果没有操作系统的干预，死锁不会自行解决问题，而饥饿有可能自动解除。</li>
+</ul>
+<p>关于死锁的一点补充：死锁的问题有多种，但是并没有一种“万金油”式的通用有效的解决方案。需要根据具体问题具体分析。</p>
+</blockquote>
+<h2 id="死锁的原理">死锁的原理</h2>
+<p>造成死锁的问题主要分为两类（后面会有案例）：</p>
+<ul>
+<li>稀缺资源的抢夺</li>
+<li>资源充足，但是请求顺序不当</li>
+</ul>
+<p>对于资源的概念，通常可以分为两类：可重用资源以及可消耗资源。</p>
+<h3 id="可重用资源">可重用资源</h3>
+<ul>
+<li>一次只被一个进程安全地使用（资源是互斥的），并且不会由于使用而耗尽。</li>
+<li>进程使用完资源后释放，其他进程可以再次使用。</li>
+<li>包括：处理器、I/O通道、内存和外存、设备以及诸如文件、数据库和信号量之类的数据结构。</li>
+<li>如果每个进程持有一个资源并请求另一个资源，就会发生死锁。</li>
+</ul>
+<p>下面将给出涉及可重用资源死锁的例子：</p>
+<ul>
+<li>
+<p>案例一：</p>
+<p>如下图所示，考虑竞争独占访问磁盘文件D和磁带设备T的两个进程。如果多道程序设计系统按照p<sub>0</sub>、p<sub>1</sub>、q<sub>0</sub>、q<sub>1</sub>、p<sub>2</sub>、q<sub>2</sub>的顺序交替地执行P、Q两个进程，则会发生死锁。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E5%8F%AF%E9%87%8D%E7%94%A8%E8%B5%84%E6%BA%90%E6%AD%BB%E9%94%81%E4%B8%80.png" alt=""></p>
+<p>处理这类死锁的一个策略是给系统设计施加关于资源请求顺序的约束。</p>
+</li>
+<li>
+<p>案例二：</p>
+<p>如下图所示，假设可用的内存分配空间为200KB，且进程P1、P2发生如下请求序列：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E5%8F%AF%E9%87%8D%E7%94%A8%E8%B5%84%E6%BA%90%E6%AD%BB%E9%94%81%E4%BA%8C.png" alt=""></p>
+<p>如果两个进程都前进到它们的第二个请求时，则会发生死锁。解决这类特殊问题的最好办法是，通过使用虚拟内存。</p>
+</li>
+</ul>
+<h3 id="可消耗资源">可消耗资源</h3>
+<ul>
+<li>
+<p>可消耗资源是指可以被创建（生产）和销毁（消耗）的资源。（通常对某种类型可消耗资源的数目没有限制，一个无阻塞的生产进程可以创建任意数目的这类资源。）</p>
+</li>
+<li>
+<p>包括：中断、信号、消息和I/O缓冲区中的信息。</p>
+</li>
+<li>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E5%8F%AF%E6%B6%88%E8%80%97%E8%B5%84%E6%BA%90%E6%AD%BB%E9%94%81.png" alt=""></p>
+<p>如果Receive阻塞（即接收进程被阻塞直到收到消息），则发生死锁。</p>
+</li>
+<li>
+<p>很少的事件组合也可能导致死锁。</p>
+</li>
+</ul>
+<h3 id="资源分配图">资源分配图</h3>
+<p>为了更有效刻画进程的资源分配情况，引入了资源分配图（如下图）。</p>
+<ul>
+<li>
+<p>圆：表示并发的进程</p>
+</li>
+<li>
+<p>方框：表示待分配的资源（其中的点的数量表示可用资源的数量）</p>
+</li>
+<li>
+<p>有向线：</p>
+<ul>
+<li>进程→资源（圆→方框）：表示进程请求资源，但还没有得到授权。</li>
+<li>资源→进程（方框→圆）：表示资源请求已经被授权。（资源已经被进程占有）</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E8%B5%84%E6%BA%90%E5%88%86%E9%85%8D%E5%9B%BE.png" alt=""></p>
+</li>
+</ul>
+<p>下面看一个例子：</p>
+<blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E8%B5%84%E6%BA%90%E5%88%86%E9%85%8D%E5%9B%BE%E6%AD%BB%E9%94%81.png" alt=""></p>
+<p>分析：</p>
+<p>这是一个死锁的例子。资源Ra和Bb都仅拥有一个单位的资源。进程P1持有Rb同时请求Ra，同时，P2进程持有Ra同时又请求Rb。</p>
+</blockquote>
+<h3 id="死锁的条件">死锁的条件</h3>
+<ul>
+<li>
+<p>死锁的必要条件（一旦出现死锁，则必然发生的条件）：</p>
+<ul>
+<li><strong>互斥</strong>：一次只有一个进程可以使用一个资源。</li>
+<li><strong>占有且等待</strong>：当一个进程等待其他进程时，继续占有已经分配的资源。</li>
+<li><strong>非抢占</strong>：不能强行抢占进程已占有的资源。</li>
+</ul>
+</li>
+<li>
+<p>第四个条件：</p>
+<ul>
+<li>
+<p><strong>循环等待</strong>：存在一个封闭的进程链，使得每个进程至少占有此链中下一个进程所需要的一个资源。（如下图所示）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E6%AD%BB%E9%94%81%E6%9D%A1%E4%BB%B6%E5%BE%AA%E7%8E%AF%E7%AD%89%E5%BE%85.png" alt=""></p>
+</li>
+</ul>
+<blockquote>
+<p>说明：</p>
+<p>第四个条件实际上是前三个条件的潜在结果，即假设前三个条件存在，可能发生的一系列事件会导致不可解的循环等待。这个不可解的循环等待实际上就是死锁的定义。条件4中列出的循环等待之所以是不可解的，是因为有前面三个条件的存在。因此，这四个条件连在一起构成了死锁的充分必要条件。</p>
+</blockquote>
+</li>
+</ul>
+<p>有了上述对死锁成因的分析，接下来我们将讨论如何解决死锁问题。这里分为两类，其中每一类又可以细分。</p>
+<p>死锁的解除方案：</p>
+<ul>
+<li>允许死锁发生
+<ul>
+<li>静态策略：无</li>
+<li>动态策略：
+<ul>
+<li><strong>鸵鸟算法</strong></li>
+<li><strong>死锁检测与死锁恢复</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>不允许死锁发生
+<ul>
+<li>静态策略：<strong>死锁预防</strong></li>
+<li>动态策略：<strong>死锁避免</strong></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>关于鸵鸟算法：</p>
+<p>传说中鸵鸟看到危险就把头埋在地底下，使自己看不到危险。所以鸵鸟算法也是一种“不作为”的办法。在死锁问题出现概率很低的情况下，大多数工程师不会以性能损失或者易用性损失的代价来消除死锁，处理死锁问题的办法仅仅是忽略它。因为解决死锁的问题，通常代价很大。所以鸵鸟算法，是平衡性能和复杂性而选择的一种方法。（现在商业大部分都使用此算法）</p>
+</blockquote>
+<p>下面我们重点讨论除鸵鸟算法之外的其他三种解决方法。</p>
+<h2 id="死锁预防">死锁预防</h2>
+<p>简单理解，死锁预防就是通过适当的策略，来消除死锁的四个成因之一，从而避免死锁的发生。</p>
+<h3 id="互斥">互斥</h3>
+<p>一般来讲，在所列出的四个条件中，第一个条件不可能禁止。如果需要对资源进行互斥访问，那么操作系统必须支持互斥。</p>
+<h3 id="占有且等待">占有且等待</h3>
+<p>为预防占有且等待的条件，可以要求进程一次性地请求所有需要的资源，并且阻塞这个进程直到所有请求都同时满足。</p>
+<blockquote>
+<p>这种方法在两个方面是低效的。首先，一个进程可能被阻塞很长时间，以等待满足其所有的资源请求。而实际上，只要有一部分资源，它就可以继续执行。其次，分配给一个进程的资源可能有相当长的一段时间不会被使用，且在此期间，它们不能被其他进程使用。</p>
+<p>另一个问题是一个进程可能事先并不会知道它所需要的所有资源。</p>
+</blockquote>
+<h3 id="不可抢占">不可抢占</h3>
+<p>下面的方法可以预防这个条件：</p>
+<ol>
+<li>如果占有某些资源的一个进程进行进一步资源请求被拒绝，则该进程必须释放它最初占有的资源。（如果有必要，可再次请求这些资源和另外的资源）</li>
+<li>如果一个进程请求当前被另一个进程占有的一个资源，则操作系统可以抢占另一个进程，要求它释放资源。（只有在任意两个进程的优先级都不相同的条件下才可以实现）</li>
+</ol>
+<h3 id="循环等待">循环等待</h3>
+<p>循环等待条件可以通过定义资源类型的线性顺序来预防。</p>
+<blockquote>
+<p>如果一个进程已经分配到了R类型的资源，那么它接下来请求的资源只能是那些排在R类型之后的资源类型。</p>
+<p>循环等待的预防方法可能是低效的，它会使进程执行速度变慢，并且可能在没有必要的情况下拒绝资源访问。</p>
+</blockquote>
+<h2 id="死锁避免">死锁避免</h2>
+<p>要注意与死锁避免与死锁预防的差异：</p>
+<ul>
+<li>
+<p>死锁预防是通过约束资源请求，防止死锁的四个成因之一发生，从而避免死锁产生。</p>
+</li>
+<li>
+<p>死锁避免允许三个必要条件的发生，但是通过进程启动拒绝算法，去规避可能导致死锁情况的事件发生。</p>
+<ul>
+<li>
+<p>死锁避免比死锁预防允许更多的并发。</p>
+</li>
+<li>
+<p>是否允许当前的资源分配请求是通过判断该请求是否可能导致死锁来决定的。</p>
+<blockquote>
+<ul>
+<li>如果一个进程的请求会导致死锁，则不启动此进程，进程启动拒绝</li>
+<li>如果一个进程增加资源的请求会导致死锁，则不容许此分配，资源分配拒绝</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>死锁避免需要知道将来的进程资源请求的情况。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="进程启动拒绝">进程启动拒绝</h3>
+<p>首先需要掌握四种数据结构：</p>
+<ul>
+<li>Resource（资源总量表）：系统中每种资源的总量</li>
+<li>Available（资源可用表）：未分配给进程的每种资源的总量（可用资源）</li>
+<li>Claim（最大需求矩阵）：C<sub>ij</sub> = 进程 i 对资源 j 的需求</li>
+<li>Allocation（资源分配矩阵）：A<sub>ij</sub> = 当前分配给进程 i 的资源 j</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%8B%92%E7%BB%9D%E5%9B%9B%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png" alt=""></p>
+<p>从以上定义中可以得出以下三个关系：</p>
+<ol>
+<li>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>R</mi><mi>j</mi></msub><mo>=</mo><msub><mi>V</mi><mi>j</mi></msub><mo>+</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">R_{j} = V_{j} + \sum_{i=1}^{N} A_{ij}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283360000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<blockquote>
+<p>对所有 j ，所有资源或者可用，或者已被分配</p>
+</blockquote>
+</li>
+<li>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>C</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>≤</mo><msub><mi>R</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">C_{ij} \le R_{i}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<blockquote>
+<p>对所有 i、j ，任何一个进程对任何一种资源的请求都不能超过系统中该种资源的总量。</p>
+</blockquote>
+</li>
+<li>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>≤</mo><msub><mi>C</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">A_{ij} \le C_{ij}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<blockquote>
+<p>对所有 i、j ，分配给任何一个进程的任何一种资源都不会超过该进程最初声明的此资源的最大请求个数。</p>
+</blockquote>
+</li>
+</ol>
+<p>根据以上的关系，就可以定义一个死锁避免的策略：</p>
+<p>对于所有的 j ，满足：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>R</mi><mi>j</mi></msub><mo>≥</mo><msub><mi>C</mi><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mi>j</mi></mrow></msub><mo>+</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>C</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">R_{j} \ge C_{(n+1)j} + \sum_{i=1}^{n} C_{ij}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.03853em;vertical-align:-0.3551999999999999em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mclose mtight">)</span><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>才会启动一个进的进程P<sub>n+1</sub>。（只有所有当前进程的最大请求量加上新的进程请求可以满足时，才会启动该进程。）</p>
+<blockquote>
+<p>案例分析：如下图，资源1、2、3的总量分别为10、10、9，进程一对三种资源的需求分别为1、4、5，进程二对三种资源的需求分别为3、5、4，如果启动进程P3需要请求三种资源的数量为2、3、1，请分析P3进程能否启动。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%A1%88%E4%BE%8B.png" alt=""></p>
+<p>分析：</p>
+<ul>
+<li>对于资源1，三种进程的总需求为 1 + 3 + 2 = 6 &lt; 10 , 满足</li>
+<li>对于资源2，三种进程的总需求为 5 + 4 + 3 = 12 &gt; 10 , 不满足</li>
+</ul>
+<p>所以进程三不得启动。</p>
+</blockquote>
+<h3 id="银行家算法（资源分配拒绝策略）">银行家算法（资源分配拒绝策略）</h3>
+<p>在说明银行家算法之前先明确以下三种状态：</p>
+<ul>
+<li>系统状态：当前给进程分配的资源情况</li>
+<li>安全状态：至少有一个资源分配序列不会导致死锁（即所有进程都能运行直到结束）</li>
+<li>不安全状态：顾名思义，就是指不安全的状态</li>
+</ul>
+<blockquote>
+<p>下面来看一个例子：</p>
+<p>下图(a)显示了一个含有4个进程和3个资源的系统的状态。R1、R2和R3的资源总量分别为9、3和6。在当前状态下资源分配给4个进程，R2和R3各剩下1个可用单元。请问这是安全状态吗？</p>
+<p>根据前面的介绍，对于进程 i 下面的条件应该满足对所有的 j，都有：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>C</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>−</mo><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>≤</mo><msub><mi>V</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">C_{ij} - A_{ij} \le V_{j}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95%E6%A1%88%E4%BE%8B%E4%B8%80.png" alt=""></p>
+<p>显然这对P1是不可能的，但是P2是可行的，因为P2只需要一个R3资源就拥有了它所需要的最大资源，因此P2进程运行。当运行完之后，它的资源回到可用资源池中（如下图(b)）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95%E6%A1%88%E4%BE%8B%E4%BA%8C.png" alt=""></p>
+<p>在这种情况下，所有进程都可以完成，假设选择P1运行，结束之后，资源释放并回到可用资源池中，如下图©。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95%E6%A1%88%E4%BE%8B%E4%B8%89.png" alt=""></p>
+<p>下一步完成P3进程，结束后资源如下图所示(d)。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95%E6%A1%88%E4%BE%8B%E5%9B%9B.png" alt=""></p>
+<p>最后，可以完成P4进程。至此，所有进程运行结束，因此这是一个安全状态。</p>
+<hr>
+<p>再考虑下面一种状态：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95%E6%A1%88%E4%BE%8B%E4%BA%94.png" alt=""></p>
+<p>这种情况没有一个进程是可以运行的，因此这不是一个安全状态。</p>
+<p>但是这并不是一个死锁状态，它仅仅是有死锁的可能（这点很重要）。</p>
+<p>（如果P1从这个状态开始运行，先释放一个R1单元和一个R3单元，后来又再次需要这些资源，则一旦这样做，系统将到达一个安全状态。因此，死锁避免策略并不能确切地预测死锁，它仅仅是预料死锁的可能性并确保永远不会出现这种可能性。）</p>
+</blockquote>
+<p>下列代码给出了对死锁逻辑的一个抽象描述：</p>
+<p>全局数据结构</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">state</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> resource[m];</span><br><span class="line">    <span class="keyword">int</span> available[m];</span><br><span class="line">    <span class="keyword">int</span> claim[n][m];</span><br><span class="line">    <span class="keyword">int</span> alloc[n][m];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>资源分配算法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (alloc [i,*] + request [*] &gt; claim [i,*])</span><br><span class="line">    &lt; error &gt;;				<span class="comment">/*总请求量大于需求*/</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (request [*] &gt; available [*])</span><br><span class="line">    &lt; suspend process &gt;;				<span class="comment">/*模拟分配*/</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    &lt; define newstate by:</span><br><span class="line">    alloc [i,*] = alloc [i,*] + request [*];</span><br><span class="line">    available [*] = available [*] - request [*] &gt;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (safe (newstate))</span><br><span class="line">    &lt; carry out allocation &gt;;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    &lt;restore original state &gt;;</span><br><span class="line">    &lt; suspend process &gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试安全算法（银行家算法）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">boolean <span class="title">safe</span> <span class="params">(state S)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> currentavail[m];</span><br><span class="line">    process rest[&lt;number of processes&gt;];</span><br><span class="line">    currentavail = available;</span><br><span class="line">    rest = &#123;all processes&#125;;</span><br><span class="line">    possible = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">while</span> (possible)</span><br><span class="line">    &#123;</span><br><span class="line">        &lt; find a process Pk in rest suck that</span><br><span class="line">            claim [k,*] - alloc [k,*] &lt;= currentavail;&gt;</span><br><span class="line">        <span class="keyword">if</span> (found)				<span class="comment">/*模拟Pk的执行*/</span></span><br><span class="line">        &#123;</span><br><span class="line">            currentavail = currentavail + alloc [k,*];</span><br><span class="line">            rest = rest - &#123;Pk&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            possible = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (rest == null);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：</p>
+<p>数据结构<code>state</code>定义了系统状态，<code>request[*]</code>是一个向量，定义了进程 i 的资源请求。</p>
+<p>首先，进行一次检测，确保该请求不会超过进程最初声明的要求。如果该请求有效，下一步确定是否可能实现这个请求（即有足够的可用资源）。如果不可能，则该进程被挂起；如果可能，则最后一步是确定完成这个请求是否是安全的。为做到这一点，资源被暂时分配给进程 i 以形成一个newstate。</p>
+</blockquote>
+<p>死锁避免的优点是它不需要死锁预防中的抢占和回滚进程，并且比死锁预防的限制少。但是仍有以下限制：</p>
+<ul>
+<li>必须事先声明每个进程请求的最大资源</li>
+<li>考虑的进程必须是无关的，也就是说，它们执行的顺序必须没有任何同步要求的限制</li>
+<li>分配的资源数目必须是固定的，且只考虑可重用资源</li>
+<li>在占有资源时，进程不能退出</li>
+<li>时间复杂度高（O(m·n<sup>2</sup>)）</li>
+</ul>
+<h2 id="死锁检测">死锁检测</h2>
+<p>死锁预防策略是非常保守的，它们通过限制访问资源和在进程上强加约束来解决死锁问题。</p>
+<p>死锁检测策略则完全相反，它不限制资源访问或约束进程行为。对于死锁检测来说，只要有可能，被请求的资源就被授权给进程。操作系统周期性地执行一个算法检测“循环等待”条件（上文提到的死锁成因中的条件4）。</p>
+<h3 id="死锁检测算法">死锁检测算法</h3>
+<p>该算法使用了上文提到的<code>Allocation矩阵</code>以及<code>Available向量</code>，除此之外，还定义了请求(Requset)矩阵Q，其中Q<sub>ij</sub>表示进程 i 请求的类型 j 的资源量。算法主要是一个标记没有死锁的进程的过程。最初，所有的进程都是未标记的，然后执行下列步骤：</p>
+<ol>
+<li>标记Allocation矩阵中一行全为零的进程。</li>
+<li>初始化一个临时向量W，令其等于Available向量。</li>
+<li>查找下标 i，使用进程 i 当前未标记且 Q 的第 i 行小于等于 W，即对所有的 1 ≤ K ≤ m，Q<sub>ik</sub>≤W<sub>k</sub>。如果找不到这样的行，终止算法。</li>
+<li>如果找到这样的行，标记进程 i，并把Allocation矩阵中的相应行加到W中，也就是说，对所有的1 ≤ K ≤ m，令W<sub>k</sub> = W<sub>k</sub> + A<sub>ik</sub>。返回步骤3。</li>
+</ol>
+<blockquote>
+<p>下面来看一个例子：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OS%E6%AD%BB%E9%94%81%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95%E6%A1%88%E4%BE%8B.png" alt=""></p>
+<ol>
+<li>令 W =（ 0 0 0 0 1 ）（W = A）。</li>
+<li>进程P3的请求小于或等于W，因此标记P3，并令W = W +（ 0 0 0 1 0 ）=（ 0 0 0 1 1 ）。</li>
+<li>再去检测Request矩阵，发现其他进程都不满足运行条件，因此终止算法。</li>
+</ol>
+<p>算法的结果是P1、P2、P4未标记，表示这三个进程是死锁的。</p>
+</blockquote>
+<h3 id="恢复">恢复</h3>
+<p>一旦检测到死锁，就需要某种策略以恢复死锁。下面按复杂度递增的顺序列出可能的方法：</p>
+<ol>
+<li>
+<p>取消所有的死锁进程。</p>
+</li>
+<li>
+<p>把每个死锁进程回滚到前面定义的某些检查点，并且重新启动所有进程。</p>
+<blockquote>
+<p>这要求在系统中构造回滚和重启机制。该方法的风险是原来的死锁可能再次发生。但是，并发进程的不确定性通常能保证不会发生这种情况。</p>
+</blockquote>
+</li>
+<li>
+<p>连续取消死锁进程直到不再存在死锁。</p>
+<blockquote>
+<p>选择取消进程的顺序基于某种最小代价原则。在每次取消后，必须重新调用检测算法，以测试是否仍存在死锁。</p>
+</blockquote>
+</li>
+<li>
+<p>连续抢占资源直到不再存在死锁。</p>
+<blockquote>
+<p>同第3条一样，需要使用一种基于代价的选择方法，并且需要在每次抢占后重新调用检测算法。一个资源被抢占的进程必须回滚到获得这个资源之前的某一状态。</p>
+</blockquote>
+</li>
+</ol>
+<p>对于上述的第3、4条，选择原则可以采用下面中的一种：</p>
+<ul>
+<li>目前为止消耗的处理器时间最少。</li>
+<li>目前为止产生的输出最少。</li>
+<li>预计剩下的时间最长。</li>
+<li>目前为止分配的资源总量最少。</li>
+<li>优先级最低。</li>
+</ul>
+<h2 id="一种综合的死锁策略">一种综合的死锁策略</h2>
+<p>我们先以表格的形式小结一下前文讲述的解决死锁的策略：</p>
+<table>
+<thead>
+<tr>
+<th>原则</th>
+<th>资源分配策略</th>
+<th>不同的方案</th>
+<th>主要优点</th>
+<th>主要缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预防</td>
+<td>保守的；预提交资源</td>
+<td>一次性请求所有资源</td>
+<td>·对执行一连串活动的进程非常有效<br/>·不需要抢占</td>
+<td>·低效<br/>·延迟进程的初始化<br/>·必须知道将来的资源请求</td>
+</tr>
+<tr>
+<td>预防</td>
+<td>保守的；预提交资源</td>
+<td>抢占</td>
+<td>·用于状态易于保存和恢复的资源时非常方便</td>
+<td>·过于经常地没必要地抢占</td>
+</tr>
+<tr>
+<td>预防</td>
+<td>保守的；预提交资源</td>
+<td>资源排序</td>
+<td>·通过编译时检测是可以实施的<br/>·既然问题已经在系统设计时解决了，不需要在运行时间计算</td>
+<td>·禁止增加的资源请求</td>
+</tr>
+<tr>
+<td>避免</td>
+<td>处于检测和预防中间</td>
+<td>操作以发现至少一条安全路径</td>
+<td>·不需要抢占</td>
+<td>·必须知道将来的资源请求<br/>·进程不能被长时间阻塞</td>
+</tr>
+<tr>
+<td>检测</td>
+<td>非常自由；只要可能，请求的资源都允许</td>
+<td>周期性地调用以测试死锁</td>
+<td>·不会延迟进程的初始化<br/>·易于在线处理</td>
+<td>·固有的抢占被丢失</td>
+</tr>
+</tbody>
+</table>
+<p>从上表中可见，所有的解决死锁的策略都各有其优缺点。与其将操作系统机制设计为只采用其中一种策略，还不如在不同情况下使用不同的策略更有效。为此提供了一种方法：</p>
+<ul>
+<li>把资源分成几组不同的资源类。</li>
+<li>为预防在资源类之间由于循环等待产生死锁，可使用前面定义的线性排序策略。</li>
+<li>在一个资源类中，使用该类资源最适合的算法。为此，考虑下列的资源类：
+<ul>
+<li>可交换空间：在进程交换中所使用的外存中的存储块。</li>
+<li>进程资源：可分配的设备，如磁带设备和文件。</li>
+<li>内存：可以按页或按段分配给进程。</li>
+<li>内部资源：诸如I/O通道。</li>
+</ul>
+</li>
+<li>以上列出的次序表示了资源分配的次序。考虑到一个进程在其生命周期中的步骤顺序，这个次序是最合理的。在每一类中，可采用以下策略：
+<ul>
+<li>可交换空间：通过要求<strong>一次性分配所有请求的资源</strong>来预防死锁，就像占有且等待预防策略一样。如果知道最大存储需求（通常情况下都知道），则这个策略是合理的。死锁避免也是可能的。</li>
+<li>进程资源：对这类资源，<strong>死锁避免策略</strong>常常是很有效的，这是因为进程可以事先声明它们将需要的这类资源。采用<strong>资源排序的预防策略</strong>也是可能的。</li>
+<li>内存：对于内存，基于<strong>抢占</strong>的预防是最适合的策略。当一个进程被抢占后，它仅仅被换到外存，释放空间以解决死锁。</li>
+<li>内部资源：可以使用基于<strong>资源排序</strong>的预防策略。</li>
+</ul>
+</li>
+</ul>
+<h2 id="哲学家就餐问题">哲学家就餐问题</h2>
+<p>同样移步至下方链接👇👇👇👇</p>
+<div class="btn-center">
+<a class="btn-beautify button--animated block outline orange larger" href="/2021/04/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" 
+  title="点击跳转 至 《信号量相关问题》"><i class="far fa-hand-point-right"></i><span>点击跳转 至 《信号量相关问题》</span></a>
+</div>
+<hr>
+<h1>后记</h1>
+<p>本篇已完结</p>
+<p>（如有修改或补充欢迎评论）</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OperatingSystemscover1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/wechat.png" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/alipay.jpg" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/03/14/操作系统/操作系统学习笔记-计算机系统概述/" title="操作系统学习笔记-计算机系统概述"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OperatingSystemscover1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-14</div><div class="title">操作系统学习笔记-计算机系统概述</div></div></a></div><div><a href="/2021/03/28/操作系统/操作系统学习笔记/" title="操作系统学习笔记"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage7.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-28</div><div class="title">操作系统学习笔记</div></div></a></div><div><a href="/2021/06/02/操作系统/操作系统学习笔记-I-O管理和磁盘调度/" title="操作系统学习笔记-I/O管理和磁盘调度"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OperatingSystemscover1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-02</div><div class="title">操作系统学习笔记-I/O管理和磁盘调度</div></div></a></div><div><a href="/2021/05/23/操作系统/操作系统学习笔记-内存管理/" title="操作系统学习笔记-内存管理"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OperatingSystemscover1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-23</div><div class="title">操作系统学习笔记-内存管理</div></div></a></div><div><a href="/2021/04/25/操作系统/操作系统学习笔记-信号量相关问题/" title="操作系统学习笔记-信号量相关问题"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OperatingSystemscover1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-25</div><div class="title">操作系统学习笔记-信号量相关问题</div></div></a></div><div><a href="/2021/05/30/操作系统/操作系统学习笔记-单处理器调度/" title="操作系统学习笔记-单处理器调度"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/OperatingSystemscover1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-30</div><div class="title">操作系统学习笔记-单处理器调度</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Twikoo</span><span class="switch-btn"></span><span class="second-comment">Valine</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">花猪</div><div class="author-info__description">此站点就暂时停留在秋天了吧</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">86</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/CNhuazhu"><i class="fab fa-github"></i><span>我的github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/CNhuazhu" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">花猪在此欢迎您光临小破站 (՞•Ꙫ•՞) <br><b>此站点已暂停更新！！！！</b><br><br>  <b><i>本站已部署至云服务器👇</i></b>：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top">http://cnhuazhu.top</a> <br><br>  <b><i>github地址（暂停更新）</i></b>：<a href="https://cnhuazhu.github.io/">https://cnhuazhu.github.io/</a> <br> <b><i>码云地址（暂停更新）</i></b>：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://cnhuazhu.gitee.io">https://cnhuazhu.gitee.io</a> <br><br>  本站主题：Butterfly 3.7.8 <br> <img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/pig.gif"></div><timing></timing></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">第六章：并发：死锁和饥饿</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">死锁的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%87%8D%E7%94%A8%E8%B5%84%E6%BA%90"><span class="toc-number">2.1.1.</span> <span class="toc-text">可重用资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E6%B6%88%E8%80%97%E8%B5%84%E6%BA%90"><span class="toc-number">2.1.2.</span> <span class="toc-text">可消耗资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%88%86%E9%85%8D%E5%9B%BE"><span class="toc-number">2.1.3.</span> <span class="toc-text">资源分配图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="toc-number">2.1.4.</span> <span class="toc-text">死锁的条件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E9%A2%84%E9%98%B2"><span class="toc-number">2.2.</span> <span class="toc-text">死锁预防</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%92%E6%96%A5"><span class="toc-number">2.2.1.</span> <span class="toc-text">互斥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%A0%E6%9C%89%E4%B8%94%E7%AD%89%E5%BE%85"><span class="toc-number">2.2.2.</span> <span class="toc-text">占有且等待</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E6%8A%A2%E5%8D%A0"><span class="toc-number">2.2.3.</span> <span class="toc-text">不可抢占</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E7%AD%89%E5%BE%85"><span class="toc-number">2.2.4.</span> <span class="toc-text">循环等待</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E9%81%BF%E5%85%8D"><span class="toc-number">2.3.</span> <span class="toc-text">死锁避免</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%8B%92%E7%BB%9D"><span class="toc-number">2.3.1.</span> <span class="toc-text">进程启动拒绝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95%EF%BC%88%E8%B5%84%E6%BA%90%E5%88%86%E9%85%8D%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5%EF%BC%89"><span class="toc-number">2.3.2.</span> <span class="toc-text">银行家算法（资源分配拒绝策略）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E6%A3%80%E6%B5%8B"><span class="toc-number">2.4.</span> <span class="toc-text">死锁检测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95"><span class="toc-number">2.4.1.</span> <span class="toc-text">死锁检测算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D"><span class="toc-number">2.4.2.</span> <span class="toc-text">恢复</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E7%A7%8D%E7%BB%BC%E5%90%88%E7%9A%84%E6%AD%BB%E9%94%81%E7%AD%96%E7%95%A5"><span class="toc-number">2.5.</span> <span class="toc-text">一种综合的死锁策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%B2%E5%AD%A6%E5%AE%B6%E5%B0%B1%E9%A4%90%E9%97%AE%E9%A2%98"><span class="toc-number">2.6.</span> <span class="toc-text">哲学家就餐问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">后记</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/02/NodeJS/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAexpress%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="快速搭建一个express服务器"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Node_Express_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="快速搭建一个express服务器"/></a><div class="content"><a class="title" href="/2021/11/02/NodeJS/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAexpress%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="快速搭建一个express服务器">快速搭建一个express服务器</a><time datetime="2021-11-02T00:39:53.000Z" title="发表于 2021-11-02 08:39:53">2021-11-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/28/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Nginx-uWSGI-Flask%E9%83%A8%E7%BD%B2%E8%87%B3Ubuntu/" title="Nginx+uWSGI+Flask部署至Ubuntu"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Ubuntu_Server_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx+uWSGI+Flask部署至Ubuntu"/></a><div class="content"><a class="title" href="/2021/10/28/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Nginx-uWSGI-Flask%E9%83%A8%E7%BD%B2%E8%87%B3Ubuntu/" title="Nginx+uWSGI+Flask部署至Ubuntu">Nginx+uWSGI+Flask部署至Ubuntu</a><time datetime="2021-10-28T03:01:09.000Z" title="发表于 2021-10-28 11:01:09">2021-10-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/18/Xftp%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="Xftp传输文件失败解决方案"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Xftp_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Xftp传输文件失败解决方案"/></a><div class="content"><a class="title" href="/2021/10/18/Xftp%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="Xftp传输文件失败解决方案">Xftp传输文件失败解决方案</a><time datetime="2021-10-18T09:50:16.000Z" title="发表于 2021-10-18 17:50:16">2021-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E7%BB%AD%EF%BC%89%E2%80%94%E2%80%94%E5%BB%BA%E7%AB%8B%E5%BC%95%E5%AF%BC%E9%A1%B5%E5%8F%8A%E5%88%86%E7%AB%99/" title="Hexo部署至服务器（续）——建立引导页及分站"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Ubuntu_Server_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo部署至服务器（续）——建立引导页及分站"/></a><div class="content"><a class="title" href="/2021/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E7%BB%AD%EF%BC%89%E2%80%94%E2%80%94%E5%BB%BA%E7%AB%8B%E5%BC%95%E5%AF%BC%E9%A1%B5%E5%8F%8A%E5%88%86%E7%AB%99/" title="Hexo部署至服务器（续）——建立引导页及分站">Hexo部署至服务器（续）——建立引导页及分站</a><time datetime="2021-10-13T13:49:12.000Z" title="发表于 2021-10-13 21:49:12">2021-10-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/12/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu-20-04%EF%BC%89/" title="Hexo部署至服务器（Ubuntu 20.04）"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Ubuntu_Server_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo部署至服务器（Ubuntu 20.04）"/></a><div class="content"><a class="title" href="/2021/10/12/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu-20-04%EF%BC%89/" title="Hexo部署至服务器（Ubuntu 20.04）">Hexo部署至服务器（Ubuntu 20.04）</a><time datetime="2021-10-12T07:13:40.000Z" title="发表于 2021-10-12 15:13:40">2021-10-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 By 花猪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://beian.miit.gov.cn/">蜀ICP备2021026748号</a><br>感谢光临<a target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/" style="text-decoration:underline">小破站</a>,欢迎您提出宝贵的意见！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})
+setTimeout(function(){preloader.endLoading();}, 3000);</script></div><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'hexo-1g41404w9f800e94',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'hexo-1g41404w9f800e94',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'VHoX95KsBQSMyzEc3TdpmBkF-MdYXbMMI',
+      appKey: 'qnwObDMbgMEKnu1Gp8tk7PYJ',
+      placeholder: '欢迎留下你的评论（昵称和邮箱为必填项）',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Twikoo' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script src="/js/ip_content.js"></script><script src="/js/timing.js"></script><script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js"></script><script src="/js/footer.js"></script><script src="/js/ginkgo-leaf.js"></script><script id="canvas_nest" defer="defer" color="0,0,0" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="pjax-reload"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInLeft');
+    arr[i].setAttribute('data-wow-duration', '600ms');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '100');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInRightBig');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer="defer" src="https://cdn.jsdelivr.net/gh/graingert/wow@1.3.0/dist/wow.min.js"></script><script defer="defer" src="/js/wow_init.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+                        function butterfly_swiper_injector_config(){
+                          var parent_div_git = document.getElementById('recent-posts');
+                          var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/Hexo魔改/Hexo魔改记录/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage4.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/Hexo魔改/Hexo魔改记录/" alt="">Hexo魔改记录</a><div class="blog-slider__text">Hexo魔改记录</div><a class="blog-slider__button" href="2021/03/28/Hexo魔改/Hexo魔改记录/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/08/02/Vue/Vue学习笔记/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage5.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-08-02</span><a class="blog-slider__title" href="2021/08/02/Vue/Vue学习笔记/" alt="">Vue学习笔记</a><div class="blog-slider__text">本文将介绍Vue的基础语法</div><a class="blog-slider__button" href="2021/08/02/Vue/Vue学习笔记/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/Java/Java学习记录/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage8.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/Java/Java学习记录/" alt="">Java学习记录</a><div class="blog-slider__text">Java学习记录</div><a class="blog-slider__button" href="2021/03/28/Java/Java学习记录/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/操作系统/操作系统学习笔记/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage7.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/操作系统/操作系统学习笔记/" alt="">操作系统学习笔记</a><div class="blog-slider__text">记录操作系统学习历程</div><a class="blog-slider__button" href="2021/03/28/操作系统/操作系统学习笔记/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/计算机网络/计算机网络学习笔记/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage3.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/计算机网络/计算机网络学习笔记/" alt="">计算机网络学习笔记</a><div class="blog-slider__text">记录计算机网络学习历程</div><a class="blog-slider__button" href="2021/03/28/计算机网络/计算机网络学习笔记/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+                          console.log('已挂载butterfly_swiper')
+                          // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                          parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+                          }
+                        if( document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+                        butterfly_swiper_injector_config()
+                        }
+                      </script><script defer src="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/tororo.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":0,"vOffset":-105},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body></html>

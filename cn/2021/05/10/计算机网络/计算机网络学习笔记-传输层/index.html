@@ -1,0 +1,1690 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络学习笔记-传输层 | 花猪のBlog</title><meta name="keywords" content="计算机网络"><meta name="author" content="花猪,2296412185@qq.com"><meta name="copyright" content="花猪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录计算机网络学习历程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络学习笔记-传输层">
+<meta property="og:url" content="https://cnhuazhu.github.io/2021/05/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BC%A0%E8%BE%93%E5%B1%82/index.html">
+<meta property="og:site_name" content="花猪のBlog">
+<meta property="og:description" content="记录计算机网络学习历程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg">
+<meta property="article:published_time" content="2021-05-10T13:19:16.000Z">
+<meta property="article:modified_time" content="2021-05-22T11:34:08.413Z">
+<meta property="article:author" content="花猪">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/avatar.jpg"><link rel="canonical" href="https://cnhuazhu.github.io/2021/05/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BC%A0%E8%BE%93%E5%B1%82/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":60,"languages":{"author":"作者: 花猪","link":"链接: ","source":"来源: 花猪のBlog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#ABADAC","bgDark":"#121212","position":"bottom-right"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机网络学习笔记-传输层',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-22 19:34:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/pagelucency.css"><style>#article-container.post-content h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { -webkit-animation: avatar_turn_around 1s linear infinite; -moz-animation: avatar_turn_around 1s linear infinite; -o-animation: avatar_turn_around 1s linear infinite; -ms-animation: avatar_turn_around 1s linear infinite; animation: avatar_turn_around 1s linear infinite; }</style><link rel="stylesheet" href="/css/avatarbg.css"><link rel="stylesheet" href="/css/footerlucency.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/macblack.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiperstyle.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="花猪のBlog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">86</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/"><i class="fa-fw fas fa-gift"></i><span> 引导</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-sitemap"></i><span> 分站</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/next"><i class="fa-fw fas fa-chevron-right"></i><span> Next</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 阅读</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/video/"><i class="fa-fw fa fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-quote-left"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/website/"><i class="fa-fw fas fa-globe"></i><span> 网站</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/Message/"><i class="fa-fw fas fa-comment"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background: transparent"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">花猪のBlog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/"><i class="fa-fw fas fa-gift"></i><span> 引导</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-sitemap"></i><span> 分站</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/next"><i class="fa-fw fas fa-chevron-right"></i><span> Next</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 阅读</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/video/"><i class="fa-fw fa fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-quote-left"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/website/"><i class="fa-fw fas fa-globe"></i><span> 网站</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/Message/"><i class="fa-fw fas fa-comment"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机网络学习笔记-传输层</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-10T13:19:16.000Z" title="发表于 2021-05-10 21:19:16">2021-05-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-22T11:34:08.413Z" title="更新于 2021-05-22 19:34:08">2021-05-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">11.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>34分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机网络学习笔记-传输层"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>前言</h1>
+<p><em>正在学习计算机网络这门课程，顺便做个笔记，记录一下知识点。</em></p>
+<blockquote>
+<p>参考资料：</p>
+<p>中科大郑烇老师全套《计算机网络（自顶向下方法 第7版，James F.Kurose，Keith W.Ross）》课程：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.bilibili.com/video/BV1JV411t7ow?p=1">https://www.bilibili.com/video/BV1JV411t7ow?p=1</a></p>
+<p>《计算机网络（自顶向下方法 第7版，James F.Kurose，Keith W.Ross）》</p>
+</blockquote>
+<hr>
+<h1>第三章：传输层</h1>
+<h2 id="概述和传输层服务">概述和传输层服务</h2>
+<p>传输层为运行在不同主机上的应用进程提供<strong>逻辑通信</strong>服务（以报文为单位）。</p>
+<blockquote>
+<p>提供进程-进程之间的通信</p>
+</blockquote>
+<p>传输协议运行在端系统中：</p>
+<ul>
+<li>发送方：将应用层的报文分成报文段（添加段头，形成本层数据单元），然后传递给网络层。</li>
+<li>接收方：将报文段重组成报文（去掉段的头部信息，取出段的内容），然后以字节流的形式传递给应用层</li>
+</ul>
+<p>传输层向上层提供多种协议：</p>
+<ul>
+<li>Internet: TCP和UDP</li>
+</ul>
+<blockquote>
+<p>传输层VS网络层</p>
+<p>网络层服务：主机之间的逻辑通信。</p>
+<p>传输层服务：进程间的逻辑通信。（主机之间服务的细分）</p>
+<ul>
+<li>
+<p>依赖于网络层的服务：延时、带宽。</p>
+</li>
+<li>
+<p>对网络层的服务进行增强：数据丢失、顺序混乱、加密。</p>
+</li>
+<li>
+<p>有些服务是不可以加强的：带宽、延迟。</p>
+</li>
+<li>
+<p>传输层向上层提供的服务其中很重要的一个功能就是<strong>复用</strong>（源端）以及<strong>解复用</strong>（目标端）。（后文详细介绍）</p>
+<blockquote>
+<p>下面举个例子来说明传输层的服务：</p>
+<p>假设Ann家与Bill家各有12个小孩，定期，各家的12个小孩会向对方家的12个小孩进行书信往来。那么一次单向通信就需要12×12=144封信件。现在假定是Ann家的孩子们向Bill家的孩子们发送信件。但是一封一封的发送过于繁琐，孩子们会这样解决问题：由Ann家的老大将信件全部收集起来，打包一起发送到Bill家。Bill家的老大收到信件后就会分发给不同的孩子。</p>
+<p>在这个例子中：</p>
+<ul>
+<li>两个家庭 = 于两个主机</li>
+<li>每个小孩 = 不同的进程</li>
+<li>信封中的信件 = 应用层报文</li>
+<li>Ann和Bill = 传输协议：
+<ul>
+<li>Ann将信件打包的过程（聚合） = 复用</li>
+<li>Bill将打包的信件分发（拆分） = 解复用</li>
+</ul>
+</li>
+<li>送信的邮件服务 = 网络层协议</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p>Internet传输层协议：</p>
+<ul>
+<li>
+<p>TCP：可靠的、保序的传输（提供字节流的服务）</p>
+<ul>
+<li>多路复用、解复用</li>
+<li>拥塞控制</li>
+<li>流量控制</li>
+<li>建立连接</li>
+</ul>
+</li>
+<li>
+<p>UDP：不可靠、不保序的传输（提供数据报的服务）</p>
+<ul>
+<li>多路复用、解复用</li>
+<li>没有为尽力而为的IP服务添加更多的其它额外服务</li>
+</ul>
+<blockquote>
+<p>二者都是在IP提供的服务的基础之上提供服务（IP提供的服务：best effort）</p>
+<p>二者都不能提供的服务：</p>
+<ul>
+<li>延时保证</li>
+<li>带宽保证</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="多路复用与解复用">多路复用与解复用</h2>
+<p>我们已经知道，IP向传输层提供的提供的服务是主机-主机的，而传输层提供的服务是进程-进程的，如何在传输层实现这一细分的服务的实现，所依靠的就是端口号。</p>
+<p>此外：引入Socket的目的就是使层间传递的数据尽可能少。</p>
+<blockquote>
+<p>TCP和UDP都分别有各自的端口号，但二者使用端口的方式并不一样。</p>
+</blockquote>
+<p>先来描述述一下多路复用/解复用的概念：</p>
+<ul>
+<li>
+<p>在发送方主机多路复用：</p>
+<p>从多个套接字接收来自多个进程的报文，根据套接字对应的IP地址和端口号等信息对报文段用头部加以封装 (该头部信息用于以后的解复用)</p>
+</li>
+<li>
+<p>在接收方主机多路解复用：</p>
+<p>根据报文段的头部信息中的IP地址和端口号将接收到的报文段发给正确的套接字(和对应的应用进程)</p>
+</li>
+</ul>
+<h3 id="TCP的多路复用-解复用">TCP的多路复用/解复用</h3>
+<p>之前我们介绍过，TCP的Socket和四元组相捆绑，代表两个进程之间的会话关系。</p>
+<blockquote>
+<p>四元组包含：源端IP，源端进程端口；目标端IP，目标端进程端口。</p>
+</blockquote>
+<p>发送方复用：</p>
+<ol>
+<li>应用层将进程的信息向传输层传递，其中包含两个部分：<code>Socket</code>和<code>Message</code>。</li>
+<li>Socket包含源端进程端口以及目标端进程端口，这时就会将这两个端口封装在报文段（Segment）中（这里还会封装一些其他信息，我们先不考虑）。段以及源端IP和目标端IP再向下层网络层传输。</li>
+<li>网络层接收来自上层的段以及IP信息，并进行封装。由此便可以借助下层提供的服务将其传输道目标主机。</li>
+</ol>
+<p>接收方解复用：</p>
+<ol>
+<li>网络层接收到传输来的分组，把头部信息去掉，剩下的段的部分交给传输层。</li>
+<li>传输层得到段可以通过头部信息知道源端IP、源端进程端口、目标端IP以及目标端进程端口。并可以将信息继续向应用层传递，交给对应的进程。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E5%A4%8D%E7%94%A8%E8%A7%A3%E5%A4%8D%E7%94%A8%E6%94%B9.png" alt=""></p>
+<blockquote>
+<p>补充：</p>
+<p>服务器能够在一个TCP端口上同时支持多个TCP套接字。</p>
+<p>Web服务器对每个连接客户端有不同的套接字。</p>
+</blockquote>
+<h3 id="UDP的多路复用-解复用">UDP的多路复用/解复用</h3>
+<p>UDP的Socket和二元组相捆绑。</p>
+<blockquote>
+<p>二元组包含：本地IP，本地进程端口。</p>
+</blockquote>
+<p>发送方复用：</p>
+<ol>
+<li>应用层将Message、Socket与目标IP和目标进程端口向传输层传递（注意UDP Socket同TCP不同，不包含目标IP与目标进程端口）。</li>
+<li>传输层将源进程端口以及目标进程端口封装在头部，形成报文段，向网络层传递。</li>
+<li>网络层继续将源IP和目标IP封装起来形成数据报（datagram），并借助下层提供的服务将其传输道目标主机。</li>
+</ol>
+<p>接收方解复用：</p>
+<ol>
+<li>网络层接收到传来的数据报，把头部信息去掉，将报文段以及目标IP和目标进程端口向传输层传递。</li>
+<li>传输层接收下层传来的信息，继续解封装，将数据向应用层传递，交给对应的进程。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNUDP%E5%A4%8D%E7%94%A8%E8%A7%A3%E5%A4%8D%E7%94%A8.png" alt=""></p>
+<blockquote>
+<p>补充：</p>
+<p>传输层TCP/UDP报文段格式：</p>
+<img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN传输层报文段格式.png" style="zoom: 67%;" />
+<p>对于UDP的多路解复用：如果两个不同源IP地址/源端口号的数据报，但是有相同的目标IP地址和端口号，则被定位到相同的UDP套接字，发给同一个应用进程。（这点同TCP不一样）</p>
+<p>因此可以这样记忆：不管是TCP四元组还是UDP二元组，必须元组内信息全部一致，才会对应同一个Socket，发送给同一个进程。</p>
+</blockquote>
+<h2 id="无连接传输：UDP">无连接传输：UDP</h2>
+<p>UDP在IP提供的服务之上并没有增加过多的额外的服务，仅增加了多路复用/解复用。因此UDP也是“尽力而为”的服务。并可能发生如下问题：</p>
+<ul>
+<li>数据丢失</li>
+<li>送到应用进程的报文段乱序</li>
+</ul>
+<p>UDP的另一个特征就是<strong>无连接</strong>：</p>
+<ul>
+<li>UDP发送端和接收端之间没有握手</li>
+<li>每个UDP报文段都被独立地处理</li>
+</ul>
+<p>UDP被用于：</p>
+<ul>
+<li>流媒体（丢失不敏感，速率敏感、应用可控制传输速率）</li>
+<li>事务性的应用（仅一次通信）</li>
+<li>DNS</li>
+<li>SNMP（简单的网络管理协议）</li>
+</ul>
+<p>如果想使用UDP协议，同时又希望具有可靠性，那么这种可靠性服务只能由进程本身（应用层）提供。可以应用特定的差错恢复。</p>
+<p>UDP报文段格式：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNUDP%E6%8A%A5%E6%96%87%E6%AE%B5%E6%A0%BC%E5%BC%8F.png" alt=""></p>
+<p>头部为8Byte，包括：源端口号、目标端口号、长度（包括头部在内的整个报文段的长度）、校验和(checksum)。（均为2Byte）</p>
+<blockquote>
+<p>UDP存在的必要性：</p>
+<ul>
+<li>不建立连接 （会增加延时）。</li>
+<li>简单：在发送端和接收端没有连接状态（服务器无需维护客户端状态，客户端也无需维护与源端某一进程的通讯状态）。</li>
+<li>报文段的头部很小(开销小)。因此一个报文段的载荷（应用程序数据）就比较大。</li>
+<li>无拥塞控制和流量控制：UDP可以尽可能快的发送报文段。</li>
+</ul>
+</blockquote>
+<h3 id="UDP校验和">UDP校验和</h3>
+<p>校验和的目的：检测在被传输报文段中的差错 (如比特反转)。</p>
+<p>发送方：</p>
+<ul>
+<li>将报文段的内容视为16bit的整数</li>
+<li>校验和：报文段的加法和（1的补运算）</li>
+<li>发送方将校验和放在UDP的校验和字段</li>
+</ul>
+<p>接受方：</p>
+<ul>
+<li>计算接收到的报文段的校验和</li>
+<li>检查计算出的校验和与校验和字段的内容是否相等：
+<ul>
+<li>不相等——检测到差错（一定错）</li>
+<li>相等——一种情况是没有差错；另一种情况也许会出现<strong>残存错误</strong>。</li>
+</ul>
+</li>
+</ul>
+<p>校验和的具体实现：</p>
+<p>将报文段的数据（包含一些头部信息），拆分成16bit一组（不足的补零）。将这些16bit的整数相加。</p>
+<ul>
+<li>
+<p>进位回滚：</p>
+<p>16bit整数相加可能会有进位，这是就把进位加到计算结果的最后一位。最后求得的校验和是处理进位的结果的反码。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%A0%A1%E9%AA%8C%E5%92%8C%E8%BF%9B%E4%BD%8D%E5%9B%9E%E6%BB%9A.png" alt=""></p>
+<p>目标端重复发送方一样的操作，但是没有最后的取反码的步骤，将其计算出的结果同发送方的检验和相加，如果没有差错，应该是16位“1”（=1111111111111111），否则没有通过校验。</p>
+</li>
+</ul>
+<h2 id="可靠数据传输的原理">可靠数据传输的原理</h2>
+<p>可靠数据传输（Reliable data transfer，rdt）在应用层、传输层和数据链路层都很重要。（是网络Top 10问题之一）</p>
+<h3 id="可靠数据传输的原理-2">可靠数据传输的原理</h3>
+<p><code>rdt</code>需要提供的是可靠的服务（在上层），可是它却要依赖与下层不可靠的<code>udt</code>服务（可能会丢失、可能会乱序），所以下层信道的不可靠特点决定了可靠数据传输协议（ rdt ）的复杂性。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E7%9A%84%E6%8F%8F%E8%BF%B0.png" alt=""></p>
+<blockquote>
+<ul>
+<li><code>rdt_send()</code>和<code>deliver_data()</code>是传输层与应用层的层间接口；</li>
+<li><code>udt_send()</code>和<code>rdt_rcv()</code>是传输层与网络层的层间接口。</li>
+</ul>
+</blockquote>
+<p>下面我们来具体讲述传输层是如何实现可靠传输机制的。</p>
+<blockquote>
+<p>在展开讲述之前先提前做个铺垫，如何渐进式地描述这一问题：</p>
+<ul>
+<li>
+<p>先假设底层信道传输是可靠的（实际上并非如此），那么上层就不需要任何机制就可以保证可靠传输，于是我们会将下层的可靠性一点一点剥落，同样的上层就会相应地增加可靠传输机制。这便是接下来的讲解思路。</p>
+</li>
+<li>
+<p>虽然信息传输是双向流动的，但是我们可以只考虑单向数据传输。（双向的数据传输问题实际上是2个单向数据传输问题的综合）</p>
+</li>
+<li>
+<p>使用有限状态机 (FSM) 来描述发送方和接收方：</p>
+<ul>
+<li>
+<p>FSM（有限状态机）：实际上就是描述协议工作机制的形式化的描述方案。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNFSM.png" alt=""></p>
+<p>节点代表状态；边代表节点状态之间的迁移；边上的标记（label）：分母代表事件、分子代表采取的动作。</p>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="rdt1-0：在可靠信道上的可靠数据传输">rdt1.0：在可靠信道上的可靠数据传输</h4>
+<p>首先假设信道传输：</p>
+<ul>
+<li>没有比特出错</li>
+<li>没有分组丢失</li>
+</ul>
+<p>发送方：</p>
+<ol>
+<li>应用层将数据传送下来</li>
+<li>传输层只做两件事情：
+<ul>
+<li>添加头部信息，封装为包（packet）</li>
+<li>借助于下层的服务将数据发送出去</li>
+</ul>
+</li>
+</ol>
+<p>接收方：</p>
+<ol>
+<li>等待下层传来的数据</li>
+<li>传输层依旧只做两件事：
+<ul>
+<li>解封装</li>
+<li>将数据向上层传递</li>
+</ul>
+</li>
+</ol>
+<p>rdt1.0的FSM描述：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt1.0.png" alt=""></p>
+<h4 id="rdt2-0：具有比特差错的信道">rdt2.0：具有比特差错的信道</h4>
+<p>假设下层信道传输可能出现比特翻转（比特差错）</p>
+<p>解决方案就是采用上文提到过的<strong>校验和</strong>。</p>
+<p>发送方在向接收方发送数据时，会采用校验和来判断数据传输有无差错，并且接收方会有一个反馈机制：</p>
+<ul>
+<li>确认(ACK)：如果通过了校验和，接收方会发送ACK信息，显式地告诉发送方分组已被正确接收。</li>
+<li>否定确认( NAK)：如果未通过校验和，接收方会发送NAK信息，显式地告诉发送方分组发生了差错。接着发送方会重新发送分组。</li>
+</ul>
+<blockquote>
+<p>发送方会有一个缓存，以便发送分组失败后可以重新将分组发送给接收方。</p>
+</blockquote>
+<p>发送方：</p>
+<ol>
+<li>接收来自上层的数据</li>
+<li>计算校验和并封装为packet；借助下层的服务将数据发送出去</li>
+<li>转变为等待ACK/NAK的状态：
+<ul>
+<li>如果接收到NAK信息，重新发送packet，并继续维持等待状态</li>
+<li>如果接收到ACK信息，转为接收上层信息并发送数据的状态</li>
+</ul>
+</li>
+</ol>
+<p>接收方：</p>
+<ol>
+<li>接收下层传来的packet，并计算校验和：
+<ul>
+<li>如果通过（未腐败的(notcorrupt)）校验和，解封装，将数据向上层传递，向并发送方发送ACK确认信息</li>
+<li>如果为通过（腐败的(corrupt)）校验和，则向发送方发送NAK信息</li>
+</ul>
+</li>
+</ol>
+<p>rdt2.0的FSM描述：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt2.0.png" alt=""></p>
+<h4 id="rdt2-1：停止等待协议">rdt2.1：停止等待协议</h4>
+<blockquote>
+<p>停等协议：发送方发送一个分组，然后等待接收方的应答。（一次只发送一个等待确认信息）</p>
+</blockquote>
+<p>我们仔细思考就会察觉，rdt2.0有一个致命的错误：如果接收方的反馈信息（ACK/NAK）发生了差错该如何处理？</p>
+<blockquote>
+<p>理想很丰满，现实很骨感。接受方说：“正确收到”，那么发送方继续传送下一个包；接收方说：“发生错误”，则发送方重新传包。就怕接收方来了一句：“歪比巴卜”，这就容易给发送方整懵了。</p>
+<p>所以说rdt2.0的协议机制并不完备。</p>
+</blockquote>
+<p>为此引入新的机制：序号（sequence number）</p>
+<blockquote>
+<p>停等协议由于一次只发送一个等待确认的信息，因此只需要一位就可以识别（0、1）排序。</p>
+</blockquote>
+<p>发送方：</p>
+<ol>
+<li>会在每一个分组中添加序号（P<sub>0</sub>、P<sub>1</sub>）</li>
+<li>如果发送方接收到的反馈信息出错（无法识别），无论是ACK还是NAK，发送方都会重新发送旧的分组。</li>
+</ol>
+<p>接收方：</p>
+<ol>
+<li>如果是NAK出错，那么正好接收来重新传送的分组，如果通过校验，发送ACK确认信息；否则发送NAK。</li>
+<li>如果是ACK出错，那么这时接收方就会收到重复的分组，由于分组增添了序号，那么接收方会将该分组丢掉，不再向上层传递。接着会向发送方发送ACK确认信息，以请求发送后续分组。</li>
+</ol>
+<p>rdt2.1的FSM描述：</p>
+<ul>
+<li>
+<p>发送方处理出错的ACK/NAK</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt2.1%E5%8F%91%E9%80%81%E6%96%B9.png" alt=""></p>
+</li>
+<li>
+<p>接收方处理出错的ACK/NAK</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt2.1%E6%8E%A5%E6%94%B6%E6%96%B9.png" alt=""></p>
+</li>
+</ul>
+<blockquote>
+<p>注意：</p>
+<p>rdt2.1中，接收方并不知道发送方是否正确收到了其ACK/NAK信息（没有安排确认的确认）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt2.1%E7%9A%84%E8%BF%90%E8%A1%8C.png" alt=""></p>
+<p>那考虑是否在发送方安排确认的确认机制呢？那么如此我们如何判断确认的确认是否正确。所以事实上这样的“套娃”设计意义并不大，并不能完美的解决问题。</p>
+</blockquote>
+<h4 id="rdt2-2：无NAK的协议">rdt2.2：无NAK的协议</h4>
+<ul>
+<li>
+<p>功能同rdt2.1，但只使用ACK(ack需要编号）</p>
+<img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt2.2NAKfree.png" style="zoom:80%;" />
+</li>
+<li>
+<p>接收方对最后正确接收的分组发ACK，以替代NAK。</p>
+<blockquote>
+<p>接收方必须显式地包含被正确接收分组的序号。</p>
+<p>用情商课堂的方式理解很简单：当发送方发送了编号为1的分组（这时它应该等待ACK1）</p>
+<ul>
+<li>低情商：接收方发来了NAK信息→1号分组出错了</li>
+<li>高情商：接收方发来了ACK0→1号分组出错了</li>
+</ul>
+<p>因此对ACK的编号可以替代NAK。</p>
+</blockquote>
+</li>
+<li>
+<p>这就为之后的流水线协议做好了基础（一次发送多个数据单位）。</p>
+<ul>
+<li>使用对前一个数据单位的ACK，代替本数据单位的NAK</li>
+<li>这样可以使确认信息减少一半，协议处理简单</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt2.2%E7%9A%84%E8%BF%90%E8%A1%8C.png" alt=""></p>
+<p>当然如果ACK信息发送错误依然有可能导致接收方接收分组重复，解决方案仍和rdt2.1是一样的：</p>
+<img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt2.2的运行2.png" style="zoom:80%;" />
+</blockquote>
+<p>rdt2.2的FSM描述（部分）：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt2.2.png" alt=""></p>
+<h4 id="rdt3-0：具有比特差错和分组丢失的信道">rdt3.0：具有比特差错和分组丢失的信道</h4>
+<p>假设下层的传输信道除了比特差错之外还可能丢失分组。</p>
+<blockquote>
+<p>如果出现了分组丢失的情况：一方面接收方在等待分组，另一方面发送方在等待确认信息。所以会出现<strong>死锁</strong>的情况。（rdt2.2还无法处理这种情况）</p>
+</blockquote>
+<p>所以会引入新的机制：超时重传</p>
+<ul>
+<li>需要<code>countdown timer</code>（倒计时定时器）</li>
+</ul>
+<p>发送方会等待ACK信息一段合理的时间，如果在这段时间内没有收到ACK信息，就会重新传输分组（一旦超时，发送方就会认为分组已经丢失）。</p>
+<blockquote>
+<p>合理的时间：</p>
+<ul>
+<li>传输层timeout时间是适应式的</li>
+<li>链路层的timeout时间确定的</li>
+</ul>
+</blockquote>
+<p>接下来会有新的问题：如果只是发送方的ACK信息丢失，或者只是分组（或ACK信息）被延时，那么就会导致接收方收到的分组重复。这个问题在rdt2.1中就已经解决。</p>
+<p>rdt3.0的FSM描述（发送方）：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt3.0%E5%8F%91%E9%80%81%E6%96%B9.png" alt=""></p>
+<blockquote>
+<p>rdt3.0的运行：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt3.0%E7%9A%84%E8%BF%90%E8%A1%8C1.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt3.0%E7%9A%84%E8%BF%90%E8%A1%8C2.png" alt=""></p>
+<ul>
+<li>过早超时（延迟的ACK）也能够正常工作；但是效率较低，一半的分组和确认是重复的（超时之后的分组和ACK都是发送两次的）；</li>
+<li>因此设置一个合理的超时时间也是比较重要的。</li>
+</ul>
+</blockquote>
+<p>rdt3.0的性能：</p>
+<p>rdt3.0可以工作（功能比较完备），但链路容量比较大的情况下，性能很差。</p>
+<blockquote>
+<p>链路容量比较大，一次发一个PDU 的不能够充分利用链路的传输能力。</p>
+<p>举个例子：A地到B地相距甚远，驱车从A地到B地需要很长的时间，但是停等协议只允许高速公路上一次跑一辆汽车（实际上高速公路可以容纳很多车辆）。所以链路越大，停等协议对链路的利用率就越低。</p>
+<p>即：网络协议限制了物理资源的利用。</p>
+<p>具体可以举例计算（如下图）：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt3.0%E6%80%A7%E8%83%BD%E4%B8%BE%E4%BE%8B.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNrdt3.0%E6%80%A7%E8%83%BD%E4%B8%BE%E4%BE%8B2.png" alt=""></p>
+</blockquote>
+<h3 id="流水线协议（Pipelined-protocols）">流水线协议（Pipelined protocols）</h3>
+<p>为了提高链路利用率，接下来就引入了流水线的方式。</p>
+<blockquote>
+<p>上文提到造成链路利用率低下的原因是停等协议每次只允许发送一个分组，那么我们就可以考虑一次发送多个分组以提高利用率，但是这个值并不会增加到100%，随着能够同时发送分组的数量的增加，到了后期瓶颈就由停等协议转移到了链路带宽。</p>
+</blockquote>
+<p>流水线协议：允许发送方在未得到对方确认的情况下一次发送多个分组。</p>
+<ul>
+<li>必须增加序号的范围：用多个bit表示分组的序号</li>
+<li>在发送方/接收方要有缓冲区：
+<ul>
+<li>发送方缓存：未得到确认，可能需要重传；</li>
+<li>接收方缓存：上层用户取用数据的速率 ≠ 接收到的数据速率；接收到的数据可能乱序，排序交付（可靠）</li>
+</ul>
+</li>
+</ul>
+<p>有两种通用的流水线协议：</p>
+<ul>
+<li><strong>Go-back-N：回退N（GBN）</strong></li>
+<li><strong>Selective Repeat：选择重传（SR）</strong></li>
+</ul>
+<p>在介绍以上两种协议时我们先做一些铺垫，先来介绍一个通用协议：<strong>滑动窗口(slide window)协议</strong></p>
+<p>该协议根据发送方以及接收方窗口大小的不同可以分为：</p>
+<ul>
+<li>
+<p>停止等待协议：send_window = 1, receive_window = 1</p>
+</li>
+<li>
+<p>回退N协议：send_window ＞ 1，receive_window = 1</p>
+</li>
+<li>
+<p>选择重传协议：send_window ＞ 1，receive_window ＞ 1</p>
+<blockquote>
+<p>发送方窗口（send_window）大于1的协议我们就称之为流水线协议。</p>
+</blockquote>
+</li>
+</ul>
+<p>发送缓冲区：</p>
+<ul>
+<li>形式：内存中的一个区域，落入缓冲区的分组可以发送</li>
+<li>功能：用于存放已发送，但是没有得到确认的分组</li>
+<li>必要性：需要重发时可用</li>
+<li>发送缓冲区的大小：一次最多可以发送多少个未经确认的分组
+<ul>
+<li>停止等待协议 = 1</li>
+<li>流水线协议 &gt; 1，合理的值，不能很大，链路利用率不能够超100%</li>
+</ul>
+</li>
+<li>发送缓冲区中的分组：
+<ul>
+<li>未发送的：落入发送缓冲区的分组，可以连续发送出去；</li>
+<li>已经发送出去的、等待对方确认的分组：发送缓冲区的分组只有得到确认才能删除</li>
+</ul>
+</li>
+</ul>
+<p>发送窗口：</p>
+<ul>
+<li>
+<p>指的是发送缓冲区的一个范围（是发送缓冲区的一个子集）。</p>
+</li>
+<li>
+<p>存放已发送但是未确认的分组。（实际上发送传窗口是那些已发送但是未经确认分组的序号构成的空间）</p>
+</li>
+<li>
+<p>发送窗口的最大值 ≤ 发送缓冲区的值</p>
+</li>
+<li>
+<p>发送窗口的滑动过程：</p>
+<ol>
+<li>
+<p>一开始：没有发送任何一个分组</p>
+<ul>
+<li>
+<p>后沿 = 前沿</p>
+</li>
+<li>
+<p>之间为发送窗口的尺寸 = 0</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E5%8F%91%E9%80%81%E7%AA%97%E5%8F%A31.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p>发送窗口的移动：前沿移动</p>
+<ul>
+<li>
+<p>每发送一个分组，前沿前移一个单位</p>
+</li>
+<li>
+<p>发送窗口前沿移动的极限：不能够超过发送缓冲区</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E5%8F%91%E9%80%81%E7%AA%97%E5%8F%A32.png" alt=""></p>
+<blockquote>
+<p>注意：绿色部分为发送缓冲区</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>发送窗口的移动：后沿移动</p>
+<ul>
+<li>
+<p>后沿移动的条件：收到老分组（后沿）的确认</p>
+</li>
+<li>
+<p>结果：发送缓冲区罩住新的分组，来了分组可以发送</p>
+</li>
+<li>
+<p>后沿移动的极限：不能够超过前沿</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E5%8F%91%E9%80%81%E7%AA%97%E5%8F%A33.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p>接收窗口：</p>
+<ul>
+<li>
+<p>接收窗口 (receiving window) = 接收缓冲区</p>
+</li>
+<li>
+<p>接收窗口用于控制哪些分组可以接收：</p>
+<ul>
+<li>只有收到的分组序号落入接收窗口内才允许接收</li>
+<li>若序号在接收窗口之外，则丢弃</li>
+</ul>
+</li>
+<li>
+<p>接收窗口尺寸 Wr = 1，则只能顺序接收</p>
+<blockquote>
+<p>举例：</p>
+<ul>
+<li>
+<p>Wr＝1，在0的位置；只有0号分组可以接收</p>
+</li>
+<li>
+<p>向前滑动一个，罩在1的位置，如果来了第2号分组，则丢弃</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%8E%A5%E6%94%B6%E7%AA%97%E5%8F%A31.png" alt=""></p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>接收窗口尺寸 Wr &gt; 1 ，则可以乱序接收（但提交给上层的分组，要按序提交）</p>
+<blockquote>
+<ul>
+<li>
+<p>滑动：</p>
+<ul>
+<li>低序号的分组到来（按序），接收窗口移动；</li>
+<li>高序号分组乱序到，缓存但不交付（因为要实现rdt，不允许失序），不滑动</li>
+</ul>
+</li>
+<li>
+<p>发送确认：</p>
+<ul>
+<li>接收窗口尺寸 = 1 ； 发送连续收到的最大的分组确认（累计确认）</li>
+<li>接收窗口尺寸 &gt; 1 ； 收到哪个分组，就发送那个分组的确认（非累计确认）</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%8E%A5%E6%94%B6%E7%AA%97%E5%8F%A33.png" alt=""></p>
+<p>绿色区域表示可接收的分组。</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>正常情况下两个窗口的互动：</p>
+<ul>
+<li>
+<p>发送窗口：</p>
+<ul>
+<li>有新的分组落入发送缓冲区范围，发送 → 前沿滑动</li>
+<li>来了老的低序号分组的确认 → 后沿向前滑动 → 新的分组可以落入发送缓冲区的范围</li>
+</ul>
+</li>
+<li>
+<p>接收窗口：</p>
+<ul>
+<li>收到分组，落入到接收窗口范围内，接收</li>
+<li>发送确认给发送方
+<ul>
+<li>如果低序号分组确认收到，向前滑动接收窗口</li>
+<li>否则不滑动</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E5%8F%91%E9%80%81%E7%AA%97%E5%8F%A3%E4%B8%8E%E6%8E%A5%E6%94%B6%E7%AA%97%E5%8F%A3%E7%9A%84%E4%BA%92%E5%8A%A81.png" alt=""></p>
+</li>
+</ul>
+<p>异常情况下GBN的两窗口互动：</p>
+<ul>
+<li>发送窗口：
+<ul>
+<li>新分组落入发送缓冲区范围，发送 → 前沿滑动</li>
+<li>超时重发机制让发送端将发送窗口中的所有分组发送出去（低序号开始的连续的已发送但未确认的分组全部重新发送）</li>
+<li>来了老分组的重复确认 → 后沿不向前滑动 → 新的分组无法落入发送缓冲区的范围（此时如果发送缓冲区有新的分组可以发送）</li>
+</ul>
+</li>
+<li>接收窗口：
+<ul>
+<li>收到乱序分组，没有落入到接收窗口范围内，抛弃</li>
+<li>（重复）发送老分组的确认，累计确认</li>
+</ul>
+</li>
+</ul>
+<p>异常情况下SR的两窗口互动：</p>
+<ul>
+<li>发送窗口：
+<ul>
+<li>新分组落入发送缓冲区范围，发送 → 前沿滑动</li>
+<li>超时重发机制让发送端将超时的分组重新发送出去</li>
+<li>来了乱序分组的确认 → 后沿不向前滑动 → 新的分组无法落入发送缓冲区的范围（此时如果发送缓冲区有新的分组可以发送）</li>
+</ul>
+</li>
+<li>接收窗口：
+<ul>
+<li>收到乱序分组，落入到接收窗口范围内，接收</li>
+<li>发送该分组的确认，单独确认</li>
+</ul>
+</li>
+</ul>
+<p>由此我们小结一下GBN协议和SR协议的异同：</p>
+<ul>
+<li>相同点：
+<ul>
+<li>发送窗口 &gt; 1</li>
+<li>一次能够可发送多个未经确认的分组</li>
+</ul>
+</li>
+<li>不同点：
+<ul>
+<li>GBN :接收窗口尺寸 = 1
+<ul>
+<li>接收端：只能顺序接收</li>
+<li>发送端：从表现来看，一旦一个分组没有发成功，如：0、1、2、3、4; 假如1未成功，2、3、4都发送出去 了，要返回1再发送1、2、3、4。</li>
+<li>累计确认：cumulative ack</li>
+<li>发送端拥有对最老的未确认分组的定时器：
+<ul>
+<li>只需设置一个定时器</li>
+<li>当定时器到时时，重传所有未确认分组</li>
+</ul>
+</li>
+<li>发送窗口的最大值（序号大小为n）：2<sup>n</sup>-1</li>
+</ul>
+</li>
+<li>SR: 接收窗口尺寸 &gt; 1
+<ul>
+<li>接收端：可以乱序接收</li>
+<li>发送端：发送0、1、2、3、4，一旦1未成功，2、3、4,已发送，无需重发，只选择性发送1。</li>
+<li>非累计确认/独立确认：individual ack</li>
+<li>发送方为每个未确认的分组保持一个定时器：
+<ul>
+<li>当超时定时器到时，只是重发到时的未确认分组</li>
+</ul>
+</li>
+<li>发送窗口的最大值（序号大小为n）：2<sup>n-1</sup></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>列出下表对比一下GBN协议和SR协议：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>GBN</th>
+<th>SR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>优点</td>
+<td>简单，所需资源少（接收方一个缓存单元）</td>
+<td>出错时，重传一个代价小</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>一旦出错，回退N步代价大</td>
+<td>复杂，所需要资源多（接收方多个缓存单元）</td>
+</tr>
+</tbody>
+</table>
+<p>适用范围：</p>
+<ul>
+<li>出错率低：比较适合GBN，出错非常罕见，没有必要用复杂的SR，为罕见的事件做日常的准备和复杂处理</li>
+<li>链路容量大（延迟大、带宽大）：比较适合SR而不是GBN，一旦出错代价太大</li>
+</ul>
+<h2 id="面向连接的传输：TCP">面向连接的传输：TCP</h2>
+<h3 id="TCP概述">TCP概述</h3>
+<ul>
+<li>
+<p>点对点：一个发送方，一个接收方</p>
+</li>
+<li>
+<p>可靠的、按顺序的字节流：没有报文边界</p>
+<blockquote>
+<p>TCP不提供报文界限：发送方可能发送两个报文，接收方可能会收到一个大的报文，也可能收到四个小的报文。应用进程之间报文的界限需要应用进程自己去维护。</p>
+</blockquote>
+</li>
+<li>
+<p>提供管道化（流水线）的协议：</p>
+<ul>
+<li>TCP拥塞控制和流量控制设置窗口大小</li>
+</ul>
+</li>
+<li>
+<p>发送和接收有缓存</p>
+</li>
+<li>
+<p>全双工数据：</p>
+<ul>
+<li>在同一连接中数据流双向流动（一方进程可同时发送数据和接收数据）</li>
+</ul>
+</li>
+<li>
+<p>面向连接：在数据交换之前，通过握手（交换控制报文） 初始化发送方、接收方的状态变量</p>
+</li>
+<li>
+<p>有流量控制：发送方不会淹没接收方</p>
+</li>
+</ul>
+<blockquote>
+<p>MSS：最大报文段大小</p>
+<p>MTU：最大传输单元</p>
+</blockquote>
+<h3 id="TCP报文段结构">TCP报文段结构</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E6%8A%A5%E6%96%87%E6%AE%B5%E7%BB%93%E6%9E%84.png" alt=""></p>
+<blockquote>
+<p>说明：</p>
+<ul>
+<li>
+<p>源端口号、目标端口号：16bit</p>
+</li>
+<li>
+<p>序号并不是报文段的序号，而是报文段的数据载荷（body）部分的第一个字节在整个字节流中的偏移量。（对字节计数）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E6%8A%A5%E6%96%87%E6%AE%B5%E5%BA%8F%E5%8F%B7.png" alt=""></p>
+<p>一般情况下序号并不是从0或1这样固定的序号开始：为了避免长时间滞留在网络中的分组所包括的段对新的连接造成影响。</p>
+</li>
+<li>
+<p>确认号：依然是字节计数</p>
+<ul>
+<li>如果接收方传来的ACK为555，则表示接收方已经接收到了554及之前所有的字节，并希望发送方下一个传来555字节的数据。（累计确认）</li>
+<li>接收方处理乱序的报文段：可以缓存，也可以丢弃。</li>
+</ul>
+</li>
+<li>
+<p>首部长度：4个字节为单位，表示该TCP段的首部数据大小。</p>
+</li>
+<li>
+<p>RSF（RST、SYN、FIN）标志位：主要是用于两个应用进程进行TCP连接的标志位。</p>
+<p>不同标志位的组合代表不同的握手（后面会提到），以及连接释放请求、确认等。</p>
+</li>
+<li>
+<p>接受窗口：用于流量控制。如果接收方的接收窗口为X，则表示接收方可以接收X字节的数据。</p>
+</li>
+<li>
+<p>校验和：同UDP中的校验和作用一致。</p>
+</li>
+</ul>
+</blockquote>
+<p>TCP确认号和序号实例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E7%A1%AE%E8%AE%A4%E5%8F%B7%E5%92%8C%E5%BA%8F%E5%8F%B7.png" alt=""></p>
+<h3 id="TCP往返延时（RTT）和超时">TCP往返延时（RTT）和超时</h3>
+<p>分析可能的情况：TCP超时应该设置的比RTT长。如果设置太短，就会发生没必要的重传；如果太长，那么对报文段丢失的反应太慢。但是RTT是在不断变化的，因此我们需要定期测量RTT。</p>
+<blockquote>
+<p>SampleRTT：测量从报文段发出到收到确认的时间。</p>
+<p>仅用当前的SampleRTT是不合理的，应该对几个最近的测量值求平均。</p>
+<p>具体公式如下：</p>
+<p><strong>EstimatedRTT = (1- α) × EstimatedRTT + α × SampleRTT</strong></p>
+<ul>
+<li>指数加权移动平均</li>
+<li>过去样本的影响呈指数衰减</li>
+<li>推荐值：α = 0.125</li>
+</ul>
+<p>进一步我们需要考虑EstimatedRTT的变化范围：</p>
+<ul>
+<li>EstimtedRTT + 安全边界时间
+<ul>
+<li>EstimatedRTT变化大 (方差大) → 较大的安全边界时间</li>
+</ul>
+</li>
+<li>SampleRTT会偏离EstimatedRTT多远：
+<ul>
+<li><strong>DevRTT = (1-β) × DevRTT + β × |SampleRTT-EstimatedRTT|</strong></li>
+<li>(推荐值：β = 0.25)</li>
+</ul>
+</li>
+</ul>
+<p>由此我们可以计算超时时间间隔：</p>
+<p><strong>TimeoutInterval = EstimatedRTT + 4 × DevRTT</strong></p>
+</blockquote>
+<h3 id="TCP的可靠数据传输（rdt）">TCP的可靠数据传输（rdt）</h3>
+<ul>
+<li>TCP在IP不可靠服务的基础上建立了rdt
+<ul>
+<li>管道化的报文段：GBN or SR（TCP是两种的混合）</li>
+<li>累积确认（像GBN）</li>
+<li>设置单个重传定时器（像GBN）</li>
+<li>是否可以接受乱序的，TCP没有规范。可以缓存乱序报文段，也可以丢弃。</li>
+</ul>
+</li>
+<li>通过以下事件触发重传：
+<ul>
+<li>超时（只重发那个最早的未确认段：SR）</li>
+<li>重复的（三次冗余）确认：
+<ul>
+<li>例子：收到了ACK50,之后又收到3个ACK50</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>在分析TCP如何建立rdt，我们依旧采取以上讲可靠数据传输原理的流程，一步一步增加功能。</p>
+<h4 id="TCP发送方">TCP发送方</h4>
+<p>首先考虑简化的TCP发送方：</p>
+<ul>
+<li>
+<p>忽略重复的确认</p>
+</li>
+<li>
+<p>忽略流量控制和拥塞控制</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E5%8F%91%E9%80%81%E6%96%B9%EF%BC%88%E7%AE%80%E5%8C%96%EF%BC%89.png" alt=""></p>
+</li>
+<li>
+<p>TCP发送方事件：</p>
+<ul>
+<li>从应用层接收数据：
+<ul>
+<li>用nextseq创建报文段</li>
+<li>序号nextseq为报文段首字节的字节流编号</li>
+<li>如果还没有运行，启动定时器
+<ul>
+<li>定时器与最早未确认的报文段关联</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>超时：
+<ul>
+<li>重传后沿最老的报文段</li>
+<li>重新启动定时器</li>
+</ul>
+</li>
+<li>收到确认：
+<ul>
+<li>如果是对尚未确认的报文段确认
+<ul>
+<li>更新已被确认的报文序号</li>
+<li>如果当前还有未被确认的报文段，重新启动定时器</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>TCP重传（左图为ACK丢失，右图为ACK超时）：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E9%87%8D%E4%BC%A01%E3%80%812.png" alt=""></p>
+<p>（下图为累计确认）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E9%87%8D%E4%BC%A03.png" alt=""></p>
+</li>
+</ul>
+<p>在RFC中对产生TCP ACK的建议（如下表）</p>
+<table>
+<thead>
+<tr>
+<th>接收方的事件</th>
+<th>TCP接收方动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所期望序号的报文段按序到达。 所有在期望序号之前的数据都已经被确认</td>
+<td>延迟的ACK。对另一个按序报文段的到达最多等待500ms。如果下一个报文段在这个时间间隔内没有到达，则发送一个ACK。</td>
+</tr>
+<tr>
+<td>有期望序号的报文段到达。另一个按序报文段等待发送ACK（接收到连续的两个段）</td>
+<td>立即发送单个累积ACK，以确认两个按序报文段。</td>
+</tr>
+<tr>
+<td>比期望序号大的报文段乱序到达。检测出数据流中的间隔</td>
+<td>立即发送重复的ACK，指明下一个期待字节的序号</td>
+</tr>
+<tr>
+<td>能部分或完全填充接收数据间隔的报文段到达。</td>
+<td>若该报文段起始于间隔（gap）的低端，则立即发送ACK。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="快速重传">快速重传</h4>
+<p>产生快速重传的原因：超时周期往往太长（在重传丢失报文段之前的延时太长）。</p>
+<p>快速重传：在定时器过时之前重发报文段</p>
+<ul>
+<li>
+<p>由三个冗余ACK触发</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0%E5%8E%9F%E5%9B%A0.png" alt=""></p>
+<blockquote>
+<p>它假设跟在被确认的数据后面的数据丢失了：</p>
+<ul>
+<li>第一个ACK是正常的；</li>
+<li>收到第2个该段的ACK，表示接收方收到一个该段后的乱序段；</li>
+<li>收到第3，4个该段的ack，表示接收方收到该段之后的2个 ，3个乱序段，可能性非常大段丢失了</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>如果发送方收到同一数据 的3个冗余ACK，重传最小序号的段。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0%E5%AE%9E%E4%BE%8B.png" alt=""></p>
+<h3 id="TCP流量控制">TCP流量控制</h3>
+<p>流量控制：接收方控制发送方，不让发送方发送的太多、太快以至于让接收方的缓冲区溢出。</p>
+<ul>
+<li>
+<p>接收方在其向发送方的TCP段头部的<code>rwnd</code>字段“通告”其<code>空闲buffer</code>大小</p>
+<ul>
+<li>RcvBuffer大小通过socket选项设置 (典型默认大小为4096 字节)</li>
+<li>很多操作系统自动调整 RcvBuffer</li>
+</ul>
+</li>
+<li>
+<p>发送方限制未确认(“inflight”)字节的个数 ≤ 接收方发送过来的rwnd值</p>
+</li>
+<li>
+<p>保证接收方不会被淹没</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E7%BC%93%E5%86%B2%E5%8C%BA.png" alt=""></p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6.png" alt=""></p>
+<h3 id="连接管理">连接管理</h3>
+<p>在正式交换数据之前，发送方和接收方<strong>握手</strong>建立通信关系:</p>
+<ul>
+<li>同意建立连接（每一方都知道对方愿意建立连接）</li>
+<li>同意连接参数（准备、初始化资源）</li>
+</ul>
+<h4 id="建立连接">建立连接</h4>
+<p>首先考虑2次握手总是可行的吗？（仅一方发送连接请求，另一方收到后发送连接确认）</p>
+<p>有很多因素会导致2次握手的失败：</p>
+<ul>
+<li>变化的延迟（连接请求的段没有丢，但可能超时）</li>
+<li>由于丢失造成的重传 (e.g. req_conn(x))</li>
+<li>报文乱序</li>
+<li>相互看不到对方</li>
+</ul>
+<p>2次握手的失败场景：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN2%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%A4%B1%E8%B4%A5%E7%9A%84%E5%9C%BA%E6%99%AF.png" alt=""></p>
+<blockquote>
+<p>说明</p>
+<p>在客户端接收服务器发来的连接确认之前定时器到时，那么客户端就会再发送一条新的连接建立请求，如此服务器会消耗资源去维护许多不必要的“半连接”。</p>
+<p>数据超时会导致服务器将老数据按照新的数据处理。</p>
+</blockquote>
+<p>所以2次握手是不可取的，由此引入了3次握手。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN3%E6%AC%A1%E6%8F%A1%E6%89%8B.png" alt=""></p>
+<blockquote>
+<p>SYNbit = 1 表示建立连接请求</p>
+</blockquote>
+<p>3次握手可以有效地解决半连接和接收老数据的问题</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN3%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98.png" alt=""></p>
+<p>3次握手的FSM表示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN3%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%9A%84FSM.png" alt=""></p>
+<h4 id="关闭连接">关闭连接</h4>
+<ul>
+<li>客户端，服务器分别关闭它自己这一侧的连接
+<ul>
+<li>发送FIN bit = 1的TCP段</li>
+</ul>
+</li>
+<li>一旦接收到FIN，用ACK回应
+<ul>
+<li>接到FIN段，ACK可以和它自己发出的FIN段一起发送</li>
+</ul>
+</li>
+<li>可以处理同时的FIN交换</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E8%BF%9E%E6%8E%A5%E6%8B%86%E9%99%A4.png" alt=""></p>
+<blockquote>
+<p>这样的连接拆除方式并不完美：</p>
+<p>会存在一方拆除连接，另一方还维持连接的情况。</p>
+</blockquote>
+<h2 id="拥塞控制原理">拥塞控制原理</h2>
+<p>拥塞的非正式定义: “太多的数据需要网络传输，超过了网络的处理能力。”</p>
+<p>拥塞控制与流量控制不同：拥塞控制指的是网络的问题，流量控制指的是接收方的问题。</p>
+<p>拥塞的表现:</p>
+<ul>
+<li>分组丢失 (路由器缓冲区溢出)</li>
+<li>分组经历比较长的延迟(在路由器的队列中排队)</li>
+</ul>
+<blockquote>
+<p>拥塞是网络中前10位的问题</p>
+</blockquote>
+<h4 id="产生拥塞的原因-代价">产生拥塞的原因/代价</h4>
+<p>场景一：</p>
+<ul>
+<li>2个发送端，2个接收端</li>
+<li>一个路由器，具备无限大的缓冲</li>
+<li>输出链路带宽：R</li>
+<li>没有重传</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%8B%A5%E5%A1%9E%E5%9C%BA%E6%99%AF%E4%B8%80.png" alt=""></p>
+<blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%8B%A5%E5%A1%9E%E5%9C%BA%E6%99%AF%E4%B8%80%E6%8F%8F%E8%BF%B0.png" alt=""></p>
+<ul>
+<li>如左图：当λ<sub>in</sub>逐渐增加时，λ<sub>out</sub>也在增加，当λ<sub>in</sub>达到R/2时，λ<sub>out</sub>达到最大值，也就是说每个连接的最大吞吐量为R/2。</li>
+<li>如右图：从延迟的角度看，当进入的速率λ<sub>in</sub>接近链路链路带宽R时，延迟陡增。</li>
+</ul>
+</blockquote>
+<p>场景二：</p>
+<ul>
+<li>一个路由器，有限的缓冲</li>
+<li>分组丢失时，发送端重传
+<ul>
+<li>应用层的输入=应用层输出：λ<sub>in</sub> = λ<sub>out</sub></li>
+<li>传输层的输入包括重传：λ<sub>in</sub> ≥ λ<sub>out</sub></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%8B%A5%E5%A1%9E%E5%9C%BA%E6%99%AF%E4%BA%8C.png" alt=""></p>
+<blockquote>
+<p>理想化场景：发送端有完美的信息，即发送端知道什么时候路由器的缓冲是可用的。</p>
+<ul>
+<li>
+<p>只在缓冲可用时发送</p>
+</li>
+<li>
+<p>不会丢失：λ<sup>’</sup><sub>in</sub> = λ<sub>in</sub></p>
+</li>
+<li>
+<p>这样情况依然同上：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%8B%A5%E5%A1%9E%E5%9C%BA%E6%99%AF%E4%B8%80%E6%8F%8F%E8%BF%B0.png" alt=""></p>
+</li>
+<li>
+<p>但是这样的代价很大：每个路由器都需要告知发送方自己的空闲缓冲区有多大，不好实现。</p>
+</li>
+</ul>
+<p>理想化场景二：掌握丢失信息。即分组可以丢失，在路由器由于缓冲器满而被丢弃。</p>
+<ul>
+<li>
+<p>如果知道分组丢失了，发 送方重传分组</p>
+</li>
+<li>
+<p>会丢失：λ<sup>’</sup><sub>in</sub> &gt; λ<sub>in</sub></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%8B%A5%E5%A1%9E%E5%9C%BA%E6%99%AF%E4%BA%8C%E7%90%86%E6%83%B3%E5%8C%96%E5%9C%BA%E6%99%AF%E4%BA%8C%E6%8F%8F%E8%BF%B0.png" alt=""></p>
+<p>分析：这样一来，为了让λ<sub>out</sub>逼近于R/2，就需要让λ<sup>’</sup><sub>in</sub>比既定的输出要大（因为存在分组丢失）。</p>
+<ul>
+<li>重传的丢失分组</li>
+<li>没有必要重传的重复分组</li>
+</ul>
+<p>代价：</p>
+<ul>
+<li>为了达到一个有效输出，网络需要做更多的工作（重传）</li>
+<li>没有必要的重传，链路中包括了多个分组的拷贝（超时）
+<ul>
+<li>是那些没有丢失，经历的时间比较长（拥塞状态）但是超时的分组</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>因为网络拥塞而导致接收效率降低，而为了提高接收效率，就会增加发送量，如此一来会加剧网络拥塞，如果不加以控制，那么网络最终会瘫痪。这也是拥塞的特性。</p>
+</blockquote>
+<p>场景三：</p>
+<ul>
+<li>
+<p>4个发送端</p>
+</li>
+<li>
+<p>多重路径</p>
+</li>
+<li>
+<p>超时／重传</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CN%E6%8B%A5%E5%A1%9E%E5%9C%BA%E6%99%AF%E4%B8%89.png" alt=""></p>
+</li>
+</ul>
+<blockquote>
+<p>从宏观上来看，各方都不停地向网络中发送数据，就会发生网络拥塞的一个极致：整个网络出现死锁的情况</p>
+<p>代价：当分组丢失时，任何“关于这个分组的上游传输能力” 都被浪费了。</p>
+</blockquote>
+<h4 id="拥塞控制方法">拥塞控制方法</h4>
+<ul>
+<li>端到端拥塞控制：
+<ul>
+<li>没有来自网络的显式反馈</li>
+<li>端系统根据延迟和丢失事件推断是否有拥塞</li>
+<li>TCP采用此方法</li>
+</ul>
+</li>
+<li>网络辅助的拥塞控制：
+<ul>
+<li>路由器提供给端系统以反馈信息
+<ul>
+<li>单个bit置位，显示有拥塞 (SNA, DECbit,TCP/IP ECN, ATM)</li>
+<li>显式提供发送端可以采用的速率</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>首先来了解网络辅助的拥塞控制，以 ATM ABR 拥塞控制为例</p>
+<p>ABR: available bit rate: ATM网络的其中一个模式</p>
+<ul>
+<li>“弹性服务”</li>
+<li>如果发送端的路径“轻载 ”
+<ul>
+<li>发送方尽可能使用可用带宽</li>
+</ul>
+</li>
+<li>如果发送方的路径拥塞了：
+<ul>
+<li>发送方限制其发送的速度到一个最小保障速率上</li>
+</ul>
+</li>
+</ul>
+<p>RM (资源管理) 信元:</p>
+<ul>
+<li>由发送端发送,在数据信元中间隔插入</li>
+<li>RM信元中的比特被交换机设置 (“网络辅助”)
+<ul>
+<li>NI bit: no increase in rate (轻微拥塞)速率不要增加了</li>
+<li>CI bit: congestion indication 拥塞指示</li>
+</ul>
+</li>
+<li>发送端发送的RM 信元被接收端返回, 接收端不做任何改变</li>
+</ul>
+<blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNATM%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6.png" alt=""></p>
+<ul>
+<li>在RM信元中的2个字节 ER (explicit rate)字段
+<ul>
+<li>拥塞的交换机可能会降低信元中ER的值</li>
+<li>发送端发送速度因此是最低的可支持速率</li>
+</ul>
+</li>
+<li>数据信元中的EFCI bit: 被拥塞的交换机设置成1
+<ul>
+<li>如果在管理信元RM前面的数据信元EFCI被设置成了1, 接收端在返回的RM信元中设置CI bit</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="TCP拥塞控制">TCP拥塞控制</h3>
+<p>TCP采用端到端的拥塞控制。</p>
+<p>端到端的拥塞控制机制：</p>
+<ul>
+<li>路由器不向主机有关拥塞的反馈信息
+<ul>
+<li>路由器的负担较轻</li>
+<li>符合网络核心简单的TCP/IP架构原则（复杂性放在网络边缘，传输层及以上）</li>
+</ul>
+</li>
+<li>端系统根据自身得到的信息，判断是否发生拥塞，从而采取动作</li>
+</ul>
+<p>拥塞控制的几个问题：</p>
+<ul>
+<li>如何检测拥塞：
+<ul>
+<li>轻微拥塞</li>
+<li>拥塞</li>
+</ul>
+</li>
+<li>控制策略：
+<ul>
+<li>在拥塞发送时如何动作，降低速率
+<ul>
+<li>轻微拥塞，如何降低</li>
+<li>拥塞时，如何降低</li>
+</ul>
+</li>
+<li>在拥塞缓解时如何动作，增加速率</li>
+</ul>
+</li>
+</ul>
+<h4 id="拥塞感知">拥塞感知</h4>
+<ul>
+<li>
+<p>某个段超时了（丢失事件 ）：拥塞</p>
+<ul>
+<li>超时时间到，某个段的确认没有来</li>
+<li>原因1：网络拥塞（某个路由器缓冲区没空间了，被丢弃），概率大</li>
+<li>原因2：出错被丢弃了（各级错误，没有通过校验，被丢弃），概率小</li>
+<li>一旦超时，就认为拥塞了，有一定误判，但是总体控制方向是对的</li>
+</ul>
+</li>
+<li>
+<p>有关某个段的3次重复ACK：轻微拥塞（如下图）</p>
+<ul>
+<li>
+<p>段的第1个ack，正常，确认绿段，期待红段</p>
+</li>
+<li>
+<p>段的第2个重复ack，意味着红段的后一段收到了，蓝段乱序到达</p>
+</li>
+<li>
+<p>段的第2、3、4个ack重复，意味着红段的后第2、3、4个段收到了，橙段乱序到达，同时红段丢失的可能性很大（后面3个段都到了，红段都没到）</p>
+</li>
+<li>
+<p>网络这时还能够进行一定程度的传输，拥塞但情况要比第一种好</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E6%8B%A5%E5%A1%9E%E5%88%A4%E6%96%AD.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="速率控制方法">速率控制方法</h4>
+<ul>
+<li>
+<p>维持一个拥塞窗口的值：<code>CongWin</code></p>
+</li>
+<li>
+<p>发送端限制已发送但是未确认的数据量（的上限）:</p>
+<p>LastByteSent - LastByteAcked ≤ CongWin</p>
+</li>
+<li>
+<p>从而粗略地控制发送方的往网络中注入的速率（如下公式）：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>r</mi><mi>a</mi><mi>t</mi><mi>e</mi><mo>≈</mo><mfrac><mrow><mi>C</mi><mi>o</mi><mi>n</mi><mi>W</mi><mi>i</mi><mi>n</mi></mrow><mrow><mi>R</mi><mi>T</mi><mi>T</mi></mrow></mfrac><mi>b</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>s</mi><mi mathvariant="normal">/</mi><mi>s</mi><mi>e</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">rate ≈ \frac{ConWin}{RTT} bytes/sec
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">RTT</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">nWin</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">t</span><span class="mord mathnormal">es</span><span class="mord">/</span><span class="mord mathnormal">sec</span></span></span></span></span></p>
+</li>
+<li>
+<p>CongWin是动态的，是感知到的网络拥塞程度的函数：</p>
+<ul>
+<li>超时或者3个重复ack，CongWin会下降：
+<ul>
+<li>超时时：CongWin降为1MSS,进入SS阶段然后再倍增到CongWin/2（每个RTT），从而进入CA阶段</li>
+<li>3个重复ack ：CongWin降为CongWin/2，CA阶段</li>
+</ul>
+</li>
+<li>如果没有超时：CongWin会上升
+<ul>
+<li>SS（慢启动）阶段：加倍增加(每个RTT)</li>
+<li>CA（拥塞避免）阶段：线性增加(每个RTT)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>联合控制的方法：</p>
+<p>TCP拥塞控制和流量控制的联合动作。</p>
+<p>发送端控制发送但是未确认的量同时也不能够超过接收窗口，满足流量控制要求：</p>
+<ul>
+<li>SendWin = min {CongWin, RecvWin}</li>
+<li>同时满足拥塞控制和流量控制要求</li>
+</ul>
+</blockquote>
+<h4 id="TCP拥塞控制策略">TCP拥塞控制策略</h4>
+<ul>
+<li>慢启动</li>
+<li>AIMD：线性增、乘性减少</li>
+<li>超时事件后的保守策略</li>
+</ul>
+<p>TCP慢启动：</p>
+<ul>
+<li>
+<p>连接刚建立, CongWin = 1 MSS</p>
+<blockquote>
+<p>例如： MSS = 1460bytes  &amp; RTT = 200 msec，则初始速率 = 58.4kbps</p>
+</blockquote>
+</li>
+<li>
+<p>但是可用带宽可能远大于MSS/RTT，所以应该尽快加速，到达希望的速率</p>
+</li>
+<li>
+<p>当连接开始时，指数性增加（每个RTT）发送速率直到发生丢失事件</p>
+<ul>
+<li>每一个RTT， CongWin加倍</li>
+<li>每收到一个ACK时，CongWin加1</li>
+<li>慢启动阶段：只要不超时或3个重复ack，一个RTT，CongWin加倍</li>
+</ul>
+</li>
+<li>
+<p>初始速率很慢，但是加速却是指数性的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E6%85%A2%E5%90%AF%E5%8A%A8.png" alt=""></p>
+</li>
+</ul>
+<p>AIMD：</p>
+<ul>
+<li>
+<p>乘性减：</p>
+<p>丢失事件后将CongWin降为1，将CongWin/2作为阈值，进入慢启动阶段（倍增直到 CongWin/2）</p>
+</li>
+<li>
+<p>加性增：</p>
+<p>当CongWin &gt; 阈值时，一个RTT如没有发生丢失事件 ,将CongWin加1MSS: 探测</p>
+</li>
+</ul>
+<p>策略不同：</p>
+<ul>
+<li>当收到3个重复的ACKs：
+<ul>
+<li>CongWin 减半</li>
+<li>窗口（缓冲区大小）之后线性增长</li>
+</ul>
+</li>
+<li>当超时事件发生时：
+<ul>
+<li>CongWin被设置成 1 MSS，进入SS阶段</li>
+<li>之后窗口指数增长</li>
+<li>增长到一个阈值（上次发生拥塞的窗口的一半）时 ，再线性增加</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>再次强调一下何时候应该将指数性增长变成线性增长：</p>
+<p>在超时之前，当 CongWin变成上次发生超时的窗口的一半时</p>
+<p>具体实现：</p>
+<ul>
+<li>
+<p>变量：Threshold</p>
+</li>
+<li>
+<p>出现丢失，Threshold设置成 CongWin的1/2</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E5%9B%BE.png" alt=""></p>
+</li>
+</ul>
+</blockquote>
+<p>小结</p>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>状态</th>
+<th>TCP 发送端行为</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>以前没有收到ACK的data被ACKed</td>
+<td>慢启动 (SS)</td>
+<td>CongWin = CongWin + MSS <br>If (CongWin &gt; Threshold) ,状态变成 “CA”</td>
+<td>每一个RTT CongWin 加倍</td>
+</tr>
+<tr>
+<td>以前没有收到ACK的data 被ACKed</td>
+<td>拥塞避免 (CA)</td>
+<td>CongWin = CongWin+MSS × (MSS/CongWin)</td>
+<td>加性增加, 每一个RTT对 CongWin 加一个 1 MSS</td>
+</tr>
+<tr>
+<td>通过收到3个重复的ACK，发现丢失的事件</td>
+<td>SS or CA</td>
+<td>Threshold = CongWin/2，<br>CongWin = Threshold+3，<br>状态变成“CA”，</td>
+<td>快速重传, 实现乘性的减，CongWin 没有变成1 MSS.</td>
+</tr>
+<tr>
+<td>超时</td>
+<td>SS or CA</td>
+<td>Threshold = CongWin/2,<br>CongWin = 1 MSS,<br>状态变成“SS”</td>
+<td>进入slow start</td>
+</tr>
+<tr>
+<td>重复的 ACK</td>
+<td>SS or CA</td>
+<td>对被ACKed 的segment， 增加重复ACK的计数</td>
+<td>CongWin and Threshold 不变</td>
+</tr>
+</tbody>
+</table>
+<h3 id="TCP吞吐量">TCP吞吐量</h3>
+<p>使用窗口window尺寸W和RTT来描述TCP的平均吞吐量（忽略慢启动阶段，假设发送端总有数据传输）：</p>
+<ul>
+<li>
+<p>W：发生丢失事件时的窗口尺寸（单位：字节）</p>
+<ul>
+<li>
+<p>平均窗口尺寸：3/4W</p>
+</li>
+<li>
+<p>平均吞吐量：RTT时间吞吐3/4W</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mi>v</mi><mi>g</mi><mi>T</mi><mi>C</mi><mi>P</mi><mi>t</mi><mi>h</mi><mi>t</mi><mi>u</mi><mi>p</mi><mi>u</mi><mi>t</mi><mo>=</mo><mfrac><mn>3</mn><mn>4</mn></mfrac><mfrac><mi>W</mi><mrow><mi>R</mi><mi>T</mi><mi>T</mi></mrow></mfrac><mi>b</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>s</mi><mi mathvariant="normal">/</mi><mi>s</mi><mi>e</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">avg TCPthtuput = \frac{3}{4}\frac{W}{RTT} bytes/sec
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">vg</span><span class="mord mathnormal">TCPt</span><span class="mord mathnormal">h</span><span class="mord mathnormal">t</span><span class="mord mathnormal">u</span><span class="mord mathnormal">p</span><span class="mord mathnormal">u</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">RTT</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">t</span><span class="mord mathnormal">es</span><span class="mord">/</span><span class="mord mathnormal">sec</span></span></span></span></span></p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E5%90%9E%E5%90%90%E9%87%8F%E4%B8%BE%E4%BE%8B.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP公平性">TCP公平性</h3>
+<p>公平性目标: 如果 K个TCP会话分享一个链路带宽为R的瓶颈，每一个会话的有效带宽为 R/K</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E5%85%AC%E5%B9%B3%E6%80%A7.png" alt=""></p>
+<blockquote>
+<p>分析为什么TCP是公平的（2个竞争的TCP会话为例，假设两个会话的RTT相等）：</p>
+<ul>
+<li>
+<p>加性增加，斜率为1, 吞吐量增加</p>
+</li>
+<li>
+<p>乘性减，吞吐量比例减少</p>
+<p><img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/CNTCP%E5%85%AC%E5%B9%B3%E6%80%A7%E8%A7%A3%E9%87%8A.png" alt=""></p>
+<p>（具体省略详细解释，但是这个平衡的过程真的很神奇）</p>
+</li>
+</ul>
+<p>考虑并行TCP连接：</p>
+<ul>
+<li>如果带宽为R的链路支持了 9个TCP连接
+<ul>
+<li>如果新的应用要求建1个TCP连接,获得带宽R/10</li>
+<li>如果新的应用要求建11个TCP 连接,获得带宽R/2</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<hr>
+<h1>后记</h1>
+<p>本篇已完结</p>
+<p>（如有补充或错误，欢迎评论区留言）</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/wechat.png" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/alipay.jpg" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/07/15/计算机网络/计算机网络学习笔记-链路层/" title="计算机网络学习笔记-链路层"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-15</div><div class="title">计算机网络学习笔记-链路层</div></div></a></div><div><a href="/2021/03/28/计算机网络/计算机网络学习笔记/" title="计算机网络学习笔记"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-28</div><div class="title">计算机网络学习笔记</div></div></a></div><div><a href="/2021/03/09/计算机网络/计算机网络学习笔记-计算机网络概述/" title="计算机网络学习笔记--计算机网络概述"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-09</div><div class="title">计算机网络学习笔记--计算机网络概述</div></div></a></div><div><a href="/2021/04/05/计算机网络/计算机网络学习笔记-应用层/" title="计算机网络学习笔记-应用层"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-05</div><div class="title">计算机网络学习笔记-应用层</div></div></a></div><div><a href="/2021/06/08/计算机网络/计算机网络学习笔记-网络层/" title="计算机网络学习笔记-网络层"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/ComputerNetworksCover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-08</div><div class="title">计算机网络学习笔记-网络层</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Twikoo</span><span class="switch-btn"></span><span class="second-comment">Valine</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">花猪</div><div class="author-info__description">此站点就暂时停留在秋天了吧</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">86</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/CNhuazhu"><i class="fab fa-github"></i><span>我的github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/CNhuazhu" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">花猪在此欢迎您光临小破站 (՞•Ꙫ•՞) <br><b>此站点已暂停更新！！！！</b><br><br>  <b><i>本站已部署至云服务器👇</i></b>：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top">http://cnhuazhu.top</a> <br><br>  <b><i>github地址（暂停更新）</i></b>：<a href="https://cnhuazhu.github.io/">https://cnhuazhu.github.io/</a> <br> <b><i>码云地址（暂停更新）</i></b>：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://cnhuazhu.gitee.io">https://cnhuazhu.gitee.io</a> <br><br>  本站主题：Butterfly 3.7.8 <br> <img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/pig.gif"></div><timing></timing></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">第三章：传输层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0%E5%92%8C%E4%BC%A0%E8%BE%93%E5%B1%82%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.1.</span> <span class="toc-text">概述和传输层服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E4%B8%8E%E8%A7%A3%E5%A4%8D%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">多路复用与解复用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E7%9A%84%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8-%E8%A7%A3%E5%A4%8D%E7%94%A8"><span class="toc-number">2.2.1.</span> <span class="toc-text">TCP的多路复用&#x2F;解复用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP%E7%9A%84%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8-%E8%A7%A3%E5%A4%8D%E7%94%A8"><span class="toc-number">2.2.2.</span> <span class="toc-text">UDP的多路复用&#x2F;解复用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E8%BF%9E%E6%8E%A5%E4%BC%A0%E8%BE%93%EF%BC%9AUDP"><span class="toc-number">2.3.</span> <span class="toc-text">无连接传输：UDP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP%E6%A0%A1%E9%AA%8C%E5%92%8C"><span class="toc-number">2.3.1.</span> <span class="toc-text">UDP校验和</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">2.4.</span> <span class="toc-text">可靠数据传输的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E7%9A%84%E5%8E%9F%E7%90%86-2"><span class="toc-number">2.4.1.</span> <span class="toc-text">可靠数据传输的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#rdt1-0%EF%BC%9A%E5%9C%A8%E5%8F%AF%E9%9D%A0%E4%BF%A1%E9%81%93%E4%B8%8A%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93"><span class="toc-number">2.4.1.1.</span> <span class="toc-text">rdt1.0：在可靠信道上的可靠数据传输</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rdt2-0%EF%BC%9A%E5%85%B7%E6%9C%89%E6%AF%94%E7%89%B9%E5%B7%AE%E9%94%99%E7%9A%84%E4%BF%A1%E9%81%93"><span class="toc-number">2.4.1.2.</span> <span class="toc-text">rdt2.0：具有比特差错的信道</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rdt2-1%EF%BC%9A%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.4.1.3.</span> <span class="toc-text">rdt2.1：停止等待协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rdt2-2%EF%BC%9A%E6%97%A0NAK%E7%9A%84%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.4.1.4.</span> <span class="toc-text">rdt2.2：无NAK的协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rdt3-0%EF%BC%9A%E5%85%B7%E6%9C%89%E6%AF%94%E7%89%B9%E5%B7%AE%E9%94%99%E5%92%8C%E5%88%86%E7%BB%84%E4%B8%A2%E5%A4%B1%E7%9A%84%E4%BF%A1%E9%81%93"><span class="toc-number">2.4.1.5.</span> <span class="toc-text">rdt3.0：具有比特差错和分组丢失的信道</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%8D%8F%E8%AE%AE%EF%BC%88Pipelined-protocols%EF%BC%89"><span class="toc-number">2.4.2.</span> <span class="toc-text">流水线协议（Pipelined protocols）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E8%BF%9E%E6%8E%A5%E7%9A%84%E4%BC%A0%E8%BE%93%EF%BC%9ATCP"><span class="toc-number">2.5.</span> <span class="toc-text">面向连接的传输：TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E6%A6%82%E8%BF%B0"><span class="toc-number">2.5.1.</span> <span class="toc-text">TCP概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E6%8A%A5%E6%96%87%E6%AE%B5%E7%BB%93%E6%9E%84"><span class="toc-number">2.5.2.</span> <span class="toc-text">TCP报文段结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E5%BE%80%E8%BF%94%E5%BB%B6%E6%97%B6%EF%BC%88RTT%EF%BC%89%E5%92%8C%E8%B6%85%E6%97%B6"><span class="toc-number">2.5.3.</span> <span class="toc-text">TCP往返延时（RTT）和超时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%EF%BC%88rdt%EF%BC%89"><span class="toc-number">2.5.4.</span> <span class="toc-text">TCP的可靠数据传输（rdt）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E5%8F%91%E9%80%81%E6%96%B9"><span class="toc-number">2.5.4.1.</span> <span class="toc-text">TCP发送方</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0"><span class="toc-number">2.5.4.2.</span> <span class="toc-text">快速重传</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="toc-number">2.5.5.</span> <span class="toc-text">TCP流量控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86"><span class="toc-number">2.5.6.</span> <span class="toc-text">连接管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5"><span class="toc-number">2.5.6.1.</span> <span class="toc-text">建立连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E8%BF%9E%E6%8E%A5"><span class="toc-number">2.5.6.2.</span> <span class="toc-text">关闭连接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86"><span class="toc-number">2.6.</span> <span class="toc-text">拥塞控制原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A7%E7%94%9F%E6%8B%A5%E5%A1%9E%E7%9A%84%E5%8E%9F%E5%9B%A0-%E4%BB%A3%E4%BB%B7"><span class="toc-number">2.6.0.1.</span> <span class="toc-text">产生拥塞的原因&#x2F;代价</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95"><span class="toc-number">2.6.0.2.</span> <span class="toc-text">拥塞控制方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="toc-number">2.6.1.</span> <span class="toc-text">TCP拥塞控制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E6%84%9F%E7%9F%A5"><span class="toc-number">2.6.1.1.</span> <span class="toc-text">拥塞感知</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9F%E7%8E%87%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95"><span class="toc-number">2.6.1.2.</span> <span class="toc-text">速率控制方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E7%AD%96%E7%95%A5"><span class="toc-number">2.6.1.3.</span> <span class="toc-text">TCP拥塞控制策略</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E5%90%9E%E5%90%90%E9%87%8F"><span class="toc-number">2.6.2.</span> <span class="toc-text">TCP吞吐量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E5%85%AC%E5%B9%B3%E6%80%A7"><span class="toc-number">2.6.3.</span> <span class="toc-text">TCP公平性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">后记</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/02/NodeJS/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAexpress%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="快速搭建一个express服务器"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Node_Express_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="快速搭建一个express服务器"/></a><div class="content"><a class="title" href="/2021/11/02/NodeJS/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAexpress%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="快速搭建一个express服务器">快速搭建一个express服务器</a><time datetime="2021-11-02T00:39:53.000Z" title="发表于 2021-11-02 08:39:53">2021-11-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/28/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Nginx-uWSGI-Flask%E9%83%A8%E7%BD%B2%E8%87%B3Ubuntu/" title="Nginx+uWSGI+Flask部署至Ubuntu"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Ubuntu_Server_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx+uWSGI+Flask部署至Ubuntu"/></a><div class="content"><a class="title" href="/2021/10/28/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Nginx-uWSGI-Flask%E9%83%A8%E7%BD%B2%E8%87%B3Ubuntu/" title="Nginx+uWSGI+Flask部署至Ubuntu">Nginx+uWSGI+Flask部署至Ubuntu</a><time datetime="2021-10-28T03:01:09.000Z" title="发表于 2021-10-28 11:01:09">2021-10-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/18/Xftp%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="Xftp传输文件失败解决方案"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Xftp_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Xftp传输文件失败解决方案"/></a><div class="content"><a class="title" href="/2021/10/18/Xftp%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="Xftp传输文件失败解决方案">Xftp传输文件失败解决方案</a><time datetime="2021-10-18T09:50:16.000Z" title="发表于 2021-10-18 17:50:16">2021-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E7%BB%AD%EF%BC%89%E2%80%94%E2%80%94%E5%BB%BA%E7%AB%8B%E5%BC%95%E5%AF%BC%E9%A1%B5%E5%8F%8A%E5%88%86%E7%AB%99/" title="Hexo部署至服务器（续）——建立引导页及分站"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Ubuntu_Server_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo部署至服务器（续）——建立引导页及分站"/></a><div class="content"><a class="title" href="/2021/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E7%BB%AD%EF%BC%89%E2%80%94%E2%80%94%E5%BB%BA%E7%AB%8B%E5%BC%95%E5%AF%BC%E9%A1%B5%E5%8F%8A%E5%88%86%E7%AB%99/" title="Hexo部署至服务器（续）——建立引导页及分站">Hexo部署至服务器（续）——建立引导页及分站</a><time datetime="2021-10-13T13:49:12.000Z" title="发表于 2021-10-13 21:49:12">2021-10-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/12/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu-20-04%EF%BC%89/" title="Hexo部署至服务器（Ubuntu 20.04）"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Ubuntu_Server_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo部署至服务器（Ubuntu 20.04）"/></a><div class="content"><a class="title" href="/2021/10/12/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu-20-04%EF%BC%89/" title="Hexo部署至服务器（Ubuntu 20.04）">Hexo部署至服务器（Ubuntu 20.04）</a><time datetime="2021-10-12T07:13:40.000Z" title="发表于 2021-10-12 15:13:40">2021-10-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 By 花猪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://beian.miit.gov.cn/">蜀ICP备2021026748号</a><br>感谢光临<a target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/" style="text-decoration:underline">小破站</a>,欢迎您提出宝贵的意见！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})
+setTimeout(function(){preloader.endLoading();}, 3000);</script></div><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'hexo-1g41404w9f800e94',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'hexo-1g41404w9f800e94',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'VHoX95KsBQSMyzEc3TdpmBkF-MdYXbMMI',
+      appKey: 'qnwObDMbgMEKnu1Gp8tk7PYJ',
+      placeholder: '欢迎留下你的评论（昵称和邮箱为必填项）',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Twikoo' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script src="/js/ip_content.js"></script><script src="/js/timing.js"></script><script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js"></script><script src="/js/footer.js"></script><script src="/js/ginkgo-leaf.js"></script><script id="canvas_nest" defer="defer" color="0,0,0" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="pjax-reload"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInLeft');
+    arr[i].setAttribute('data-wow-duration', '600ms');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '100');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInRightBig');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer="defer" src="https://cdn.jsdelivr.net/gh/graingert/wow@1.3.0/dist/wow.min.js"></script><script defer="defer" src="/js/wow_init.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+                        function butterfly_swiper_injector_config(){
+                          var parent_div_git = document.getElementById('recent-posts');
+                          var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/Hexo魔改/Hexo魔改记录/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage4.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/Hexo魔改/Hexo魔改记录/" alt="">Hexo魔改记录</a><div class="blog-slider__text">Hexo魔改记录</div><a class="blog-slider__button" href="2021/03/28/Hexo魔改/Hexo魔改记录/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/08/02/Vue/Vue学习笔记/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage5.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-08-02</span><a class="blog-slider__title" href="2021/08/02/Vue/Vue学习笔记/" alt="">Vue学习笔记</a><div class="blog-slider__text">本文将介绍Vue的基础语法</div><a class="blog-slider__button" href="2021/08/02/Vue/Vue学习笔记/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/Java/Java学习记录/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage8.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/Java/Java学习记录/" alt="">Java学习记录</a><div class="blog-slider__text">Java学习记录</div><a class="blog-slider__button" href="2021/03/28/Java/Java学习记录/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/操作系统/操作系统学习笔记/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage7.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/操作系统/操作系统学习笔记/" alt="">操作系统学习笔记</a><div class="blog-slider__text">记录操作系统学习历程</div><a class="blog-slider__button" href="2021/03/28/操作系统/操作系统学习笔记/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/计算机网络/计算机网络学习笔记/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage3.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/计算机网络/计算机网络学习笔记/" alt="">计算机网络学习笔记</a><div class="blog-slider__text">记录计算机网络学习历程</div><a class="blog-slider__button" href="2021/03/28/计算机网络/计算机网络学习笔记/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+                          console.log('已挂载butterfly_swiper')
+                          // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                          parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+                          }
+                        if( document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+                        butterfly_swiper_injector_config()
+                        }
+                      </script><script defer src="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/tororo.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":0,"vOffset":-105},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body></html>

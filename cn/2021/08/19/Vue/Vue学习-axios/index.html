@@ -1,0 +1,503 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vue学习-axios | 花猪のBlog</title><meta name="keywords" content="Vue"><meta name="author" content="花猪,2296412185@qq.com"><meta name="copyright" content="花猪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文将介绍axios的相关操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue学习-axios">
+<meta property="og:url" content="https://cnhuazhu.github.io/2021/08/19/Vue/Vue%E5%AD%A6%E4%B9%A0-axios/index.html">
+<meta property="og:site_name" content="花猪のBlog">
+<meta property="og:description" content="本文将介绍axios的相关操作">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vuecover.jpg">
+<meta property="article:published_time" content="2021-08-19T13:14:44.000Z">
+<meta property="article:modified_time" content="2021-08-20T10:52:09.838Z">
+<meta property="article:author" content="花猪">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vuecover.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/avatar.jpg"><link rel="canonical" href="https://cnhuazhu.github.io/2021/08/19/Vue/Vue%E5%AD%A6%E4%B9%A0-axios/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":60,"languages":{"author":"作者: 花猪","link":"链接: ","source":"来源: 花猪のBlog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#ABADAC","bgDark":"#121212","position":"bottom-right"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Vue学习-axios',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-20 18:52:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/pagelucency.css"><style>#article-container.post-content h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { -webkit-animation: avatar_turn_around 1s linear infinite; -moz-animation: avatar_turn_around 1s linear infinite; -o-animation: avatar_turn_around 1s linear infinite; -ms-animation: avatar_turn_around 1s linear infinite; animation: avatar_turn_around 1s linear infinite; }</style><link rel="stylesheet" href="/css/avatarbg.css"><link rel="stylesheet" href="/css/footerlucency.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/macblack.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiperstyle.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="花猪のBlog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">86</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/"><i class="fa-fw fas fa-gift"></i><span> 引导</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-sitemap"></i><span> 分站</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/next"><i class="fa-fw fas fa-chevron-right"></i><span> Next</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 阅读</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/video/"><i class="fa-fw fa fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-quote-left"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/website/"><i class="fa-fw fas fa-globe"></i><span> 网站</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/Message/"><i class="fa-fw fas fa-comment"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background: transparent"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">花猪のBlog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/"><i class="fa-fw fas fa-gift"></i><span> 引导</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-sitemap"></i><span> 分站</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/next"><i class="fa-fw fas fa-chevron-right"></i><span> Next</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 阅读</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-film"></i><span> 电影</span></a></li><li><a class="site-page child" href="/video/"><i class="fa-fw fa fa-video"></i><span> 视频</span></a></li><li><a class="site-page child" href="/artitalk/"><i class="fa-fw fas fa-quote-left"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/website/"><i class="fa-fw fas fa-globe"></i><span> 网站</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/Message/"><i class="fa-fw fas fa-comment"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Vue学习-axios</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-19T13:14:44.000Z" title="发表于 2021-08-19 21:14:44">2021-08-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-20T10:52:09.838Z" title="更新于 2021-08-20 18:52:09">2021-08-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Vue学习-axios"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>前言</h1>
+<p>本文将介绍axios的相关操作。</p>
+<p>相关的后端服务器是用Flask搭建的，仅用于演示：</p>
+<p><code>web.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,request</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS  <span class="comment">#引入CORS库</span></span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">CORS(app, supports_credentials=<span class="literal">True</span>)  <span class="comment">#用于解决跨域问题</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：引入CORS库用于解决跨域问题。</p>
+</blockquote>
+<p>以下的axios网络请求的代码都在Vue项目<code>src</code>文件夹下的<code>main.js</code>中完成。</p>
+<p>这里也介绍一个网站，可以用于网络请求的测试：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://httpbin.org/">httpbin.org</a></p>
+<hr>
+<h1>axios</h1>
+<h2 id="介绍">介绍</h2>
+<blockquote>
+<p>以下内容来自官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.axios-js.com/zh-cn/docs/">axios中文文档|axios中文网 | axios (axios-js.com)</a></p>
+</blockquote>
+<p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。</p>
+<div class="btn-center">
+<a class="btn-beautify button--animated block outline green larger" href="/2021/08/17/Vue/Vue%E5%AD%A6%E4%B9%A0-Promise/" 
+  title="点击跳转 至 《Vue学习-Promise》"><i class="far fa-hand-point-right"></i><span>点击跳转 至 《Vue学习-Promise》</span></a>
+</div>
+<p>特性：</p>
+<ul>
+<li>从浏览器中创建 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequests</a></li>
+<li>从 node.js 创建 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://nodejs.org/api/http.html">http</a> 请求</li>
+<li>支持 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> API</li>
+<li>拦截请求和响应</li>
+<li>转换请求数据和响应数据</li>
+<li>取消请求</li>
+<li>自动转换 JSON 数据</li>
+<li>客户端支持防御 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">XSRF</a></li>
+</ul>
+<p>支持多种请求方式：</p>
+<ul>
+<li>axios.request(config)</li>
+<li>axios.get(url[, config])</li>
+<li>axios.delete(url[, config])</li>
+<li>axios.head(url[, config])</li>
+<li>axios.options(url[, config])</li>
+<li>axios.post(url[, data[, config]])</li>
+<li>axios.put(url[, data[, config]])</li>
+<li>axios.patch(url[, data[, config]])</li>
+</ul>
+<h2 id="基本使用">基本使用</h2>
+<h3 id="配置axios">配置axios</h3>
+<p>打开终端，进入项目根目录，键入如下命令（注意版本号）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios --save</span><br></pre></td></tr></table></figure>
+<h3 id="导入">导入</h3>
+<p>在使用的文件头中导入：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="发送GET-POST请求">发送GET/POST请求</h3>
+<p><code>main.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">axios(&#123;</span><br><span class="line">  url: <span class="string">&#x27;http://127.0.0.1:5000&#x27;</span>,</span><br><span class="line">  method: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">  params: &#123;</span><br><span class="line">    name: <span class="string">&#x27;HuaZhu&#x27;</span>,</span><br><span class="line">    age: <span class="number">18</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：</p>
+<p>（类似于ajax的使用方式）</p>
+<p>axios的参数需要传入一个对象，该对象有以下属性：</p>
+<ul>
+<li>url：用于指定请求的URL</li>
+<li>method：用于指定请求方式（<code>get</code>、<code>post</code>），不写该参数默认使用get方式</li>
+<li>params：用于附带参数信息</li>
+</ul>
+<p>值得注意的是axios已集成Promise，在发送请求后会自动执行<code>resolve()</code>函数，因此可以在后面直接链接<code>then()</code>函数，用于接收请求返回值。</p>
+</blockquote>
+<p><code>web.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,request</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">CORS(app, supports_credentials=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span>,methods=[<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;POST&quot;</span>]</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    <span class="keyword">if</span> request.method==<span class="string">&quot;GET&quot;</span>:</span><br><span class="line">      name = request.args.get(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">      age = request.args.get(<span class="string">&quot;age&quot;</span>)</span><br><span class="line">      print(name,age)</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;get请求已收到&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> request.method==<span class="string">&quot;POST&quot;</span>:</span><br><span class="line">      name = request.values.get(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">      age = request.values.get(<span class="string">&quot;age&quot;</span>)</span><br><span class="line">      print(name,age)</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;post请求已收到&quot;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;网络请求方式不正确&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+<p>效果展示：</p>
+<img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vueaxios-基本请求-show1.png" style="zoom:80%;" />
+<p><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vueaxios-%E5%9F%BA%E6%9C%AC%E8%AF%B7%E6%B1%82-show2.png" alt=""></p>
+<h3 id="发送并发请求">发送并发请求</h3>
+<p>如果需要向服务器同时发送多个并发请求，并取回每个请求的结果，然后对这些返回结果操作。axios提供了<code>axios.all()</code>方法，使用格式如下：</p>
+<p><code>axios.all([axios(), axios()], ...).then((results) =&gt; &#123;...&#125;)</code></p>
+<blockquote>
+<p>说明：</p>
+<ul>
+<li><code>axios.all()</code>的参数为列表，里面可以写任意个<code>axios()</code>方法</li>
+<li>最后<code>then()</code>获得的返回值同为列表形式，里面存放了每一个请求的结果</li>
+</ul>
+</blockquote>
+<p>现在假设要向服务器同时发送get和post请求，并拿到返回值：</p>
+<p><code>main.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">axios.all([axios(&#123;</span><br><span class="line">  url: <span class="string">&#x27;http://127.0.0.1:5000&#x27;</span>,</span><br><span class="line">  method: <span class="string">&#x27;get&#x27;</span>,  <span class="comment">//发送get请求</span></span><br><span class="line">  params: &#123;</span><br><span class="line">    name: <span class="string">&#x27;HuaZhu&#x27;</span>,</span><br><span class="line">    age: <span class="number">18</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;), axios(&#123;</span><br><span class="line">  url: <span class="string">&#x27;http://127.0.0.1:5000&#x27;</span>,</span><br><span class="line">  method: <span class="string">&#x27;post&#x27;</span>,  <span class="comment">//发送post请求</span></span><br><span class="line">  params: &#123;</span><br><span class="line">    name: <span class="string">&#x27;HuaZhu&#x27;</span>,</span><br><span class="line">    age: <span class="number">18</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)]).then(<span class="function"><span class="params">results</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(results)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>web.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,request</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">CORS(app, supports_credentials=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span>,methods=[<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;POST&quot;</span>]</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    <span class="keyword">if</span> request.method==<span class="string">&quot;GET&quot;</span>:</span><br><span class="line">      name = request.args.get(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">      age = request.args.get(<span class="string">&quot;age&quot;</span>)</span><br><span class="line">      print(name,age)</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;get请求已收到&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> request.method==<span class="string">&quot;POST&quot;</span>:</span><br><span class="line">      name = request.values.get(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">      age = request.values.get(<span class="string">&quot;age&quot;</span>)</span><br><span class="line">      print(name,age)</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;post请求已收到&quot;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;网络请求方式不正确&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+<p>效果展示：</p>
+<img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vueaxios-并发请求-show1.png" style="zoom:80%;" />
+<p><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vueaxios-%E5%B9%B6%E5%8F%91%E8%AF%B7%E6%B1%82-show2.png" alt=""></p>
+<p>返回结果列表拿到，如果要详细访问，可以通过列表的index下标值。但是axios还提供了<code>axios.spread()</code>方法可以直接拆分返回结果列表，拿到具体的结果：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">axios.all([axios(&#123;</span><br><span class="line">  url: <span class="string">&#x27;http://127.0.0.1:5000&#x27;</span>,</span><br><span class="line">  method: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">  params: &#123;</span><br><span class="line">    name: <span class="string">&#x27;HuaZhu&#x27;</span>,</span><br><span class="line">    age: <span class="number">18</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;), axios(&#123;</span><br><span class="line">  url: <span class="string">&#x27;http://127.0.0.1:5000&#x27;</span>,</span><br><span class="line">  method: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">  params: &#123;</span><br><span class="line">    name: <span class="string">&#x27;HuaZhu&#x27;</span>,</span><br><span class="line">    age: <span class="number">18</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)]).then(axios.spread(<span class="function">(<span class="params">res1, res2</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res1);</span><br><span class="line">  <span class="built_in">console</span>.log(res2);</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vueaxios-并发请求-show3.png" style="zoom:80%;" />
+<h3 id="配置信息">配置信息</h3>
+<h4 id="基本配置">基本配置</h4>
+<p>可以在axios对象中添加诸如<code>baseURL</code>、<code>timeout</code>等的配置信息：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">  baseURL: <span class="string">&#x27;http://127.0.0.1:5000&#x27;</span>,</span><br><span class="line">  url: <span class="string">&#x27;/home&#x27;</span>,</span><br><span class="line">  timeout: <span class="number">5000</span>,  <span class="comment">//单位ms</span></span><br><span class="line">  method: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">  params: &#123;</span><br><span class="line">    name: <span class="string">&#x27;HuaZhu&#x27;</span>,</span><br><span class="line">    age: <span class="number">18</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="全局配置">全局配置</h4>
+<p>如果想在多个请求中使用同一配置，可以将这些配置信息抽离出来，设置全局默认配置：<code>axios.defaults.xxx</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">axios.defaults.baseURL = <span class="string">&#x27;http://127.0.0.1:5000&#x27;</span></span><br><span class="line">axios.defaults.timeout = <span class="number">5000</span></span><br><span class="line"></span><br><span class="line">axios(&#123;</span><br><span class="line">  url: <span class="string">&#x27;/home&#x27;</span>,</span><br><span class="line">  method: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">  params: &#123;</span><br><span class="line">    name: <span class="string">&#x27;HuaZhu&#x27;</span>,</span><br><span class="line">    age: <span class="number">18</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="axios实例">axios实例</h4>
+<p>全局默认配置在项目规模较小的情况下（请求配置基本一致）可以使用，一旦涉及到的请求量增加，面临的情况可能是一类请求需要一种配置，另一类请求需要另外一种配置，如果这时再设置全局默认配置就不是很合适了。为此可以使用axios实例：<code>axios.create()</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> instance1 = axios.create(&#123;  <span class="comment">//创建axios实例一</span></span><br><span class="line">  baseURL: <span class="string">&#x27;http://127.0.0.1:5000&#x27;</span>,</span><br><span class="line">  timeout: <span class="number">5000</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">instance1(&#123;  <span class="comment">//使用axios实例一</span></span><br><span class="line">  url: <span class="string">&#x27;/home&#x27;</span>,</span><br><span class="line">  method: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">instance1(&#123;  <span class="comment">//使用axios实例一</span></span><br><span class="line">  url: <span class="string">&#x27;/about&#x27;</span>,</span><br><span class="line">  method: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> instance2 = axios.create(&#123;  <span class="comment">//创建axios实例二</span></span><br><span class="line">  baseURL: <span class="string">&#x27;http://127.0.0.1:8080&#x27;</span>,</span><br><span class="line">  timeout: <span class="number">10000</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">instance2(&#123;  <span class="comment">//使用axios实例二</span></span><br><span class="line">  url: <span class="string">&#x27;/home&#x27;</span>,</span><br><span class="line">  method: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">instance2(&#123;  <span class="comment">//使用axios实例二</span></span><br><span class="line">  url: <span class="string">&#x27;/about&#x27;</span>,</span><br><span class="line">  method: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>常见的配置信息：</p>
+<table>
+<thead>
+<tr>
+<th>配置信息</th>
+<th>格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>请求地址</td>
+<td>url: ‘/home’</td>
+</tr>
+<tr>
+<td>请求类型</td>
+<td>method: ‘get’</td>
+</tr>
+<tr>
+<td>请求根路径</td>
+<td>baseURL: ‘<a target="_blank" rel="noopener external nofollow noreferrer" href="http://127.0.0.1:5000">http://127.0.0.1:5000</a>’</td>
+</tr>
+<tr>
+<td>请求前的数据处理</td>
+<td>transformRequest:[function(data){}]</td>
+</tr>
+<tr>
+<td>请求后的数据处理</td>
+<td>transformResponse: [function(data){}]</td>
+</tr>
+<tr>
+<td>自定义的请求头</td>
+<td>headers:{‘x-Requested-With’:‘XMLHttpRequest’}</td>
+</tr>
+<tr>
+<td>URL查询对象</td>
+<td>params:{ name: ‘HuaZhu’, age: 18 }</td>
+</tr>
+<tr>
+<td>查询对象序列化函数</td>
+<td>paramsSerializer: function(params){ }</td>
+</tr>
+<tr>
+<td>request body</td>
+<td>data: { key: ‘a’}</td>
+</tr>
+<tr>
+<td>超时设置(ms)</td>
+<td>timeout: 1000</td>
+</tr>
+<tr>
+<td>跨域是否带Token</td>
+<td>withCredentials: false</td>
+</tr>
+<tr>
+<td>自定义请求处理</td>
+<td>adapter: function(resolve, reject, config){}</td>
+</tr>
+<tr>
+<td>身份验证信息</td>
+<td>auth: { uname: ‘’, pwd: ‘12’}</td>
+</tr>
+<tr>
+<td>响应的数据格式 json / blob /document /arraybuffer / text / stream</td>
+<td>responseType: ‘json’</td>
+</tr>
+</tbody>
+</table>
+<h3 id="axios封装">axios封装</h3>
+<p>在大型项目中，往往第三方库在大量使用的情况下最好进行封装，在调用的时候只使用自己封装的内容就好。原因：如果第三方库停止维护，方便改用其他的代替内容。修改起来仅需改动封装的部分代码就好。</p>
+<p>在项目的<code>src</code>文件夹下新建一个<code>network</code>文件夹，用于存放网络相关的封装代码。在其中新建名为<code>axios-request.js</code>的文件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">axios_request</span>(<span class="params">config</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 创建axios实例</span></span><br><span class="line">  <span class="keyword">const</span> instance = axios.create(&#123;</span><br><span class="line">    baseURL: <span class="string">&#x27;http://127.0.0.1:5000&#x27;</span>,</span><br><span class="line">    timeout: <span class="number">5000</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 发送网络请求</span></span><br><span class="line">  <span class="keyword">return</span> instance(config)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>假设未来决定不再使用axios，改用其他的第三方库，如果该库也自动集成Promise，那调用格式同上，如果没有，那么就需要手动返回一个Promise对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xxx_request <span class="keyword">from</span> <span class="string">&#x27;xxx&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">xxx_request</span>(<span class="params">config</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 1.调用xxx第三方库</span></span><br><span class="line">    <span class="comment">// 2.发送请求</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>在其他文件中就可以直接调用封装的<code>axios_request(config)</code>函数，其中config就是发送请求的配置信息：</p>
+<p><code>main.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;axios_request&#125; <span class="keyword">from</span> <span class="string">&#x27;./network/axios-request&#x27;</span> <span class="comment">//导入封装函数</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">axios_request(&#123;  <span class="comment">//使用封装函数</span></span><br><span class="line">  url: <span class="string">&#x27;/home&#x27;</span>,</span><br><span class="line">  method: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">  params: &#123;</span><br><span class="line">    name: <span class="string">&#x27;HuaZhu&#x27;</span>,</span><br><span class="line">    age: <span class="number">18</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：</p>
+<p>由于<code>axios.create()</code>实例对象集成Promise，在调用时会自动执行<code>resolve()</code>函数，因而可以在使用封装函数后直接调用<code>then()</code>和<code>catch()</code>函数。</p>
+</blockquote>
+<p><code>web.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,request</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">CORS(app, supports_credentials=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/home&quot;</span>,methods=[<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;POST&quot;</span>]</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    <span class="keyword">if</span> request.method==<span class="string">&quot;GET&quot;</span>:</span><br><span class="line">      name = request.args.get(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">      age = request.args.get(<span class="string">&quot;age&quot;</span>)</span><br><span class="line">      print(name,age)</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;get请求已收到&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> request.method==<span class="string">&quot;POST&quot;</span>:</span><br><span class="line">      name = request.values.get(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">      age = request.values.get(<span class="string">&quot;age&quot;</span>)</span><br><span class="line">      print(name,age)</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;post请求已收到&quot;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;网络请求方式不正确&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+<h3 id="拦截器">拦截器</h3>
+<p>axios提供了拦截器，用于在发送每次请求或者从服务器得到返回结果时，进行相应的处理。</p>
+<h4 id="请求拦截">请求拦截</h4>
+<p>作用：</p>
+<ul>
+<li>当发送网络请求时，在页面中添加一个loading组件，作为加载动画</li>
+<li>某些请求要求用户必须登录，判断用户是否有token（令牌），如果没有则跳转到login页面</li>
+<li>对请求的参数进行序列化</li>
+<li>…</li>
+</ul>
+<blockquote>
+<p>格式：</p>
+<p>局部拦截器：<code>instance.interceptors.request.use(onFulfilled(), onRejected())</code></p>
+<p>全局拦截器：<code>axios.interceptors.request.use(onFulfilled(), onRejected())</code></p>
+</blockquote>
+<p><code>axios-request.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">axios_request</span>(<span class="params">config</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 创建axios实例</span></span><br><span class="line">  <span class="keyword">const</span> instance = axios.create(&#123;</span><br><span class="line">    baseURL: <span class="string">&#x27;http://127.0.0.1:5000&#x27;</span>,</span><br><span class="line">    timeout: <span class="number">5000</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 请求拦截器</span></span><br><span class="line">  instance.interceptors.request.use(<span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;成功拦截到请求&#x27;</span>);  </span><br><span class="line">    <span class="built_in">console</span>.log(config.params)  <span class="comment">//拦截成功后可以在此对config请求执行操作</span></span><br><span class="line">    <span class="keyword">return</span> config  <span class="comment">//最后需要把拦截结果释放</span></span><br><span class="line">  &#125;, <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;拦截请求失败&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 发送网络请求</span></span><br><span class="line">  <span class="keyword">return</span> instance(config)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>main.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;axios_request&#125; <span class="keyword">from</span> <span class="string">&#x27;./network/axios-request&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">axios_request(&#123;</span><br><span class="line">  url: <span class="string">&#x27;/home&#x27;</span>,</span><br><span class="line">  method: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">  params: &#123;</span><br><span class="line">    name: <span class="string">&#x27;HuaZhu&#x27;</span>,</span><br><span class="line">    age: <span class="number">18</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>web.py</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,request</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">CORS(app, supports_credentials=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/home&quot;</span>,methods=[<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;POST&quot;</span>]</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    <span class="keyword">if</span> request.method==<span class="string">&quot;GET&quot;</span>:</span><br><span class="line">      name = request.args.get(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">      age = request.args.get(<span class="string">&quot;age&quot;</span>)</span><br><span class="line">      print(name,age)</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;get请求已收到&quot;</span></span><br><span class="line">    <span class="keyword">elif</span> request.method==<span class="string">&quot;POST&quot;</span>:</span><br><span class="line">      name = request.values.get(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">      age = request.values.get(<span class="string">&quot;age&quot;</span>)</span><br><span class="line">      print(name,age)</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;post请求已收到&quot;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;网络请求方式不正确&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+<p>效果展示：</p>
+<img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vueaxios-拦截器-show1.png" style="zoom:80%;" />
+<h4 id="返回结果拦截">返回结果拦截</h4>
+<p>作用：</p>
+<ul>
+<li>主要是对返回的结果进行过滤</li>
+<li>相应失败后根据错误信息做出不同的响应</li>
+<li>…</li>
+</ul>
+<blockquote>
+<p>格式：</p>
+<p>局部拦截器：<code>instance.interceptors.response.use(onFulfilled(), onRejected())</code></p>
+<p>全局拦截器：<code>axios.interceptors.response.use(onFulfilled(), onRejected())</code></p>
+</blockquote>
+<p><code>axios-request.js</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">axios_request</span>(<span class="params">config</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 创建axios实例</span></span><br><span class="line">  <span class="keyword">const</span> instance = axios.create(&#123;</span><br><span class="line">    baseURL: <span class="string">&#x27;http://127.0.0.1:5000&#x27;</span>,</span><br><span class="line">    timeout: <span class="number">5000</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 响应拦截器</span></span><br><span class="line">  instance.interceptors.response.use(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;成功拦截到响应&#x27;</span>);  </span><br><span class="line">    <span class="built_in">console</span>.log(response)  <span class="comment">//拦截成功后可以在此对response响应执行操作</span></span><br><span class="line">    <span class="keyword">return</span> response.data  <span class="comment">//最后需要把拦截结果释放</span></span><br><span class="line">  &#125;, <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;拦截响应失败&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 发送网络请求</span></span><br><span class="line">  <span class="keyword">return</span> instance(config)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果展示：</p>
+<img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vueaxios-拦截器-show2.png" style="zoom:80%;" />
+<hr>
+<h1>后记</h1>
+<p>要在项目实战中多运用练习以加深印象。</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Vue/">Vue</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vuecover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/wechat.png" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/alipay.jpg" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/08/17/Vue/Vue学习-Promise/" title="Vue学习-Promise"><img class="cover" src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vuecover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-17</div><div class="title">Vue学习-Promise</div></div></a></div><div><a href="/2021/08/13/Vue/Vue学习-Vue-cli/" title="Vue学习-Vue CLI"><img class="cover" src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vuecover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-13</div><div class="title">Vue学习-Vue CLI</div></div></a></div><div><a href="/2021/08/08/Vue/Vue学习-ES6的模块化实现/" title="Vue学习-ES6的模块化实现"><img class="cover" src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vuecover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-08</div><div class="title">Vue学习-ES6的模块化实现</div></div></a></div><div><a href="/2021/08/02/Vue/Vue学习笔记/" title="Vue学习笔记"><img class="cover" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-02</div><div class="title">Vue学习笔记</div></div></a></div><div><a href="/2021/08/03/Vue/问题/Vue解决if-else切换显示标签而value值不变的问题/" title="Vue解决if-else切换显示标签而value值不变的问题"><img class="cover" src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vuecover2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-03</div><div class="title">Vue解决if-else切换显示标签而value值不变的问题</div></div></a></div><div><a href="/2021/08/14/Vue/Vue学习-Vue-router/" title="Vue学习-Vue router"><img class="cover" src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Vuecover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-14</div><div class="title">Vue学习-Vue router</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Twikoo</span><span class="switch-btn"></span><span class="second-comment">Valine</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">花猪</div><div class="author-info__description">此站点就暂时停留在秋天了吧</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">86</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/CNhuazhu"><i class="fab fa-github"></i><span>我的github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/CNhuazhu" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">花猪在此欢迎您光临小破站 (՞•Ꙫ•՞) <br><b>此站点已暂停更新！！！！</b><br><br>  <b><i>本站已部署至云服务器👇</i></b>：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top">http://cnhuazhu.top</a> <br><br>  <b><i>github地址（暂停更新）</i></b>：<a href="https://cnhuazhu.github.io/">https://cnhuazhu.github.io/</a> <br> <b><i>码云地址（暂停更新）</i></b>：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://cnhuazhu.gitee.io">https://cnhuazhu.gitee.io</a> <br><br>  本站主题：Butterfly 3.7.8 <br> <img src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/pig.gif"></div><timing></timing></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">axios</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEaxios"><span class="toc-number">2.2.1.</span> <span class="toc-text">配置axios</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5"><span class="toc-number">2.2.2.</span> <span class="toc-text">导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81GET-POST%E8%AF%B7%E6%B1%82"><span class="toc-number">2.2.3.</span> <span class="toc-text">发送GET&#x2F;POST请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E5%B9%B6%E5%8F%91%E8%AF%B7%E6%B1%82"><span class="toc-number">2.2.4.</span> <span class="toc-text">发送并发请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF"><span class="toc-number">2.2.5.</span> <span class="toc-text">配置信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="toc-number">2.2.5.1.</span> <span class="toc-text">基本配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE"><span class="toc-number">2.2.5.2.</span> <span class="toc-text">全局配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#axios%E5%AE%9E%E4%BE%8B"><span class="toc-number">2.2.5.3.</span> <span class="toc-text">axios实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#axios%E5%B0%81%E8%A3%85"><span class="toc-number">2.2.6.</span> <span class="toc-text">axios封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">2.2.7.</span> <span class="toc-text">拦截器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E6%8B%A6%E6%88%AA"><span class="toc-number">2.2.7.1.</span> <span class="toc-text">请求拦截</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E6%8B%A6%E6%88%AA"><span class="toc-number">2.2.7.2.</span> <span class="toc-text">返回结果拦截</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">后记</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/02/NodeJS/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAexpress%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="快速搭建一个express服务器"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Node_Express_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="快速搭建一个express服务器"/></a><div class="content"><a class="title" href="/2021/11/02/NodeJS/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAexpress%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="快速搭建一个express服务器">快速搭建一个express服务器</a><time datetime="2021-11-02T00:39:53.000Z" title="发表于 2021-11-02 08:39:53">2021-11-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/28/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Nginx-uWSGI-Flask%E9%83%A8%E7%BD%B2%E8%87%B3Ubuntu/" title="Nginx+uWSGI+Flask部署至Ubuntu"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Ubuntu_Server_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx+uWSGI+Flask部署至Ubuntu"/></a><div class="content"><a class="title" href="/2021/10/28/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Nginx-uWSGI-Flask%E9%83%A8%E7%BD%B2%E8%87%B3Ubuntu/" title="Nginx+uWSGI+Flask部署至Ubuntu">Nginx+uWSGI+Flask部署至Ubuntu</a><time datetime="2021-10-28T03:01:09.000Z" title="发表于 2021-10-28 11:01:09">2021-10-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/18/Xftp%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="Xftp传输文件失败解决方案"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Xftp_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Xftp传输文件失败解决方案"/></a><div class="content"><a class="title" href="/2021/10/18/Xftp%E4%BC%A0%E8%BE%93%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="Xftp传输文件失败解决方案">Xftp传输文件失败解决方案</a><time datetime="2021-10-18T09:50:16.000Z" title="发表于 2021-10-18 17:50:16">2021-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E7%BB%AD%EF%BC%89%E2%80%94%E2%80%94%E5%BB%BA%E7%AB%8B%E5%BC%95%E5%AF%BC%E9%A1%B5%E5%8F%8A%E5%88%86%E7%AB%99/" title="Hexo部署至服务器（续）——建立引导页及分站"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Ubuntu_Server_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo部署至服务器（续）——建立引导页及分站"/></a><div class="content"><a class="title" href="/2021/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E7%BB%AD%EF%BC%89%E2%80%94%E2%80%94%E5%BB%BA%E7%AB%8B%E5%BC%95%E5%AF%BC%E9%A1%B5%E5%8F%8A%E5%88%86%E7%AB%99/" title="Hexo部署至服务器（续）——建立引导页及分站">Hexo部署至服务器（续）——建立引导页及分站</a><time datetime="2021-10-13T13:49:12.000Z" title="发表于 2021-10-13 21:49:12">2021-10-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/12/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu-20-04%EF%BC%89/" title="Hexo部署至服务器（Ubuntu 20.04）"><img src="https://gitee.com/CNhuazhu/tu-chuang1/raw/master/img-blog/Ubuntu_Server_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo部署至服务器（Ubuntu 20.04）"/></a><div class="content"><a class="title" href="/2021/10/12/%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu%EF%BC%89/Hexo%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Ubuntu-20-04%EF%BC%89/" title="Hexo部署至服务器（Ubuntu 20.04）">Hexo部署至服务器（Ubuntu 20.04）</a><time datetime="2021-10-12T07:13:40.000Z" title="发表于 2021-10-12 15:13:40">2021-10-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 By 花猪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener external nofollow noreferrer" href="http://beian.miit.gov.cn/">蜀ICP备2021026748号</a><br>感谢光临<a target="_blank" rel="noopener external nofollow noreferrer" href="http://cnhuazhu.top/" style="text-decoration:underline">小破站</a>,欢迎您提出宝贵的意见！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})
+setTimeout(function(){preloader.endLoading();}, 3000);</script></div><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'hexo-1g41404w9f800e94',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'hexo-1g41404w9f800e94',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'VHoX95KsBQSMyzEc3TdpmBkF-MdYXbMMI',
+      appKey: 'qnwObDMbgMEKnu1Gp8tk7PYJ',
+      placeholder: '欢迎留下你的评论（昵称和邮箱为必填项）',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Twikoo' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script src="/js/ip_content.js"></script><script src="/js/timing.js"></script><script src="https://cdn.jsdelivr.net/gh/xiabo2/CDN@latest/fishes.js"></script><script src="/js/footer.js"></script><script src="/js/ginkgo-leaf.js"></script><script id="canvas_nest" defer="defer" color="0,0,0" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="pjax-reload"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInLeft');
+    arr[i].setAttribute('data-wow-duration', '600ms');
+    arr[i].setAttribute('data-wow-delay', '200ms');
+    arr[i].setAttribute('data-wow-offset', '100');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__fadeInRightBig');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer="defer" src="https://cdn.jsdelivr.net/gh/graingert/wow@1.3.0/dist/wow.min.js"></script><script defer="defer" src="/js/wow_init.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+                        function butterfly_swiper_injector_config(){
+                          var parent_div_git = document.getElementById('recent-posts');
+                          var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/Hexo魔改/Hexo魔改记录/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage4.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/Hexo魔改/Hexo魔改记录/" alt="">Hexo魔改记录</a><div class="blog-slider__text">Hexo魔改记录</div><a class="blog-slider__button" href="2021/03/28/Hexo魔改/Hexo魔改记录/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/08/02/Vue/Vue学习笔记/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage5.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-08-02</span><a class="blog-slider__title" href="2021/08/02/Vue/Vue学习笔记/" alt="">Vue学习笔记</a><div class="blog-slider__text">本文将介绍Vue的基础语法</div><a class="blog-slider__button" href="2021/08/02/Vue/Vue学习笔记/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/Java/Java学习记录/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage8.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/Java/Java学习记录/" alt="">Java学习记录</a><div class="blog-slider__text">Java学习记录</div><a class="blog-slider__button" href="2021/03/28/Java/Java学习记录/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/操作系统/操作系统学习笔记/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage7.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/操作系统/操作系统学习笔记/" alt="">操作系统学习笔记</a><div class="blog-slider__text">记录操作系统学习历程</div><a class="blog-slider__button" href="2021/03/28/操作系统/操作系统学习笔记/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2021/03/28/计算机网络/计算机网络学习笔记/" alt=""><img width="48" height="48" src="https://cdn.jsdelivr.net/gh/CNhuazhu/Image/RotatingImage3.jpg" alt=""/></a><div class="blog-slider__content"><span class="blog-slider__code">2021-03-28</span><a class="blog-slider__title" href="2021/03/28/计算机网络/计算机网络学习笔记/" alt="">计算机网络学习笔记</a><div class="blog-slider__text">记录计算机网络学习历程</div><a class="blog-slider__button" href="2021/03/28/计算机网络/计算机网络学习笔记/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+                          console.log('已挂载butterfly_swiper')
+                          // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                          parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+                          }
+                        if( document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+                        butterfly_swiper_injector_config()
+                        }
+                      </script><script defer src="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/tororo.model.json"},"display":{"superSample":2,"width":200,"height":400,"position":"left","hOffset":0,"vOffset":-105},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body></html>
