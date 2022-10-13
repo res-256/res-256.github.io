@@ -1,16 +1,3 @@
-#nav .menus_items .menus_item .menus_item_child li {
-    display: inline-block;
-  }
-  
-  ul.menus_item_child {
-    overflow: hidden;
-    border-radius: 5px;
-  }
-
-#nav .menus_items .menus_item .menus_item_child {
-    margin-top: 0px !important;
-  }
-  
   @font-face {
     font-family:'arzhu';
     src:url('https://jsd.cdn.zzko.cn/gh/res-256/pic@main/202210110047152.ttf'); 
