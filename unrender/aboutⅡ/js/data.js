@@ -55,50 +55,45 @@ export default {
         ]
     },
     lovexhj1: {
-        title: "我是 N0ts",
-        subTitle: "爱好编程，运动，旅行，摄影与冰激凌",
+        title: "我是 Adam",
+        subTitle: "我终其一生都在探索和寻求，我活着是为了什么？",
         menu: [{
-                name: "Blog",
+                name: "Hexo",
                 icon: "fa-wordpress",
-                link: "https://blog.n0ts.cn/"
+                link: "https://z555.icu/"
             },
             {
                 name: "Email",
                 icon: "fa-envelope",
-                link: "mailto:nutssss@qq.com"
+                link: "mailto:h1553270051@163.com"
             },
             {
-                name: "Gitee",
+                name: "Github",
                 icon: "fa-github",
-                link: "https://gitee.com/n0ts"
+                link: "https://gitee.com/res-256"
             },
             {
                 name: "QQ",
                 icon: "fa-qq",
-                link: "https://wpa.qq.com/msgrd?v=3&uin=1656071287&site=qq&menu=yes"
-            },
-            {
-                name: "坚果小栈 - 技术交流",
-                icon: "fa-code",
-                link: "https://jq.qq.com/?_wv=1027&k=qMNJqj3F"
+                link: "https://wpa.qq.com/msgrd?v=3&uin=1553270051&site=qq&menu=yes"
             }
         ]
     },
     lovexhj2: {
         content: `                    <h1>你好！</h1>
-        <h2>我是 N0ts，</h2>
-        <p>一名<b>💻前端开发者</b>，19级大学生，现就职于🌏上海，最爱🍦；</p>
-        <p>用#️⃣代码去与计算机进行沟通，🔋是我最喜欢做的事；</p>
-        <p>我也开源的一些小作品，去提升自己的开发能力⭐；</p>
-        <p>当然，我也很乐意与志同道合的朋友🤙一起学习，可在上方来找我哦。</p>
+        <h2>我是 Adam</h2>
+        <p><b>临床医学生</b>一枚，22级大学生。</p>
+        <p>喜欢Fork#️⃣代码</p>
+        <p>喜欢骑车</p>
+        <p>喜欢篮球</p>
         <p>即使前方的路看似绝境🌋，也要有硬生生为自己开辟出一条道路的勇气！💪</p>
         <p>
-            我的开源：<a href="https://gitee.com/n0ts" target="_blank">📁Gitee</a>；我的博客：<a
-                href="https://blog.n0ts.cn/"
+            Github：<a href="https://gitee.com/n0ts" target="_blank">📁Github</a>；Hexo：<a
+                href="https://z555.icu/"
                 target="_blank"
                 >📚Blog</a
             >。
         </p>`,
-        img: "https://lovexhj.oss-cn-beijing.aliyuncs.com/me/images/me.jpg"
+        img: "https://jsd.cdn.zzko.cn/gh/res-256/pic@main/202210162055305.jpg"
     }
 }
