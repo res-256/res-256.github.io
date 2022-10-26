@@ -10,7 +10,7 @@
 export default {
     lovexhj: {
         // 后端地址
-        ServerBase: "https://gitee.com/api/v5",
+        ServerBase: "https://gitee.com/api",
         // 码云账号
         owner: "res-256",
         // 仓库名称
