@@ -405,7 +405,7 @@ new Vue({
             if (!this.title || !this.body || !this.sexSelect) {
                 this.wdnmdLoading = false;
                 return this.$message({
-                    message: "记仇也需要认真填写哦！",
+                    message: "吐槽也需要认真填写哦！",
                     showClose: true,
                     type: "warning"
                 });
