@@ -280,7 +280,7 @@ new Vue({
                         this.loadMore = true;
                         console.log("报错啦！", err);
                         this.$message({
-                            message: "获取吐槽失败！请查看开发者工具报错！",
+                            message: "获取记仇失败！请查看开发者工具报错！",
                             showClose: true,
                             type: "error"
                         });
@@ -405,7 +405,7 @@ new Vue({
             if (!this.title || !this.body || !this.sexSelect) {
                 this.wdnmdLoading = false;
                 return this.$message({
-                    message: "吐槽也需要认真填写哦！",
+                    message: "记仇也需要认真填写哦！",
                     showClose: true,
                     type: "warning"
                 });

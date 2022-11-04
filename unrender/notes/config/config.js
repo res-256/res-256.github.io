@@ -10,7 +10,7 @@
 export default {
     lovexhj: {
         // 后端地址
-        ServerBase: "https://giteeapi.z555.icu/",
+        ServerBase: "https://giteeapi.z555.icu",
         // 码云账号
         owner: "res-256",
         // 仓库名称
@@ -20,9 +20,9 @@ export default {
         // 首页
         lovexhjHeader: {
             // 首页标题
-            title: "吐槽小本本",
+            title: "TQY 与 XHJ 的记仇本本",
             // 本本标题
-            bookTitle: "Note"
+            bookTitle: "爱我的猪"
         },
         // 目录页标题
         pageTitle: "目录",
@@ -33,19 +33,19 @@ export default {
         // 没有记仇时提示文字
         pageNone: "这么清静？还不去记仇？",
         // 切换按钮文字
-        wdnmdTextButton: ["吐个槽", "查看小本本"],
+        wdnmdTextButton: ["记个仇", "查看小本本"],
         // 记仇标题提示文字
-        wdnmdPlaceholder: "吐槽也要来个标题吧！",
+        wdnmdPlaceholder: "记仇也要来个标题吧！",
         // 记仇内容提示文字
-        editText: "这个槽我先吐了！",
+        editText: "这个仇我先记上！",
         // 提交记仇按钮文字
         wdnmdSubmit: "记到小本本",
         // 记仇成功提醒文字
-        wdnmdOk: "小本本又多了一条吐槽~",
+        wdnmdOk: "小本本又多了一条记仇~",
         // 未填写密码提示文字
-        passwordTitle: "吐槽也是需要密码的！",
+        passwordTitle: "记仇也是需要密码的！",
         // 密码录入成功后提示文字
-        passwordSetOk: "现在可以吐槽啦！",
+        passwordSetOk: "现在可以记仇啦！",
         // 谁发的
         identity: [
             {
