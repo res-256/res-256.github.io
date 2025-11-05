@@ -1,0 +1,10 @@
+<script type="text/javascript">
+  var fdataUser = {
+    jsonurl: 'https://cdn.edui.fun/lmm.json',  //【推荐】json 匹配模式
+    //apiurl: 'https://hexo-circle-of-friends-lmm214.vercel.app/',  //自部署api
+    //initnumber: 20,  //首次加载文章数
+    //stepnumber: 10,  //更多加载文章数
+    //article_sort: 'created', //文章排序 updated or created
+    //error_img: 'https://sdn.geekzu.org/avatar/57d8260dfb55501c37dde588e7c3852c'
+  }
+</script>

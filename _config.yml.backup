@@ -1,0 +1,111 @@
+title: 何孙涛の博客
+subtitle: '什么都无法阻挡我们前进的脚步'
+description: '临床医学生的个人博客'
+keywords: 个人博客
+author: 何孙涛
+language: zh-CN
+timezone: Asia/Shanghai
+
+url: https://res-256.github.io
+root:
+permalink: posts/:abbrlink/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true
+  trailing_html: true
+abbrlink: 
+  alg: crc32
+  rep: hex
+
+emoji:
+  enable: true
+  className: github-emoji
+  styles:
+  customEmojis:
+
+history_calendar:
+  enable: true
+  priority: 4
+  enable_page:
+  layout:
+    type: class
+    name: sticky_layout
+    index: 0
+  temple_html: '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>'
+
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+  - 404.html
+  - unrender/**
+  - cn/**
+
+new_post_name: :title.md
+default_layout: post
+titlecase: false 
+external_link:
+  enable: true
+  field: site
+  exclude: ''
+
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+default_category: uncategorized
+category_map:
+tag_map:
+
+meta_generator: true
+
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+updated_option: 'mtime'
+
+per_page: 10
+pagination_dir: page
+
+include:
+exclude:
+ignore:
+
+theme:  butterfly
+
+plugins:
+  - hexo-generator-baidu-sitemap
+  - hexo-generator-sitemap
+
+deploy:
+  - type: git
+    repo: git@github.com:res-256/res-256.github.io.git
+    branch: master
+
+admin:
+  username: 15700825123
+  password_hash: $2a$10$xtgucqVkzH/j3XkIqk1r9u9IMptXA.kb1JBgb0EOH9pnk4c3maPZG
+  secret: x151xa553d515a5d1adawdawda3113a1d3aw1d1a3wd1awda1dawd3awd31awd13d1a

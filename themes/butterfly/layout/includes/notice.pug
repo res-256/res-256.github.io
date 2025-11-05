@@ -1,0 +1,23 @@
+#notice.notice(onclick=`pjax.loadUrl('/notice/')`)
+    i.notice-logo.fas.fa-bullhorn.card-announcement-animation
+    span=' '+_p('公告栏')
+    #noticeList.swiper-container
+        .swiper-wrapper
+            .swiper-slide 本站内容全部来自互联网，如有侵权，联系删除！！！
+            .swiper-slide 学习无止境，学习需终身，学习需用心。
+            .swiper-slide 本站部分博文来自互联网开源Github/_post
+    i.notice-enter.fas.fa-arrow-circle-right
+.js-pjax
+  script(src='https://unpkg.com/swiper/swiper-bundle.min.js' data-pjax='')
+  script.
+    var swiper = new Swiper ('#noticeList', {
+      spaceBetween: 30,
+      centeredSlides: true,
+      direction: 'vertical', // 垂直切换选项
+      loop: true, // 循环模式选项
+
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+    })
