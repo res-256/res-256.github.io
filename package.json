@@ -19,7 +19,7 @@
     "hexo-browsersync": "^0.3.0",
     "hexo-butterfly-categories-card": "^1.0.0",
     "hexo-butterfly-envelope": "^1.0.15",
-    "hexo-butterfly-extjs": "^1.2.8",
+    "hexo-butterfly-extjs": "^1.5.2",
     "hexo-butterfly-footer-beautify": "^1.0.6",
     "hexo-butterfly-tag-plugins-plus": "^1.0.17",
     "hexo-deployer-git": "^3.0.0",
