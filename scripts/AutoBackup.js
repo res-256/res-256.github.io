@@ -4,7 +4,7 @@ try {
     hexo.on('deployAfter', function() {
         // 等待10秒，确保hexo部署完全结束
         echo('部署完成，等待10秒后开始备份...');
-        exec('timeout /t 10 /nobreak > nul'); // Windows 等待命令
+        exec('sleep 10 /nobreak > nul'); // Windows 等待命令
         
         run();
     });
