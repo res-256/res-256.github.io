@@ -90,7 +90,7 @@ async function run() {
         
         // 推送到远程仓库
         const pushSuccess = await executeCommand(
-            `git push origin ${branch}`, 
+            `git push origin ${branch} --force`, 
             `推送到远程仓库 ${branch} 分支...`
         );
         
