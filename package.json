@@ -22,7 +22,7 @@
     "hexo-butterfly-extjs": "^1.2.8",
     "hexo-butterfly-footer-beautify": "^1.0.6",
     "hexo-butterfly-tag-plugins-plus": "^1.0.17",
-    "hexo-deployer-git": "^3.0.0",
+    "hexo-deployer-git": "^4.0.0",
     "hexo-filter-emoji": "^2.2.2",
     "hexo-filter-fcircle": "^0.0.8",
     "hexo-generator-archive": "^1.0.0",
