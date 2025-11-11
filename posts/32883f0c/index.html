@@ -1,0 +1,298 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>PanList：ServerLess百度网盘列表直链程序 | 何孙涛の博客</title><meta name="author" content="何孙涛"><meta name="copyright" content="何孙涛"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="警告本篇文章在panlist发布后两天内写成，panlist尚处于高速迭代状态，本篇教程随时会失效！    百度网盘2021年最新不限速下载方式是怎么回事呢？百度网盘相信大家都很熟悉，但是百度网盘2021年最新不限速下载方式是怎么回事呢，下面就让小编带大家一起了解吧。百度网盘2021年最新不限速下载方式，其实就是PandownloadCloudFlareWorkers版本，大家可能会很惊讶百度网盘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PanList：ServerLess百度网盘列表直链程序">
+<meta property="og:url" content="https://res-256.github.io/posts/32883f0c/index.html">
+<meta property="og:site_name" content="何孙涛の博客">
+<meta property="og:description" content="警告本篇文章在panlist发布后两天内写成，panlist尚处于高速迭代状态，本篇教程随时会失效！    百度网盘2021年最新不限速下载方式是怎么回事呢？百度网盘相信大家都很熟悉，但是百度网盘2021年最新不限速下载方式是怎么回事呢，下面就让小编带大家一起了解吧。百度网盘2021年最新不限速下载方式，其实就是PandownloadCloudFlareWorkers版本，大家可能会很惊讶百度网盘">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://res-256.github.io/img/202210092028180.jpg">
+<meta property="article:published_time" content="2021-01-06T13:44:55.000Z">
+<meta property="article:modified_time" content="2025-11-05T17:21:22.000Z">
+<meta property="article:author" content="何孙涛">
+<meta property="article:tag" content="CloudFlare">
+<meta property="article:tag" content="CloudFlareWorkers">
+<meta property="article:tag" content="百度网盘">
+<meta property="article:tag" content="网盘">
+<meta property="article:tag" content="薅羊毛">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://res-256.github.io/img/202210092028180.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "PanList：ServerLess百度网盘列表直链程序",
+  "url": "https://res-256.github.io/posts/32883f0c/",
+  "image": "https://res-256.github.io/img/202210092028180.jpg",
+  "datePublished": "2021-01-06T13:44:55.000Z",
+  "dateModified": "2025-11-05T17:21:22.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "何孙涛",
+      "url": "https://res-256.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://res-256.github.io/posts/32883f0c/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"简","msgToSimplifiedChinese":"繁"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PanList：ServerLess百度网盘列表直链程序',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/img/scrollbar.css"><link rel="stylesheet" href="/img/mycss.css"><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/echarts@4.7.0/dist/echarts.min.js"></script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" media="defer"><script src='https://unpkg.com/butterfly-friend@3.2.0/butterfly-friend.umd.js'></script><link rel="stylesheet" href="https://unpkg.com/butterfly-friend@3.2.0/style.css"><link rel="stylesheet" href="/css/twikoo.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body><div id="web_bg" style="background-image: url(/url(/img/1.png));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">79</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">134</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/charts/"><i class="fa-fw fa fa-paper-plane"></i><span> 统计</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fa fa-paper-plane"></i><span> 布告</span></a></li><li><a class="site-page child" href="/talks/"><i class="fa-fw fa fa-paper-plane"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/cov19/"><i class="fa-fw fa fa-circle"></i><span> 疫情</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fa fa-paper-plane"></i><span> 收藏</span></a></li><li><a class="site-page child" href="/circle/"><i class="fa-fw fa fa-link"></i><span> 链圈</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/pacman/"><i class="fa-fw fa fa-circle"></i><span> 吃豆小人</span></a></li><li><a class="site-page child" href="/unrender/element/"><i class="fa-fw fa fa-circle"></i><span> 元素周期</span></a></li><li><a class="site-page child" href="/unrender/box/"><i class="fa-fw fa fa-circle"></i><span> 网站导航</span></a></li><li><a class="site-page child" href="/unrender/chest/"><i class="fa-fw fa fa-circle"></i><span> 五子小棋</span></a></li><li><a class="site-page child" href="/unrender/2048/"><i class="fa-fw fa fa-circle"></i><span> 移动方块</span></a></li><li><a class="site-page child" href="/unrender/cat/"><i class="fa-fw fa fa-circle"></i><span> 圈住小猫</span></a></li><li><a class="site-page child" href="/unrender/piano/"><i class="fa-fw fa fa-circle"></i><span> 在线钢琴</span></a></li><li><a class="site-page child" href="/unrender/netease/"><i class="fa-fw fa fa-circle"></i><span> 网易热评</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 测试</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/about%E2%85%A0/"><i class="fa-fw fa fa-circle"></i><span> 测试页-1</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A1/"><i class="fa-fw fa fa-circle"></i><span> 测试页-2</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A2/"><i class="fa-fw fa fa-circle"></i><span> 测试页-3</span></a></li><li><a class="site-page child" href="/unrender/nolove/"><i class="fa-fw fa fa-circle"></i><span> 测试页-4</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/unrender/memos/"><i class="fa-fw fa fa-link"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/notes/"><i class="fa-fw fa fa-link"></i><span> 吐槽</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/travelling/"><i class="fa-fw fa fa-subway"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/202210092028180.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">何孙涛の博客</span></a><a class="nav-page-title" href="/"><span class="site-name">PanList：ServerLess百度网盘列表直链程序</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/charts/"><i class="fa-fw fa fa-paper-plane"></i><span> 统计</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fa fa-paper-plane"></i><span> 布告</span></a></li><li><a class="site-page child" href="/talks/"><i class="fa-fw fa fa-paper-plane"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/cov19/"><i class="fa-fw fa fa-circle"></i><span> 疫情</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fa fa-paper-plane"></i><span> 收藏</span></a></li><li><a class="site-page child" href="/circle/"><i class="fa-fw fa fa-link"></i><span> 链圈</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/pacman/"><i class="fa-fw fa fa-circle"></i><span> 吃豆小人</span></a></li><li><a class="site-page child" href="/unrender/element/"><i class="fa-fw fa fa-circle"></i><span> 元素周期</span></a></li><li><a class="site-page child" href="/unrender/box/"><i class="fa-fw fa fa-circle"></i><span> 网站导航</span></a></li><li><a class="site-page child" href="/unrender/chest/"><i class="fa-fw fa fa-circle"></i><span> 五子小棋</span></a></li><li><a class="site-page child" href="/unrender/2048/"><i class="fa-fw fa fa-circle"></i><span> 移动方块</span></a></li><li><a class="site-page child" href="/unrender/cat/"><i class="fa-fw fa fa-circle"></i><span> 圈住小猫</span></a></li><li><a class="site-page child" href="/unrender/piano/"><i class="fa-fw fa fa-circle"></i><span> 在线钢琴</span></a></li><li><a class="site-page child" href="/unrender/netease/"><i class="fa-fw fa fa-circle"></i><span> 网易热评</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 测试</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/about%E2%85%A0/"><i class="fa-fw fa fa-circle"></i><span> 测试页-1</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A1/"><i class="fa-fw fa fa-circle"></i><span> 测试页-2</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A2/"><i class="fa-fw fa fa-circle"></i><span> 测试页-3</span></a></li><li><a class="site-page child" href="/unrender/nolove/"><i class="fa-fw fa fa-circle"></i><span> 测试页-4</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/unrender/memos/"><i class="fa-fw fa fa-link"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/notes/"><i class="fa-fw fa fa-link"></i><span> 吐槽</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/travelling/"><i class="fa-fw fa fa-subway"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">PanList：ServerLess百度网盘列表直链程序</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-06T13:44:55.000Z" title="发表于 2021-01-06 21:44:55">2021-01-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-05T17:21:22.000Z" title="更新于 2025-11-06 01:21:22">2025-11-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A5%BD%E6%96%B9%E6%B3%95/">好方法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:500,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-11-06 01:21:22&quot;}" hidden></div><div class="note success flat"><h3 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h3><p>本篇文章在panlist发布后两天内写成，panlist尚处于高速迭代状态，本篇教程随时会失效！</p>
+</div>
+<blockquote>
+<p> <del>百度网盘2021年最新不限速下载方式是怎么回事呢？百度网盘相信大家都很熟悉，但是百度网盘2021年最新不限速下载方式是怎么回事呢，下面就让小编带大家一起了解吧。</del><br><del>百度网盘2021年最新不限速下载方式，其实就是PandownloadCloudFlareWorkers版本，大家可能会很惊讶百度网盘怎么会2021年最新不限速下载方式呢？但事实就是这样，小编也感到非常惊讶。</del><br><del>这就是关于百度网盘2021年最新不限速下载方式的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！</del></p>
+</blockquote>
+<p>之前写过<a href="/p/74e90c90.html">GoogleDrive</a>、<a href="/p/4fb070ca.html">OneDrive</a> 的CloudFlare列表程序，这两个有个共同点，那就是国内都无法很好的下载，所以用CloudFlareWorkers作为中间件转发流量。</p>
+<p>比较讽刺的是，CloudFlareWorkers用的都是国外节点，但以上两个运行于此的目录列表程序支持的下载速度却远远大于国内有节点的百度网盘，不说是移动BGP走香港有多好，至少我在『电信』网络环境下的下载速度都远远大于百度网盘。很显然，百度网盘作为垄断国内网盘市场的资本，既然已经度过了烧钱的时间，那么现在自然是能剩多少省多少，这就是『吃相难看』。</p>
+<p>两年前，当微博上的人们开始质问突然『诈尸』的百度网盘微博账号，网友们才纷纷意识到自己的百度网盘被恶意限速了，紧接着，破解百度网盘限速的方式层出不穷。只是后来，这些方式一点一点被打压下去，最终戛然而止。</p>
+<p>最近这几天因为在写<a target="_blank" rel="noopener" href="https://github.com/HexoPlusPlus/HexoPlusPlus">HexoPlusPlus: A ServerLess Hexo Dashboard</a> 正在努力学习CloudFlareWorkers。由于评论模块需要数据结构有关知识，可惜这一块知识大都都被一些所谓白嫖CloudFlareWorkers的教程所淹没：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.1.5/101043.jpg" alt="&quot;Google上CloudFlareWorkers搜索结果&quot;"></p>
+<p>在查询有关资料的时候，Github上一颗冉冉新星引起了我的注意，<a target="_blank" rel="noopener" href="https://github.com/teardr0p/PanList">PanList</a> ,根据其Commit显示,这个仓库仅仅是两天前刚刚开辟的,但是本文写是就有61Star和21Fork 【当然我也有Star】，可见其热门程度。不过简单的翻看了一下我就明白其为何如此热门，第一，它是专门对付令人头疼的百度网盘，第二，它是构建于CloudFlareWorkers。</p>
+<h1 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h1><p>电脑登录百度网盘：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.1.5/101056.jpg" alt="&quot;百度网盘&quot;"></p>
+<p>按下F12进入开发者模式，选择<code>Application</code>模块，点击<code>Cookies</code>:</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.1.5/101101.jpg" alt="&quot;Cookies&quot;"></p>
+<p>在这里，我们需要获取两个Cookie：<code>BDUSS</code>和<code>STOKEN</code></p>
+<h1 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Github</th>
+<th>JSDelivr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/teardr0p/PanList/master/index.js">原版Github下载地址</a></td>
+<td><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/teardr0p/PanList@master/index.js">原版JSDelivr下载地址</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>修改前面四行代码，分别为</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">BDUSS</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">STOKEN</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">USERNAME</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PASSWORD</span> = <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>将获取到的Cookie复制到第一行和第二行。第三、四行是登录后台所需的账号密码。</p>
+<blockquote>
+<p>AnyWay，你也可以将这些写入到后台变量</p>
+</blockquote>
+<p>新建一个Worker，将处理好的代码直接复制进去：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.1.5/101307.jpg" alt="复制代码"></p>
+<p>保存并部署，确定。</p>
+<h1 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h1><p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.1.5/101107.jpg" alt="绑定域名"></p>
+<p>路由：<code>&#123;待绑定的域名&#125;/*</code> [后面*的原理是覆盖该路径下所有文件]<br>Worker：你新建的Worker名字</p>
+<h1 id="评测"><a href="#评测" class="headerlink" title="评测"></a>评测</h1><p>登陆界面：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.1.5/101115.jpg" alt="login"></p>
+<p>打开后：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.1.5/101118.jpg" alt=""></p>
+<blockquote>
+<p>挺讽刺的是，去除了百度网盘原始界面乱七八糟的东西，CloudFlareWorkers的国外服务器打开速度都比百度网盘快</p>
+</blockquote>
+<p>Chrome直接下载速度</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.1.5/101447.jpg" alt=""></p>
+<p>传递Cookie后IDM下载速度：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.1.5/101120.jpg" alt=""></p>
+<p>注：单线程下载速率最终取决于百度网盘的限制，也就是说无论如何你也无法逃避百度网盘对源头的遏制，就在我下完<code>Soul</code>这部将近2GB的电影后，我的账号就被百度拉入黑名单，现在即使用IDM也只有80kb/s <span class="heimu">但是还是比原来的客户端快</span></p>
+<h1 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h1><p>本质上panlist无非就是通过baidu没有公开的API通过Cookie鉴权来获取文件列表和下载，虽然依旧没有突破单线程下载限速，但至少实现了直链下载和多线程下载的功能，并且部署在CloudFlareWorkers上的方式确实大开眼界，无服务器应用的范围又扩展了一步，我十分看好这个项目。</p>
+<p>另外，本人也在努力开发一款同样基于CloudFlareWorkers的评论系统，以下是截图：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.1.5/101127.jpg" alt=""></p>
+<p>最后，来一句姗姗来迟的新年祝福：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.1.5/happy.jpg" alt=""></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://res-256.github.io">何孙涛</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://res-256.github.io/posts/32883f0c/">https://res-256.github.io/posts/32883f0c/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://res-256.github.io" target="_blank">何孙涛の博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CloudFlare/">CloudFlare</a><a class="post-meta__tags" href="/tags/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98/">百度网盘</a><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%9B%98/">网盘</a><a class="post-meta__tags" href="/tags/CloudFlareWorkers/">CloudFlareWorkers</a><a class="post-meta__tags" href="/tags/%E8%96%85%E7%BE%8A%E6%AF%9B/">薅羊毛</a></div><div class="post-share"><div class="social-share" data-image="/img/202210092028180.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/363f2ff1/" title="失败的光速叛逃！CloudFlarePage初体验"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">失败的光速叛逃！CloudFlarePage初体验</div></div><div class="info-2"><div class="info-item-1">众所周知，CloudFlare曾开放CloudFlarePage内测资格申请，如今我获得了资格，免费享受边缘部署岂不美哉！可万万没想到，简单的迁移过程会出现如此问题  据我所知，使用CloudFlare做hexo无非以下两种：  GithubPage+CloudFlareCDN CloudFlareWorkerKV+ClouFlareWorkerSite  CloudFlare早先时候支持WorkerSite，当时KV照实没有免费，我也不想为了100ms的回源耗时而花费金钱。不过后来KV在一定额度上免费了，打开WorkerSite的文档，第一步wrangler直接把我劝退。 笑话，国内使用wrangler，那还不如CloudFlare+GithubPage。 苏卡卡大佬写的一篇文章讲述了自己部署WorkerSite的经历，ChrAlpha’s Blog也曾提到过迁移的过程。不过我懒，我觉得100ms回源不算什么，赔个Worker还是有点亏。 2020年11月份，偶然得知CFPage正在公开招聘Pagebeta计划，抱着试试看的心理，我简单写了些就交了上去。凭借着对CloudFla...</div></div></div></a><a class="pagination-related" href="/posts/ea33ab97/" title="自定义侧边栏"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/gh/jerryc127/CDN/img/aside-diy-cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">自定义侧边栏</div></div><div class="info-2"><div class="info-item-1">適用於 &gt;= 3.8.0  側邊欄現在支持自定義了，可以添加自己喜歡的 widget。 可添加自己的 widget，也可以對現有的 widget 進行排序（博客資料和 公告這兩個固定，其它的能排序） widget 排序只需要配置 sort_order就行。（使用了 Flex 佈局的 order 屬性，具體可查看 mozilla 文檔。簡單來講，就是配置數字來實現排序，如果不配置，則默認為 0。數字越小，排序越靠前。 12345678910111213141516aside: ...  card_recent_post:    sort_order: # Don&#x27;t modify the setting unless you know how it works  card_categories:    sort_order: # Don&#x27;t modify the setting unless you know how it works  card_tags:    sort_order: # Don&#x27;t modify the setting un...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/74e90c90/" title="免·爬·城·国内管理分享GoogleDrive"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-18</div><div class="info-item-2">免·爬·城·国内管理分享GoogleDrive</div></div><div class="info-2"><div class="info-item-1">昨天网上早早写完作业在Github上瞎逛，话说回来Github Explorer有时候真的很神奇给我推荐一些稀奇好用或正好急缺的东西，比如Accesser、MusicPlayer2、PHPProxy等等等等。结果昨天搜罗了这么一个极棒的玩意：GDIndex。 这个是拿过来干什么的基于rClone和CFWorkers的脚本，可以免F下载上传管理GoogleDrive。 国内访问GoogleDrive总会被…咳咳…那个…对了…嗯…你懂的东西干掉,所以只能隔洋兴叹.说实话个人使用googledrive真的不频繁,当时注册的时候只有4GB,2017年注册至今,我就放了一部400MB的视频,根本没有用多少. 至于当时为什么不用,这是后面的事情了,这里暂时不讲.只是不知道为什么,现在我的谷歌硬盘变成15GB了,emmmm,也不差. 这个脚本有两个作用:1.在国内管理GoogleDrive2.快速分享给国内用户. 说实话,这个正好填充我的缺陷,小文件我直接扔在Heroku+CF Always Online,静态文件缓存我调到一星期,勉强支撑私有云的下载;太大的文件直接放百度网盘上,虽然下载速度...</div></div></div></a><a class="pagination-related" href="/posts/a7d0d7f8/" title="通过CloudFlareAPI获取用户侧信息"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-28</div><div class="info-item-2">通过CloudFlareAPI获取用户侧信息</div></div><div class="info-2"><div class="info-item-1">噫，中考结束了，心中一块大石头总算碎了。虽然说考上提前批中考考不考无所谓，但是回去一次模拟考直接把我考傻了，太烂了,以前初一不学习的时候都没有这么烂。啊么学习两星期，中考一考，今年理科超级简单，欸，这样理科分数拉不开了，啧啧啧，理科生的末日。 因为人大多数时间在学校，不太方便用自带hexopush到Github，一是博客文件同步不方便，二是如果有个小错误就很抓狂，所以呢，以前的打算是部署到vps，通过hexo+nginx实现访问，不过可能是人比较傻，一直没搞好，而且这种免费小鸡说炸就炸，不保险，还是跟着hexo官方文档 用Travis-ci+Github实现在线自动部署,以后更新也方便点 好了好了，不说了，今天简单讲一下如何用CloudFlare自带的API获取用户信息。 /cdn-cgi/trace刚开始建立博客的时候，也是想过显示用户ip地址的，但网上的教程大多都是用搜狐新浪的js，而且很早就过期了。所以也就搁着迟迟没有解决。 后来偶然间知道CloudFlare有个比较神奇的技术，在部署在CloudFlare上的网站，域名后面加上/cdn-cgi/trace就可以获得用户侧信...</div></div></div></a><a class="pagination-related" href="/posts/7fe9d99f/" title="IPFS+CloudFlare&#x3D;ServerLessWebPage"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-07</div><div class="info-item-2">IPFS+CloudFlare&#x3D;ServerLessWebPage</div></div><div class="info-2"><div class="info-item-1">IPFS，这个2018年诞生出来的小东西，似乎掀起了一阵热潮，然后被忘性极大的互联网吃瓜群众所抛弃，但不得不说这个东西可玩度非常高。 IPFS是什么网上一大堆文绉绉气昂昂极富学术气息的营销号整天吹嘘着ipfs是跨时代下一时代的比特币，我只能说呵呵，真的想要了解ipfs是什么的，建议左转维基百科或百度百科。 抄一下wikipedia上的介绍：  （InterPlanetary File System，缩写IPFS）是一个旨在创建持久且分布式存储和共享文件的网络传输协议。它是一种内容可寻址的对等超媒体分发协议。在IPFS网络中的节点将构成一个分布式文件系统。  其实按我的话来说,ipfs就是一个神奇的东西,你放上去一个文件,就会立刻被瓜分成数个文件碎片,每一台运行着ipfs的电脑和矿机就会争先恐后来抢夺你的碎片,并且抢到的人就会获得系统的奖励,而你却一分钱也不用付出. 是不是听起来很神奇?对的,你没有付出任何东西,别人却能获得奖励,而且你既满足储存文件的需求,储存你文件的人也能得到金钱.这种机制,叫做FileCoin. 你可以把它想象成Bittorrent+BitCoin的结合物,实...</div></div></div></a><a class="pagination-related" href="/posts/4fb070ca/" title="CFWorker-ODIndex中文文档&amp;使用教程"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-14</div><div class="info-item-2">CFWorker-ODIndex中文文档&amp;使用教程</div></div><div class="info-2"><div class="info-item-1"> 写在最前面自从这篇博文发布后，OneIndex迎来了一次重大更新，去除了FireBase依赖，转用KV存储刷新令牌。本片教程已过时，具体会在春节前后更新最新版本。  OneDrive，相信大家都不陌生，微软家的网盘，虽说有类似于OneManager一样的目录列表程序，但是直连海外总是会遭受严重的丢包，得到极其糟糕的体验。这时候CLoudFlare作为不那么好使的CDN就排上用场了，项目onedrive-cf-index 解决了这个问题,但是据我观察,这个仓库作者应该是个中国人,但是readme文档可不是中文,这对一些使用者造成了一定的困扰,而且文档相当言简意赅,这一篇文章相当于文档的中文翻译和使用教程.  使用前言部署此项目较为麻烦,请确保你满足以下俩个及以上想法后,才继续往下读:  我非常需要搭建于CloudFlare的OneDrive目录列表吗? 我非常需要这个版本的目录列表吗? 我有这个耐心吗?如果没有,那么我们建议你可以使用另一个功能和UI稍差的cf目录列表OneDrive-Index-Cloudflare-Worker 这个版本有不是很详尽的中文文档,并且较为简单,或...</div></div></div></a><a class="pagination-related" href="/posts/363f2ff1/" title="失败的光速叛逃！CloudFlarePage初体验"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-20</div><div class="info-item-2">失败的光速叛逃！CloudFlarePage初体验</div></div><div class="info-2"><div class="info-item-1">众所周知，CloudFlare曾开放CloudFlarePage内测资格申请，如今我获得了资格，免费享受边缘部署岂不美哉！可万万没想到，简单的迁移过程会出现如此问题  据我所知，使用CloudFlare做hexo无非以下两种：  GithubPage+CloudFlareCDN CloudFlareWorkerKV+ClouFlareWorkerSite  CloudFlare早先时候支持WorkerSite，当时KV照实没有免费，我也不想为了100ms的回源耗时而花费金钱。不过后来KV在一定额度上免费了，打开WorkerSite的文档，第一步wrangler直接把我劝退。 笑话，国内使用wrangler，那还不如CloudFlare+GithubPage。 苏卡卡大佬写的一篇文章讲述了自己部署WorkerSite的经历，ChrAlpha’s Blog也曾提到过迁移的过程。不过我懒，我觉得100ms回源不算什么，赔个Worker还是有点亏。 2020年11月份，偶然得知CFPage正在公开招聘Pagebeta计划，抱着试试看的心理，我简单写了些就交了上去。凭借着对CloudFla...</div></div></div></a><a class="pagination-related" href="/posts/16d5e71e/" title="如何++CloudFlare Warp+ "><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-19</div><div class="info-item-2">如何++CloudFlare Warp+ </div></div><div class="info-2"><div class="info-item-1">自从CloudFlare渐渐浮出大众的视野，现在它的各项服务已经玩出花了，如果不陌生，它有一个应用叫 1.1.1.1,简单的说就是在手机上搭建DoH和DoT,本来的意思就是绕开域名污染,结果正好撞到某些人怀里,当然也包括我 ,亲测使用DoH虽然速度慢了点,但是上DuckDuckGo 不是梦啊. 另外,’1.1.1.1’多了一个功能叫 Warp+,简单的说就是 代理 ,嗯~ o(￣▽￣)o,我想我在说什么你应该知道,由于CloudFlare主打边缘服务,所以.😏 什么是边缘服务?这里简单介绍一下,边缘服务指的是当用户发出请求后,接到相应的不再是少量的中心服务,而是所有的在用户身边CDN进行相应. 就拿CFWorker来说,传统服务是这样的:  但是CloudFlare换了个思路,为什么所有数据都要一个中心节点算,在用户旁边的CDN不能算吗?  让用户身边的服务器进行相应,在用户与服务器的边缘计算,这就是边缘服务. Warp+手机端上Warp+主打的功能是在网络拥堵时提供更好的服务,个人用了一下,速度不快,大约100kb/s,勉强支撑正常使用,而且默认只有1GB,需要靠分享获取更多...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AD%A6%E5%91%8A"><span class="toc-number">1.</span> <span class="toc-text">警告</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B5%B7%E6%AD%A5"><span class="toc-number">2.</span> <span class="toc-text">起步</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96"><span class="toc-number">3.</span> <span class="toc-text">获取</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D"><span class="toc-number">4.</span> <span class="toc-text">绑定域名</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%84%E6%B5%8B"><span class="toc-number">5.</span> <span class="toc-text">评测</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%BE%E5%A3%B0"><span class="toc-number">6.</span> <span class="toc-text">尾声</span></a></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2017 - 2025 By 何孙涛</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-res256s-projects.vercel.app/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://twikoo-res256s-projects.vercel.app/',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    GLOBAL_CONFIG_SITE.pageType === 'post' && getCount()
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="/img/myjs.js"></script><script src="/js/youlian.js"></script><script src="/js/aside_mobile.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="/"></script></div><!-- hexo injector body_end start --><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='null'|| 'null' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><!-- hexo injector body_end end --></body></html>

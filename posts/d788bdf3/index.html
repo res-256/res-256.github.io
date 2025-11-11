@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Euserv正确打开优化方式 | 何孙涛の博客</title><meta name="author" content="何孙涛"><meta name="copyright" content="何孙涛"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Euserv，盛名远扬【老白嫖怪了】，但是如何合理打开它，却是一个难题。这篇文章就是简单讲讲合理使用其免费的纯IPv6小鸡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Euserv正确打开优化方式">
+<meta property="og:url" content="https://res-256.github.io/posts/d788bdf3/index.html">
+<meta property="og:site_name" content="何孙涛の博客">
+<meta property="og:description" content="Euserv，盛名远扬【老白嫖怪了】，但是如何合理打开它，却是一个难题。这篇文章就是简单讲讲合理使用其免费的纯IPv6小鸡">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://res-256.github.io/img/202210092028180.jpg">
+<meta property="article:published_time" content="2021-03-14T03:12:41.000Z">
+<meta property="article:modified_time" content="2025-11-05T17:21:22.000Z">
+<meta property="article:author" content="何孙涛">
+<meta property="article:tag" content="Euserv">
+<meta property="article:tag" content="白嫖">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://res-256.github.io/img/202210092028180.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Euserv正确打开优化方式",
+  "url": "https://res-256.github.io/posts/d788bdf3/",
+  "image": "https://res-256.github.io/img/202210092028180.jpg",
+  "datePublished": "2021-03-14T03:12:41.000Z",
+  "dateModified": "2025-11-05T17:21:22.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "何孙涛",
+      "url": "https://res-256.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://res-256.github.io/posts/d788bdf3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"简","msgToSimplifiedChinese":"繁"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Euserv正确打开优化方式',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/img/scrollbar.css"><link rel="stylesheet" href="/img/mycss.css"><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/echarts@4.7.0/dist/echarts.min.js"></script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" media="defer"><script src='https://unpkg.com/butterfly-friend@3.2.0/butterfly-friend.umd.js'></script><link rel="stylesheet" href="https://unpkg.com/butterfly-friend@3.2.0/style.css"><link rel="stylesheet" href="/css/twikoo.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body><div id="web_bg" style="background-image: url(/url(/img/1.png));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">79</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">134</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/charts/"><i class="fa-fw fa fa-paper-plane"></i><span> 统计</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fa fa-paper-plane"></i><span> 布告</span></a></li><li><a class="site-page child" href="/talks/"><i class="fa-fw fa fa-paper-plane"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/cov19/"><i class="fa-fw fa fa-circle"></i><span> 疫情</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fa fa-paper-plane"></i><span> 收藏</span></a></li><li><a class="site-page child" href="/circle/"><i class="fa-fw fa fa-link"></i><span> 链圈</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/pacman/"><i class="fa-fw fa fa-circle"></i><span> 吃豆小人</span></a></li><li><a class="site-page child" href="/unrender/element/"><i class="fa-fw fa fa-circle"></i><span> 元素周期</span></a></li><li><a class="site-page child" href="/unrender/box/"><i class="fa-fw fa fa-circle"></i><span> 网站导航</span></a></li><li><a class="site-page child" href="/unrender/chest/"><i class="fa-fw fa fa-circle"></i><span> 五子小棋</span></a></li><li><a class="site-page child" href="/unrender/2048/"><i class="fa-fw fa fa-circle"></i><span> 移动方块</span></a></li><li><a class="site-page child" href="/unrender/cat/"><i class="fa-fw fa fa-circle"></i><span> 圈住小猫</span></a></li><li><a class="site-page child" href="/unrender/piano/"><i class="fa-fw fa fa-circle"></i><span> 在线钢琴</span></a></li><li><a class="site-page child" href="/unrender/netease/"><i class="fa-fw fa fa-circle"></i><span> 网易热评</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 测试</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/about%E2%85%A0/"><i class="fa-fw fa fa-circle"></i><span> 测试页-1</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A1/"><i class="fa-fw fa fa-circle"></i><span> 测试页-2</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A2/"><i class="fa-fw fa fa-circle"></i><span> 测试页-3</span></a></li><li><a class="site-page child" href="/unrender/nolove/"><i class="fa-fw fa fa-circle"></i><span> 测试页-4</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/unrender/memos/"><i class="fa-fw fa fa-link"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/notes/"><i class="fa-fw fa fa-link"></i><span> 吐槽</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/travelling/"><i class="fa-fw fa fa-subway"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/202210092028180.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">何孙涛の博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Euserv正确打开优化方式</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/charts/"><i class="fa-fw fa fa-paper-plane"></i><span> 统计</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fa fa-paper-plane"></i><span> 布告</span></a></li><li><a class="site-page child" href="/talks/"><i class="fa-fw fa fa-paper-plane"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/cov19/"><i class="fa-fw fa fa-circle"></i><span> 疫情</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fa fa-paper-plane"></i><span> 收藏</span></a></li><li><a class="site-page child" href="/circle/"><i class="fa-fw fa fa-link"></i><span> 链圈</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/pacman/"><i class="fa-fw fa fa-circle"></i><span> 吃豆小人</span></a></li><li><a class="site-page child" href="/unrender/element/"><i class="fa-fw fa fa-circle"></i><span> 元素周期</span></a></li><li><a class="site-page child" href="/unrender/box/"><i class="fa-fw fa fa-circle"></i><span> 网站导航</span></a></li><li><a class="site-page child" href="/unrender/chest/"><i class="fa-fw fa fa-circle"></i><span> 五子小棋</span></a></li><li><a class="site-page child" href="/unrender/2048/"><i class="fa-fw fa fa-circle"></i><span> 移动方块</span></a></li><li><a class="site-page child" href="/unrender/cat/"><i class="fa-fw fa fa-circle"></i><span> 圈住小猫</span></a></li><li><a class="site-page child" href="/unrender/piano/"><i class="fa-fw fa fa-circle"></i><span> 在线钢琴</span></a></li><li><a class="site-page child" href="/unrender/netease/"><i class="fa-fw fa fa-circle"></i><span> 网易热评</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 测试</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/about%E2%85%A0/"><i class="fa-fw fa fa-circle"></i><span> 测试页-1</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A1/"><i class="fa-fw fa fa-circle"></i><span> 测试页-2</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A2/"><i class="fa-fw fa fa-circle"></i><span> 测试页-3</span></a></li><li><a class="site-page child" href="/unrender/nolove/"><i class="fa-fw fa fa-circle"></i><span> 测试页-4</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/unrender/memos/"><i class="fa-fw fa fa-link"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/notes/"><i class="fa-fw fa fa-link"></i><span> 吐槽</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/travelling/"><i class="fa-fw fa fa-subway"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Euserv正确打开优化方式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-14T03:12:41.000Z" title="发表于 2021-03-14 11:12:41">2021-03-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-05T17:21:22.000Z" title="更新于 2025-11-06 01:21:22">2025-11-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%99%BD%E5%AB%96%E6%80%AA/">白嫖怪</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:500,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-11-06 01:21:22&quot;}" hidden></div><p>Euserv，盛名远扬【老白嫖怪了】，但是如何合理打开它，却是一个难题。这篇文章就是简单讲讲合理使用其免费的纯IPv6小鸡</p>
+<span id="more"></span>
+<p>首先是bench测试普通小鸡</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">----------------------------------------------------------------------</span><br><span class="line"> CPU Model             : AMD Phenom(tm) II X6 1055T Processor</span><br><span class="line"> CPU Cores             : 1</span><br><span class="line"> CPU Frequency         : 3101.198 MHz</span><br><span class="line"> CPU Cache             : 512 KB</span><br><span class="line"> Total Disk            : 9.8 GB (3.4 GB Used)</span><br><span class="line"> Total Mem             : 976 MB (334 MB Used)</span><br><span class="line"> Total Swap            : 976 MB (0 MB Used)</span><br><span class="line"> System <span class="built_in">uptime</span>         : 76 days, 21 hour 6 min</span><br><span class="line"> Load average          : 16.17, 19.45, 20.53</span><br><span class="line"> OS                    : CentOS Linux release 7.9.2009 (Core)</span><br><span class="line"> Arch                  : x86_64 (64 Bit)</span><br><span class="line"> Kernel                : 4.20.8-1.el7.elrepo.x86_64</span><br><span class="line"> TCP CC                : cubic</span><br><span class="line"> Virtualization        : LXC</span><br><span class="line"> Organization          : AS29432 TREX Regional Exchanges Oy</span><br><span class="line"> Region                : Pirkanmaa</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line"> I/O Speed(1st run)    : 19.3 MB/s</span><br><span class="line"> I/O Speed(2nd run)    : 28.5 MB/s</span><br><span class="line"> I/O Speed(3rd run)    : 34.0 MB/s</span><br><span class="line"> Average I/O speed     : 27.3 MB/s</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line"> Node Name        Upload Speed      Download Speed      Latency     </span><br><span class="line"> Speedtest.net    288.12 Mbps       350.72 Mbps         46.84 ms </span><br></pre></td></tr></table></figure>
+<p>这是一张简单优化后的小鸡</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">----------------------------------------------------------------------</span><br><span class="line"> CPU Model             : Intel(R) Xeon(R) CPU E3-1270 v3 @ 3.50GHz</span><br><span class="line"> CPU Cores             : 1</span><br><span class="line"> CPU Frequency         : 3740.322 MHz</span><br><span class="line"> CPU Cache             : 8192 KB</span><br><span class="line"> Total Disk            : 9.8 GB (0.9 GB Used)</span><br><span class="line"> Total Mem             : 976 MB (60 MB Used)</span><br><span class="line"> Total Swap            : 976 MB (0 MB Used)</span><br><span class="line"> System <span class="built_in">uptime</span>         : 0 days, 0 hour 36 min</span><br><span class="line"> Load average          : 5.06, 6.01, 7.01</span><br><span class="line"> OS                    : Debian GNU/Linux 10</span><br><span class="line"> Arch                  : x86_64 (64 Bit)</span><br><span class="line"> Kernel                : 4.20.8-1.el7.elrepo.x86_64</span><br><span class="line"> TCP CC                : cubic</span><br><span class="line"> Virtualization        : LXC</span><br><span class="line"> Organization          : AS13335 Cloudflare, Inc.</span><br><span class="line"> Location              : Frankfurt am Main / DE</span><br><span class="line"> Region                : Hesse</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line"> I/O Speed(1st run)    : 71.8 MB/s</span><br><span class="line"> I/O Speed(2nd run)    : 58.1 MB/s</span><br><span class="line"> I/O Speed(3rd run)    : 57.3 MB/s</span><br><span class="line"> Average I/O speed     : 62.4 MB/s</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line"> Node Name        Upload Speed      Download Speed      Latency     </span><br><span class="line"> Speedtest.net    203.45 Mbps       105.67 Mbps         9.28 ms     </span><br><span class="line"> Beijing    CU    71.94 Mbps        112.58 Mbps         271.97 ms   </span><br><span class="line"> Shanghai   CU    89.92 Mbps        111.97 Mbps         245.60 ms   </span><br><span class="line"> Guangzhou  CT    0.18 Mbps         131.79 Mbps         234.00 ms   </span><br><span class="line"> Guangzhou  CU    103.38 Mbps       118.68 Mbps         284.22 ms   </span><br><span class="line"> Shenzhen   CU    82.26 Mbps        115.67 Mbps         268.41 ms   </span><br><span class="line"> Hongkong   CN    81.69 Mbps        141.33 Mbps         274.20 ms   </span><br><span class="line"> Singapore  SG    99.51 Mbps        108.96 Mbps         330.77 ms   </span><br><span class="line"> Tokyo      JP    104.81 Mbps       85.70 Mbps          246.56 ms   </span><br><span class="line">----------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+<h1 id="安装-Debian10"><a href="#安装-Debian10" class="headerlink" title="安装 - Debian10"></a>安装 - Debian10</h1><p>这里务必要安装Debian系统，不然后面可能会有点小问题</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-cdn@2.0.0/img/hpp_upload/1615692757000.png" alt=""></p>
+<p>可能要很长一段时间，完毕后<code>ServerData</code>记录ipv6地址和密码备用</p>
+<h1 id="链接SSH"><a href="#链接SSH" class="headerlink" title="链接SSH"></a>链接SSH</h1><p>由于次小鸡用的是纯ipv6,鉴于国内ipv6的部署情况您很有可能连接不上,请选择以下六种方式链接</p>
+<ul>
+<li>CloudFlareSpectrum + UcloudGlobalSSH</li>
+<li>嘿哟终端</li>
+<li>ZeroTier虚拟局域网</li>
+<li>挂ipv6代理</li>
+<li>使用另一台已安装宝塔的Euserv小鸡,用宝塔自带的终端ssh中继到另一台服务器</li>
+<li>使用ipv4+ipv6双栈vps,用ssh链接</li>
+</ul>
+<p>篇幅所限,只讲第一种</p>
+<h2 id="CloudFlareSpectrum-UcloudGlobalSSH"><a href="#CloudFlareSpectrum-UcloudGlobalSSH" class="headerlink" title="CloudFlareSpectrum + UcloudGlobalSSH"></a>CloudFlareSpectrum + UcloudGlobalSSH</h2><p><strong>这个方案比较推荐,就是需要白嫖一个CloudFlarePro</strong></p>
+<p> UcloudGlobalSSH只能支持ipv4,所以你需要一个CloudFlareSpectrum中继</p>
+<p>CloudFlareSpectrum每月5GB流量,仅SSH链接完全足够</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-cdn@2.0.0/img/hpp_upload/1615692972000.png" alt=""></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-cdn@2.0.0/img/hpp_upload/1615693007000.png" alt=""></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-cdn@2.0.0/img/hpp_upload/1615693064000.png" alt=""></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-cdn@2.0.0/img/hpp_upload/1615693130000.png" alt=""></p>
+<p>这一步之后需要注意解析你的专属ip，CloudFlareSpectrum使用的ip不是供用的。</p>
+<p>Windows命令提示符使用</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup abc.cyfan.top.cdn.cloudflare.<span class="built_in">net</span></span><br></pre></td></tr></table></figure>
+<p>或者使用我的DNS over HTTPS</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.cyfan.top/ohhhdns?name=abc.cyfan.top.cdn.cloudflare.net&amp;host=true</span><br></pre></td></tr></table></figure>
+<p>请自己更改abc.cyfan.top这个域名。</p>
+<p>解析的ip形如<code>172.65.124.0</code>,但这个ip并不好,三网都很差,所以用UcloudGlobalSSH</p>
+<p>UcloudGlobalSSH拥有免费版一天1GB,完全足矣</p>
+<p><a target="_blank" rel="noopener" href="https://console.ucloud.cn/upathx/globalssh">https://console.ucloud.cn/upathx/globalssh</a></p>
+<p>新建一个隧道</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-cdn@2.0.0/img/hpp_upload/1615693476000.png" alt=""></p>
+<p>将之前解析的ip写入，区域建议香港，点击确定，生成专属域名</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-cdn@2.0.0/img/hpp_upload/1615693543000.png" alt=""></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-cdn@2.0.0/img/hpp_upload/1615693601000.png" alt=""></p>
+<p>然后链接，我这里用的是XShell，其实客户端自己看喜好</p>
+<p>域名就是ucloud的专属域名，<strong>端口是UC分配给你的而不是22</strong>，922是UC给我的端口，密码是Euserv的密码，用户直接用<code>root</code></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-cdn@2.0.0/img/hpp_upload/1615693743000.png" alt=""></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-cdn@2.0.0/img/hpp_upload/1615693767000.png" alt=""></p>
+<p>然后就直接链接</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-cdn@2.0.0/img/hpp_upload/1615693951000.png" alt=""></p>
+<p>使用此方式链接方式如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你 - 中国 &lt;=40ms=&gt; Ucloud - 中国香港 &lt;=10ms=&gt; CloudFlareSpectrum - AnyCast &lt;=Argo 横跨北半球,150ms=&gt; Euserv - 德国</span><br></pre></td></tr></table></figure>
+<p>也就是说链接直连可以与美国vps媲美</p>
+<h1 id="DNS设置-DNS64"><a href="#DNS设置-DNS64" class="headerlink" title="DNS设置 -DNS64"></a>DNS设置 -DNS64</h1><p>Euserv只有一个ipv6地址,没有ipv4网卡,所以只能链接纯ipv6网站</p>
+<p>使用DNS64可以强制把域名解析到ipv6地址,并且原来只有ipv4的也能通过算法解析到ipv6</p>
+<p>由于你要安装Warp,为了下载来自外网的软件,需要使用DNS64</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+<p>大概是这样的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">search blue.kundencontroller.de</span><br><span class="line">options rotate</span><br><span class="line">nameserver 2a02:180:6:5::1c</span><br><span class="line">nameserver 2a02:180:6:5::1e</span><br><span class="line">nameserver 2a02:180:6:5::1d</span><br><span class="line">nameserver 2a02:180:6:5::4</span><br></pre></td></tr></table></figure>
+<p>删除最后4行nameserver,添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nameserver 2001:67c:2b0::4</span><br><span class="line">nameserver 2001:67c:2b0::6</span><br></pre></td></tr></table></figure>
+<h1 id="Warp安装-上IPv4地址"><a href="#Warp安装-上IPv4地址" class="headerlink" title="Warp安装 - 上IPv4地址"></a>Warp安装 - 上IPv4地址</h1><blockquote>
+<p>Debian安装时若意外退出则需要相当麻烦解除锁定,所以建立一个稳定的隧道是必须的</p>
+</blockquote>
+<p>首先安装一些必要依赖</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install curl <span class="built_in">sudo</span> lsb-release -y</span><br></pre></td></tr></table></figure>
+<p>添加 back­ports 源,并安装wireguard</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://deb.debian.org/debian <span class="subst">$(lsb_release -sc)</span>-backports main&quot;</span> | <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/sources.list.d/backports.list</span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install net-tools iproute2 openresolv dnsutils -y</span><br><span class="line"><span class="built_in">sudo</span> apt install wireguard-tools --no-install-recommends</span><br></pre></td></tr></table></figure>
+<p>然后因为是LXC虚拟内核,无奈之下只能使用go语言编译的内核</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL git.io/wireguard-go.sh | <span class="built_in">sudo</span> bash</span><br></pre></td></tr></table></figure>
+<p>安装wgcf【第三方注册器】，注册并生成配置</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL git.io/wgcf.sh | <span class="built_in">sudo</span> bash</span><br><span class="line">wgcf register</span><br><span class="line">wgcf generate</span><br></pre></td></tr></table></figure>
+<p>修改配置</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano wgcf-profile.conf</span><br></pre></td></tr></table></figure>
+<p>内容差不多这样：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Interface]</span><br><span class="line">PrivateKey = xxx</span><br><span class="line">Address = 172.16.0.2/32</span><br><span class="line">Address = fd01:5ca1:ab1e:89f5:9dfa:759c:9348:13e6/128</span><br><span class="line">DNS = 1.1.1.1</span><br><span class="line">MTU = 1280</span><br><span class="line">[Peer]</span><br><span class="line">PublicKey = xxx</span><br><span class="line">AllowedIPs = 0.0.0.0/0</span><br><span class="line">AllowedIPs = ::/0</span><br><span class="line">Endpoint = engage.cloudflareclient.com:2408</span><br></pre></td></tr></table></figure>
+<p>几个关键配置</p>
+<ul>
+<li>第五行DNS改成</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DNS = 2606:4700:4700::1111</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除第十行，否则Warp会托管ipv6<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AllowedIPs = ::/0</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>修改第十一行为</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Endpoint = [2606:4700:d0::a29f:c001]:2408</span><br></pre></td></tr></table></figure>
+<p>输入以下命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> wgcf-profile.conf /etc/wireguard/wgcf.conf</span><br><span class="line"><span class="built_in">sudo</span> systemctl start wg-quick@wgcf</span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> wg-quick@wgcf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;precedence  ::ffff:0:0/96   100&#x27;</span> | <span class="built_in">sudo</span> <span class="built_in">tee</span> -a /etc/gai.conf</span><br></pre></td></tr></table></figure>
+<p>然后ping一下baidu：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">root@srv10866:~# ping baidu.com</span><br><span class="line">PING baidu.com (220.181.38.148) 56(84) bytes of data.</span><br><span class="line">64 bytes from 220.181.38.148 (220.181.38.148): icmp_seq=1 ttl=50 time=452 ms</span><br><span class="line">64 bytes from 220.181.38.148 (220.181.38.148): icmp_seq=2 ttl=50 time=300 ms</span><br><span class="line">64 bytes from 220.181.38.148 (220.181.38.148): icmp_seq=3 ttl=50 time=302 ms</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">^C</span><br><span class="line">--- baidu.com ping statistics ---</span><br><span class="line">26 packets transmitted, 23 received, 11.5385% packet loss, time 121ms</span><br><span class="line">rtt min/avg/max/mdev = 297.390/307.370/451.503/30.906 ms</span><br></pre></td></tr></table></figure>
+<p>简单安装besttrace</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://cdn.ipip.net/17mon/besttrace4linux.zip</span><br><span class="line">apt-get install zip</span><br><span class="line">unzip besttrace4linux.zip</span><br><span class="line"><span class="built_in">chmod</span> +x besttrace</span><br></pre></td></tr></table></figure>
+<p>路由到CF网络都是一步到位</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@srv10866:~# ./besttrace -q 1 1.0.0.1</span><br><span class="line">traceroute to 1.0.0.1 (1.0.0.1), 30 hops max, 32 byte packets</span><br><span class="line"> 1  one.one.one.one (1.0.0.1)  9.61 ms  AS13335  CLOUDFLARE.COM, apnic.net</span><br><span class="line"></span><br><span class="line">root@srv10866:~# ./besttrace -q 1 cloudflare.com</span><br><span class="line">traceroute to cloudflare.com (104.16.133.229), 30 hops max, 32 byte packets</span><br><span class="line"> 1  104.16.133.229  13.62 ms  AS13335  CLOUDFLARE.COM, cloudflare.com</span><br></pre></td></tr></table></figure>
+<p>路由到谷歌，那就是穿透一层内网直接出去</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@srv10866:~# ./besttrace -q 1 google.com</span><br><span class="line">traceroute to google.com (142.250.186.46), 30 hops max, 32 byte packets</span><br><span class="line"> 1  172.16.0.1  9.45 ms  *  LAN Address</span><br><span class="line"> 2  162.158.82.1  18.34 ms  AS13335  Germany, Hesse, Frankfurt, cloudflare.com</span><br><span class="line"> 3  162.158.84.5  10.08 ms  AS13335  Germany, Hesse, Frankfurt, cloudflare.com</span><br><span class="line"> 4  108.170.251.129  28.06 ms  AS15169  United States, google.com</span><br><span class="line"> 5  172.253.71.89  11.58 ms  AS15169  United States, google.com</span><br><span class="line"> 6  fra24s04-in-f14.1e100.net (142.250.186.46)  12.48 ms  AS15169  Germany, Hesse, Frankfurt, google.com</span><br></pre></td></tr></table></figure>
+<p>路由到百度就很有意思，从HKG出去进入移动CMI北上北京</p>
+<blockquote>
+<p>去年10月移动在欧洲和cf做的对等互联,因为遵循路由链最短原则,电信和联通在欧洲没有比这个更短的,到联通是cf-gtt-联通,到电信是cf-level3-电信,到移动是cf-移动,所以会走移动<br>金句From — <a target="_blank" rel="noopener" href="https://www.puresys.net/">CLAM</a></p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">root@srv10866:~# ./besttrace -q 1 baidu.com</span><br><span class="line">traceroute to baidu.com (39.156.69.79), 30 hops max, 32 byte packets</span><br><span class="line"> 1  172.16.0.1  9.50 ms  *  LAN Address</span><br><span class="line"> 2  162.158.82.1  10.37 ms  AS13335  Germany, Hesse, Frankfurt, cloudflare.com</span><br><span class="line"> 3  223.119.65.37  20.01 ms  AS58453  China, Hong Kong, ChinaMobile</span><br><span class="line"> 4  *</span><br><span class="line"> 5  221.183.46.250  257.40 ms  AS9808  China, ChinaMobile</span><br><span class="line"> 6  221.176.27.253  200.99 ms  AS9808  China, ChinaMobile</span><br><span class="line"> 7  111.24.2.241  202.99 ms  AS9808  China, ChinaMobile</span><br><span class="line"> 8  *</span><br><span class="line"> 9  39.156.27.1  203.69 ms  AS9808  China, Beijing, ChinaMobile</span><br><span class="line">10  *</span><br><span class="line">11  *</span><br><span class="line">12  *</span><br><span class="line">13  *</span><br><span class="line">14  39.156.69.79  259.35 ms  AS9808  China, Beijing, ChinaMobile</span><br></pre></td></tr></table></figure>
+<p>Speedtest</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL git.io/speedtest-cli.sh | <span class="built_in">sudo</span> bash</span><br><span class="line">speedtest</span><br></pre></td></tr></table></figure>
+<p>返回</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">   Speedtest by Ookla</span><br><span class="line"></span><br><span class="line">     Server: RETN - Frankfurt (<span class="built_in">id</span> = 31120)</span><br><span class="line">        ISP: Cloudflare Warp</span><br><span class="line">    Latency:     9.88 ms   (0.11 ms jitter)</span><br><span class="line">   Download:   112.57 Mbps (data used: 101.0 MB)                               </span><br><span class="line">     Upload:   127.19 Mbps (data used: 115.5 MB)                               </span><br><span class="line">Packet Loss:     0.0%</span><br><span class="line"> Result URL: https://www.speedtest.net/result/c/556afff6-e56a-4d53-844b-fe88b562ceb8</span><br></pre></td></tr></table></figure>
+<p>速度不快,但是起码上ipv4了</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://res-256.github.io">何孙涛</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://res-256.github.io/posts/d788bdf3/">https://res-256.github.io/posts/d788bdf3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://res-256.github.io" target="_blank">何孙涛の博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%99%BD%E5%AB%96/">白嫖</a><a class="post-meta__tags" href="/tags/Euserv/">Euserv</a></div><div class="post-share"><div class="social-share" data-image="/img/202210092028180.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/cef76c6c/" title="看毛片(KMP)算法小记"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">看毛片(KMP)算法小记</div></div><div class="info-2"><div class="info-item-1">一直摸鱼的CYF突然安静了下来,因为他想学学一个别人都会的算法。 我菜就是菜，只能学别人早就会的算法了 先贴维基链接【讲的比CSDN清楚，自己访问】 https://zh.wikipedia.org/wiki/KMP%E7%AE%97%E6%B3%95 长串匹配短串，基本上DP打一遍就冲了。 DP本质简单的很： 1234匹配串：ABCDPOPABQO待匹配串：ABQ 开始匹配 123456789101112131415161718192021ABCDPOPABQO↑ABQ↑ABCDPOPABQO ↑ABQ ↑ ABCDPOPABQO  ↑ABQ  ↑  ABCDPOPABQO ↑ ABQ ↑... 显而易见，这种复杂度极高【O(m*n)】，当然，冲个入门级别的绝对没问题 然而类似基因匹配这种数量级恶心心的东西，DP绝对是不够的。 或者说一个恶心的数据 12AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAB 这样如果直接硬DP，那绝对TLE。 于是，我们选择一个简单的算法，看毛片 KMP算法，他可以很好的提升我们匹配的效率 KMP首先名字很有意思，之所以叫做K...</div></div></div></a><a class="pagination-related" href="/posts/363f2ff1/" title="失败的光速叛逃！CloudFlarePage初体验"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">失败的光速叛逃！CloudFlarePage初体验</div></div><div class="info-2"><div class="info-item-1">众所周知，CloudFlare曾开放CloudFlarePage内测资格申请，如今我获得了资格，免费享受边缘部署岂不美哉！可万万没想到，简单的迁移过程会出现如此问题  据我所知，使用CloudFlare做hexo无非以下两种：  GithubPage+CloudFlareCDN CloudFlareWorkerKV+ClouFlareWorkerSite  CloudFlare早先时候支持WorkerSite，当时KV照实没有免费，我也不想为了100ms的回源耗时而花费金钱。不过后来KV在一定额度上免费了，打开WorkerSite的文档，第一步wrangler直接把我劝退。 笑话，国内使用wrangler，那还不如CloudFlare+GithubPage。 苏卡卡大佬写的一篇文章讲述了自己部署WorkerSite的经历，ChrAlpha’s Blog也曾提到过迁移的过程。不过我懒，我觉得100ms回源不算什么，赔个Worker还是有点亏。 2020年11月份，偶然得知CFPage正在公开招聘Pagebeta计划，抱着试试看的心理，我简单写了些就交了上去。凭借着对CloudFla...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/eb490c73/" title="图床的千层套路"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-12</div><div class="info-item-2">图床的千层套路</div></div><div class="info-2"><div class="info-item-1">  博客最近在细心打磨终于上95分了，其中我认为图片功劳不可没。  2020年8月9日Jsdelivr发布了一次使用政策：Create Acceptable Use Policy，其中第4条Prohibited Use引起了众多议论： 12345678910111213141516171819204. Prohibited UseThe following behavior is prohibited: 1. Hosting or accessing content that:     - contains malware or harmful code in any form,     - violates proprietary rights of others,     - is sexually explicit,     - is potentially illegal in the EU or the USA. 2. Abusing the service and its resources, or using jsDelivr as a general-purpos...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Debian10"><span class="toc-number">1.</span> <span class="toc-text">安装 - Debian10</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5SSH"><span class="toc-number">2.</span> <span class="toc-text">链接SSH</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CloudFlareSpectrum-UcloudGlobalSSH"><span class="toc-number">2.1.</span> <span class="toc-text">CloudFlareSpectrum + UcloudGlobalSSH</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DNS%E8%AE%BE%E7%BD%AE-DNS64"><span class="toc-number">3.</span> <span class="toc-text">DNS设置 -DNS64</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Warp%E5%AE%89%E8%A3%85-%E4%B8%8AIPv4%E5%9C%B0%E5%9D%80"><span class="toc-number">4.</span> <span class="toc-text">Warp安装 - 上IPv4地址</span></a></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2017 - 2025 By 何孙涛</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-res256s-projects.vercel.app/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://twikoo-res256s-projects.vercel.app/',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    GLOBAL_CONFIG_SITE.pageType === 'post' && getCount()
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="/img/myjs.js"></script><script src="/js/youlian.js"></script><script src="/js/aside_mobile.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="/"></script></div><!-- hexo injector body_end start --><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='null'|| 'null' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><!-- hexo injector body_end end --></body></html>

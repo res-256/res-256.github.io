@@ -1,0 +1,423 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CFWorker-ODIndex中文文档&amp;使用教程 | 何孙涛の博客</title><meta name="author" content="何孙涛"><meta name="copyright" content="何孙涛"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="写在最前面自从这篇博文发布后，OneIndex迎来了一次重大更新，去除了FireBase依赖，转用KV存储刷新令牌。本片教程已过时，具体会在春节前后更新最新版本。  OneDrive，相信大家都不陌生，微软家的网盘，虽说有类似于OneManager一样的目录列表程序，但是直连海外总是会遭受严重的丢包，得到极其糟糕的体验。这时候CLoudFlare作为不那么好使的CDN就排上用场了，项目onedr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CFWorker-ODIndex中文文档&amp;使用教程">
+<meta property="og:url" content="https://res-256.github.io/posts/4fb070ca/index.html">
+<meta property="og:site_name" content="何孙涛の博客">
+<meta property="og:description" content="写在最前面自从这篇博文发布后，OneIndex迎来了一次重大更新，去除了FireBase依赖，转用KV存储刷新令牌。本片教程已过时，具体会在春节前后更新最新版本。  OneDrive，相信大家都不陌生，微软家的网盘，虽说有类似于OneManager一样的目录列表程序，但是直连海外总是会遭受严重的丢包，得到极其糟糕的体验。这时候CLoudFlare作为不那么好使的CDN就排上用场了，项目onedr">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://res-256.github.io/img/202210092028180.jpg">
+<meta property="article:published_time" content="2020-08-14T01:51:23.000Z">
+<meta property="article:modified_time" content="2025-11-05T17:21:22.000Z">
+<meta property="article:author" content="何孙涛">
+<meta property="article:tag" content="CloudFlare">
+<meta property="article:tag" content="Workers">
+<meta property="article:tag" content="目录列表">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://res-256.github.io/img/202210092028180.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "CFWorker-ODIndex中文文档&使用教程",
+  "url": "https://res-256.github.io/posts/4fb070ca/",
+  "image": "https://res-256.github.io/img/202210092028180.jpg",
+  "datePublished": "2020-08-14T01:51:23.000Z",
+  "dateModified": "2025-11-05T17:21:22.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "何孙涛",
+      "url": "https://res-256.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://res-256.github.io/posts/4fb070ca/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"简","msgToSimplifiedChinese":"繁"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CFWorker-ODIndex中文文档&使用教程',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/img/scrollbar.css"><link rel="stylesheet" href="/img/mycss.css"><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/echarts@4.7.0/dist/echarts.min.js"></script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" media="defer"><script src='https://unpkg.com/butterfly-friend@3.2.0/butterfly-friend.umd.js'></script><link rel="stylesheet" href="https://unpkg.com/butterfly-friend@3.2.0/style.css"><link rel="stylesheet" href="/css/twikoo.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body><div id="web_bg" style="background-image: url(/url(/img/1.png));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">79</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">134</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/charts/"><i class="fa-fw fa fa-paper-plane"></i><span> 统计</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fa fa-paper-plane"></i><span> 布告</span></a></li><li><a class="site-page child" href="/talks/"><i class="fa-fw fa fa-paper-plane"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/cov19/"><i class="fa-fw fa fa-circle"></i><span> 疫情</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fa fa-paper-plane"></i><span> 收藏</span></a></li><li><a class="site-page child" href="/circle/"><i class="fa-fw fa fa-link"></i><span> 链圈</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/pacman/"><i class="fa-fw fa fa-circle"></i><span> 吃豆小人</span></a></li><li><a class="site-page child" href="/unrender/element/"><i class="fa-fw fa fa-circle"></i><span> 元素周期</span></a></li><li><a class="site-page child" href="/unrender/box/"><i class="fa-fw fa fa-circle"></i><span> 网站导航</span></a></li><li><a class="site-page child" href="/unrender/chest/"><i class="fa-fw fa fa-circle"></i><span> 五子小棋</span></a></li><li><a class="site-page child" href="/unrender/2048/"><i class="fa-fw fa fa-circle"></i><span> 移动方块</span></a></li><li><a class="site-page child" href="/unrender/cat/"><i class="fa-fw fa fa-circle"></i><span> 圈住小猫</span></a></li><li><a class="site-page child" href="/unrender/piano/"><i class="fa-fw fa fa-circle"></i><span> 在线钢琴</span></a></li><li><a class="site-page child" href="/unrender/netease/"><i class="fa-fw fa fa-circle"></i><span> 网易热评</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 测试</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/about%E2%85%A0/"><i class="fa-fw fa fa-circle"></i><span> 测试页-1</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A1/"><i class="fa-fw fa fa-circle"></i><span> 测试页-2</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A2/"><i class="fa-fw fa fa-circle"></i><span> 测试页-3</span></a></li><li><a class="site-page child" href="/unrender/nolove/"><i class="fa-fw fa fa-circle"></i><span> 测试页-4</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/unrender/memos/"><i class="fa-fw fa fa-link"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/notes/"><i class="fa-fw fa fa-link"></i><span> 吐槽</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/travelling/"><i class="fa-fw fa fa-subway"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/202210092028180.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">何孙涛の博客</span></a><a class="nav-page-title" href="/"><span class="site-name">CFWorker-ODIndex中文文档&amp;使用教程</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/charts/"><i class="fa-fw fa fa-paper-plane"></i><span> 统计</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fa fa-paper-plane"></i><span> 布告</span></a></li><li><a class="site-page child" href="/talks/"><i class="fa-fw fa fa-paper-plane"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/cov19/"><i class="fa-fw fa fa-circle"></i><span> 疫情</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fa fa-paper-plane"></i><span> 收藏</span></a></li><li><a class="site-page child" href="/circle/"><i class="fa-fw fa fa-link"></i><span> 链圈</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/pacman/"><i class="fa-fw fa fa-circle"></i><span> 吃豆小人</span></a></li><li><a class="site-page child" href="/unrender/element/"><i class="fa-fw fa fa-circle"></i><span> 元素周期</span></a></li><li><a class="site-page child" href="/unrender/box/"><i class="fa-fw fa fa-circle"></i><span> 网站导航</span></a></li><li><a class="site-page child" href="/unrender/chest/"><i class="fa-fw fa fa-circle"></i><span> 五子小棋</span></a></li><li><a class="site-page child" href="/unrender/2048/"><i class="fa-fw fa fa-circle"></i><span> 移动方块</span></a></li><li><a class="site-page child" href="/unrender/cat/"><i class="fa-fw fa fa-circle"></i><span> 圈住小猫</span></a></li><li><a class="site-page child" href="/unrender/piano/"><i class="fa-fw fa fa-circle"></i><span> 在线钢琴</span></a></li><li><a class="site-page child" href="/unrender/netease/"><i class="fa-fw fa fa-circle"></i><span> 网易热评</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 测试</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/about%E2%85%A0/"><i class="fa-fw fa fa-circle"></i><span> 测试页-1</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A1/"><i class="fa-fw fa fa-circle"></i><span> 测试页-2</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A2/"><i class="fa-fw fa fa-circle"></i><span> 测试页-3</span></a></li><li><a class="site-page child" href="/unrender/nolove/"><i class="fa-fw fa fa-circle"></i><span> 测试页-4</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/unrender/memos/"><i class="fa-fw fa fa-link"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/notes/"><i class="fa-fw fa fa-link"></i><span> 吐槽</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/travelling/"><i class="fa-fw fa fa-subway"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">CFWorker-ODIndex中文文档&amp;使用教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-14T01:51:23.000Z" title="发表于 2020-08-14 09:51:23">2020-08-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-05T17:21:22.000Z" title="更新于 2025-11-06 01:21:22">2025-11-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%92%B8%E7%BE%8A%E6%AF%9B/">撸羊毛</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:500,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-11-06 01:21:22&quot;}" hidden></div><blockquote>
+<p><strong>写在最前面</strong><br>自从这篇博文发布后，OneIndex迎来了一次重大更新，去除了FireBase依赖，转用KV存储刷新令牌。本片教程已过时，具体会在春节前后更新最新版本。</p>
+</blockquote>
+<p>OneDrive，相信大家都不陌生，微软家的网盘，虽说有类似于OneManager一样的目录列表程序，但是直连海外总是会遭受严重的丢包，得到极其糟糕的体验。这时候CLoudFlare作为不那么好使的CDN就排上用场了，项目<a target="_blank" rel="noopener" href="https://github.com/spencerwooo/onedrive-cf-index">onedrive-cf-index</a> 解决了这个问题,但是据我观察,这个仓库作者应该是个中国人,但是readme文档可不是中文,这对一些使用者造成了一定的困扰,而且文档相当<strong>言简意赅</strong><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/%E4%B8%AD%E6%9E%AA.png" alt="">,这一篇文章相当于文档的中文翻译和使用教程.</p>
+<blockquote>
+<p><strong>使用前言</strong><br>部署此项目较为麻烦,请确保你满足以下俩个及以上想法后,才继续往下读:</p>
+<ol>
+<li>我非常需要搭建于CloudFlare的OneDrive目录列表吗?<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/%E5%B0%8F%E7%9C%BC%E7%9D%9B.png" alt=""></li>
+<li>我非常需要这个版本的目录列表吗?<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/%E8%82%BF%E5%8C%85.png" alt=""></li>
+<li>我有这个耐心吗?<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/%E6%83%B3%E4%B8%80%E6%83%B3.png" alt=""><br>如果没有,那么我们建议你可以使用另一个功能和UI稍差的cf目录列表<a target="_blank" rel="noopener" href="https://github.com/heymind/OneDrive-Index-Cloudflare-Worker">OneDrive-Index-Cloudflare-Worker</a> 这个版本有不是很详尽的中文文档,并且较为简单,或者试试一步生成的GDIndex,可以参考我之前写的<a target="_blank" rel="noopener" href="https://blog.cyfan.top/2020/03/18/%E5%85%8D%C2%B7%E7%88%AC%C2%B7%E5%9F%8E%C2%B7%E5%9B%BD%E5%86%85%E7%AE%A1%E7%90%86%E5%88%86%E4%BA%ABGoogleDrive/">GDIndex部署参考</a></li>
+</ol>
+</blockquote>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><strong>新功能</strong></p>
+<ul>
+<li>新设计： spencer.css。</li>
+<li>根据文件类型呈现的文件图标。</li>
+<li>使用“Font Awesome icons” 图标代替材料设计图标（以获得更好的设计一致性）。</li>
+<li>使用github-markdown-css进行README.md渲染</li>
+<li>添加Cookie以更好地进行目录导航。</li>
+<li>支持文件预览：</li>
+<li>图片：.png，.jpg，.gif</li>
+<li>纯文本：.txt</li>
+<li>文档：.md，.mdown，.markdown</li>
+<li>代码：.js，.py，.c，.json。</li>
+<li>PDF：延迟加载，加载进度和内置的PDF查看器</li>
+<li>音乐/音频： .mp3，.aac，.wav，.oga</li>
+<li>视频： .mp4，.flv，.webm，.m3u8</li>
+</ul>
+<p>…</p>
+<ul>
+<li>代码语法以GitHub样式突出显示。（使用PrismJS。）</li>
+<li>图像预览支持中型缩放效果。</li>
+<li>使用Google Firebase实时数据库缓存和刷新令牌。（对于那些负担不起Cloudflare Workers KV存储的人。 😢）</li>
+<li>在Turbolinks®的帮助下进行延迟加载。（从folder转到时有些问题file preview，但不会降低用户体验。）<br>…</li>
+</ul>
+<p>在这表面下:</p>
+<ul>
+<li>一直以来都是CSS动画。</li>
+<li>使用wrangler和webpack打包源代码。</li>
+<li>转换所有CDN以使用jsDelivr加载。</li>
+<li>没有外部JS脚本，所有脚本都已通过webpack加载！（除了某些库。）</li>
+</ul>
+<p>…<br>所有其他功能</p>
+<p>请参阅：<a target="_blank" rel="noopener" href="https://github.com/heymind/OneDrive-Index-Cloudflare-Worker#-%E6%96%B0%E7%89%B9%E6%80%A7-v11">新功能| OneDrive-Index-Cloudflare-Worker</a>。</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="导入此项目"><a href="#导入此项目" class="headerlink" title="导入此项目"></a>导入此项目</h2><blockquote>
+<p><strong>请注意!</strong><br>请不要Fork此项目<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/stick_4.png" alt="">,<br>在这个过程中你将会获取到数串token,fork的仓库无法转为私有仓库,这将会对你的数据造成威胁.</p>
+</blockquote>
+<p>点击右上角的 <code>+</code> 号选择Import项目</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14065738.jpg" alt=""></p>
+<p>原先仓库地址填写<a target="_blank" rel="noopener" href="https://github.com/spencerwooo/onedrive-cf-index">https://github.com/spencerwooo/onedrive-cf-index</a>,新仓库名称随意,仓库类型必须改为Private私人,最后导入</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14065831.jpg" alt=""></p>
+<p>导入成功,进入repo:</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14065940.jpg" alt=""></p>
+<h2 id="获取Token"><a href="#获取Token" class="headerlink" title="获取Token"></a>获取Token</h2><p>进入<a target="_blank" rel="noopener" href="https://heymind.github.io/tools/microsoft-graph-api-auth">https://heymind.github.io/tools/microsoft-graph-api-auth</a> 开始准备你所需要的东西：</p>
+<p>进入<a target="_blank" rel="noopener" href="https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade">https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade</a>，注册一个新app【使用微软账号】</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14070907.jpg" alt=""></p>
+<p>几番跳转后，来到这样的界面：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14071032.jpg" alt=""></p>
+<blockquote>
+<p>注意，我们强烈建议用英文界面，中文界面可能存在翻译错误产生误导</p>
+</blockquote>
+<p>点击OneIndex，进入应用详情</p>
+<p>点击 <code>Redirect URIs</code> 修改跳转链接:</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14071305.jpg" alt=""></p>
+<p>将此处改为 <code>https://heymind.github.io/tools/microsoft-graph-api-auth</code></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14071416.jpg" alt=""></p>
+<p>设置API：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14091941.jpg" alt=""></p>
+<p>至少选择 <code>offline_access, Files.Read, Files.Read.All .</code></p>
+<p>返回，获取 <code>Application (client) ID</code></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14071558.jpg" alt=""></p>
+<p>在这里填上复制的client id，并点击AUTHORIZE验证</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14071904.jpg" alt=""></p>
+<p>你会发现跳转一段时间后又回到了拉取界面,不过多了一个提示框,上面写着已经获取到Code</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14072357.jpg" alt=""></p>
+<p>接着我们获取Secrets,点击 <code>Certificates &amp; secrets</code>,进入该选项卡:</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14080315.jpg" alt=""></p>
+<p>新增一个:</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14080233.jpg" alt=""></p>
+<p>名字随意,期限为永久:</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14080315.jpg" alt=""></p>
+<p>复制生成的密钥,请注意此处密钥仅<strong>出现一次</strong>,以后就不会再出现了</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14080438.jpg" alt=""></p>
+<p>将获得密钥粘贴进第五步:</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14080508.jpg" alt=""></p>
+<p>点击GetToken,将跳转至如下界面:</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14080438.jpg" alt=""></p>
+<blockquote>
+<p>此处若失败，请重试第四步</p>
+</blockquote>
+<p>将获得字段的refresh_token写入，重新制得token：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14082011.jpg" alt=""></p>
+<p>取得token：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14081337.jpg" alt=""></p>
+<p>妥善保管，接下来我们会用到。</p>
+<p>OneDriveToken完毕，接下来进入FireBase教程：</p>
+<blockquote>
+<p>作为数据库存储，原本采用的是cloudFlareKV存储，但考虑到大部分用户没有这个钱去买KV，于是采用了第三方存储。</p>
+</blockquote>
+<p>进入<a target="_blank" rel="noopener" href="https://firebase.google.com/">https://firebase.google.com/</a></p>
+<p>开始创建项目：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14082334.jpg" alt=""></p>
+<p>项目名字随意，下一步</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14082421.jpg" alt=""></p>
+<p>一直下一步，稍后将进入管理界面</p>
+<p>选择Database，将其设置为发布模式，禁用写入权限，在数据一栏中添加key，名字为<code>value</code>,值为 <code>https://项目名.firebaseio.com/auth.json</code> ，如我的：<br><code>https://oneindex-chenyfan.firebaseio.com/auth.json</code></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14082523.jpg" alt=""></p>
+<p>点击右上角的小齿轮-项目设置-服务账号-旧版凭据-数据库账号-显示密钥，复制密钥。</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14082614.jpg" alt=""></p>
+<p>FireBase教学完毕。</p>
+<h2 id="配置CloudFlare"><a href="#配置CloudFlare" class="headerlink" title="配置CloudFlare"></a>配置CloudFlare</h2><p>登录你的CloudFlare，点击右上角，账户设置：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14083511.jpg" alt=""></p>
+<p>选择API令牌选项卡，生成新的API：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14083707.jpg" alt=""></p>
+<p>选择自定义令牌：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14083741.jpg" alt=""></p>
+<p>配置至少如下，可以选择增加</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14083836.jpg" alt=""></p>
+<p>点击获取API令牌</p>
+<p>接着还要获取账户ID和区域ID</p>
+<p>进入任意一域名，右侧拦里头会有俩ID，复制：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14083918.jpg" alt=""></p>
+<p>到这里，你获取了以下所有密钥：</p>
+<ul>
+<li>Azure-refresh_token</li>
+<li>Azure-client_id</li>
+<li>Azure-client_secret</li>
+<li>GoogleFireBase-firebase_url</li>
+<li>GoogleFireBase-firebase_token</li>
+<li>CloudFlare-APIToken</li>
+<li>CloudFlare-ZoneID</li>
+<li>CloudFlare-AccountID</li>
+</ul>
+<p>八个Token，切勿丢失<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/%E5%92%BD%E6%B0%94.png" alt=""> 累死我了</p>
+<h2 id="配置OneDrive"><a href="#配置OneDrive" class="headerlink" title="配置OneDrive"></a>配置OneDrive</h2><p>用微软账户登录OneDrive，新建文件夹，名字为“Public”</p>
+<h2 id="本地wrangler部署"><a href="#本地wrangler部署" class="headerlink" title="本地wrangler部署"></a>本地wrangler部署</h2><blockquote>
+<p>由于此篇教程具体将GithubAction实现无服务器部署，本块内容一笔带过，请直接看到GithubAction部署一块</p>
+</blockquote>
+<p>本地安装依赖环境</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn global add @cloudflare/wrangler</span><br><span class="line">yarn install</span><br></pre></td></tr></table></figure>
+<p>用wrangler登录CloudFlare</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wrangler config</span><br></pre></td></tr></table></figure>
+<p><code>wrangler.toml</code>  修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name: The draft worker&#x27;s name, your worker will be published at &lt;name&gt;.&lt;worker_subdomain&gt;.workers.dev.</span><br><span class="line">account_id: Your Cloudflare Account ID.</span><br><span class="line">zone_id: Your Cloudflare Zone ID.</span><br></pre></td></tr></table></figure>
+<p><code>src/config/default.js</code> 修改:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">client_id: Your client_id from above.</span><br><span class="line">base: Your base path from above.</span><br><span class="line">firebase_url: Your firebase_url from above.</span><br></pre></td></tr></table></figure>
+<p>添加环境变量:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wrangler secret put REFRESH_TOKEN</span><br><span class="line">wrangler secret put CLIENT_SECRET</span><br><span class="line">wrangler secret put FIREBASE_TOKEN</span><br></pre></td></tr></table></figure>
+<p>部署命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wrangler publish</span><br></pre></td></tr></table></figure>
+<h2 id="GithubAction部署"><a href="#GithubAction部署" class="headerlink" title="GithubAction部署"></a>GithubAction部署</h2><h3 id="GithubAction部署-1"><a href="#GithubAction部署-1" class="headerlink" title="GithubAction部署"></a>GithubAction部署</h3><p>进入你导入的仓库，点击 <code>wrangler.toml</code> </p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14084906.jpg" alt=""></p>
+<ul>
+<li><code>name</code> ==&gt; 默认生成为&lt;#name&gt;.&lt;#User&gt;.workers.dev，随意</li>
+<li><code>account_id</code> ==&gt; CloudFlare-AccountID</li>
+<li><code>zone_id</code> ==&gt; CloudFlare-ZoneID</li>
+</ul>
+<p>进入<code>/src/config/default.js</code></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14085133.jpg" alt=""></p>
+<ul>
+<li>refresh_token ==&gt; Azure-refresh_token</li>
+<li>client_id ==&gt; Azure-client_id</li>
+<li>client_secret ==&gt; Azure-client_secret</li>
+<li>redirect_uri ==&gt; ‘<a target="_blank" rel="noopener" href="https://heymind.github.io/tools/microsoft-graph-api-auth">https://heymind.github.io/tools/microsoft-graph-api-auth</a>‘</li>
+<li>firebase_url ==&gt; GoogleFireBase-firebase_url</li>
+</ul>
+<h4 id="修改样式"><a href="#修改样式" class="headerlink" title="修改样式"></a>修改样式</h4><p><code>src/render/htmlWrapper.js</code> : 修改标题</p>
+<p><code>src/folderView.js</code> : 修改介绍</p>
+<h4 id="设置密钥"><a href="#设置密钥" class="headerlink" title="设置密钥"></a>设置密钥</h4><p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14092907.jpg" alt=""></p>
+<p>密钥名：<code>CF_API_TOKEN</code></p>
+<p>内容: ==&gt; CloudFlare-APIToken</p>
+<h4 id="激活Action："><a href="#激活Action：" class="headerlink" title="激活Action："></a>激活Action：</h4><p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14085647.jpg" alt=""></p>
+<h3 id="设置CloudFlare变量"><a href="#设置CloudFlare变量" class="headerlink" title="设置CloudFlare变量"></a>设置CloudFlare变量</h3><p>进入新创建的Worker：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14090207.jpg" alt=""></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14090302.jpg" alt=""></p>
+<ul>
+<li>CLIENT_SECRET ==&gt; Azure-client_secret</li>
+<li>FIREBASE_TOKEN ==&gt; GoogleFireBase-firebase_token</li>
+<li>REFRESH_TOKEN ==&gt; Azure-refresh_token</li>
+</ul>
+<p>部署，发布，绑定域名【可选】：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14090933.jpg" alt=""></p>
+<p>成品：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/2020-08-14091129.jpg" alt=""></p>
+<p>Demo:<a target="_blank" rel="noopener" href="https://onedrive.cyfan.top">https://onedrive.cyfan.top</a> <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/huaji.gif" alt=""></p>
+<h1 id="后言"><a href="#后言" class="headerlink" title="后言"></a>后言</h1><p>其实默认才5GB，还不如GoogleDrive香，但是据说白嫖E5开发者还不错。</p>
+<p>OK就到这了，还不懂的欢迎评论区，或者去官方github地址发issues。<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/%E6%AC%A2%E5%91%BC.png" alt=""></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://res-256.github.io">何孙涛</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://res-256.github.io/posts/4fb070ca/">https://res-256.github.io/posts/4fb070ca/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://res-256.github.io" target="_blank">何孙涛の博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CloudFlare/">CloudFlare</a><a class="post-meta__tags" href="/tags/Workers/">Workers</a><a class="post-meta__tags" href="/tags/%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8/">目录列表</a></div><div class="post-share"><div class="social-share" data-image="/img/202210092028180.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/6ce8a474/" title="多域名线程并发与DNS预解析"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">多域名线程并发与DNS预解析</div></div><div class="info-2"><div class="info-item-1">军训结束,感想不多,就一句话  【这就是个无限循环，每天重复训练一套动作，直到结束为止，毫无意义】  回家之后我帮父母看店,顺便点开了浏览器,浏览器卡死了30s,终于完全加载出了一个花花绿绿的主页,是大名鼎鼎的2345主页. 虽然我很反感这种杂七杂八的傻逼导航,我也试图将主页换成magi或dogedoge,但是父亲就很不习惯,原因很难以接受: 1儿子啊，这样我怎么看天气啊。 。。。 于是我顺手右键点开了源代码，闲着无聊看看，结果却刚看看就找到了好康看的东西：  123456789101112&lt;link rel=&quot;dns-prefetch&quot; href=&quot;https://union2.50bang.org&quot;&gt;&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//h.2345cdn.net&quot;&gt;&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//image.2345.com&quot;&gt;&lt;link rel=&qu...</div></div></div></a><a class="pagination-related" href="/posts/507c070f/" title="Butterfly添加全局吸底Aplayer教程"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/gh/jerryc127/CDN/img/Butterfly-add-aplayer-cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Butterfly添加全局吸底Aplayer教程</div></div><div class="info-2"><div class="info-item-1">以下文章只是教程 如果部署之后，并没有出现 aplayer , 请确认是否跟足步骤操作或者更换音乐源，多试试。 如果遇到使用問題，请仔细查看插件文档，或者到插件那裏反饋。  前言如果你想使用 aplayer，很多人都會推薦安裝 hexo-tag-aplayer 這款插件。這款插件通過 Hexo 獨有的標籤外掛，我們可以很方便的寫入一些參數，插件就會幫我們生成對應的 html。如果你只是使用一些簡單的功能，其實無需使用到這個插件，只需以 html 格式書寫就行，不用插件去轉換。 例如： 如果使用插件，在 markdown 中要這樣寫 1&#123;% meting &quot;000PeZCQ1i4XVs&quot; &quot;tencent&quot; &quot;artist&quot; &quot;theme:#3F51B5&quot; &quot;mutex:true&quot; &quot;preload:auto&quot; %&#125; 其會被插件渲染為 1&lt;div id=&quot;aplayer-uxAIfEUs&quot; class=&quot;ap...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/74e90c90/" title="免·爬·城·国内管理分享GoogleDrive"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-18</div><div class="info-item-2">免·爬·城·国内管理分享GoogleDrive</div></div><div class="info-2"><div class="info-item-1">昨天网上早早写完作业在Github上瞎逛，话说回来Github Explorer有时候真的很神奇给我推荐一些稀奇好用或正好急缺的东西，比如Accesser、MusicPlayer2、PHPProxy等等等等。结果昨天搜罗了这么一个极棒的玩意：GDIndex。 这个是拿过来干什么的基于rClone和CFWorkers的脚本，可以免F下载上传管理GoogleDrive。 国内访问GoogleDrive总会被…咳咳…那个…对了…嗯…你懂的东西干掉,所以只能隔洋兴叹.说实话个人使用googledrive真的不频繁,当时注册的时候只有4GB,2017年注册至今,我就放了一部400MB的视频,根本没有用多少. 至于当时为什么不用,这是后面的事情了,这里暂时不讲.只是不知道为什么,现在我的谷歌硬盘变成15GB了,emmmm,也不差. 这个脚本有两个作用:1.在国内管理GoogleDrive2.快速分享给国内用户. 说实话,这个正好填充我的缺陷,小文件我直接扔在Heroku+CF Always Online,静态文件缓存我调到一星期,勉强支撑私有云的下载;太大的文件直接放百度网盘上,虽然下载速度...</div></div></div></a><a class="pagination-related" href="/posts/a7d0d7f8/" title="通过CloudFlareAPI获取用户侧信息"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-28</div><div class="info-item-2">通过CloudFlareAPI获取用户侧信息</div></div><div class="info-2"><div class="info-item-1">噫，中考结束了，心中一块大石头总算碎了。虽然说考上提前批中考考不考无所谓，但是回去一次模拟考直接把我考傻了，太烂了,以前初一不学习的时候都没有这么烂。啊么学习两星期，中考一考，今年理科超级简单，欸，这样理科分数拉不开了，啧啧啧，理科生的末日。 因为人大多数时间在学校，不太方便用自带hexopush到Github，一是博客文件同步不方便，二是如果有个小错误就很抓狂，所以呢，以前的打算是部署到vps，通过hexo+nginx实现访问，不过可能是人比较傻，一直没搞好，而且这种免费小鸡说炸就炸，不保险，还是跟着hexo官方文档 用Travis-ci+Github实现在线自动部署,以后更新也方便点 好了好了，不说了，今天简单讲一下如何用CloudFlare自带的API获取用户信息。 /cdn-cgi/trace刚开始建立博客的时候，也是想过显示用户ip地址的，但网上的教程大多都是用搜狐新浪的js，而且很早就过期了。所以也就搁着迟迟没有解决。 后来偶然间知道CloudFlare有个比较神奇的技术，在部署在CloudFlare上的网站，域名后面加上/cdn-cgi/trace就可以获得用户侧信...</div></div></div></a><a class="pagination-related" href="/posts/7fe9d99f/" title="IPFS+CloudFlare&#x3D;ServerLessWebPage"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-07</div><div class="info-item-2">IPFS+CloudFlare&#x3D;ServerLessWebPage</div></div><div class="info-2"><div class="info-item-1">IPFS，这个2018年诞生出来的小东西，似乎掀起了一阵热潮，然后被忘性极大的互联网吃瓜群众所抛弃，但不得不说这个东西可玩度非常高。 IPFS是什么网上一大堆文绉绉气昂昂极富学术气息的营销号整天吹嘘着ipfs是跨时代下一时代的比特币，我只能说呵呵，真的想要了解ipfs是什么的，建议左转维基百科或百度百科。 抄一下wikipedia上的介绍：  （InterPlanetary File System，缩写IPFS）是一个旨在创建持久且分布式存储和共享文件的网络传输协议。它是一种内容可寻址的对等超媒体分发协议。在IPFS网络中的节点将构成一个分布式文件系统。  其实按我的话来说,ipfs就是一个神奇的东西,你放上去一个文件,就会立刻被瓜分成数个文件碎片,每一台运行着ipfs的电脑和矿机就会争先恐后来抢夺你的碎片,并且抢到的人就会获得系统的奖励,而你却一分钱也不用付出. 是不是听起来很神奇?对的,你没有付出任何东西,别人却能获得奖励,而且你既满足储存文件的需求,储存你文件的人也能得到金钱.这种机制,叫做FileCoin. 你可以把它想象成Bittorrent+BitCoin的结合物,实...</div></div></div></a><a class="pagination-related" href="/posts/363f2ff1/" title="失败的光速叛逃！CloudFlarePage初体验"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-20</div><div class="info-item-2">失败的光速叛逃！CloudFlarePage初体验</div></div><div class="info-2"><div class="info-item-1">众所周知，CloudFlare曾开放CloudFlarePage内测资格申请，如今我获得了资格，免费享受边缘部署岂不美哉！可万万没想到，简单的迁移过程会出现如此问题  据我所知，使用CloudFlare做hexo无非以下两种：  GithubPage+CloudFlareCDN CloudFlareWorkerKV+ClouFlareWorkerSite  CloudFlare早先时候支持WorkerSite，当时KV照实没有免费，我也不想为了100ms的回源耗时而花费金钱。不过后来KV在一定额度上免费了，打开WorkerSite的文档，第一步wrangler直接把我劝退。 笑话，国内使用wrangler，那还不如CloudFlare+GithubPage。 苏卡卡大佬写的一篇文章讲述了自己部署WorkerSite的经历，ChrAlpha’s Blog也曾提到过迁移的过程。不过我懒，我觉得100ms回源不算什么，赔个Worker还是有点亏。 2020年11月份，偶然得知CFPage正在公开招聘Pagebeta计划，抱着试试看的心理，我简单写了些就交了上去。凭借着对CloudFla...</div></div></div></a><a class="pagination-related" href="/posts/32883f0c/" title="PanList：ServerLess百度网盘列表直链程序"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-06</div><div class="info-item-2">PanList：ServerLess百度网盘列表直链程序</div></div><div class="info-2"><div class="info-item-1">警告本篇文章在panlist发布后两天内写成，panlist尚处于高速迭代状态，本篇教程随时会失效！    百度网盘2021年最新不限速下载方式是怎么回事呢？百度网盘相信大家都很熟悉，但是百度网盘2021年最新不限速下载方式是怎么回事呢，下面就让小编带大家一起了解吧。百度网盘2021年最新不限速下载方式，其实就是PandownloadCloudFlareWorkers版本，大家可能会很惊讶百度网盘怎么会2021年最新不限速下载方式呢？但事实就是这样，小编也感到非常惊讶。这就是关于百度网盘2021年最新不限速下载方式的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！  之前写过GoogleDrive、OneDrive 的CloudFlare列表程序，这两个有个共同点，那就是国内都无法很好的下载，所以用CloudFlareWorkers作为中间件转发流量。 比较讽刺的是，CloudFlareWorkers用的都是国外节点，但以上两个运行于此的目录列表程序支持的下载速度却远远大于国内有节点的百度网盘，不说是移动BGP走香港有多好，至少我在『电信』网络环境下的下载速度都远远大于...</div></div></div></a><a class="pagination-related" href="/posts/16d5e71e/" title="如何++CloudFlare Warp+ "><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-19</div><div class="info-item-2">如何++CloudFlare Warp+ </div></div><div class="info-2"><div class="info-item-1">自从CloudFlare渐渐浮出大众的视野，现在它的各项服务已经玩出花了，如果不陌生，它有一个应用叫 1.1.1.1,简单的说就是在手机上搭建DoH和DoT,本来的意思就是绕开域名污染,结果正好撞到某些人怀里,当然也包括我 ,亲测使用DoH虽然速度慢了点,但是上DuckDuckGo 不是梦啊. 另外,’1.1.1.1’多了一个功能叫 Warp+,简单的说就是 代理 ,嗯~ o(￣▽￣)o,我想我在说什么你应该知道,由于CloudFlare主打边缘服务,所以.😏 什么是边缘服务?这里简单介绍一下,边缘服务指的是当用户发出请求后,接到相应的不再是少量的中心服务,而是所有的在用户身边CDN进行相应. 就拿CFWorker来说,传统服务是这样的:  但是CloudFlare换了个思路,为什么所有数据都要一个中心节点算,在用户旁边的CDN不能算吗?  让用户身边的服务器进行相应,在用户与服务器的边缘计算,这就是边缘服务. Warp+手机端上Warp+主打的功能是在网络拥堵时提供更好的服务,个人用了一下,速度不快,大约100kb/s,勉强支撑正常使用,而且默认只有1GB,需要靠分享获取更多...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-number">2.</span> <span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E6%AD%A4%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.1.</span> <span class="toc-text">导入此项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96Token"><span class="toc-number">2.2.</span> <span class="toc-text">获取Token</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AECloudFlare"><span class="toc-number">2.3.</span> <span class="toc-text">配置CloudFlare</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEOneDrive"><span class="toc-number">2.4.</span> <span class="toc-text">配置OneDrive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0wrangler%E9%83%A8%E7%BD%B2"><span class="toc-number">2.5.</span> <span class="toc-text">本地wrangler部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GithubAction%E9%83%A8%E7%BD%B2"><span class="toc-number">2.6.</span> <span class="toc-text">GithubAction部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GithubAction%E9%83%A8%E7%BD%B2-1"><span class="toc-number">2.6.1.</span> <span class="toc-text">GithubAction部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.6.1.1.</span> <span class="toc-text">修改样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%AF%86%E9%92%A5"><span class="toc-number">2.6.1.2.</span> <span class="toc-text">设置密钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BF%80%E6%B4%BBAction%EF%BC%9A"><span class="toc-number">2.6.1.3.</span> <span class="toc-text">激活Action：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AECloudFlare%E5%8F%98%E9%87%8F"><span class="toc-number">2.6.2.</span> <span class="toc-text">设置CloudFlare变量</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E8%A8%80"><span class="toc-number">3.</span> <span class="toc-text">后言</span></a></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2017 - 2025 By 何孙涛</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-res256s-projects.vercel.app/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://twikoo-res256s-projects.vercel.app/',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    GLOBAL_CONFIG_SITE.pageType === 'post' && getCount()
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="/img/myjs.js"></script><script src="/js/youlian.js"></script><script src="/js/aside_mobile.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="/"></script></div><!-- hexo injector body_end start --><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='null'|| 'null' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><!-- hexo injector body_end end --></body></html>

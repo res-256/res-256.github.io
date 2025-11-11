@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>浅谈什么是好软件（1） | 何孙涛の博客</title><meta name="author" content="何孙涛"><meta name="copyright" content="何孙涛"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本序列持续更新 先不说什么，就先放两张图片，这两张看了之后我当时就沉默了：   看完了吗？ 接下来，我就只有一句话来总结我认为好的软件：将自己该做的事情做到最好，永远不做那些与名字不相符的事情,要用的时候及时跳出来,不用的时候永远静静待着。 拒绝All in one,只做该做的! 以下内容全部是个人观点，部分内容并非中立，更有内容关于破解，请不要将其扭曲，更不要将此作为借口挑起吵架，谢谢！ 压缩软">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈什么是好软件（1）">
+<meta property="og:url" content="https://res-256.github.io/posts/92dd5347/index.html">
+<meta property="og:site_name" content="何孙涛の博客">
+<meta property="og:description" content="本序列持续更新 先不说什么，就先放两张图片，这两张看了之后我当时就沉默了：   看完了吗？ 接下来，我就只有一句话来总结我认为好的软件：将自己该做的事情做到最好，永远不做那些与名字不相符的事情,要用的时候及时跳出来,不用的时候永远静静待着。 拒绝All in one,只做该做的! 以下内容全部是个人观点，部分内容并非中立，更有内容关于破解，请不要将其扭曲，更不要将此作为借口挑起吵架，谢谢！ 压缩软">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://res-256.github.io/img/202210092028180.jpg">
+<meta property="article:published_time" content="2020-02-21T03:13:33.000Z">
+<meta property="article:modified_time" content="2025-11-05T17:21:22.000Z">
+<meta property="article:author" content="何孙涛">
+<meta property="article:tag" content="优良">
+<meta property="article:tag" content="压缩软件">
+<meta property="article:tag" content="流氓">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="阉割">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://res-256.github.io/img/202210092028180.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "浅谈什么是好软件（1）",
+  "url": "https://res-256.github.io/posts/92dd5347/",
+  "image": "https://res-256.github.io/img/202210092028180.jpg",
+  "datePublished": "2020-02-21T03:13:33.000Z",
+  "dateModified": "2025-11-05T17:21:22.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "何孙涛",
+      "url": "https://res-256.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://res-256.github.io/posts/92dd5347/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"简","msgToSimplifiedChinese":"繁"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '浅谈什么是好软件（1）',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/img/scrollbar.css"><link rel="stylesheet" href="/img/mycss.css"><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/echarts@4.7.0/dist/echarts.min.js"></script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" media="defer"><script src='https://unpkg.com/butterfly-friend@3.2.0/butterfly-friend.umd.js'></script><link rel="stylesheet" href="https://unpkg.com/butterfly-friend@3.2.0/style.css"><link rel="stylesheet" href="/css/twikoo.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body><div id="web_bg" style="background-image: url(/url(/img/1.png));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">79</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">134</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/charts/"><i class="fa-fw fa fa-paper-plane"></i><span> 统计</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fa fa-paper-plane"></i><span> 布告</span></a></li><li><a class="site-page child" href="/talks/"><i class="fa-fw fa fa-paper-plane"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/cov19/"><i class="fa-fw fa fa-circle"></i><span> 疫情</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fa fa-paper-plane"></i><span> 收藏</span></a></li><li><a class="site-page child" href="/circle/"><i class="fa-fw fa fa-link"></i><span> 链圈</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/pacman/"><i class="fa-fw fa fa-circle"></i><span> 吃豆小人</span></a></li><li><a class="site-page child" href="/unrender/element/"><i class="fa-fw fa fa-circle"></i><span> 元素周期</span></a></li><li><a class="site-page child" href="/unrender/box/"><i class="fa-fw fa fa-circle"></i><span> 网站导航</span></a></li><li><a class="site-page child" href="/unrender/chest/"><i class="fa-fw fa fa-circle"></i><span> 五子小棋</span></a></li><li><a class="site-page child" href="/unrender/2048/"><i class="fa-fw fa fa-circle"></i><span> 移动方块</span></a></li><li><a class="site-page child" href="/unrender/cat/"><i class="fa-fw fa fa-circle"></i><span> 圈住小猫</span></a></li><li><a class="site-page child" href="/unrender/piano/"><i class="fa-fw fa fa-circle"></i><span> 在线钢琴</span></a></li><li><a class="site-page child" href="/unrender/netease/"><i class="fa-fw fa fa-circle"></i><span> 网易热评</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 测试</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/about%E2%85%A0/"><i class="fa-fw fa fa-circle"></i><span> 测试页-1</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A1/"><i class="fa-fw fa fa-circle"></i><span> 测试页-2</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A2/"><i class="fa-fw fa fa-circle"></i><span> 测试页-3</span></a></li><li><a class="site-page child" href="/unrender/nolove/"><i class="fa-fw fa fa-circle"></i><span> 测试页-4</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/unrender/memos/"><i class="fa-fw fa fa-link"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/notes/"><i class="fa-fw fa fa-link"></i><span> 吐槽</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/travelling/"><i class="fa-fw fa fa-subway"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/202210092028180.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">何孙涛の博客</span></a><a class="nav-page-title" href="/"><span class="site-name">浅谈什么是好软件（1）</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/charts/"><i class="fa-fw fa fa-paper-plane"></i><span> 统计</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fa fa-paper-plane"></i><span> 布告</span></a></li><li><a class="site-page child" href="/talks/"><i class="fa-fw fa fa-paper-plane"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/cov19/"><i class="fa-fw fa fa-circle"></i><span> 疫情</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fa fa-paper-plane"></i><span> 收藏</span></a></li><li><a class="site-page child" href="/circle/"><i class="fa-fw fa fa-link"></i><span> 链圈</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/pacman/"><i class="fa-fw fa fa-circle"></i><span> 吃豆小人</span></a></li><li><a class="site-page child" href="/unrender/element/"><i class="fa-fw fa fa-circle"></i><span> 元素周期</span></a></li><li><a class="site-page child" href="/unrender/box/"><i class="fa-fw fa fa-circle"></i><span> 网站导航</span></a></li><li><a class="site-page child" href="/unrender/chest/"><i class="fa-fw fa fa-circle"></i><span> 五子小棋</span></a></li><li><a class="site-page child" href="/unrender/2048/"><i class="fa-fw fa fa-circle"></i><span> 移动方块</span></a></li><li><a class="site-page child" href="/unrender/cat/"><i class="fa-fw fa fa-circle"></i><span> 圈住小猫</span></a></li><li><a class="site-page child" href="/unrender/piano/"><i class="fa-fw fa fa-circle"></i><span> 在线钢琴</span></a></li><li><a class="site-page child" href="/unrender/netease/"><i class="fa-fw fa fa-circle"></i><span> 网易热评</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 测试</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/about%E2%85%A0/"><i class="fa-fw fa fa-circle"></i><span> 测试页-1</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A1/"><i class="fa-fw fa fa-circle"></i><span> 测试页-2</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A2/"><i class="fa-fw fa fa-circle"></i><span> 测试页-3</span></a></li><li><a class="site-page child" href="/unrender/nolove/"><i class="fa-fw fa fa-circle"></i><span> 测试页-4</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/unrender/memos/"><i class="fa-fw fa fa-link"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/notes/"><i class="fa-fw fa fa-link"></i><span> 吐槽</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/travelling/"><i class="fa-fw fa fa-subway"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">浅谈什么是好软件（1）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-02-21T03:13:33.000Z" title="发表于 2020-02-21 11:13:33">2020-02-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-05T17:21:22.000Z" title="更新于 2025-11-06 01:21:22">2025-11-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%B9%A1%E8%BD%AF%E4%BB%B6/">繡软件</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:500,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-11-06 01:21:22&quot;}" hidden></div><p><strong>本序列持续更新</strong></p>
+<p>先不说什么，就先放两张图片，这两张看了之后我当时就沉默了：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.0.0/pic/Prog/1.jpg" class="full-image" alt="1"></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.0.0/pic/Prog/2.jpg" class="full-image" alt="2"></p>
+<p>看完了吗？</p>
+<p>接下来，我就只有一句话来总结我认为好的软件：将自己该做的事情做到最好，永远不做那些与名字不相符的事情,要用的时候及时跳出来,不用的时候永远静静待着。</p>
+<p>拒绝All in one,只做该做的!</p>
+<p>以下内容全部是个人观点，部分内容并非中立，更有内容关于破解，请不要将其扭曲，更不要将此作为借口挑起吵架，谢谢！</p>
+<h1 id="压缩软件"><a href="#压缩软件" class="headerlink" title="压缩软件"></a>压缩软件</h1><h2 id="Bandizip"><a href="#Bandizip" class="headerlink" title="Bandizip"></a>Bandizip</h2><p>这个软件真的是将压缩做到极致了，网上很多人都在推荐它，不得不说真的很好，UI和内核做到了压缩软件的标杆，唯一有个问题最近升级到最高版本时发现个人版会添加广告，企业版要付费。感觉和WinRAR混到一块去了，真的不敢相信如此好的一款压缩软件竟然混成这样，在此真的不建议使用BandiZip。</p>
+<blockquote>
+<p>全新许可证系统<br>与以前的版本相比，Bandizip 7.0 在许可证和分发方面有所变化。</p>
+<ul>
+<li>Bandizip 7.0 版本历史 </li>
+<li>Bandizip 许可证政策 </li>
+<li>Bandizip 版本对比 </li>
+<li>购买 Bandzip </li>
+<li>Bandizip 最终用户许可协议  </li>
+</ul>
+<p>…<br>许可类型: 含有广告的软件（免费） / 商业软件<br>…</p>
+</blockquote>
+<h2 id="HaoZip-好压"><a href="#HaoZip-好压" class="headerlink" title="HaoZip 好压"></a>HaoZip 好压</h2><p>是的，今天的重点是它。</p>
+<p>你可能会说我在打广告，2345怎么差的一款软件怎么可能排到好软件？？？？</p>
+<p>我承认我有打广告的嫌疑，但我不承认我在打广告,请客官仔细观看。</p>
+<p>是的，刚开始我也不信。</p>
+<p>直到有一天手贱把电脑显卡驱动安坏了，回厂重修，厂方把C盘格式化重装系统后多了好几个2345软件，我直接卸载了，不过只留下了Haozip和看图王。</p>
+<p>两个都有广告，但对于我来说阉割掉广告插件并不难，顺手阉掉之后，发现用户体验大大提升了不少，完全可以与BandiZip媲美。</p>
+<p><span class="heimu" title="啊，你说什么？(・∀・(・∀・(・∀・\*)">在阉割过后</span>使用HaoZip后发现UI和性能并不必BandiZip差，基本上支持全部压缩格式,除了不能在RAR内直接添加文件,其它真的可以称上全格式了。</p>
+<p>真的，作为一款压缩软件，撇去广告插件不看，HaoZip真的是2345旗下做的唯二两款像软件的东西了。</p>
+<p>接下来谈谈怎么阉割。</p>
+<h3 id="阉割："><a href="#阉割：" class="headerlink" title="阉割："></a>阉割：</h3><p>实际上所有广告软件无非也就这几样：伪装成服务而启动的广告，双进程保护广告进程，计划任务的广告程序，使用更新程序的广告软件，伪装成后台的收集用户隐私的进程。</p>
+<p>相对来说，Haozip是2345旗下流氓程度真的不算高的软件，也没有改主页，也没有后台木马,也就简单的广告弹窗。相对于快压巧压,真的很好了有木有!<br><span class="heimu" title="啊，你说什么？(・∀・(・∀・(・∀・\*)">一刀剁下去,保证变得老老实实</span><br>以下在Win10 64位下运行：</p>
+<ol>
+<li>前往 [<a target="_blank" rel="noopener" href="http://haozip.2345.cc">http://haozip.2345.cc</a>] 下载最新版好压</li>
+<li>直接安装,取消安装推荐软件,取消安装后自动启动.</li>
+<li>请不要直接打开!</li>
+<li>右键桌面上的HoaZip图标,打开文件所在位置,开始阉割</li>
+</ol>
+<p>这是文件夹概况:</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.0.0/pic/Prog/3.jpg" alt="图片"></p>
+<ol>
+<li><p>删除文件夹下的 </p>
+<ul>
+<li><code>HaoZipHomePage.exe</code> 这是主页导航(压缩软件为什么要修改导航?)</li>
+<li><code>HaoZipUpdate.exe</code> 这是更新软件,有可能会注入流氓(压缩软件不必频繁更新)</li>
+<li><code>Haozip_2345Upgrade.exe</code> 这是更新(压缩软件为什么要两个更新软件?)</li>
+<li><code>Haozip_2345Upgrade.dll</code> 这是更新注入(压缩软件为什么要更新注入?)</li>
+</ul>
+</li>
+<li><p>进入服务,停止2345好压核心服务\2345安全中心(压缩软件为什么要开服务?)</p>
+</li>
+<li>打开注册表编辑器<code>regedit.exe</code>,依次进入: <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services</code>,往下翻,删除带有<code>HaoZipsvc</code>或<code>2345Haozip</code>字样的项目(由于更新了,不知道具体是哪个项目)</li>
+<li><p>回到好压文件夹,进入 <code>\Protect\</code> 文件夹，删除：</p>
+<ul>
+<li><code>HaozipMiniPage.exe</code> 这是热点资讯(压缩软件为什么要开热点资讯?)</li>
+<li><code>HaozipSvc.exe</code> 这是好压服务(压缩软件为什么要开服务?)</li>
+<li><code>HaozipSvc.dll</code> 这是好压服务注入(压缩软件为什么要开服务注入?)</li>
+<li><code>Helper_Haozip.exe</code> 这是好压卸载时极力挽留的重装程序</li>
+<li><code>ServiceManager.exe</code> 暂时没有搞清楚,不过用到了UAC,可疑,删除后不影响压缩服务</li>
+</ul>
+</li>
+<li><p>一个有趣的程序:<code>Tool_Uninstall.exe</code>,在卸载好压时,如果选择不卸载但关闭广告,这个软件就会运行,但并没有真正删除广告程序,而是暂时禁用,过一段时间后又解除禁止,继续弹广告.这个exe可以不删,当然删不删都无所谓.</p>
+</li>
+<li>打开计算机管理,打开计划任务程序,删除带有Haozip字样的条目(这一步可做可不做,目的是删除冗余条目)</li>
+<li>回到好压文件夹,进入 <code>\Tool\</code> 文件夹，删除：<ul>
+<li><code>Haozip_2345DLAgent.exe</code> 这是下载器</li>
+<li><code>Update_Haozip.exe</code> 这是第三个更新程序(压缩软件为什么要三个更新软件?)</li>
+</ul>
+</li>
+<li>此时启动好压,选择右上角下拉菜单,点击更新选项卡,勾选手动更新.一个被阉割后老老实实的压缩软件就好了.</li>
+</ol>
+<p>问题:</p>
+<ul>
+<li>第五步提示删除失败: 可能是在安装后打开了2345Haozip,任务管理器关闭程序,服务关闭HaoZipsvc,用UAC打开注册表编辑器</li>
+<li>第六步提示已在好压安全中心打开,删除失败:重做6、7两步，用任务管理器关闭Haozip以及附属所有进程。</li>
+</ul>
+<p>可以打开体验一下了,可以选择绑定默认压缩,因为它已经被阉割干净了.</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.0.0/pic/Prog/4.jpg" alt="图片"></p>
+<p>个人认为2345还是在这款软件上用心了,其实UI做的挺好的,用户体验真的很不错,解压速度其实也不差,还附带了一些对于压缩功能来说很有用的小工具,比如哈希校验,压缩包内重命名  <del>当然是对于阉割版而言</del></p>
+<p><del>其实有些软件如果不加上广告而改为捐助,其实可以获利更多的,是眼前的利益污浊了它们的眼睛</del></p>
+<h2 id="7-Zip"><a href="#7-Zip" class="headerlink" title="7-Zip"></a>7-Zip</h2><p><span class="heimu" title="你知道的太多了">喂喂喂,这篇文章不是讲阉割的,而是讲好软件的.</span></p>
+<p>7-Zip是一款完全免费而且开源的压缩软件，相比其他软件有更高的压缩比而且相对于WinRAR不会消耗大量资源。</p>
+<p>7-Zip真的是一款很古老的软件,很多国产压缩都用了它的内核,包括HaoZip.</p>
+<p>完全没广告,完全免费,完全开源,但是时代变迁,现在它真的不太适合作为主流压缩软件了</p>
+<p>当然，希望追求轻巧的我不介意下载。</p>
+<p>下载地址:  [<a target="_blank" rel="noopener" href="https://www.7-zip.org">https://www.7-zip.org</a>]</p>
+<h2 id="WinRAR"><a href="#WinRAR" class="headerlink" title="WinRAR"></a>WinRAR</h2><p>作为一款压缩软件的经典,它的坠落真的很让我心疼.</p>
+<p>无论是中国代理版还是国际版,打开就是广告弹窗,标题栏的个人免费版及其刺眼,古老的界面很难让人提起喜欢,200元/套的界面让人感觉怎么不去抢钱.</p>
+<p>讲真,小时候就一直陪伴我的WinRAR,经常就能在里面解压出很多好看的动画片,当时是真的免费,完全没广告,也没有所谓的个人企业版,长大后回头重看,却惨不忍睹.</p>
+<p>我认为WinRAR凭借样貌和名气继续盈利真的很匪夷所思了,在此真的对WinRAR的堕落感到惋惜.</p>
+<p>我不知道它是不是和Flash一样遭到了破解的威胁,但是我对比了一下国际版和中文版,发现其实都是差不多的.</p>
+<p>沉默….</p>
+<h1 id="视频播放器"><a href="#视频播放器" class="headerlink" title="视频播放器"></a>视频播放器</h1><p>讲真,千万不要使用爱奇艺万能播放器一类的,因为它支持的文件越多,更加说明它的解包文件越大!</p>
+<p>国内播放器绝大多数都不推荐,因为它们很多多是One in all!在播放视频时频繁更新，推荐对你来说毫无用处的热点新闻。</p>
+<h2 id="PotPlaer"><a href="#PotPlaer" class="headerlink" title="PotPlaer"></a>PotPlaer</h2><p>据说是KMPlayer工程师跳槽…</p>
+<p>这个风格我很喜欢,功能说实话真的很强大,虽然并没有成为我的主流播放器,但是我挺推荐!</p>
+<p>官网: [<a target="_blank" rel="noopener" href="https://potplayer.daum.net/?lang=zh_CN">https://potplayer.daum.net/?lang=zh_CN</a>]</p>
+<p>鬼知道这个网站被Q了…这个比较意外.</p>
+<p>完全没广告,完全免费.</p>
+<h2 id="KLC-Media-Player"><a href="#KLC-Media-Player" class="headerlink" title="KLC Media Player"></a>KLC Media Player</h2><p>不知道你看到哪个路障时是什么想法?</p>
+<p>对于这个软件,我真的只有一个字:强!</p>
+<p>全格式支持,因为它是格式播放器,并没有对于一种后缀就是一种编码器,直接靠格式,对于蛋疼的qlv爱奇艺垄断的视频也能播放.</p>
+<p>地址: [<a target="_blank" rel="noopener" href="https://www.videolan.org/vlc/">https://www.videolan.org/vlc/</a>]<br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://images.videolan.org/vlc/screenshots/1.0.0/fitted_vlc_101_w7_2.jpg" alt="pic"></p>
+<p>完全没广告,完全免费.对了,官方网上有捐助按钮5欧元,有兴趣去按一下?</p>
+<h2 id="迅雷影音"><a href="#迅雷影音" class="headerlink" title="迅雷影音"></a>迅雷影音</h2><p>安装后直接把文件夹里面的<code>XMP.exe</code>剪切出来,再卸载,直接使用XMP.exe就成了.</p>
+<p>虽然不是格式播放器,不过支持种子云播还行,用户体验因为有热点推荐大大降低,只能说还行.</p>
+<h2 id="Format-player"><a href="#Format-player" class="headerlink" title="Format player"></a>Format player</h2><p>真正的格式播放器,是格式工厂自带的 <del>(丑婊脸)</del></p>
+<p>这个真的是万能的,不过我暂时没有提取出独立版本,不过作为日常播放还行…</p>
+<h1 id="音乐播放器"><a href="#音乐播放器" class="headerlink" title="音乐播放器:"></a>音乐播放器:</h1><p>如果你没有网上搜索音乐的需要,那么 <code>MusicPlayer2</code> 绝对适合你!</p>
+<p>说一句你可能不相信的话,一个博客都用免费域名的抠门博主,给这个免费软件捐了2元.</p>
+<p>没有别的原因,直接上截图!</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.0.0/pic/Prog/5.jpg" class="full-image" alt="强力替换小娜"></p>
+<p>(请无视右边的仪表盘,那个是MusicPlayer2作者zhongyang219开发的TrafficMonitor,有兴趣的请移步至Github)</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.0.0/pic/Prog/6.jpg" alt="图片" title="主界面"><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.0.0/pic/Prog/7.jpg" alt="图片" title="支持匹配歌词"><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.0.0/pic/Prog/8.jpg" alt="图片" title="支持匹配封面"><br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.0.0/pic/Prog/9.gif" alt="图片" title="播放"></p>
+<p>(电脑不太好,录制出现了严重的掉帧)</p>
+<p>套用官方的介绍:</p>
+<blockquote>
+<p>这是一款可以播放常见音频格式的音频播放器。支持歌词显示、歌词卡拉OK样式显示、歌词在线下载、歌词编辑、歌曲标签识别、Win10小娜搜索显示歌词、频谱分析、音效设置、任务栏缩略图按钮、主题颜色等功能。 播放内核为BASS音频库(V2.4)。</p>
+</blockquote>
+<p>现在,我可以自信的说,这里没有一句是假的!</p>
+<p>而且没有广告,完全免费,界面良心,就连Issues里都是一篇点赞.</p>
+<p>因为本身并不包含音乐下载功能,只有网易提供的API来封面和歌词下载,完全不必担心版权问题.</p>
+<p>另外夸一句:这个图标做的不错:</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.0.0/pic/Prog/10.jpg" alt="图片" title="图标"></p>
+<p>下载地址: [<a target="_blank" rel="noopener" href="https://github.com/zhongyang219/MusicPlayer2/releases">https://github.com/zhongyang219/MusicPlayer2/releases</a>]</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记:"></a>后记:</h1><p>这个专栏会一直持续下去,但更新频率可能没那么高,那么,下次再会!</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://res-256.github.io">何孙涛</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://res-256.github.io/posts/92dd5347/">https://res-256.github.io/posts/92dd5347/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://res-256.github.io" target="_blank">何孙涛の博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6/">软件</a><a class="post-meta__tags" href="/tags/%E4%BC%98%E8%89%AF/">优良</a><a class="post-meta__tags" href="/tags/%E5%8E%8B%E7%BC%A9%E8%BD%AF%E4%BB%B6/">压缩软件</a><a class="post-meta__tags" href="/tags/%E9%98%89%E5%89%B2/">阉割</a><a class="post-meta__tags" href="/tags/%E6%B5%81%E6%B0%93/">流氓</a></div><div class="post-share"><div class="social-share" data-image="/img/202210092028180.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/9f2a11d8/" title="Gitalk详细踩坑记录"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Gitalk详细踩坑记录</div></div><div class="info-2"><div class="info-item-1">前言没想到怎么快就更新一篇了。 这真的是踩了个巨坑啊。 为什么又要切换回Gitalk？咳咳，这事情还得从上一年12月说起。 当时正忙于学业，等到期末考完以后接受到一份LeanCloud邮件，大概内容就是我的API1个月没有调用被强制归档了。 那也不能怪我啊！我博客没人来就说我缘故咯？ 然后登陆上LeanCloud，恢复数据，然后就没有然后了。 昨天刚刚更新了一篇白嫖记录，登入博客后却发现没有更新。 接着去Coding，告诉我Coding转型了，接着用Pages要实名认证。我要是能实名认证那我不早就买一台国内服务器备案了？？？ 没办法，只好又迁回Github。好在Github可以给每一个仓库绑定一个域名，（大不了以后更新博客麻烦点罢了。） 接着折腾了Github好一会儿，包括后来解决Coding赖着域名不放，国内ip解析错误的原因。 结果今天早上登陆却发现：  … 打开LeanCloud官方文档,并没有找到答案. 也就是说,我还不知道错误发生在归档后还是在迁移后的. 况且本来LeanCloud开发版每天休眠6h我也受够了,于是打算迁到Gitalk. 正文数据:数据肯定是没法恢复了,...</div></div></div></a><a class="pagination-related" href="/posts/8b2f/" title="Github + Hexo 搭建个人博客超详细教程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Github + Hexo 搭建个人博客超详细教程</div></div><div class="info-2"><div class="info-item-1"> **在搭建过程中遇到问题欢迎来骚扰我哈！ V：godxiaolong，QQ:1571504536，如果觉得有帮助的话不介意打赏一杯奶茶哟~**   前言 作为一名计算机爱好者，摸索了一周搭建出自己的博客。目前只学    习了c语言，没有任何前端知识和网站开发经验，总的来说，算不上很难，     但也要费些心思。网上各类教程应有尽有，只要肯摸索，还是水到渠成的事。另外，写下这篇文章，记录下自己的经验，给需要的朋友，祝你早日拥有自己的博客！  搭建博客的初衷是希望用博客记录下自己的学习过程，帮助自己复习，分享一部分不成熟的思考，敦促自己把既定的目标完成。  为什么要搭建自己的博客？可以看看这三篇文章：  《为什么你应该（从现在开始就）写博客》   (By 刘未鹏 | Mind Hacks) 《为什么要自建博客？》   (By 知乎) 《我为什么写博客》 （By 知明所以） 我们需要知道搭建博客要用到的框架。Hexo是高效的静态站点生成框架，它基于Node.js。我们使用MarkDown在本地编辑我们的博客文章，通过Hexo生成静态页面，再用两条命令即可部署到我们的网站。无需关心网页...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">压缩软件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bandizip"><span class="toc-number">1.1.</span> <span class="toc-text">Bandizip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HaoZip-%E5%A5%BD%E5%8E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">HaoZip 好压</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%89%E5%89%B2%EF%BC%9A"><span class="toc-number">1.2.1.</span> <span class="toc-text">阉割：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Zip"><span class="toc-number">1.3.</span> <span class="toc-text">7-Zip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WinRAR"><span class="toc-number">1.4.</span> <span class="toc-text">WinRAR</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">视频播放器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PotPlaer"><span class="toc-number">2.1.</span> <span class="toc-text">PotPlaer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KLC-Media-Player"><span class="toc-number">2.2.</span> <span class="toc-text">KLC Media Player</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%85%E9%9B%B7%E5%BD%B1%E9%9F%B3"><span class="toc-number">2.3.</span> <span class="toc-text">迅雷影音</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Format-player"><span class="toc-number">2.4.</span> <span class="toc-text">Format player</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">音乐播放器:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-number">4.</span> <span class="toc-text">后记:</span></a></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2017 - 2025 By 何孙涛</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-res256s-projects.vercel.app/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://twikoo-res256s-projects.vercel.app/',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    GLOBAL_CONFIG_SITE.pageType === 'post' && getCount()
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="/img/myjs.js"></script><script src="/js/youlian.js"></script><script src="/js/aside_mobile.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="/"></script></div><!-- hexo injector body_end start --><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='null'|| 'null' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><!-- hexo injector body_end end --></body></html>

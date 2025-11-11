@@ -1,0 +1,348 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>图床的千层套路 | 何孙涛の博客</title><meta name="author" content="何孙涛"><meta name="copyright" content="何孙涛"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="博客最近在细心打磨终于上95分了，其中我认为图片功劳不可没。  2020年8月9日Jsdelivr发布了一次使用政策：Create Acceptable Use Policy，其中第4条Prohibited Use引起了众多议论： 12345678910111213141516171819204. Prohibited UseThe following behavior is prohibit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图床的千层套路">
+<meta property="og:url" content="https://res-256.github.io/posts/eb490c73/index.html">
+<meta property="og:site_name" content="何孙涛の博客">
+<meta property="og:description" content="博客最近在细心打磨终于上95分了，其中我认为图片功劳不可没。  2020年8月9日Jsdelivr发布了一次使用政策：Create Acceptable Use Policy，其中第4条Prohibited Use引起了众多议论： 12345678910111213141516171819204. Prohibited UseThe following behavior is prohibit">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://res-256.github.io/img/202210092028180.jpg">
+<meta property="article:published_time" content="2020-09-12T13:27:41.000Z">
+<meta property="article:modified_time" content="2025-11-05T17:21:22.000Z">
+<meta property="article:author" content="何孙涛">
+<meta property="article:tag" content="JSDelivr">
+<meta property="article:tag" content="PicGo">
+<meta property="article:tag" content="图床">
+<meta property="article:tag" content="白嫖">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://res-256.github.io/img/202210092028180.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "图床的千层套路",
+  "url": "https://res-256.github.io/posts/eb490c73/",
+  "image": "https://res-256.github.io/img/202210092028180.jpg",
+  "datePublished": "2020-09-12T13:27:41.000Z",
+  "dateModified": "2025-11-05T17:21:22.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "何孙涛",
+      "url": "https://res-256.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://res-256.github.io/posts/eb490c73/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"简","msgToSimplifiedChinese":"繁"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '图床的千层套路',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/img/scrollbar.css"><link rel="stylesheet" href="/img/mycss.css"><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/echarts@4.7.0/dist/echarts.min.js"></script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" media="defer"><script src='https://unpkg.com/butterfly-friend@3.2.0/butterfly-friend.umd.js'></script><link rel="stylesheet" href="https://unpkg.com/butterfly-friend@3.2.0/style.css"><link rel="stylesheet" href="/css/twikoo.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body><div id="web_bg" style="background-image: url(/url(/img/1.png));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">79</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">134</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/charts/"><i class="fa-fw fa fa-paper-plane"></i><span> 统计</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fa fa-paper-plane"></i><span> 布告</span></a></li><li><a class="site-page child" href="/talks/"><i class="fa-fw fa fa-paper-plane"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/cov19/"><i class="fa-fw fa fa-circle"></i><span> 疫情</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fa fa-paper-plane"></i><span> 收藏</span></a></li><li><a class="site-page child" href="/circle/"><i class="fa-fw fa fa-link"></i><span> 链圈</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/pacman/"><i class="fa-fw fa fa-circle"></i><span> 吃豆小人</span></a></li><li><a class="site-page child" href="/unrender/element/"><i class="fa-fw fa fa-circle"></i><span> 元素周期</span></a></li><li><a class="site-page child" href="/unrender/box/"><i class="fa-fw fa fa-circle"></i><span> 网站导航</span></a></li><li><a class="site-page child" href="/unrender/chest/"><i class="fa-fw fa fa-circle"></i><span> 五子小棋</span></a></li><li><a class="site-page child" href="/unrender/2048/"><i class="fa-fw fa fa-circle"></i><span> 移动方块</span></a></li><li><a class="site-page child" href="/unrender/cat/"><i class="fa-fw fa fa-circle"></i><span> 圈住小猫</span></a></li><li><a class="site-page child" href="/unrender/piano/"><i class="fa-fw fa fa-circle"></i><span> 在线钢琴</span></a></li><li><a class="site-page child" href="/unrender/netease/"><i class="fa-fw fa fa-circle"></i><span> 网易热评</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 测试</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/about%E2%85%A0/"><i class="fa-fw fa fa-circle"></i><span> 测试页-1</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A1/"><i class="fa-fw fa fa-circle"></i><span> 测试页-2</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A2/"><i class="fa-fw fa fa-circle"></i><span> 测试页-3</span></a></li><li><a class="site-page child" href="/unrender/nolove/"><i class="fa-fw fa fa-circle"></i><span> 测试页-4</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/unrender/memos/"><i class="fa-fw fa fa-link"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/notes/"><i class="fa-fw fa fa-link"></i><span> 吐槽</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/travelling/"><i class="fa-fw fa fa-subway"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/202210092028180.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">何孙涛の博客</span></a><a class="nav-page-title" href="/"><span class="site-name">图床的千层套路</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/charts/"><i class="fa-fw fa fa-paper-plane"></i><span> 统计</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fa fa-paper-plane"></i><span> 布告</span></a></li><li><a class="site-page child" href="/talks/"><i class="fa-fw fa fa-paper-plane"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/cov19/"><i class="fa-fw fa fa-circle"></i><span> 疫情</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fa fa-paper-plane"></i><span> 收藏</span></a></li><li><a class="site-page child" href="/circle/"><i class="fa-fw fa fa-link"></i><span> 链圈</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/pacman/"><i class="fa-fw fa fa-circle"></i><span> 吃豆小人</span></a></li><li><a class="site-page child" href="/unrender/element/"><i class="fa-fw fa fa-circle"></i><span> 元素周期</span></a></li><li><a class="site-page child" href="/unrender/box/"><i class="fa-fw fa fa-circle"></i><span> 网站导航</span></a></li><li><a class="site-page child" href="/unrender/chest/"><i class="fa-fw fa fa-circle"></i><span> 五子小棋</span></a></li><li><a class="site-page child" href="/unrender/2048/"><i class="fa-fw fa fa-circle"></i><span> 移动方块</span></a></li><li><a class="site-page child" href="/unrender/cat/"><i class="fa-fw fa fa-circle"></i><span> 圈住小猫</span></a></li><li><a class="site-page child" href="/unrender/piano/"><i class="fa-fw fa fa-circle"></i><span> 在线钢琴</span></a></li><li><a class="site-page child" href="/unrender/netease/"><i class="fa-fw fa fa-circle"></i><span> 网易热评</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 测试</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/about%E2%85%A0/"><i class="fa-fw fa fa-circle"></i><span> 测试页-1</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A1/"><i class="fa-fw fa fa-circle"></i><span> 测试页-2</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A2/"><i class="fa-fw fa fa-circle"></i><span> 测试页-3</span></a></li><li><a class="site-page child" href="/unrender/nolove/"><i class="fa-fw fa fa-circle"></i><span> 测试页-4</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/unrender/memos/"><i class="fa-fw fa fa-link"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/notes/"><i class="fa-fw fa fa-link"></i><span> 吐槽</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/travelling/"><i class="fa-fw fa fa-subway"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">图床的千层套路</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-12T13:27:41.000Z" title="发表于 2020-09-12 21:27:41">2020-09-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-05T17:21:22.000Z" title="更新于 2025-11-06 01:21:22">2025-11-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9A%8F%E5%BF%83%E8%AE%B0/">随心记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:500,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-11-06 01:21:22&quot;}" hidden></div><blockquote>
+<p> 博客最近在细心打磨终于上95分了，其中我认为图片功劳不可没。<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/cUEQrVYGFiDjqhy.jpg" alt=""></p>
+</blockquote>
+<p>2020年8月9日<a target="_blank" rel="noopener" href="https://github.com/jsdelivr/jsdelivr/pull/18247/files">Jsdelivr发布了一次使用政策：Create Acceptable Use Policy</a>，其中第4条Prohibited Use引起了众多议论：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">4.</span> Prohibited Use</span><br><span class="line"></span><br><span class="line">The following behavior is prohibited:</span><br><span class="line"></span><br><span class="line"><span class="bullet"> 1.</span> Hosting or accessing content that:</span><br><span class="line"><span class="bullet">     -</span> contains malware or harmful code in any form,</span><br><span class="line"><span class="bullet">     -</span> violates proprietary rights of others,</span><br><span class="line"><span class="bullet">     -</span> is sexually explicit,</span><br><span class="line"><span class="bullet">     -</span> is potentially illegal in the EU or the USA.</span><br><span class="line"></span><br><span class="line"><span class="bullet"> 2.</span> Abusing the service and its resources, or using jsDelivr as a general-purpose</span><br><span class="line"><span class="code">    file or media hosting service. This includes, for example:</span></span><br><span class="line"><span class="code">     - running an image hosting website and using jsDelivr as a storage for all</span></span><br><span class="line"><span class="code">       uploaded images,</span></span><br><span class="line"><span class="code">     - hosting videos, file backups, or other files in large quantities.</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">    We recognize that there are legitimate projects that consist of a large number</span></span><br><span class="line"><span class="code">    of files, and these are not considered abuse. For example: icons packs, apps,</span></span><br><span class="line"><span class="code">    or games with a large number of assets.</span></span><br><span class="line"><span class="code"></span></span><br></pre></td></tr></table></figure>
+<p>其中<code>running an image hosting website and using jsDelivr as a storage for all uploaded images</code> 这一句相当的有歧义，要多少的图片才能算是图站？博客里面图片放里面算吗？上传的图片怎样才不行？<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/TlAGjm6IvJSMVpq.jpg" alt=""></p>
+<p>反观网上流传的白嫖Github做图床，基本点进去都是<code>https://cdn.jsdelivr.net/gh/</code> 这样子的图床，这种行为，我不敢妄加评论。但是，jsdelivr诞生的意义似乎并不是为了图床而生的，这种行为也很难判断成滥用。<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/5896ece29a8e0.jpg" alt=""></p>
+<p>使用政策发布之后，一时间，QQ群、v2ex、知乎上立刻就炸了锅。很多人猜测jsdelivr是不是滥用过度而禁止将其作为图床？免费图床的白嫖日子要结束了吗？更多的人，是在哭诉和询问那里还有像jsd一样优秀的<strong>图床</strong>可以白嫖，微博炸了，那里还有免费图床啊？</p>
+<p>实际上，我一般采用的是<code>BackBlaze+CloudFlare</code> 但是自从八月底移动开始改道，从原先优秀的CMI绕路LAX后，国内CloudFlare访问质量再次暴跌，这不得不使我将博客迁至Vercel。好在八月份我有幸申请到了<code>doegdoge图床</code>使用权限，获得了国内较高速的图床.</p>
+<p>但是，对于哪些没有没有图床的人来说，免费图床真的这么难以获得吗？</p>
+<p>不好意思，<strong>免费图床非常多</strong>，只是你不会用而已，这篇文章，就是拯救面前陷入图床危机的你【当然是面向小白，大佬也可以在底下给我提意见鸭】。<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/stick_56.png" alt=""></p>
+<h1 id="公益图床"><a href="#公益图床" class="headerlink" title="公益图床"></a>公益图床</h1><h2 id="sm-ms"><a href="#sm-ms" class="headerlink" title="sm.ms"></a>sm.ms</h2><p><a target="_blank" rel="noopener" href="https://sm.ms">https://sm.ms</a></p>
+<p>推荐程度：★</p>
+<p>首先推荐的是这个图床，loli.net域名经典重现。三年前此图床域名还有备案采用的是国内CDN，可惜后来因为滥用吊销备案号而被迫迁移国外，用的是CloudFlare。实际使用效果面向国内确实不太好，建议备用。</p>
+<p>你不需要注册，拖拽直接上传，只要不违反大陆和香港法律，他就能永久保留你的图片</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://i.loli.net/2020/09/12/OxvnMBwd3VA8uyD.jpg" alt=""></p>
+<p>可搭配PicGo</p>
+<h2 id="Imgur"><a href="#Imgur" class="headerlink" title="Imgur"></a>Imgur</h2><p><a target="_blank" rel="noopener" href="https://imgur.com">https://imgur.com</a></p>
+<p>推荐程度：★★</p>
+<p>国外一家牛逼的图片托管服务商，你可以选择注册或不注册，同样的，拖拽上传，永久保留，其SLA有着相当高的保证。</p>
+<p>然而很可惜的是，这种网站很早就在国内被<strong>DNS域名污染</strong>，也就意味着访客无法正常加载你的图片。这也就是被打为两颗星的原因。<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/%E4%B8%8D%E8%AF%B4%E8%AF%9D.png" alt=""></p>
+<p>当然，你也可以通过<a href="#图像缓存服务">#图像缓存服务</a> 从而实现国内访问。</p>
+<p>可搭配PicGo【需注册】</p>
+<h2 id="去不图床"><a href="#去不图床" class="headerlink" title="去不图床"></a>去不图床</h2><p><a target="_blank" rel="noopener" href="https://7bu.top/">https://7bu.top/</a></p>
+<p>推荐程度：★★★★</p>
+<p>由<a target="_blank" rel="noopener" href="https://dusays.com/241/">杜老师</a>提供的个人公益图床，存储于阿里和腾讯的COS，官方保证SLA&gt;=99%，是一个不错的选择，当然，7bu毕竟是个人维护的图床，能不能永久撑下去还是个问题，我也没有做过深度评测，无法表明其可用性。</p>
+<p>可搭配PicGo。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">接口地址：https://7bu.top/api/upload</span></span><br><span class="line"><span class="string">post参数：image</span></span><br><span class="line"><span class="string">回调json：data.url</span></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://7bu.top/index/api.html">更准确的API文档</a></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://7.dusays.com/2020/09/13/aa555748a9f38.jpg" alt=""></p>
+<blockquote>
+<p><del>而且，就在我上传测试图片的时候，明明已经表明图片已经上传，打开却发现COS提示404，这一点我不得陷入思考，个人维持的公益项目真的能保证SLA吗？<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/%E4%BE%BF%E4%BE%BF.png" alt=""></del></p>
+<p>昨天上传的时候撞上服务器维修了，很抱歉做出了不够恰当的评价.7bu采用的是全国腾讯云CDN加速，国内访问速度十分优良。然而请注意，7bu刚开始建立的目的并不是面向全球【仅面对中国大陆游客】，这导致其大陆以外基本解析至国内西藏腾讯，访问效果并不好。并且，这是通过腾讯云的鉴黄，可能会存在误杀行为。具体使用请个人斟酌【不过作为开发环境还是可行的】。</p>
+</blockquote>
+<h1 id="白嫖的"><a href="#白嫖的" class="headerlink" title="白嫖的"></a>白嫖的</h1><h2 id="阿里图床"><a href="#阿里图床" class="headerlink" title="阿里图床"></a>阿里图床</h2><p><del>推荐程度：★★★★</del></p>
+<p><del>我个人搭建的API：<a target="_blank" rel="noopener" href="https://picbed.cyfan.top">https://picbed.cyfan.top</a> 不保证上传SLA<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/5c53ce897ab55.jpg" alt=""></del></p>
+<p><del>由于小鸡联通国内网络不太好，很有可能无法正常上传，<a target="_blank" rel="noopener" href="https://github.com/ChenYFan-Tester/Alibaba_pic">原项目已经开源</a> ，你完全可以通过在国内的机子或者是本地搭建以获得更佳体验。</del></p>
+<p><del>如果上传成功了，图片将会托管于阿里云的CDN，无论是速度还是延迟都相当的优秀。</del></p>
+<p><del>官方大厂，下载SLA有保障。</del></p>
+<p><del>可搭配PicGo。</del></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">接口地址：https://picbed.cyfan.top/update.php</span></span><br><span class="line"><span class="string">post参数：file</span></span><br><span class="line"><span class="string">回调json：data.url</span></span><br></pre></td></tr></table></figure>
+<p><strong>已失效，切勿使用</strong></p>
+<h2 id="DogeDoge图床"><a href="#DogeDoge图床" class="headerlink" title="DogeDoge图床"></a>DogeDoge图床</h2><p>推荐程度：★★★★★</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/20200912192303.jpg" alt="TEST"></p>
+<p>其实很早就看到<a target="_blank" rel="noopener" href="https://v2ex.com/t/659652">V2EX的那篇征文了</a>：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/20200912190301.png?q=45" alt=""></p>
+<p>可是当时我不够优秀啊<span class="heimu">虽然现在同样不优秀</span>，博客也没满一年啊，于是白嫖的心态搁浅了。<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/5896e8a408253.jpg" alt=""></p>
+<p>后来突然看到<a target="_blank" rel="noopener" href="https://blog.jalenchuh.cn/" content="nofollow">Jalen的博客</a>也用了DogeDoge图床，这才突然意识到原来我已经满一年了。于是抱着试试看的心态向doge官方邮箱发送了邮件，结果真过了。。。</p>
+<p>dogedoge拥有着国内相当不错的CDN，国内访问飞快，但是国外的访问质量的确不如人意。【反正此博客面向中国大陆】</p>
+<p>而且，DogeDoge拥有着很良心的处理参数：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">w：宽</span></span><br><span class="line"><span class="string">h：高</span></span><br><span class="line"><span class="string">mode：模式</span> <span class="bullet">-</span> <span class="string">crop</span> <span class="string">裁剪、clip</span> <span class="string">缩略</span></span><br><span class="line"><span class="string">fmt：格式</span> <span class="bullet">-</span> <span class="string">jpg、png、webp（原图为</span> <span class="string">gif，且没有</span> <span class="string">frame</span> <span class="string">参数时，不做任何裁切、缩略处理）</span></span><br><span class="line"><span class="string">frame：1</span> <span class="bullet">-</span> <span class="string">EOF帧，默认为</span> <span class="number">1</span> <span class="string">（对动画有效）</span></span><br><span class="line"><span class="string">q：压缩质量</span> <span class="bullet">-</span> <span class="number">1</span> <span class="bullet">-</span> <span class="number">100</span><span class="string">（默认</span> <span class="number">90</span> <span class="string">）</span></span><br><span class="line"><span class="string">rect：指定位置裁剪</span> <span class="bullet">-</span> <span class="string">top,left,w,h（若与</span> <span class="string">w</span> <span class="string">/</span> <span class="string">h</span> <span class="string">参数同时存在，则</span> <span class="string">会在</span> <span class="string">rect</span> <span class="string">裁剪过后，继续按照</span> <span class="string">w</span> <span class="string">/</span> <span class="string">h</span> <span class="string">的要求缩略）</span></span><br><span class="line"><span class="string">pos：（配合</span> <span class="string">w</span> <span class="string">/</span> <span class="string">h</span> <span class="string">）裁剪位置</span> <span class="bullet">-</span> <span class="string">top-left、top、top-right、left、center、right、bottom-left、bottom、bottom-right，默认为center</span></span><br><span class="line"><span class="string">pos</span> <span class="string">还有一个特殊的值</span> <span class="string">auto，该值目前为</span> <span class="string">alpha</span> <span class="string">状态，可以根据图片重点来进行</span> <span class="string">pos</span> <span class="string">的位置取舍。</span></span><br></pre></td></tr></table></figure>
+<p>话说回来，DogeDoge也可以搭配PicGo使用。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">接口地址：https://www.dogedoge.com/tools/upload/&#123;Your_Token&#125;</span></span><br><span class="line"><span class="string">post参数：file</span></span><br><span class="line"><span class="string">回调json：data.o_url</span></span><br></pre></td></tr></table></figure>
+<p>当然，现在的Doge图床还是处于免费的试用期【Creater】，不过好在试用期过后价格也比较合理，一般的tester也足够使用，目前看来SLA还是不错的。</p>
+<p>不过，申请不到dogedoge图床也没关系，看下去你就会发现，白嫖的路千千万万，何必执着于一条。<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/stick_34.png" alt=""></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/20200912205753.png?q=45" alt=""></p>
+<h2 id="BackBlaze"><a href="#BackBlaze" class="headerlink" title="BackBlaze"></a>BackBlaze</h2><p>推荐程度：★★★</p>
+<p>具体可以看看<a href="/p/ce240368.html">这篇文章</a></p>
+<h2 id="千奇百怪的"><a href="#千奇百怪的" class="headerlink" title="千奇百怪的"></a>千奇百怪的</h2><h2 id="Github-JSDelivr"><a href="#Github-JSDelivr" class="headerlink" title="Github+JSDelivr"></a>Github+JSDelivr</h2><p>正如我所说的，这种组合已经被广大博主所采纳，并且网上教程已经泛滥了，在这里不再阐述。</p>
+<h2 id="npm-JSDelivr-amp-amp-Zhimg-amp-amp-bdstatic-amp-amp-自定义镜像"><a href="#npm-JSDelivr-amp-amp-Zhimg-amp-amp-bdstatic-amp-amp-自定义镜像" class="headerlink" title="npm+JSDelivr&amp;&amp;Zhimg&amp;&amp;bdstatic&amp;&amp;自定义镜像"></a>npm+JSDelivr&amp;&amp;Zhimg&amp;&amp;bdstatic&amp;&amp;自定义镜像</h2><p>推荐程度：★★★★★</p>
+<p>为什么很多文章都没有提到用npm做图床？我想其中很大的原因是，白嫖jsd做图床的，很多都是小白【或者不愿花时间在于此的大佬】，同样的，这些文章面向的都是这些人，毕竟，以拖拽方式上传的Github和命令行方式上传，我想，大都数人会选择前者吧。</p>
+<p>可是，你们没有想到的是，github文件镜像【github.com.cnpmjs.org是站点镜像】只有jsd一个，npm镜像可远远不止这一个啊！</p>
+<p>让我们看看分别镜像在jsd、zhimg、bdstatic的文件怎么样：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@0.0.1/1.jpg" alt=""></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@0.0.1/2.jpg" alt=""></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://code.bdstatic.com/npm/chenyfan-oss@0.0.1/3.jpg" alt=""></p>
+<p>【unpkg镜像用的是CloudFlare，国内加速效果不好，暂时不写】</p>
+<p>jsd就不必多说了，国内拥有强劲的网宿节点支撑【虽然以前出现过网宿下游投毒】，速度丝滑无比，国外也有强劲的CloudFlare上岗，可谓国内外两不误。而且，jsd对于npm的package单文件没有大小限制，也就是说泡个视频也不是问题。</p>
+<p>zhimg是知乎的unpkg镜像，也是一个不错的选择【阿里CDN】，知乎官方也未对此做出限制，日常使用是可以的。</p>
+<p>bdstatic是百度的内用npm镜像，速度也很好【百度CDN】，但是请注意，bdstatic作为内用cdn，其拉取频率较慢，经常出现无法及时更新。</p>
+<p>啊哈？不会上传？<br><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/stick_31.png" alt="">去<a target="_blank" rel="noopener" href="https://npmjs.org">npm</a><br>官网注册个账号去,然后先：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm login</span><br></pre></td></tr></table></figure>
+<p>接着：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+<p>请注意，如果你之前用过淘宝镜像，那么请先手动切回源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmjs.org</span><br></pre></td></tr></table></figure>
+<p>每一次发布图片后，你可以将原来的图片删除，更改<code>package.json</code> 版本号【向上增加】,然后<code>npm publish</code>即可</p>
+<p>这个似乎可以搭配picgo，不过好像没这个插件，写起来也麻烦。。。</p>
+<p>unpkg的国内镜像其实远远不止这些，包括七牛、饿了么、腾讯都有，不过这个就要自己找了。<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/7DgSoyqwtYBxchE.jpg" alt=""></p>
+<p>一些推荐的npm【or unpkg镜像】：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">【jsd出品，网宿国内节点】https://npm.elemecdn.com/</span><br><span class="line">【知乎出品，网宿国内节点】https://npm.elemecdn.com/</span><br><span class="line">【百度出品，网宿国内节点】https://code.bdstatic.com/npm/</span><br><span class="line">【饿了么出品，网宿国内节点，回源是Unpkg，建议用这个】https://npm.elemecdn.com/</span><br><span class="line">【饿了么出品，网宿国内节点，回源是JSdelivr，貌似可以用github，但是我用的时候大多无法正常回源，只能获取几个已缓存的热门库】https://shadow.elemecdn.com/npm/</span><br><span class="line">【怎么都是网宿的】</span><br></pre></td></tr></table></figure>
+<p>或者说，你还可以自建unpkg镜像。</p>
+<p>啊，你说你没有服务器反向代理unpkg？</p>
+<p>其实，七牛的对象存储，腾讯的COS和阿里的OSS都是支持镜像回源的鸭！</p>
+<p>七牛http流量每月免费10GB，腾讯的国内免费60GB6个月，作为自用完全足够了！</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/L6LVJL_1ZUM2ISQ]10R%7B3HF.png?q=45" alt=""></p>
+<h2 id="ipfs"><a href="#ipfs" class="headerlink" title="ipfs"></a>ipfs</h2><p>我曾经<a href="/2020/04/07/IPFS-CloudFlare-ServerLessWebPage/">写过关于ipfs的讲解</a> ,作为一个去中心化的存储系统拿来做公开图床其实挺不错的。</p>
+<p>我个人搭建的ipfs镜像【托管于CloudFlareWorkers】：<a target="_blank" rel="noopener" href="https://ipfs.cyfan.top">https://ipfs.cyfan.top</a> <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/5c53d78c3f4a5.jpg" alt=""></p>
+<p>我个人搭建的ipfs上传API：<a target="_blank" rel="noopener" href="https://ipfsupload.cyfan.top">https://ipfsupload.cyfan.top</a></p>
+<p>基于Vercel+CloudFlare<del>【我也不知道worker为什么死活上传不上去】</del></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">接口地址：https://ipfsupload.cyfan.top/api/v0/add?pin=true</span></span><br><span class="line"><span class="string">post参数：file</span></span><br><span class="line"><span class="string">回调json：Hash</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>此处Hash获得的是文件的Qmhash，你还要依托ipfs镜像，如<a target="_blank" rel="noopener" href="https://ipfs.cyfan.top/ipfs/{QmHash}">https://ipfs.cyfan.top/ipfs/{QmHash}</a></p>
+</blockquote>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://ipfs.cyfan.top/ipfs/QmctXmCyxkN72nzoHMAgw1geR7u9XvK7sLo72W4bDZsCm2" alt=""></p>
+<p>顺便收录一些ipfs网关【可访问】：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">【北京 阿里云】https://hashnews.k1ic.com/</span><br><span class="line">【香港 阿里云】https://ipfs.jbb.one/</span><br><span class="line">【美国 DigitalOcean】https://ipfs.telos.miami/</span><br><span class="line">【Amazon】https://ipfs.oceanprotocol.com/</span><br></pre></td></tr></table></figure>
+<p>你可以在<a target="_blank" rel="noopener" href="https://ipfs.github.io/public-gateway-checker/">https://ipfs.github.io/public-gateway-checker/</a>找到更多</p>
+<h1 id="图片缓存服务"><a href="#图片缓存服务" class="headerlink" title="图片缓存服务"></a>图片缓存服务</h1><p>正如<a href="##Imgur">##Imgur</a>所说的，imgur在国内已经无法访问了，但是，图片缓存服务可以啊！</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://search.pstatic.net/common/?src=https://i.imgur.com/Usdr0IT.jpg" alt=""></p>
+<p>收集了一些图片缓存服务：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">【国内网宿节点，只能加载特定图床图片如imgur】https://search.pstatic.net/common/?src=</span><br><span class="line">【Akamai节点，没有使用限制】https://imageproxy.pimg.tw/resize?url=</span><br><span class="line">【CloudFlare节点】https://images.weserv.nl/?url=</span><br><span class="line">【CloudFlare节点】https://pic1.xuehuaimg.com/proxy/</span><br></pre></td></tr></table></figure>
+<h1 id="PicGo的搭配使用"><a href="#PicGo的搭配使用" class="headerlink" title="PicGo的搭配使用"></a>PicGo的搭配使用</h1><p>PicGo默认已经集成了部分图床，其拖拽上传、自动复制剪贴板实在赢得了无数人的心。但是，对于一些冷门的图床支持似乎就不太好，这时候你需要用自定义web图床实现这一切：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/20200912205225.png?q=45" alt=""></p>
+<p>我在上方介绍的图床如果支持web端上传，基本上就会写一个post请求，你可以依葫芦画瓢填写进去</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/20200912205449.png?q=45" alt=""></p>
+<p>这样子你就可以实现较为丝滑的上传图片了：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/20200912210009.jpg?q=45" alt=""></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/20200912210420.gif?q=45" alt=""></p>
+<p>【为了压缩方便删除了部分帧】</p>
+<h1 id="后言"><a href="#后言" class="headerlink" title="后言"></a>后言</h1><p>实际上最保险的莫过于使用各大厂商的对象存储，当然这笔钱不大好使。<br>你也可以用自己的VPS搭建Chevereto，当然前提是你有VPS<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://rmt.dogedoge.com/fetch/hi-c-oss/storage/5c53de1a4d14d.gif" alt=""></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://res-256.github.io">何孙涛</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://res-256.github.io/posts/eb490c73/">https://res-256.github.io/posts/eb490c73/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://res-256.github.io" target="_blank">何孙涛の博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%9B%BE%E5%BA%8A/">图床</a><a class="post-meta__tags" href="/tags/%E7%99%BD%E5%AB%96/">白嫖</a><a class="post-meta__tags" href="/tags/PicGo/">PicGo</a><a class="post-meta__tags" href="/tags/JSDelivr/">JSDelivr</a></div><div class="post-share"><div class="social-share" data-image="/img/202210092028180.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/480ab6ed/" title="无服务器搭建Artalk评论系统后端"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">无服务器搭建Artalk评论系统后端</div></div><div class="info-2"><div class="info-item-1"> 这篇的无服务器部署Artalk，指的是NoServer而不是Serverless 这篇所写的是部署后端，关于前端部署十分简单，这里不多阐述  Artalk，一款简洁有趣的自托管评论系统。此时，Valine作为老大哥就不得不跳出来了。但是，作为Valine的Leancloud作为第三方托管，数据放在别人那里总是不舒服的，譬如2020/9/24Leancloud华北节点云引擎被 DDoS 攻击  或者说LeanCloud将开发版限额一限在限，亦或者leancloud多次宕机,作为自由开放的我自然不舒服。加上leancloud开发版的SLA实在令人担忧【不包括休眠时间，一个月内宕机超过20次（不过leancloud开发版确实没有保证SLA）】，以及比较严重的管理员冒充。我一直再找一个能用自己服务器托管评论系统，真巧，我找到了Artalk。Artalk的优点：  轻量简洁 (~23kB gzipped)  有趣有爱  自托管  Markdown  表情自定  滑稽表情包  管理员密码，防冒名  验证码，提交频率限制  通知中心，邮件提醒  自定义某些页面仅管理员可评论  无限层级回复 ...</div></div></div></a><a class="pagination-related" href="/posts/6ce8a474/" title="多域名线程并发与DNS预解析"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">多域名线程并发与DNS预解析</div></div><div class="info-2"><div class="info-item-1">军训结束,感想不多,就一句话  【这就是个无限循环，每天重复训练一套动作，直到结束为止，毫无意义】  回家之后我帮父母看店,顺便点开了浏览器,浏览器卡死了30s,终于完全加载出了一个花花绿绿的主页,是大名鼎鼎的2345主页. 虽然我很反感这种杂七杂八的傻逼导航,我也试图将主页换成magi或dogedoge,但是父亲就很不习惯,原因很难以接受: 1儿子啊，这样我怎么看天气啊。 。。。 于是我顺手右键点开了源代码，闲着无聊看看，结果却刚看看就找到了好康看的东西：  123456789101112&lt;link rel=&quot;dns-prefetch&quot; href=&quot;https://union2.50bang.org&quot;&gt;&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//h.2345cdn.net&quot;&gt;&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//image.2345.com&quot;&gt;&lt;link rel=&qu...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/ce240368/" title="白嫖！10GB免流海外BackBlaze对象存储【可套CDN】"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-09</div><div class="info-item-2">白嫖！10GB免流海外BackBlaze对象存储【可套CDN】</div></div><div class="info-2"><div class="info-item-1">腾讯云的COS就是个暗坑，进去的时候大肆宣扬用户前六个月免费，但实际上免费仅针对于存储于国内的bucket，而存储于国外的阶梯定价又极不合理，我的COS在一个月走了流量1.6GB。按照官方定价   大概就是0.7左右。 但是，腾讯云从来就是不满1GB按1GB计算的jier，我瞟了一下账单：  不是吧啊Sir，一个月一块多，那我为什么要用你的东西啊！ 很难让人理解，我CDN设置为一个月的超长缓存，但腾讯还是给我计价1GB，和回源没什么区别。 后来F12看了一下，腾讯悄悄地在header里添加max-cache为43200s，12个小时强制清除缓存。Asir，赚钱不带这么玩吧。 最让我憋屈的是，cyfan.top 是没有备案的，使用国内的bucket就不给绑定域名，害的我只能用香港，但是香港的绑定域名是不给SSL的，偏要套一层CDN才行。可***腾讯云默认CDN是亚马逊的，速度渣的很，用来用去还是用回CloudFlare。可是，既然有CloudFlare，那我为什么不用免费的Github服务啊！ 这就是逼着我要换一个图床啊么。 后来twitter上有人发推推荐 backblaze 的...</div></div></div></a><a class="pagination-related" href="/posts/d788bdf3/" title="Euserv正确打开优化方式"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-14</div><div class="info-item-2">Euserv正确打开优化方式</div></div><div class="info-2"><div class="info-item-1">Euserv，盛名远扬【老白嫖怪了】，但是如何合理打开它，却是一个难题。这篇文章就是简单讲讲合理使用其免费的纯IPv6小鸡  首先是bench测试普通小鸡 12345678910111213141516171819202122232425---------------------------------------------------------------------- CPU Model             : AMD Phenom(tm) II X6 1055T Processor CPU Cores             : 1 CPU Frequency         : 3101.198 MHz CPU Cache             : 512 KB Total Disk            : 9.8 GB (3.4 GB Used) Total Mem             : 976 MB (334 MB Used) Total Swap            : 976 MB (0 MB Used) System uptime      ...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AC%E7%9B%8A%E5%9B%BE%E5%BA%8A"><span class="toc-number">1.</span> <span class="toc-text">公益图床</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sm-ms"><span class="toc-number">1.1.</span> <span class="toc-text">sm.ms</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Imgur"><span class="toc-number">1.2.</span> <span class="toc-text">Imgur</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%BB%E4%B8%8D%E5%9B%BE%E5%BA%8A"><span class="toc-number">1.3.</span> <span class="toc-text">去不图床</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%99%BD%E5%AB%96%E7%9A%84"><span class="toc-number">2.</span> <span class="toc-text">白嫖的</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BF%E9%87%8C%E5%9B%BE%E5%BA%8A"><span class="toc-number">2.1.</span> <span class="toc-text">阿里图床</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DogeDoge%E5%9B%BE%E5%BA%8A"><span class="toc-number">2.2.</span> <span class="toc-text">DogeDoge图床</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BackBlaze"><span class="toc-number">2.3.</span> <span class="toc-text">BackBlaze</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%83%E5%A5%87%E7%99%BE%E6%80%AA%E7%9A%84"><span class="toc-number">2.4.</span> <span class="toc-text">千奇百怪的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Github-JSDelivr"><span class="toc-number">2.5.</span> <span class="toc-text">Github+JSDelivr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm-JSDelivr-amp-amp-Zhimg-amp-amp-bdstatic-amp-amp-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F"><span class="toc-number">2.6.</span> <span class="toc-text">npm+JSDelivr&amp;&amp;Zhimg&amp;&amp;bdstatic&amp;&amp;自定义镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ipfs"><span class="toc-number">2.7.</span> <span class="toc-text">ipfs</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.</span> <span class="toc-text">图片缓存服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PicGo%E7%9A%84%E6%90%AD%E9%85%8D%E4%BD%BF%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">PicGo的搭配使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E8%A8%80"><span class="toc-number">5.</span> <span class="toc-text">后言</span></a></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2017 - 2025 By 何孙涛</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-res256s-projects.vercel.app/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://twikoo-res256s-projects.vercel.app/',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    GLOBAL_CONFIG_SITE.pageType === 'post' && getCount()
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="/img/myjs.js"></script><script src="/js/youlian.js"></script><script src="/js/aside_mobile.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="/"></script></div><!-- hexo injector body_end start --><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='null'|| 'null' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><!-- hexo injector body_end end --></body></html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Gitalk详细踩坑记录 | 何孙涛の博客</title><meta name="author" content="何孙涛"><meta name="copyright" content="何孙涛"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言没想到怎么快就更新一篇了。 这真的是踩了个巨坑啊。 为什么又要切换回Gitalk？咳咳，这事情还得从上一年12月说起。 当时正忙于学业，等到期末考完以后接受到一份LeanCloud邮件，大概内容就是我的API1个月没有调用被强制归档了。 那也不能怪我啊！我博客没人来就说我缘故咯？ 然后登陆上LeanCloud，恢复数据，然后就没有然后了。 昨天刚刚更新了一篇白嫖记录，登入博客后却发现没有更新。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gitalk详细踩坑记录">
+<meta property="og:url" content="https://res-256.github.io/posts/9f2a11d8/index.html">
+<meta property="og:site_name" content="何孙涛の博客">
+<meta property="og:description" content="前言没想到怎么快就更新一篇了。 这真的是踩了个巨坑啊。 为什么又要切换回Gitalk？咳咳，这事情还得从上一年12月说起。 当时正忙于学业，等到期末考完以后接受到一份LeanCloud邮件，大概内容就是我的API1个月没有调用被强制归档了。 那也不能怪我啊！我博客没人来就说我缘故咯？ 然后登陆上LeanCloud，恢复数据，然后就没有然后了。 昨天刚刚更新了一篇白嫖记录，登入博客后却发现没有更新。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://res-256.github.io/img/202210092028180.jpg">
+<meta property="article:published_time" content="2020-02-26T01:11:17.000Z">
+<meta property="article:modified_time" content="2025-11-05T17:21:22.000Z">
+<meta property="article:author" content="何孙涛">
+<meta property="article:tag" content="Gitalk">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="手动填坑">
+<meta property="article:tag" content="评论">
+<meta property="article:tag" content="评论系统">
+<meta property="article:tag" content="踩坑">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://res-256.github.io/img/202210092028180.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Gitalk详细踩坑记录",
+  "url": "https://res-256.github.io/posts/9f2a11d8/",
+  "image": "https://res-256.github.io/img/202210092028180.jpg",
+  "datePublished": "2020-02-26T01:11:17.000Z",
+  "dateModified": "2025-11-05T17:21:22.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "何孙涛",
+      "url": "https://res-256.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://res-256.github.io/posts/9f2a11d8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"简","msgToSimplifiedChinese":"繁"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Gitalk详细踩坑记录',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/img/scrollbar.css"><link rel="stylesheet" href="/img/mycss.css"><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/echarts@4.7.0/dist/echarts.min.js"></script><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" media="defer"><script src='https://unpkg.com/butterfly-friend@3.2.0/butterfly-friend.umd.js'></script><link rel="stylesheet" href="https://unpkg.com/butterfly-friend@3.2.0/style.css"><link rel="stylesheet" href="/css/twikoo.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"></head><body><div id="web_bg" style="background-image: url(/url(/img/1.png));"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">79</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">134</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">27</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/charts/"><i class="fa-fw fa fa-paper-plane"></i><span> 统计</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fa fa-paper-plane"></i><span> 布告</span></a></li><li><a class="site-page child" href="/talks/"><i class="fa-fw fa fa-paper-plane"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/cov19/"><i class="fa-fw fa fa-circle"></i><span> 疫情</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fa fa-paper-plane"></i><span> 收藏</span></a></li><li><a class="site-page child" href="/circle/"><i class="fa-fw fa fa-link"></i><span> 链圈</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/pacman/"><i class="fa-fw fa fa-circle"></i><span> 吃豆小人</span></a></li><li><a class="site-page child" href="/unrender/element/"><i class="fa-fw fa fa-circle"></i><span> 元素周期</span></a></li><li><a class="site-page child" href="/unrender/box/"><i class="fa-fw fa fa-circle"></i><span> 网站导航</span></a></li><li><a class="site-page child" href="/unrender/chest/"><i class="fa-fw fa fa-circle"></i><span> 五子小棋</span></a></li><li><a class="site-page child" href="/unrender/2048/"><i class="fa-fw fa fa-circle"></i><span> 移动方块</span></a></li><li><a class="site-page child" href="/unrender/cat/"><i class="fa-fw fa fa-circle"></i><span> 圈住小猫</span></a></li><li><a class="site-page child" href="/unrender/piano/"><i class="fa-fw fa fa-circle"></i><span> 在线钢琴</span></a></li><li><a class="site-page child" href="/unrender/netease/"><i class="fa-fw fa fa-circle"></i><span> 网易热评</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 测试</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/about%E2%85%A0/"><i class="fa-fw fa fa-circle"></i><span> 测试页-1</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A1/"><i class="fa-fw fa fa-circle"></i><span> 测试页-2</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A2/"><i class="fa-fw fa fa-circle"></i><span> 测试页-3</span></a></li><li><a class="site-page child" href="/unrender/nolove/"><i class="fa-fw fa fa-circle"></i><span> 测试页-4</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/unrender/memos/"><i class="fa-fw fa fa-link"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/notes/"><i class="fa-fw fa fa-link"></i><span> 吐槽</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/travelling/"><i class="fa-fw fa fa-subway"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/202210092028180.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">何孙涛の博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Gitalk详细踩坑记录</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li><li><a class="site-page child" href="/charts/"><i class="fa-fw fa fa-paper-plane"></i><span> 统计</span></a></li><li><a class="site-page child" href="/notice/"><i class="fa-fw fa fa-paper-plane"></i><span> 布告</span></a></li><li><a class="site-page child" href="/talks/"><i class="fa-fw fa fa-paper-plane"></i><span> 说说</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 工具</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/cov19/"><i class="fa-fw fa fa-circle"></i><span> 疫情</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言</span></a></li><li><a class="site-page child" href="/stars/"><i class="fa-fw fa fa-paper-plane"></i><span> 收藏</span></a></li><li><a class="site-page child" href="/circle/"><i class="fa-fw fa fa-link"></i><span> 链圈</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 游戏</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/pacman/"><i class="fa-fw fa fa-circle"></i><span> 吃豆小人</span></a></li><li><a class="site-page child" href="/unrender/element/"><i class="fa-fw fa fa-circle"></i><span> 元素周期</span></a></li><li><a class="site-page child" href="/unrender/box/"><i class="fa-fw fa fa-circle"></i><span> 网站导航</span></a></li><li><a class="site-page child" href="/unrender/chest/"><i class="fa-fw fa fa-circle"></i><span> 五子小棋</span></a></li><li><a class="site-page child" href="/unrender/2048/"><i class="fa-fw fa fa-circle"></i><span> 移动方块</span></a></li><li><a class="site-page child" href="/unrender/cat/"><i class="fa-fw fa fa-circle"></i><span> 圈住小猫</span></a></li><li><a class="site-page child" href="/unrender/piano/"><i class="fa-fw fa fa-circle"></i><span> 在线钢琴</span></a></li><li><a class="site-page child" href="/unrender/netease/"><i class="fa-fw fa fa-circle"></i><span> 网易热评</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 测试</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/unrender/about%E2%85%A0/"><i class="fa-fw fa fa-circle"></i><span> 测试页-1</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A1/"><i class="fa-fw fa fa-circle"></i><span> 测试页-2</span></a></li><li><a class="site-page child" href="/unrender/about%E2%85%A2/"><i class="fa-fw fa fa-circle"></i><span> 测试页-3</span></a></li><li><a class="site-page child" href="/unrender/nolove/"><i class="fa-fw fa fa-circle"></i><span> 测试页-4</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/unrender/memos/"><i class="fa-fw fa fa-link"></i><span> 哔哔</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/notes/"><i class="fa-fw fa fa-link"></i><span> 吐槽</span></a></div><div class="menus_item"><a class="site-page" href="/unrender/travelling/"><i class="fa-fw fa fa-subway"></i><span> 开往</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Gitalk详细踩坑记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-02-26T01:11:17.000Z" title="发表于 2020-02-26 09:11:17">2020-02-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-05T17:21:22.000Z" title="更新于 2025-11-06 01:21:22">2025-11-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%88%B1%E6%8A%98%E8%85%BE/">爱折腾</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:500,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-11-06 01:21:22&quot;}" hidden></div><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>没想到怎么快就更新一篇了。</p>
+<p>这真的是踩了个巨坑啊。</p>
+<h2 id="为什么又要切换回Gitalk？"><a href="#为什么又要切换回Gitalk？" class="headerlink" title="为什么又要切换回Gitalk？"></a>为什么又要切换回Gitalk？</h2><p>咳咳，这事情还得从上一年12月说起。</p>
+<p>当时正忙于学业，等到期末考完以后接受到一份LeanCloud邮件，大概内容就是我的API1个月没有调用被强制归档了。</p>
+<p><span class="heimu" title="你知道的太多了">那也不能怪我啊！我博客没人来就说我缘故咯？</span></p>
+<p>然后登陆上LeanCloud，恢复数据，然后就没有然后了。</p>
+<p>昨天刚刚更新了一篇白嫖记录，登入博客后却发现没有更新。</p>
+<p>接着去Coding，告诉我Coding转型了，接着用Pages要实名认证。<span class="heimu" title="你知道的太多了">我要是能实名认证那我不早就买一台国内服务器备案了？？？</span></p>
+<p>没办法，只好又迁回Github。好在Github可以给每一个仓库绑定一个域名，（大不了以后更新博客麻烦点罢了。）</p>
+<p>接着折腾了Github好一会儿，包括后来解决Coding赖着域名不放，国内ip解析错误的原因。</p>
+<p>结果今天早上登陆却发现：</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.0.0/pic/gitalk/1.jpg" alt="图片" title="LeanCloud报错"></p>
+<p>…</p>
+<p>打开LeanCloud官方文档,并没有找到答案.</p>
+<p>也就是说,我还不知道错误发生在归档后还是在迁移后的.</p>
+<p>况且本来LeanCloud开发版每天休眠6h我也受够了,于是打算迁到Gitalk.</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="数据"><a href="#数据" class="headerlink" title="数据:"></a>数据:</h2><p>数据肯定是没法恢复了,毕竟是要Github账号的.</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置:"></a>配置:</h2><p>Gitalk官方说明安装只有简单的几句话:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://npm.elemecdn.com/gitalk@1/dist/gitalk.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://npm.elemecdn.com/gitalk@1/dist/gitalk.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- or --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://unpkg.com/gitalk/dist/gitalk.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/gitalk/dist/gitalk.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>…<br>添加一个容器：<br><code>&lt;div id=&quot;gitalk-container&quot;&gt;&lt;/div&gt;</code><br>用下面的 Javascript 代码来生成 gitalk 插件：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var gitalk = new Gitalk(&#123;</span><br><span class="line">  clientID: &#x27;GitHub Application Client ID&#x27;,</span><br><span class="line">  clientSecret: &#x27;GitHub Application Client Secret&#x27;,</span><br><span class="line">  repo: &#x27;GitHub repo&#x27;,</span><br><span class="line">  owner: &#x27;GitHub repo owner&#x27;,</span><br><span class="line">  admin: [&#x27;GitHub repo owner and collaborators, only these guys can initialize github issues&#x27;],</span><br><span class="line">  id: location.pathname,      // Ensure uniqueness and length less than 50</span><br><span class="line">  distractionFreeMode: false  // Facebook-like distraction free mode</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">gitalk.render(&#x27;gitalk-container&#x27;)</span><br></pre></td></tr></table></figure>
+<p>当然,在hexo里面使用估计就没有那么简单了,所以我最终按照里面自带集成的Gitment模板以及文档整理了一份.</p>
+<p>实际上Gitment和Gitalk的核心原理是一样的,内容现实,所以最终还是成功了.</p>
+<h2 id="注册"><a href="#注册" class="headerlink" title="注册:"></a>注册:</h2><blockquote>
+<p>无图警告！</p>
+</blockquote>
+<p>点开 [<a target="_blank" rel="noopener" href="https://github.com/settings/applications/new">https://github.com/settings/applications/new</a>], 注册一个App</p>
+<p>:: Register a new OAuth application<br>必填.填写这个app的名字(其实随便起就好了)<br>:: Homepage URL<br>必填,博客根目录,不能在最后带<code>/</code><br>:: Application description<br>胡乱填写的简介<br>:: Authorization callback URL<br>必填。与Homepage URL一样,是回显目录</p>
+<p>点击Register，注册成功！</p>
+<p>接着会跳转，此处就不截图了。</p>
+<p>其中Client ID和Client Secret在后面的配置中需要用到，到时复制粘贴即可</p>
+<h2 id="配置："><a href="#配置：" class="headerlink" title="配置："></a>配置：</h2><p>根据Gitment样式，整理如下</p>
+<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>进入 <code>\themes\next\layout\_third-party\comments\</code> 新建 <code>gitalk.swig</code> 文件,里面填写一下内容:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw %&#125;</span><br><span class="line">&#123;% if page.comments &amp;&amp; theme.gitalk.enable %&#125;</span><br><span class="line"></span><br><span class="line">  <span class="symbol">&amp;lt;</span>link rel=<span class="symbol">&amp;quot;</span>stylesheet<span class="symbol">&amp;quot;</span> href=<span class="symbol">&amp;quot;</span>https://unpkg.com/gitalk/dist/gitalk.css<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span></span><br><span class="line">  <span class="symbol">&amp;lt;</span>script src=<span class="symbol">&amp;quot;</span>https://unpkg.com/gitalk/dist/gitalk.min.js<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span><span class="symbol">&amp;lt;</span>/script<span class="symbol">&amp;gt;</span></span><br><span class="line">   <span class="symbol">&amp;lt;</span>script type=<span class="symbol">&amp;quot;</span>text/javascript<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span></span><br><span class="line">        var gitalk = new Gitalk(&#123;</span><br><span class="line">          clientID: <span class="symbol">&amp;#x27;</span>&#123;&#123; theme.gitalk.ClientID &#125;&#125;<span class="symbol">&amp;#x27;</span>,</span><br><span class="line">          clientSecret: <span class="symbol">&amp;#x27;</span>&#123;&#123; theme.gitalk.ClientSecret &#125;&#125;<span class="symbol">&amp;#x27;</span>,</span><br><span class="line">          repo: <span class="symbol">&amp;#x27;</span>&#123;&#123; theme.gitalk.repo &#125;&#125;<span class="symbol">&amp;#x27;</span>,</span><br><span class="line">          owner: <span class="symbol">&amp;#x27;</span>&#123;&#123; theme.gitalk.githubID &#125;&#125;<span class="symbol">&amp;#x27;</span>,</span><br><span class="line">          admin: [<span class="symbol">&amp;#x27;</span>&#123;&#123; theme.gitalk.adminUser &#125;&#125;<span class="symbol">&amp;#x27;</span>],</span><br><span class="line">          id: location.pathname,</span><br><span class="line">          distractionFreeMode: <span class="symbol">&amp;#x27;</span>&#123;&#123; theme.gitalk.distractionFreeMode &#125;&#125;<span class="symbol">&amp;#x27;</span></span><br><span class="line">        &#125;)</span><br><span class="line">        gitalk.render(<span class="symbol">&amp;#x27;</span>gitalk-container<span class="symbol">&amp;#x27;</span>)           </span><br><span class="line">       <span class="symbol">&amp;lt;</span>/script<span class="symbol">&amp;gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line">&#123;% endraw %&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><p>修改 <code>\themes\next\layout\_third-party\comments\</code> ,在最后一行填下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw %&#125;</span><br><span class="line">&#123;% include &#x27;gitalk.swig&#x27; %&#125;</span><br><span class="line">&#123;% endraw %&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>修改 <code>\themes\next\layout\_partials\comments.swig</code> ,在 <code>{if}</code> 之下, <code>{elseif}</code> 之上填下:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw %&#125;</span><br><span class="line">&#123;% elseif theme.gitalk.enable %&#125;</span><br><span class="line"> <span class="symbol">&amp;lt;</span>div id=<span class="symbol">&amp;quot;</span>gitalk-container<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span><span class="symbol">&amp;lt;</span>/div<span class="symbol">&amp;gt;</span></span><br><span class="line">&#123;% endraw %&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p>新建 <code>\themes\next\source\css\_common\components\third-party\gitalk.styl</code> ,填下:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.gt-header</span> <span class="selector-tag">a</span>, <span class="selector-class">.gt-comments</span> <span class="selector-tag">a</span>, <span class="selector-class">.gt-popup</span> <span class="selector-tag">a</span></span><br><span class="line">  <span class="attribute">border-bottom</span>: none;</span><br><span class="line"><span class="selector-class">.gt-container</span> <span class="selector-class">.gt-popup</span> <span class="selector-class">.gt-action</span><span class="selector-class">.is--active</span><span class="selector-pseudo">:before</span></span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0.7em</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><p>修改<code>\themes\next\source\css\_common\components\third-party\third-party.styl</code>,最后一行填下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">&quot;gitalk&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="6"><a href="#6" class="headerlink" title="6"></a>6</h3><p>最后,在<code>\themes\next\_config.yml</code>最后一行填下:</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">gitalk:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">githubID:</span> <span class="string">github帐号</span>  <span class="comment">#如ChenYFan   </span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">仓库名称</span>   <span class="comment"># 例：blog</span></span><br><span class="line">  <span class="attr">ClientID:</span> <span class="string">Client</span> <span class="string">ID</span></span><br><span class="line">  <span class="attr">ClientSecret:</span> <span class="string">Client</span> <span class="string">Secret</span></span><br><span class="line">  <span class="attr">adminUser:</span> <span class="string">github帐号</span> <span class="comment">#指定可初始化评论账户</span></span><br><span class="line">  <span class="attr">distractionFreeMode:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束?"></a>结束?</h3><p>打开博客,你会发现有一些博文评论是正常的,但是有一些博文你可能会看到:</p>
+<p>Error:Validation Failed</p>
+<p>没错，这不是我的错<span class="heimu" title="别打我！">滑稽狗头保命</span>。</p>
+<p>这个错误在Gitalk用户里非常常见。</p>
+<p>为什么？</p>
+<p>这还得从官方文档讲起：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">- owner String</span><br><span class="line"></span><br><span class="line">-必须. GitHub repository 所有者，可以是个人或者组织。</span><br><span class="line"></span><br><span class="line">-admin Array</span><br><span class="line"></span><br><span class="line">-必须. GitHub repository 的所有者和合作者 (对这个 repository 有写权限的用户)。</span><br><span class="line"></span><br><span class="line">-id String</span><br><span class="line"></span><br><span class="line">-Default: location.href.</span><br><span class="line"></span><br><span class="line">-页面的唯一标识。长度必须小于50。</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>注意一下id,这个最终会成为Github issues中的lable之一,但是lable是有字数限制的,50个英文单词.</p>
+<p>但是有人会问我的中文名加上去之后也没有50字啊.</p>
+<p>对啊,可是Gitalk会将其转码,比如说<code>留言板</code>三个字最终会转成<code>/%E7%95%99%E8%A8%80%E6%9D%BF/</code><span class="heimu" title="你知道的太多了">这又♀长又♂粗</span>的文字.</p>
+<p>但是第一个Lable不能重复,重复后两个issues的两个Lable就相同了,这样两个评论就混在一起了.</p>
+<p>所以网上就有人开始讨论怎么解决了.</p>
+<h3 id="规避解码"><a href="#规避解码" class="headerlink" title="规避解码:"></a>规避解码:</h3><p>毕竟Github Lable其实是支持中文的…<span class="heimu" title="你知道的太多了">你怎么不早说!</span>,所以思路很简单,规避解码即可.</p>
+<p>返回步骤1,第11行,默认值是<code>location.pathname</code>也就是路径,规避解码很简单,把它替换成<code>decode(location.pathname)</code>就可以啦.</p>
+<p>当然这个办法最终还是有效的:</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.0.0/pic/gitalk/2.jpg" alt="图片" title="规避解码"></p>
+<p>但是,但是,你还记得我有一篇文章的题目吗: <code>CloudFlare%EF%BC%9A%E5%8F%AE%E5%92%9A%EF%BC%81%E6%82%A8%E7%9A%8415%E5%B9%B4%E5%85%8D%E8%B4%B9%E6%B3%9B%E5%9F%9F%E5%90%8DSSL%E8%AF%81%E4%B9%A6%E5%88%B0%E4%BA%86%EF%BC%81</code></p>
+<p>没错,解码以后就是: <code>CloudFlare：叮咚！您的15年免费泛域名SSL证书到了！</code><br>加上博客域名和路径,将近60字.</p>
+<p>这个方法依旧没有解决根本问题.</p>
+<h3 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h3><p><del>这个最终还是被我采用了,原因是它修改起来真的很简单.</del> 最终这个办法还是被舍弃了。</p>
+<p>返回步骤1,第11行,默认值是 <code>location.pathname</code> 也就是路径,把它替换成 <code>J3t7cGFnZS5kYXRlfX0n</code> (直接输入page.date被识别成nodejs语言执行了,只能通过base64编码,解码即可)(请解码后替换即可).</p>
+<p>最终的lable会变成时间戳(还是毫秒级别的),时间戳就是目标时间距离1970-01-01 08:00:00(UTC +8)的毫秒</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://npm.elemecdn.com/chenyfan-oss@1.0.0/pic/gitalk/3.jpg" alt="图片" title="完结撒花"></p>
+<p>这个是创建时间,也就是说只要我不是故意去更改时间,是几乎不可能碰撞的<span class="heimu" title="你知道的太多了">废话,我怎么可能在同一时间内写好两篇博文</span></p>
+<p>而且时间戳到50位…9999年12月31日23点59分59秒的时间戳253402271999000（刚刚好15位），也就是说用到我200代都够用。</p>
+<p>但是，</p>
+<h3 id="MD5压缩字符"><a href="#MD5压缩字符" class="headerlink" title="MD5压缩字符"></a>MD5压缩字符</h3><blockquote>
+<p>2020年2月27日最终选择。</p>
+</blockquote>
+<p>为什么？</p>
+<p>因为后来发现使用时来作为Lable会导致在下一次修改后Lable改变。</p>
+<p>因为选择的page.date并不是开头的date，而是根据电脑里面的修改时间判定的。</p>
+<p>所以即使是改成page.update也没用…</p>
+<p>所以最终采用了MD5</p>
+<p>既然你最多50字,那么干脆用MD5强制压缩至32个字从根本解决问题,而且MD5只要不是恶意去碰撞基本不会相同.</p>
+<p>毕竟MD5是一个比较著名的hash算法嘛.</p>
+<p><del>但是,使用MD5需要额外添加很长一段js,在进行初始化估计就要一段时间了.</del></p>
+<p><del>所以,此处不推荐使用MD5,如果你有这个需求,可以去gitalk或gitment官方github的issues中查看.</del></p>
+<p>修改方式：在进入 <code>\themes\next\layout\_third-party\comments\gitalk.swig</code> ,修改成这样：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw %&#125;</span><br><span class="line">&#123;% if page.comments &amp;&amp; theme.gitalk.enable %&#125;</span><br><span class="line"></span><br><span class="line">  <span class="symbol">&amp;lt;</span>link rel=<span class="symbol">&amp;quot;</span>stylesheet<span class="symbol">&amp;quot;</span> href=<span class="symbol">&amp;quot;</span>https://unpkg.com/gitalk/dist/gitalk.css<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span></span><br><span class="line">  <span class="symbol">&amp;lt;</span>script src=<span class="symbol">&amp;quot;</span>https://unpkg.com/gitalk/dist/gitalk.min.js<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span><span class="symbol">&amp;lt;</span>/script<span class="symbol">&amp;gt;</span></span><br><span class="line">  <span class="symbol">&amp;lt;</span>script src=<span class="symbol">&amp;quot;</span>https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span><span class="symbol">&amp;lt;</span>/script<span class="symbol">&amp;gt;</span></span><br><span class="line">   <span class="symbol">&amp;lt;</span>script type=<span class="symbol">&amp;quot;</span>text/javascript<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span></span><br><span class="line">        var gitalk = new Gitalk(&#123;</span><br><span class="line">          clientID: <span class="symbol">&amp;#x27;</span>&#123;&#123; theme.gitalk.ClientID &#125;&#125;<span class="symbol">&amp;#x27;</span>,</span><br><span class="line">          clientSecret: <span class="symbol">&amp;#x27;</span>&#123;&#123; theme.gitalk.ClientSecret &#125;&#125;<span class="symbol">&amp;#x27;</span>,</span><br><span class="line">          repo: <span class="symbol">&amp;#x27;</span>&#123;&#123; theme.gitalk.repo &#125;&#125;<span class="symbol">&amp;#x27;</span>,</span><br><span class="line">          owner: <span class="symbol">&amp;#x27;</span>&#123;&#123; theme.gitalk.githubID &#125;&#125;<span class="symbol">&amp;#x27;</span>,</span><br><span class="line">          admin: [<span class="symbol">&amp;#x27;</span>&#123;&#123; theme.gitalk.adminUser &#125;&#125;<span class="symbol">&amp;#x27;</span>],</span><br><span class="line">          id: md5(location.pathname),</span><br><span class="line">          distractionFreeMode: <span class="symbol">&amp;#x27;</span>&#123;&#123; theme.gitalk.distractionFreeMode &#125;&#125;<span class="symbol">&amp;#x27;</span></span><br><span class="line">        &#125;)</span><br><span class="line">        gitalk.render(<span class="symbol">&amp;#x27;</span>gitalk-container<span class="symbol">&amp;#x27;</span>)           </span><br><span class="line">       <span class="symbol">&amp;lt;</span>/script<span class="symbol">&amp;gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line">&#123;% endraw %&#125;</span><br></pre></td></tr></table></figure>
+<p>至于担心更换域名后Lable不匹配的问题,在这里说明一下,Lable采用的是相对目录,比如 <code>\留言板\</code> ,这个经过md5后是 <code>b31b6a578fce950674accdd14100e448</code></p>
+<p>所以只要不改题目都没问题。</p>
+<p>咳咳,<span class="heimu" title="你知道的太多了">还是MD5大法好b（￣▽￣）d　</span></p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>看起来自己解决问题就是好啊。</p>
+<p>另外，国内用户如果看到评论框有：Error: Network Error字样或长时间加载或没有评论框，可以尝试修改一下DNS至国外如1.1.1.1、1.0.0.1、8.8.8.8、8.8.4.4，如果还是不行，那就，那就拿梯子吧。</p>
+<p>毕竟GXX对于Github尤其是API很不友好…</p>
+<p>呃,听说三月七号开学,估计博客又要荒凉了,高中生活好啊…</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://res-256.github.io">何孙涛</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://res-256.github.io/posts/9f2a11d8/">https://res-256.github.io/posts/9f2a11d8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://res-256.github.io" target="_blank">何孙涛の博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%B8%A9%E5%9D%91/">踩坑</a><a class="post-meta__tags" href="/tags/%E6%89%8B%E5%8A%A8%E5%A1%AB%E5%9D%91/">手动填坑</a><a class="post-meta__tags" href="/tags/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/">评论系统</a><a class="post-meta__tags" href="/tags/%E8%AF%84%E8%AE%BA/">评论</a><a class="post-meta__tags" href="/tags/Gitalk/">Gitalk</a><a class="post-meta__tags" href="/tags/Github/">Github</a></div><div class="post-share"><div class="social-share" data-image="/img/202210092028180.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/3316/" title="VMware 安装 CentOS 8.1 完整教程 "><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">VMware 安装 CentOS 8.1 完整教程 </div></div><div class="info-2"><div class="info-item-1">我使用的VMware版本：VMware 15 Pro 镜像：CentOS 8.1 电脑配置需求：  2 GB 及以上的RAM（官方推荐至少4G） 2 GHz 或以上的 CPU 64 位 x86 架构 20 GB 及以上硬盘空间  关于CentOS 8.1  基于Linux 4.18 提供 PHP 7.2、Python 3.6、Ansible 2.8、VIM 8.0 和 Squid 4 使用网络管理器（nmcli 和 nmtui）进行网络配置，移除了网络脚本通过 BaseOS 和应用流(AppStream)仓库发布. AppStream 是对传统rpm格式的全新扩展，为一个组件同时提供多个主要版本 YUM 包管理器基于 DNF 技术，提供模块化内容支持，增强了性能，并且提供了设计良好的API用于与其他工具集成 RHEL 8提供了版本控制工具: Git 2.18, Mercurial 4.8,和 Subversion 1.10.   内核实时修补；称为 FRR 的新路由协议堆栈（支持多种 IPv4 和 IPv6 路由协议）；伯克利数据包筛选器（eBPF）的扩展版本，可帮助系统管理员解...</div></div></div></a><a class="pagination-related" href="/posts/92dd5347/" title="浅谈什么是好软件（1）"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">浅谈什么是好软件（1）</div></div><div class="info-2"><div class="info-item-1">本序列持续更新 先不说什么，就先放两张图片，这两张看了之后我当时就沉默了：   看完了吗？ 接下来，我就只有一句话来总结我认为好的软件：将自己该做的事情做到最好，永远不做那些与名字不相符的事情,要用的时候及时跳出来,不用的时候永远静静待着。 拒绝All in one,只做该做的! 以下内容全部是个人观点，部分内容并非中立，更有内容关于破解，请不要将其扭曲，更不要将此作为借口挑起吵架，谢谢！ 压缩软件Bandizip这个软件真的是将压缩做到极致了，网上很多人都在推荐它，不得不说真的很好，UI和内核做到了压缩软件的标杆，唯一有个问题最近升级到最高版本时发现个人版会添加广告，企业版要付费。感觉和WinRAR混到一块去了，真的不敢相信如此好的一款压缩软件竟然混成这样，在此真的不建议使用BandiZip。  全新许可证系统与以前的版本相比，Bandizip 7.0 在许可证和分发方面有所变化。  Bandizip 7.0 版本历史  Bandizip 许可证政策  Bandizip 版本对比  购买 Bandzip  Bandizip 最终用户许可协议    …许可类型: 含有广告的软件（...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/480ab6ed/" title="无服务器搭建Artalk评论系统后端"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-01</div><div class="info-item-2">无服务器搭建Artalk评论系统后端</div></div><div class="info-2"><div class="info-item-1"> 这篇的无服务器部署Artalk，指的是NoServer而不是Serverless 这篇所写的是部署后端，关于前端部署十分简单，这里不多阐述  Artalk，一款简洁有趣的自托管评论系统。此时，Valine作为老大哥就不得不跳出来了。但是，作为Valine的Leancloud作为第三方托管，数据放在别人那里总是不舒服的，譬如2020/9/24Leancloud华北节点云引擎被 DDoS 攻击  或者说LeanCloud将开发版限额一限在限，亦或者leancloud多次宕机,作为自由开放的我自然不舒服。加上leancloud开发版的SLA实在令人担忧【不包括休眠时间，一个月内宕机超过20次（不过leancloud开发版确实没有保证SLA）】，以及比较严重的管理员冒充。我一直再找一个能用自己服务器托管评论系统，真巧，我找到了Artalk。Artalk的优点：  轻量简洁 (~23kB gzipped)  有趣有爱  自托管  Markdown  表情自定  滑稽表情包  管理员密码，防冒名  验证码，提交频率限制  通知中心，邮件提醒  自定义某些页面仅管理员可评论  无限层级回复 ...</div></div></div></a><a class="pagination-related" href="/posts/90e223e4/" title="Valine：一款极简评论系统的安装到升级"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-08-17</div><div class="info-item-2">Valine：一款极简评论系统的安装到升级</div></div><div class="info-2"><div class="info-item-1">前言： 这可能就是这个暑假最后一篇了，好怀念啊(ノへ￣、)  几天前我的博客评论系统还是来比力的，这几天我把它换成了Valine，为什么呢？我列了一张表，你可以参考一下： （这些都是还活着、中国能访问的评论系统）     项目&amp;评论系统： Gitalk Gitment Livere Valine 畅言     需要备案？ ❌ ❌ ❌ 外国版❌，国内版未来✔ ✔    评论系统存储服务器地址？ Github issues Github issues Livere服务器 Leancloud 畅言服务器    速度？ 较快 快 很慢 快 较快    延迟？ &lt;6s &lt;6s &gt;10s &lt;3s &lt;3s    支持匿名？ ❌ ❌ ✔ ✔ 未知    登陆方式？ Github账号 Github账号 多种SNS账号 邮箱 多种SNS账号    UI风格？ 极简 一般 一般 极简 一般    缺陷 只支持Github账号 只支持Github账号 加载极慢 免费版每天强制休眠6小时 要备案      这么看来，还Valine最优秀。 What’s Valine?...</div></div></div></a><a class="pagination-related" href="/posts/36dee3d7/" title="GithubのUnlimited Private Repo有感"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-22</div><div class="info-item-2">GithubのUnlimited Private Repo有感</div></div><div class="info-2"><div class="info-item-1">Unlimited Repo这个项目上一年就开了，只不过当时我身边一堆垃圾新闻客户端根本没有提到这件事，我居然不知道。直到现在手贱开了一个PrivateRepo才发现什么时候变免费了？？？顿时感觉失去了关爱…. 欸没错这篇又是水文今天讲讲关于这件事以及对于github的心理感想。 收购微软爸爸2018年末收购Github这件事情我是知道的。 哦，知道就知道呗，我当时的心理想法是这样的。 确实是这样，我虽然知道网上很多人对这件事褒贬不一，可我确实是心中毫无波澜。 因为很多人认为，有那么一个大靠山，就可以接着薅撸羊毛。 也有一些程序员觉得，这样Github就丧失了它开源（OpenSource）的初衷。 甚至还有Gitlab公然在底下挑衅。 （当然这篇博文不是过来喷GitLab的，我只是想描述当时Github有多惨。） 我为什么当时毫无波澜呢，说实话原因有下： 1.当时还是个萌新，不知道这有什么意义。（雾）2.感觉收购后和收购前没什么不同。（大雾）3.当时还没有理解Git是什么东西，上传方式都是拖拽上传（大大雾） 嗯。 成长渐渐的，用到Github多了，虽然是个学生，但还是有抽出心思写...</div></div></div></a><a class="pagination-related" href="/posts/6708e52c/" title="Github无法注册：Unable to verify your captcha response"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/202210092028180.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-27</div><div class="info-item-2">Github无法注册：Unable to verify your captcha response</div></div><div class="info-2"><div class="info-item-1">前言：前几天就想注册一个Github账号，话说回来早就该注册了。前面注册时也是正常的，结果在人机验证（Github Captcha）卡住了。点击Create an Account,结果… 注册时报错：123Unable to verify your captcha response. Please visit https://help.github.com/articles/troubleshooting-connectivity-problems/#troubleshooting-the-captchafor troubleshooting information. 一脸懵逼…什么鬼,可是在按下之前人机验证不都是打钩了吗？U•ェ•*??? 试图解决：网上查了一下，也有很多类似的事，如https://blog.csdn.net/m0_37617778/article/details/83098985其中博主提出解决方案：  使用IE就可以了.  (/≧▽≦)/,笑死我了,连Chrome都做不到,怎么可能在IE中做到?后来在评论中看到这样的话:  欧二lord：善用技术上网吧，我换...</div></div></div></a><a class="pagination-related" href="/posts/8b2f/" title="Github + Hexo 搭建个人博客超详细教程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-02-18</div><div class="info-item-2">Github + Hexo 搭建个人博客超详细教程</div></div><div class="info-2"><div class="info-item-1"> **在搭建过程中遇到问题欢迎来骚扰我哈！ V：godxiaolong，QQ:1571504536，如果觉得有帮助的话不介意打赏一杯奶茶哟~**   前言 作为一名计算机爱好者，摸索了一周搭建出自己的博客。目前只学    习了c语言，没有任何前端知识和网站开发经验，总的来说，算不上很难，     但也要费些心思。网上各类教程应有尽有，只要肯摸索，还是水到渠成的事。另外，写下这篇文章，记录下自己的经验，给需要的朋友，祝你早日拥有自己的博客！  搭建博客的初衷是希望用博客记录下自己的学习过程，帮助自己复习，分享一部分不成熟的思考，敦促自己把既定的目标完成。  为什么要搭建自己的博客？可以看看这三篇文章：  《为什么你应该（从现在开始就）写博客》   (By 刘未鹏 | Mind Hacks) 《为什么要自建博客？》   (By 知乎) 《我为什么写博客》 （By 知明所以） 我们需要知道搭建博客要用到的框架。Hexo是高效的静态站点生成框架，它基于Node.js。我们使用MarkDown在本地编辑我们的博客文章，通过Hexo生成静态页面，再用两条命令即可部署到我们的网站。无需关心网页...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%88%E8%A6%81%E5%88%87%E6%8D%A2%E5%9B%9EGitalk%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">为什么又要切换回Gitalk？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE"><span class="toc-number">2.1.</span> <span class="toc-text">数据:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">配置:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C"><span class="toc-number">2.3.</span> <span class="toc-text">注册:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%EF%BC%9A"><span class="toc-number">2.4.</span> <span class="toc-text">配置：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">2.4.1.</span> <span class="toc-text">1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">2.4.2.</span> <span class="toc-text">2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3"><span class="toc-number">2.4.3.</span> <span class="toc-text">3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4"><span class="toc-number">2.4.4.</span> <span class="toc-text">4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5"><span class="toc-number">2.4.5.</span> <span class="toc-text">5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6"><span class="toc-number">2.4.6.</span> <span class="toc-text">6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F"><span class="toc-number">2.4.7.</span> <span class="toc-text">结束?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%84%E9%81%BF%E8%A7%A3%E7%A0%81"><span class="toc-number">2.4.8.</span> <span class="toc-text">规避解码:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4"><span class="toc-number">2.4.9.</span> <span class="toc-text">时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MD5%E5%8E%8B%E7%BC%A9%E5%AD%97%E7%AC%A6"><span class="toc-number">2.4.10.</span> <span class="toc-text">MD5压缩字符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">3.</span> <span class="toc-text">结语</span></a></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2017 - 2025 By 何孙涛</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-res256s-projects.vercel.app/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://twikoo-res256s-projects.vercel.app/',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    GLOBAL_CONFIG_SITE.pageType === 'post' && getCount()
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="/img/myjs.js"></script><script src="/js/youlian.js"></script><script src="/js/aside_mobile.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="/"></script></div><!-- hexo injector body_end start --><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='null'|| 'null' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax  src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><!-- hexo injector body_end end --></body></html>
